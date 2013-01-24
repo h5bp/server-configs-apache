@@ -103,9 +103,9 @@ AddType     image/svg+xml              svg svgz
 AddEncoding gzip                       svgz
 
 # Webfonts
+AddType application/font-woff          woff
 AddType application/vnd.ms-fontobject  eot
 AddType application/x-font-ttf         ttf ttc
-AddType application/x-font-woff        woff
 AddType font/opentype                  otf
 
 # Assorted types
@@ -238,9 +238,9 @@ AddType text/x-vcard                        vcf
   ExpiresByType text/x-component          "access plus 1 month"
 
 # Webfonts
+  ExpiresByType application/font-woff     "access plus 1 month"
   ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
   ExpiresByType application/x-font-ttf    "access plus 1 month"
-  ExpiresByType application/x-font-woff   "access plus 1 month"
   ExpiresByType font/opentype             "access plus 1 month"
   ExpiresByType image/svg+xml             "access plus 1 month"
 
