@@ -1,8 +1,8 @@
 # Apache configuration file
-# httpd.apache.org/docs/2.2/mod/quickreference.html
+# httpd.apache.org/docs/current/mod/quickreference.html
 
 # Note .htaccess files are an overhead, this logic should be in your Apache
-# config if possible: httpd.apache.org/docs/2.2/howto/htaccess.html
+# config if possible: httpd.apache.org/docs/current/howto/htaccess.html
 
 # Techniques in here adapted from all over, including:
 #   Kroc Camen: camendesign.com/.htaccess
