@@ -1,3 +1,4 @@
+
 # Apache configuration file
 # httpd.apache.org/docs/current/mod/quickreference.html
 
@@ -528,23 +529,6 @@ AddDefaultCharset utf-8
 #  </FilesMatch>
 #</IfModule>
 
-
-# If your server is not already configured as such, the following directive
-# should be uncommented in order to set PHP's register_globals option to OFF.
-# This closes a major security hole that is abused by most XSS (cross-site
-# scripting) attacks. For more information: http://php.net/register_globals
-#
-# IF REGISTER_GLOBALS DIRECTIVE CAUSES 500 INTERNAL SERVER ERRORS:
-#
-# Your server does not allow PHP directives to be set via .htaccess. In that
-# case you must make this change in your php.ini file instead. If you are
-# using a commercial web host, contact the administrators for assistance in
-# doing this. Not all servers allow local php.ini files, and they should
-# include all PHP configurations (not just this one), or you will effectively
-# reset everything to PHP defaults. Consult www.php.net for more detailed
-# information about setting PHP directives.
-
-# php_flag register_globals Off
 
 # Rename session cookie to something else, than PHPSESSID
 # php_value session.name sid
