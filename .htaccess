@@ -1,4 +1,3 @@
-
 # Apache configuration file
 # httpd.apache.org/docs/current/mod/quickreference.html
 
@@ -108,6 +107,10 @@
   # Webfonts
   AddType application/font-woff                 woff
   AddType application/vnd.ms-fontobject         eot
+
+  # Browsers usually ignore the font MIME types and sniff the content
+  # but, Chrome, shows a warning if other MIME types are used for the
+  # following font types
   AddType application/x-font-ttf                ttf ttc
   AddType font/opentype                         otf
 
