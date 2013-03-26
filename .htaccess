@@ -1,26 +1,21 @@
-# Apache configuration file
-# httpd.apache.org/docs/current/mod/quickreference.html
+# Apache Configuration File
 
-# Note .htaccess files are an overhead, this logic should be in your Apache
-# config if possible: httpd.apache.org/docs/current/howto/htaccess.html
-
-# Techniques in here adapted from all over, including:
-#   Kroc Camen: camendesign.com/.htaccess
-#   perishablepress.com/press/2006/01/10/stupid-htaccess-tricks/
-#   Sample .htaccess file of CMS MODx: modxcms.com
-
+# (!) Using `.htaccess` files slows down Apache, therefore, if you have access
+# to the main server config file (usually called `httpd.conf`), you should add
+# this logic there: http://httpd.apache.org/docs/current/howto/htaccess.html.
 
 # ----------------------------------------------------------------------
 # Better website experience for IE users
 # ----------------------------------------------------------------------
 
-# Force the latest IE version, in various cases when it may fall back to IE7 mode
-#  github.com/rails/rails/commit/123eb25#commitcomment-118920
-# Use ChromeFrame if it's installed for a better experience for the poor IE folk
+# Force IE to render pages in the highest available mode in the various
+# cases when it may not: http://hsivonen.iki.fi/doctype/ie-mode.pdf.
+# Use, if installed, Google Chrome Frame.
 
 <IfModule mod_headers.c>
   Header set X-UA-Compatible "IE=edge,chrome=1"
-  # mod_headers can't match by content-type, but we don't want to send this header on *everything*...
+  # Unfortunately, Apache can't match based on the content-type, however, we
+  # only want to send this header for HTML pages and not for the other resources
   <FilesMatch "\.(appcache|crx|css|eot|gif|htc|ico|jpe?g|js|m4a|m4v|manifest|mp4|oex|oga|ogg|ogv|otf|pdf|png|safariextz|svg|svgz|ttf|vcf|webm|webp|woff|xml|xpi)$">
     Header unset X-UA-Compatible
   </FilesMatch>
@@ -31,9 +26,9 @@
 # Cross-domain AJAX requests
 # ----------------------------------------------------------------------
 
-# Serve cross-domain Ajax requests, disabled by default.
-# enable-cors.org
-# code.google.com/p/html5security/wiki/CrossOriginRequestSecurity
+# Enable cross-origin AJAX requests.
+# http://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity
+# http://enable-cors.org/
 
 #  <IfModule mod_headers.c>
 #    Header set Access-Control-Allow-Origin "*"
@@ -41,14 +36,13 @@
 
 
 # ----------------------------------------------------------------------
-# CORS-enabled images (@crossorigin)
+# CORS-enabled images
 # ----------------------------------------------------------------------
 
-# Send CORS headers if browsers request them; enabled by default for images.
-# developer.mozilla.org/en/CORS_Enabled_Image
-# blog.chromium.org/2011/07/using-cross-domain-images-in-webgl-and.html
-# hacks.mozilla.org/2011/11/using-cors-to-load-webgl-textures-from-cross-domain-images/
-# wiki.mozilla.org/Security/Reviews/crossoriginAttribute
+# Send the CORS header for images when browsers request it.
+# https://developer.mozilla.org/en/CORS_Enabled_Image
+# http://blog.chromium.org/2011/07/using-cross-domain-images-in-webgl-and.html
+# http://hacks.mozilla.org/2011/11/using-cors-to-load-webgl-textures-from-cross-domain-images/
 
 <IfModule mod_setenvif.c>
   <IfModule mod_headers.c>
@@ -62,13 +56,10 @@
 
 
 # ----------------------------------------------------------------------
-# Webfont access
+# Web fonts access
 # ----------------------------------------------------------------------
 
-# Allow access from all domains for webfonts.
-# Alternatively you could only whitelist your
-# subdomains like "subdomain.example.com".
-
+# Allow access from all domains for web fonts
 <IfModule mod_headers.c>
   <FilesMatch "\.(eot|font.css|otf|ttc|ttf|woff)$">
     Header set Access-Control-Allow-Origin "*"
@@ -77,14 +68,14 @@
 
 
 # ----------------------------------------------------------------------
-# Proper MIME type for all files
+# Proper MIME types for all files
 # ----------------------------------------------------------------------
 
 <IfModule mod_mime.c>
 
   # JavaScript
-  #   Normalize to standard type (it's sniffed in IE anyways)
-  #   tools.ietf.org/html/rfc4329#section-7.2
+  # Normalize to standard type (it's sniffed in IE anyways):
+  # http://tools.ietf.org/html/rfc4329#section-7.2
   AddType application/javascript                js jsonp
   AddType application/json                      json
 
@@ -98,23 +89,22 @@
   AddType video/webm                            webm
   AddType video/x-flv                           flv
 
-  # SVG
-  #   Required for svg webfonts on iPad
-  #   twitter.com/FontSquirrel/status/14855840545
-  AddType     image/svg+xml                     svg svgz
-  AddEncoding gzip                              svgz
-
-  # Webfonts
+  # Web Fonts
   AddType application/font-woff                 woff
   AddType application/vnd.ms-fontobject         eot
 
-  # Browsers usually ignore the font MIME types and sniff the content
-  # but, Chrome, shows a warning if other MIME types are used for the
-  # following font types
+  # Browsers usually ignore the font MIME types and sniff the content,
+  # however, Chrome shows a warning if other MIME types are used for the
+  # following fonts.
   AddType application/x-font-ttf                ttf ttc
   AddType font/opentype                         otf
 
-  # Assorted types
+  # Make SVGZ fonts work on iPad:
+  # https://twitter.com/FontSquirrel/status/14855840545
+  AddType     image/svg+xml                     svg svgz
+  AddEncoding gzip                              svgz
+
+  # Other
   AddType application/octet-stream              safariextz
   AddType application/x-chrome-extension        crx
   AddType application/x-opera-extension         oex
@@ -132,16 +122,14 @@
 </IfModule>
 
 # ----------------------------------------------------------------------
-# Allow concatenation from within specific js and css files
+# File concatenation
 # ----------------------------------------------------------------------
 
-# e.g. Inside of script.combined.js you could have
-#   <!--#include file="libs/jquery-1.5.0.min.js" -->
+# Allow concatenation from within specific CSS and JS files, e.g.:
+# Inside of `script.combined.js` you could have
+#   <!--#include file="libs/jquery.js" -->
 #   <!--#include file="plugins/jquery.idletimer.js" -->
 # and they would be included into this single file.
-
-# This is not in use in the boilerplate as it stands. You may
-# choose to use this technique if you do not have a build process.
 
 #<IfModule mod_include.c>
 #  <FilesMatch "\.combined\.js$">
@@ -149,7 +137,6 @@
 #    AddOutputFilterByType INCLUDES application/javascript application/json
 #    SetOutputFilter INCLUDES
 #  </FilesMatch>
-
 #  <FilesMatch "\.combined\.css$">
 #    Options +Includes
 #    AddOutputFilterByType INCLUDES text/css
@@ -159,12 +146,13 @@
 
 
 # ----------------------------------------------------------------------
-# Gzip compression
+# Compression
 # ----------------------------------------------------------------------
 
 <IfModule mod_deflate.c>
 
-  # Force deflate for mangled headers developer.yahoo.com/blogs/ydn/posts/2010/12/pushing-beyond-gzipping/
+  # Force compression for mangled headers.
+  # http://developer.yahoo.com/blogs/ydn/posts/2010/12/pushing-beyond-gzipping
   <IfModule mod_setenvif.c>
     <IfModule mod_headers.c>
       SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
@@ -174,8 +162,8 @@
 
   # Compress all output labeled with one of the following MIME-types
   # (for Apache versions below 2.3.7, you don't need to enable `mod_filter`
-  # and can remove the `<IfModule mod_filter.c>` and `</IfModule>` lines as
-  # `AddOutputFilterByType` is still in the core directives)
+  #  and can remove the `<IfModule mod_filter.c>` and `</IfModule>` lines
+  #  as `AddOutputFilterByType` is still in the core directives).
   <IfModule mod_filter.c>
     AddOutputFilterByType DEFLATE application/atom+xml \
                                   application/javascript \
@@ -202,39 +190,35 @@
 # Expires headers (for better cache control)
 # ----------------------------------------------------------------------
 
-# These are pretty far-future expires headers.
-# They assume you control versioning with filename-based cache busting
-# Additionally, consider that outdated proxies may miscache
-#   www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/
-
-# If you don't use filenames to version, lower the CSS and JS to something like
-# "access plus 1 week".
+# The following expires headers are set pretty far in the future. If you don't
+# control versioning with filename-based cache busting, consider lowering the
+# cache time for resources like CSS and JS to something like 1 week.
 
 <IfModule mod_expires.c>
+
   ExpiresActive on
 
-# Perhaps better to whitelist expires rules? Perhaps.
   ExpiresDefault                          "access plus 1 month"
 
-# cache.appcache needs re-requests in FF 3.6 (thanks Remy ~Introducing HTML5)
+# Appcache manifest
   ExpiresByType text/cache-manifest       "access plus 0 seconds"
 
-# Your document html
+# HTML document
   ExpiresByType text/html                 "access plus 0 seconds"
 
-# Data
+# Data interchange formats
   ExpiresByType application/json          "access plus 0 seconds"
   ExpiresByType application/xml           "access plus 0 seconds"
   ExpiresByType text/xml                  "access plus 0 seconds"
 
-# Feed
+# Web feed formats
   ExpiresByType application/atom+xml      "access plus 1 hour"
   ExpiresByType application/rss+xml       "access plus 1 hour"
 
-# Favicon (cannot be renamed)
+# Favicon (cannot be renamed!)
   ExpiresByType image/x-icon              "access plus 1 week"
 
-# Media: images, video, audio
+# Media (audio, image & video formats)
   ExpiresByType audio/ogg                 "access plus 1 month"
   ExpiresByType image/gif                 "access plus 1 month"
   ExpiresByType image/jpeg                "access plus 1 month"
@@ -243,30 +227,31 @@
   ExpiresByType video/ogg                 "access plus 1 month"
   ExpiresByType video/webm                "access plus 1 month"
 
-# HTC files  (css3pie)
+# HTML components (HTCs)
   ExpiresByType text/x-component          "access plus 1 month"
 
-# Webfonts
+# Web font formats
   ExpiresByType application/font-woff     "access plus 1 month"
   ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
   ExpiresByType application/x-font-ttf    "access plus 1 month"
   ExpiresByType font/opentype             "access plus 1 month"
   ExpiresByType image/svg+xml             "access plus 1 month"
 
-# CSS and JavaScript
+# JavaScript
   ExpiresByType application/javascript    "access plus 1 year"
+
+# CSS
   ExpiresByType text/css                  "access plus 1 year"
 
 </IfModule>
 
 
 # ----------------------------------------------------------------------
-# Prevent mobile network providers from modifying your site
+# Content transformations
 # ----------------------------------------------------------------------
 
-# The following header prevents modification of your code over 3G on some
-# European providers.
-# This is the official 'bypass' suggested by O2 in the UK.
+# Prevent some of the mobile network providers from modifying the content of
+# your site: http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9.5.
 
 # <IfModule mod_headers.c>
 # Header set Cache-Control "no-transform"
@@ -277,23 +262,22 @@
 # ETag removal
 # ----------------------------------------------------------------------
 
-# FileETag None is not enough for every server.
+# Since we're sending far-future expires headers (see above), ETags can
+# be removed: http://developer.yahoo.com/performance/rules.html#etags.
+
+# `FileETag None` is not enough for every server.
 <IfModule mod_headers.c>
   Header unset ETag
 </IfModule>
 
-# Since we're sending far-future expires, we don't need ETags for
-# static content.
-#   developer.yahoo.com/performance/rules.html#etags
 FileETag None
 
-
 # ----------------------------------------------------------------------
-# Stop screen flicker in IE on CSS rollovers
+# Screen flicker
 # ----------------------------------------------------------------------
 
-# The following directives stop screen flicker in IE on CSS rollovers - in
-# combination with the "ExpiresByType" rules for images (see above).
+# Stop screen flicker in IE on CSS rollovers (this only works in
+# combination with the `ExpiresByType` directives for images from above).
 
 # BrowserMatch "MSIE" brokenvary=1
 # BrowserMatch "Mozilla/4.[0-9]{2}" brokenvary=1
@@ -302,12 +286,14 @@ FileETag None
 
 
 # ----------------------------------------------------------------------
-# Set Keep-Alive Header
+# Persistent connections
 # ----------------------------------------------------------------------
 
-# Keep-Alive allows the server to send multiple requests through one
-# TCP-connection. Be aware of possible disadvantages of this setting. Turn on
-# if you serve a lot of static content.
+# Allow multiple requests to be sent over the same TCP connection:
+# http://httpd.apache.org/docs/current/en/mod/core.html#keepalive.
+
+# Enable if you serve a lot of static content but, be aware of the
+# possible disadvantages!
 
 # <IfModule mod_headers.c>
 #   Header set Connection Keep-Alive
@@ -318,8 +304,7 @@ FileETag None
 # Cookie setting from iframes
 # ----------------------------------------------------------------------
 
-# Allow cookies to be set from iframes (for IE only)
-# If needed, specify a path or regex in the Location directive.
+# Allow cookies to be set from iframes in IE.
 
 # <IfModule mod_headers.c>
 #   Header set P3P "policyref=\"/w3c/p3p.xml\", CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""
@@ -327,19 +312,18 @@ FileETag None
 
 
 # ----------------------------------------------------------------------
-# Start rewrite engine
+# Rewrite engine
 # ----------------------------------------------------------------------
 
-# Turning on the rewrite engine is necessary for the following rules and
-# features. FollowSymLinks must be enabled for this to work.
+# Turning on the rewrite engine and enabling the `FollowSymLinks` option is
+# necessary for the following directives to work.
 
-# Some cloud hosting services require RewriteBase to be set: goo.gl/HOcPN
-# If using the h5bp in a subdirectory, use `RewriteBase /foo` instead where
-# 'foo' is your directory.
+# If your web host doesn't allow the `FollowSymlinks` option, you may need to
+# comment it out and use `Options +SymLinksIfOwnerMatch` but, be aware of the
+# performance impact: http://httpd.apache.org/docs/current/misc/perf-tuning.html#symlinks
 
-# If your web host doesn't allow the FollowSymlinks option, you may need to
-# comment it out and use `Options +SymLinksIfOwnerMatch`, but be aware of the
-# performance impact: http://goo.gl/Mluzd
+# Also, some cloud hosting services require `RewriteBase` to be set:
+# http://www.rackspace.com/knowledge_center/frequently-asked-question/why-is-mod-rewrite-not-working-on-my-site
 
 <IfModule mod_rewrite.c>
   Options +FollowSymlinks
@@ -350,26 +334,25 @@ FileETag None
 
 
 # ----------------------------------------------------------------------
-# Suppress or force the "www." at the beginning of URLs
+# Suppressing / Forcing the "www." at the beginning of URLs
 # ----------------------------------------------------------------------
 
-# The same content should never be available under two different URLs -
-# especially not with and without "www." at the beginning, since this can cause
-# SEO problems (duplicate content). That's why you should choose one of the
-# alternatives and redirect the other one.
+# The same content should never be available under two different URLs especially
+# not with and without "www." at the beginning. This can cause SEO problems
+# (duplicate content), therefore, you should choose one of the alternatives and
+# redirect the other one.
 
-# By default option 1 (no "www.") is activated.
-# no-www.org/faq.php?q=class_b
+# By default option 1 (no "www.") is activated:
+# http://no-www.org/faq.php?q=class_b
 
-# If you'd prefer to use option 2, just comment out all option 1 lines
-# and uncomment option 2.
+# If you'd prefer to use option 2, just comment out all the lines from option 1
+# and uncomment the ones from option 2.
 
 # IMPORTANT: NEVER USE BOTH RULES AT THE SAME TIME!
 
-# ----------------------------------------------------------------------
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Option 1:
-# Rewrite "www.example.com -> example.com".
+# Option 1: rewrite www.example.com → example.com
 
 <IfModule mod_rewrite.c>
   RewriteCond %{HTTPS} !=on
@@ -377,11 +360,11 @@ FileETag None
   RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
 </IfModule>
 
-# ----------------------------------------------------------------------
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Option 2:
-# Rewrite "example.com -> www.example.com".
-# Be aware that the following rule might not be a good idea if you use "real"
+# Option 2: rewrite example.com → www.example.com
+
+# Be aware that the following might not be a good idea if you use "real"
 # subdomains for certain parts of your website.
 
 # <IfModule mod_rewrite.c>
@@ -392,15 +375,15 @@ FileETag None
 
 
 # ----------------------------------------------------------------------
-# Built-in filename-based cache busting
+# Filename-based cache busting
 # ----------------------------------------------------------------------
 
-# If you're not using the build script to manage your filename version revving,
-# you might want to consider enabling this, which will route requests for
-# `/css/style.20110203.css` to `/css/style.css`.
+# If you're not using a build process to manage your filename version revving,
+# you might want to consider enabling the following directives to route all
+# requests such as `/css/style.12345.css` to `/css/style.css`.
 
-# To understand why this is important and a better idea than all.css?v1231,
-# please refer to the bundled documentation about `.htaccess`.
+# To understand why this is important and a better idea than `*.css?v231`, read:
+# http://stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring
 
 # <IfModule mod_rewrite.c>
 #   RewriteCond %{REQUEST_FILENAME} !-f
@@ -410,27 +393,27 @@ FileETag None
 
 
 # ----------------------------------------------------------------------
-# Prevent SSL cert warnings
+# Secure Sockets Layer (SSL)
 # ----------------------------------------------------------------------
 
-# Rewrite secure requests properly to prevent SSL cert warnings, e.g. prevent
-# https://www.example.com when your cert only allows https://secure.example.com
+# Rewrite secure requests properly to prevent SSL certificate warnings, e.g.:
+# prevent `https://www.example.com` when your certificate only allows
+# `https://secure.example.com`.
 
 # <IfModule mod_rewrite.c>
 #   RewriteCond %{SERVER_PORT} !^443
 #   RewriteRule ^ https://example-domain-please-change-me.com%{REQUEST_URI} [R=301,L]
 # </IfModule>
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# ----------------------------------------------------------------------
-# Force client-side SSL redirection
-# ----------------------------------------------------------------------
+# Force client-side SSL redirection.
 
-# If a user types "example.com" in her browser, the above rule will redirect her
+# If a user types "example.com" in his browser, the above rule will redirect him
 # to the secure version of the site. That still leaves a window of opportunity
 # (the initial HTTP connection) for an attacker to downgrade or redirect the
-# request. The following header ensures that browser will **only** connect to
-# your server via HTTPS, regardless of what users type in the address bar.
+# request. The following header ensures that browser will ONLY connect to your
+# server via HTTPS, regardless of what the users type in the address bar.
 
 # <IfModule mod_headers.c>
 #   Header set Strict-Transport-Security max-age=16070400;
@@ -438,12 +421,13 @@ FileETag None
 
 
 # ----------------------------------------------------------------------
-# Prevent 404 errors for non-existing redirected folders
+# 404 error prevention for non-existing redirected directories
 # ----------------------------------------------------------------------
 
-# without -MultiViews, Apache will give a 404 for a rewrite if a folder of the
-# same name does not exist.
-# webmasterworld.com/apache/3808792.htm
+# Prevent Apache from returning a 404 error for a rewrite if a directory
+# with the same name does not exist.
+# http://httpd.apache.org/docs/current/content-negotiation.html#multiviews
+# http://www.webmasterworld.com/apache/3808792.htm
 
 Options -MultiViews
 
@@ -455,17 +439,17 @@ Options -MultiViews
 # You can customize what Apache returns to the client in case of an error (see
 # http://httpd.apache.org/docs/current/mod/core.html#errordocument), e.g.:
 
-#ErrorDocument 404 /404.html
+# ErrorDocument 404 /404.html
 
 
 # ----------------------------------------------------------------------
 # UTF-8 encoding
 # ----------------------------------------------------------------------
 
-# Use UTF-8 encoding for anything served text/plain or text/html
+# Use UTF-8 encoding for anything served as `text/html` or `text/plain`.
 AddDefaultCharset utf-8
 
-# Force UTF-8 for a number of file formats
+# Force UTF-8 for certain file formats.
 <IfModule mod_mime.c>
     AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
 </IfModule>
@@ -475,58 +459,65 @@ AddDefaultCharset utf-8
 # A little more security
 # ----------------------------------------------------------------------
 
-# To avoid displaying the exact version number of Apache being used, add the
-# following to httpd.conf (it will not work in .htaccess):
+# Avoid displaying the exact Apache version number, the description of the
+# generic OS-type and the information about Apache's compiled-in modules.
+
+# ADD THIS DIRECTIVE IN THE `httpd.conf` AS IT WILL NOT WORK IN THE `.htaccess`!
+
 # ServerTokens Prod
 
-# "-Indexes" will have Apache block users from browsing folders without a
-# default document Usually you should leave this activated, because you
-# shouldn't allow everybody to surf through every folder on your server (which
-# includes rather private places like CMS system folders).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Block access to directories without a default document.
+# Usually you should leave this uncommented because you shouldn't allow anyone
+# to surf through every directory on your server (which may includes rather
+# private places like the CMS's directories).
+
 <IfModule mod_autoindex.c>
   Options -Indexes
 </IfModule>
 
-# Block access to "hidden" directories or files whose names begin with a
-# period. This includes directories used by version control systems such as
-# Subversion or Git.
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Block access to hidden files and directories.
+# This includes directories used by version control systems such as Git and SVN.
+
 <IfModule mod_rewrite.c>
   RewriteCond %{SCRIPT_FILENAME} -d [OR]
   RewriteCond %{SCRIPT_FILENAME} -f
   RewriteRule "(^|/)\." - [F]
 </IfModule>
 
-# Block access to backup and source files. These files may be left by some
-# text/html editors and pose a great security danger, when anyone can access
-# them.
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Block access to backup and source files.
+# These files may be left by some text editors and can pose a great security
+# danger when anyone has access to them.
+
 <FilesMatch "(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op])|~)$">
   Order allow,deny
   Deny from all
   Satisfy All
 </FilesMatch>
 
+# ----------------------------------------------------------------------
+# Content Security Policy (CSP)
+# ----------------------------------------------------------------------
 
-# ----------------------------------------------------------------------
-# Content Security Policy
-# ----------------------------------------------------------------------
-#
 # You can mitigate the risk of cross-site scripting and other content-injection
 # attacks by setting a Content Security Policy which whitelists trusted sources
 # of content for your site.
-#
-# The example header below allows **only** script that loads from the current
-# site's origin (no inline script, no CDN, etc). This almost certainly won't
-# work as-is for your site. Skim the following article to get all the details
-# you'll need to craft a reasonable policy for your site:
-#
-# http://html5rocks.com/en/tutorials/security/content-security-policy/
-#
-# Or read the spec: http://w3.org/TR/CSP
-#
+
+# The example header below allows ONLY scripts that are loaded from the current
+# site's origin (no inline scripts, no CDN, etc). This almost certainly won't
+# work as-is for your site!
+
+# To get all the details you'll need to craft a reasonable policy for your site,
+# read: http://html5rocks.com/en/tutorials/security/content-security-policy (or
+# see the specification: http://w3.org/TR/CSP).
+
 #<IfModule mod_headers.c>
 #  Header set Content-Security-Policy "script-src 'self'; object-src 'self'"
-#  # mod_headers can't match by content-type, but we only want to send this
-#  # header for the page we're trying to protect, not for all of its resources.
 #  <FilesMatch "\.(appcache|crx|css|eot|gif|htc|ico|jpe?g|js|m4a|m4v|manifest|mp4|oex|oga|ogg|ogv|otf|pdf|png|safariextz|svg|svgz|ttf|vcf|webm|webp|woff|xml|xpi)$">
 #    Header unset Content-Security-Policy
 #  </FilesMatch>
