@@ -16,9 +16,9 @@
 # http://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity
 # http://enable-cors.org/
 
-#  <IfModule mod_headers.c>
+# <IfModule mod_headers.c>
 #    Header set Access-Control-Allow-Origin "*"
-#  </IfModule>
+# </IfModule>
 
 # ------------------------------------------------------------------------------
 # | CORS-enabled images                                                        |
@@ -30,13 +30,12 @@
 # http://hacks.mozilla.org/2011/11/using-cors-to-load-webgl-textures-from-cross-domain-images/
 
 <IfModule mod_setenvif.c>
-  <IfModule mod_headers.c>
-    # mod_headers, y u no match by Content-Type?!
-    <FilesMatch "\.(gif|ico|jpe?g|png|svg|svgz|webp)$">
-      SetEnvIf Origin ":" IS_CORS
-      Header set Access-Control-Allow-Origin "*" env=IS_CORS
-    </FilesMatch>
-  </IfModule>
+    <IfModule mod_headers.c>
+        <FilesMatch "\.(gif|ico|jpe?g|png|svg|svgz|webp)$">
+            SetEnvIf Origin ":" IS_CORS
+            Header set Access-Control-Allow-Origin "*" env=IS_CORS
+        </FilesMatch>
+    </IfModule>
 </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -46,9 +45,9 @@
 # Allow access from all domains for web fonts
 
 <IfModule mod_headers.c>
-  <FilesMatch "\.(eot|font.css|otf|ttc|ttf|woff)$">
-    Header set Access-Control-Allow-Origin "*"
-  </FilesMatch>
+    <FilesMatch "\.(eot|font.css|otf|ttc|ttf|woff)$">
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
 </IfModule>
 
 
@@ -90,12 +89,12 @@ Options -MultiViews
 # Use, if installed, Google Chrome Frame.
 
 <IfModule mod_headers.c>
-  Header set X-UA-Compatible "IE=edge,chrome=1"
-  # Unfortunately, Apache can't match based on the content-type, however, we
-  # only want to send this header for HTML pages and not for the other resources
-  <FilesMatch "\.(appcache|crx|css|eot|gif|htc|ico|jpe?g|js|m4a|m4v|manifest|mp4|oex|oga|ogg|ogv|otf|pdf|png|safariextz|svg|svgz|ttf|vcf|webm|webp|woff|xml|xpi)$">
-    Header unset X-UA-Compatible
-  </FilesMatch>
+    Header set X-UA-Compatible "IE=edge,chrome=1"
+    # `mod_headers` can't match based on the content-type, however, we only
+    # want to send this header for HTML pages and not for the other resources
+    <FilesMatch "\.(appcache|crx|css|eot|gif|htc|ico|jpe?g|js|m4a|m4v|manifest|mp4|oex|oga|ogg|ogv|otf|pdf|png|safariextz|svg|svgz|ttf|vcf|webm|webp|woff|xml|xpi)$">
+        Header unset X-UA-Compatible
+    </FilesMatch>
 </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -131,51 +130,51 @@ Options -MultiViews
 
 <IfModule mod_mime.c>
 
-  # JavaScript
-  # Normalize to standard type (it's sniffed in IE anyways):
-  # http://tools.ietf.org/html/rfc4329#section-7.2
-  AddType application/javascript                js jsonp
-  AddType application/json                      json
-
   # Audio
-  AddType audio/mp4                             m4a f4a f4b
-  AddType audio/ogg                             oga ogg
+    AddType audio/mp4                                   m4a f4a f4b
+    AddType audio/ogg                                   oga ogg
+
+  # JavaScript
+    # Normalize to standard type (it's sniffed in IE anyways):
+    # http://tools.ietf.org/html/rfc4329#section-7.2
+    AddType application/javascript                      js jsonp
+    AddType application/json                            json
 
   # Video
-  AddType video/mp4                             mp4 m4v f4v f4p
-  AddType video/ogg                             ogv
-  AddType video/webm                            webm
-  AddType video/x-flv                           flv
+    AddType video/mp4                                   mp4 m4v f4v f4p
+    AddType video/ogg                                   ogv
+    AddType video/webm                                  webm
+    AddType video/x-flv                                 flv
 
   # Web Fonts
-  AddType application/font-woff                 woff
-  AddType application/vnd.ms-fontobject         eot
+    AddType application/font-woff                       woff
+    AddType application/vnd.ms-fontobject               eot
 
-  # Browsers usually ignore the font MIME types and sniff the content,
-  # however, Chrome shows a warning if other MIME types are used for the
-  # following fonts.
-  AddType application/x-font-ttf                ttf ttc
-  AddType font/opentype                         otf
+    # Browsers usually ignore the font MIME types and sniff the content,
+    # however, Chrome shows a warning if other MIME types are used for the
+    # following fonts.
+    AddType application/x-font-ttf                      ttf ttc
+    AddType font/opentype                               otf
 
-  # Make SVGZ fonts work on iPad:
-  # https://twitter.com/FontSquirrel/status/14855840545
-  AddType     image/svg+xml                     svg svgz
-  AddEncoding gzip                              svgz
+    # Make SVGZ fonts work on iPad:
+    # https://twitter.com/FontSquirrel/status/14855840545
+    AddType     image/svg+xml                           svg svgz
+    AddEncoding gzip                                    svgz
 
   # Other
-  AddType application/octet-stream              safariextz
-  AddType application/x-chrome-extension        crx
-  AddType application/x-opera-extension         oex
-  AddType application/x-shockwave-flash         swf
-  AddType application/x-web-app-manifest+json   webapp
-  AddType application/x-xpinstall               xpi
-  AddType application/xml                       rss atom xml rdf
-  AddType image/webp                            webp
-  AddType image/x-icon                          ico
-  AddType text/cache-manifest                   appcache manifest
-  AddType text/vtt                              vtt
-  AddType text/x-component                      htc
-  AddType text/x-vcard                          vcf
+    AddType application/octet-stream                    safariextz
+    AddType application/x-chrome-extension              crx
+    AddType application/x-opera-extension               oex
+    AddType application/x-shockwave-flash               swf
+    AddType application/x-web-app-manifest+json         webapp
+    AddType application/x-xpinstall                     xpi
+    AddType application/xml                             rss atom xml rdf
+    AddType image/webp                                  webp
+    AddType image/x-icon                                ico
+    AddType text/cache-manifest                         appcache manifest
+    AddType text/vtt                                    vtt
+    AddType text/x-component                            htc
+    AddType text/x-vcard                                vcf
 
 </IfModule>
 
@@ -211,10 +210,10 @@ AddDefaultCharset utf-8
 # http://www.rackspace.com/knowledge_center/frequently-asked-question/why-is-mod-rewrite-not-working-on-my-site
 
 <IfModule mod_rewrite.c>
-  Options +FollowSymlinks
-# Options +SymLinksIfOwnerMatch
-  RewriteEngine On
-# RewriteBase /
+    Options +FollowSymlinks
+  # Options +SymLinksIfOwnerMatch
+    RewriteEngine On
+  # RewriteBase /
 </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -239,9 +238,9 @@ AddDefaultCharset utf-8
 # Option 1: rewrite www.example.com → example.com
 
 <IfModule mod_rewrite.c>
-  RewriteCond %{HTTPS} !=on
-  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-  RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
 </IfModule>
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -252,9 +251,9 @@ AddDefaultCharset utf-8
 # subdomains for certain parts of your website.
 
 # <IfModule mod_rewrite.c>
-#   RewriteCond %{HTTPS} !=on
-#   RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
-#   RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+#    RewriteCond %{HTTPS} !=on
+#    RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
+#    RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 # </IfModule>
 
 
@@ -278,12 +277,12 @@ AddDefaultCharset utf-8
 # read: http://html5rocks.com/en/tutorials/security/content-security-policy (or
 # see the specification: http://w3.org/TR/CSP).
 
-#<IfModule mod_headers.c>
-#  Header set Content-Security-Policy "script-src 'self'; object-src 'self'"
-#  <FilesMatch "\.(appcache|crx|css|eot|gif|htc|ico|jpe?g|js|m4a|m4v|manifest|mp4|oex|oga|ogg|ogv|otf|pdf|png|safariextz|svg|svgz|ttf|vcf|webm|webp|woff|xml|xpi)$">
-#    Header unset Content-Security-Policy
-#  </FilesMatch>
-#</IfModule>
+# <IfModule mod_headers.c>
+#    Header set Content-Security-Policy "script-src 'self'; object-src 'self'"
+#    <FilesMatch "\.(appcache|crx|css|eot|gif|htc|ico|jpe?g|js|m4a|m4v|manifest|mp4|oex|oga|ogg|ogv|otf|pdf|png|safariextz|svg|svgz|ttf|vcf|webm|webp|woff|xml|xpi)$">
+#        Header unset Content-Security-Policy
+#    </FilesMatch>
+# </IfModule>
 
 # ------------------------------------------------------------------------------
 # | File access                                                                |
@@ -295,7 +294,7 @@ AddDefaultCharset utf-8
 # private places like the CMS's directories).
 
 <IfModule mod_autoindex.c>
-  Options -Indexes
+    Options -Indexes
 </IfModule>
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -304,9 +303,9 @@ AddDefaultCharset utf-8
 # This includes directories used by version control systems such as Git and SVN.
 
 <IfModule mod_rewrite.c>
-  RewriteCond %{SCRIPT_FILENAME} -d [OR]
-  RewriteCond %{SCRIPT_FILENAME} -f
-  RewriteRule "(^|/)\." - [F]
+    RewriteCond %{SCRIPT_FILENAME} -d [OR]
+    RewriteCond %{SCRIPT_FILENAME} -f
+    RewriteRule "(^|/)\." - [F]
 </IfModule>
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -316,9 +315,9 @@ AddDefaultCharset utf-8
 # danger when anyone has access to them.
 
 <FilesMatch "(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op])|~)$">
-  Order allow,deny
-  Deny from all
-  Satisfy All
+    Order allow,deny
+    Deny from all
+    Satisfy All
 </FilesMatch>
 
 # ------------------------------------------------------------------------------
@@ -330,8 +329,8 @@ AddDefaultCharset utf-8
 # `https://secure.example.com`.
 
 # <IfModule mod_rewrite.c>
-#   RewriteCond %{SERVER_PORT} !^443
-#   RewriteRule ^ https://example-domain-please-change-me.com%{REQUEST_URI} [R=301,L]
+#    RewriteCond %{SERVER_PORT} !^443
+#    RewriteRule ^ https://example-domain-please-change-me.com%{REQUEST_URI} [R=301,L]
 # </IfModule>
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -345,7 +344,7 @@ AddDefaultCharset utf-8
 # server via HTTPS, regardless of what the users type in the address bar.
 
 # <IfModule mod_headers.c>
-#   Header set Strict-Transport-Security max-age=16070400;
+#    Header set Strict-Transport-Security max-age=16070400;
 # </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -370,37 +369,37 @@ AddDefaultCharset utf-8
 
 <IfModule mod_deflate.c>
 
-  # Force compression for mangled headers.
-  # http://developer.yahoo.com/blogs/ydn/posts/2010/12/pushing-beyond-gzipping
-  <IfModule mod_setenvif.c>
-    <IfModule mod_headers.c>
-      SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
-      RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+    # Force compression for mangled headers.
+    # http://developer.yahoo.com/blogs/ydn/posts/2010/12/pushing-beyond-gzipping
+    <IfModule mod_setenvif.c>
+        <IfModule mod_headers.c>
+            SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+            RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+        </IfModule>
     </IfModule>
-  </IfModule>
 
-  # Compress all output labeled with one of the following MIME-types
-  # (for Apache versions below 2.3.7, you don't need to enable `mod_filter`
-  #  and can remove the `<IfModule mod_filter.c>` and `</IfModule>` lines
-  #  as `AddOutputFilterByType` is still in the core directives).
-  <IfModule mod_filter.c>
-    AddOutputFilterByType DEFLATE application/atom+xml \
-                                  application/javascript \
-                                  application/json \
-                                  application/rss+xml \
-                                  application/vnd.ms-fontobject \
-                                  application/x-font-ttf \
-                                  application/xhtml+xml \
-                                  application/xml \
-                                  font/opentype \
-                                  image/svg+xml \
-                                  image/x-icon \
-                                  text/css \
-                                  text/html \
-                                  text/plain \
-                                  text/x-component \
-                                  text/xml
-  </IfModule>
+    # Compress all output labeled with one of the following MIME-types
+    # (for Apache versions below 2.3.7, you don't need to enable `mod_filter`
+    #  and can remove the `<IfModule mod_filter.c>` and `</IfModule>` lines
+    #  as `AddOutputFilterByType` is still in the core directives).
+    <IfModule mod_filter.c>
+        AddOutputFilterByType DEFLATE application/atom+xml \
+                                      application/javascript \
+                                      application/json \
+                                      application/rss+xml \
+                                      application/vnd.ms-fontobject \
+                                      application/x-font-ttf \
+                                      application/xhtml+xml \
+                                      application/xml \
+                                      font/opentype \
+                                      image/svg+xml \
+                                      image/x-icon \
+                                      text/css \
+                                      text/html \
+                                      text/plain \
+                                      text/x-component \
+                                      text/xml
+    </IfModule>
 
 </IfModule>
 
@@ -412,7 +411,7 @@ AddDefaultCharset utf-8
 # your site: http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9.5.
 
 # <IfModule mod_headers.c>
-# Header set Cache-Control "no-transform"
+#    Header set Cache-Control "no-transform"
 # </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -424,7 +423,7 @@ AddDefaultCharset utf-8
 
 # `FileETag None` is not enough for every server.
 <IfModule mod_headers.c>
-  Header unset ETag
+    Header unset ETag
 </IfModule>
 
 FileETag None
@@ -439,52 +438,52 @@ FileETag None
 
 <IfModule mod_expires.c>
 
-  ExpiresActive on
+    ExpiresActive on
 
-  ExpiresDefault                          "access plus 1 month"
+    ExpiresDefault                                      "access plus 1 month"
 
-# Appcache manifest
-  ExpiresByType text/cache-manifest       "access plus 0 seconds"
+  # Appcache manifest
+    ExpiresByType text/cache-manifest                   "access plus 0 seconds"
 
-# HTML document
-  ExpiresByType text/html                 "access plus 0 seconds"
+  # CSS
+    ExpiresByType text/css                              "access plus 1 year"
 
-# Data interchange formats
-  ExpiresByType application/json          "access plus 0 seconds"
-  ExpiresByType application/xml           "access plus 0 seconds"
-  ExpiresByType text/xml                  "access plus 0 seconds"
+  # Data interchange formats
+    ExpiresByType application/json                      "access plus 0 seconds"
+    ExpiresByType application/xml                       "access plus 0 seconds"
+    ExpiresByType text/xml                              "access plus 0 seconds"
 
-# Web feed formats
-  ExpiresByType application/atom+xml      "access plus 1 hour"
-  ExpiresByType application/rss+xml       "access plus 1 hour"
+  # Favicon (cannot be renamed!)
+    ExpiresByType image/x-icon                          "access plus 1 week"
 
-# Favicon (cannot be renamed!)
-  ExpiresByType image/x-icon              "access plus 1 week"
+  # HTML components (HTCs)
+    ExpiresByType text/x-component                      "access plus 1 month"
 
-# Media (audio, image & video formats)
-  ExpiresByType audio/ogg                 "access plus 1 month"
-  ExpiresByType image/gif                 "access plus 1 month"
-  ExpiresByType image/jpeg                "access plus 1 month"
-  ExpiresByType image/png                 "access plus 1 month"
-  ExpiresByType video/mp4                 "access plus 1 month"
-  ExpiresByType video/ogg                 "access plus 1 month"
-  ExpiresByType video/webm                "access plus 1 month"
+  # HTML document
+    ExpiresByType text/html                             "access plus 0 seconds"
 
-# HTML components (HTCs)
-  ExpiresByType text/x-component          "access plus 1 month"
+  # JavaScript
+    ExpiresByType application/javascript                "access plus 1 year"
 
-# Web font formats
-  ExpiresByType application/font-woff     "access plus 1 month"
-  ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
-  ExpiresByType application/x-font-ttf    "access plus 1 month"
-  ExpiresByType font/opentype             "access plus 1 month"
-  ExpiresByType image/svg+xml             "access plus 1 month"
+  # Media (audio, image & video formats)
+    ExpiresByType audio/ogg                             "access plus 1 month"
+    ExpiresByType image/gif                             "access plus 1 month"
+    ExpiresByType image/jpeg                            "access plus 1 month"
+    ExpiresByType image/png                             "access plus 1 month"
+    ExpiresByType video/mp4                             "access plus 1 month"
+    ExpiresByType video/ogg                             "access plus 1 month"
+    ExpiresByType video/webm                            "access plus 1 month"
 
-# JavaScript
-  ExpiresByType application/javascript    "access plus 1 year"
+  # Web feed formats
+    ExpiresByType application/atom+xml                  "access plus 1 hour"
+    ExpiresByType application/rss+xml                   "access plus 1 hour"
 
-# CSS
-  ExpiresByType text/css                  "access plus 1 year"
+  # Web font formats
+    ExpiresByType application/font-woff                 "access plus 1 month"
+    ExpiresByType application/vnd.ms-fontobject         "access plus 1 month"
+    ExpiresByType application/x-font-ttf                "access plus 1 month"
+    ExpiresByType font/opentype                         "access plus 1 month"
+    ExpiresByType image/svg+xml                         "access plus 1 month"
 
 </IfModule>
 
@@ -500,9 +499,9 @@ FileETag None
 # http://stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring
 
 # <IfModule mod_rewrite.c>
-#   RewriteCond %{REQUEST_FILENAME} !-f
-#   RewriteCond %{REQUEST_FILENAME} !-d
-#   RewriteRule ^(.+)\.(\d+)\.(js|css|png|jpg|gif)$ $1.$3 [L]
+#    RewriteCond %{REQUEST_FILENAME} !-f
+#    RewriteCond %{REQUEST_FILENAME} !-d
+#    RewriteRule ^(.+)\.(\d+)\.(js|css|png|jpg|gif)$ $1.$3 [L]
 # </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -515,18 +514,18 @@ FileETag None
 #   <!--#include file="plugins/jquery.idletimer.js" -->
 # and they would be included into this single file.
 
-#<IfModule mod_include.c>
-#  <FilesMatch "\.combined\.js$">
-#    Options +Includes
-#    AddOutputFilterByType INCLUDES application/javascript application/json
-#    SetOutputFilter INCLUDES
-#  </FilesMatch>
-#  <FilesMatch "\.combined\.css$">
-#    Options +Includes
-#    AddOutputFilterByType INCLUDES text/css
-#    SetOutputFilter INCLUDES
-#  </FilesMatch>
-#</IfModule>
+# <IfModule mod_include.c>
+#    <FilesMatch "\.combined\.js$">
+#        Options +Includes
+#        AddOutputFilterByType INCLUDES application/javascript application/json
+#        SetOutputFilter INCLUDES
+#    </FilesMatch>
+#    <FilesMatch "\.combined\.css$">
+#        Options +Includes
+#        AddOutputFilterByType INCLUDES text/css
+#        SetOutputFilter INCLUDES
+#    </FilesMatch>
+# </IfModule>
 
 # ------------------------------------------------------------------------------
 # | Persistent connections                                                     |
@@ -539,5 +538,5 @@ FileETag None
 # possible disadvantages!
 
 # <IfModule mod_headers.c>
-#   Header set Connection Keep-Alive
+#    Header set Connection Keep-Alive
 # </IfModule>
