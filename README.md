@@ -7,13 +7,15 @@ can be applied in the `.htaccess` file.
 
 **First, you'll want to have these modules enabled for optimum performance:**
 
-* `mod_setenvif.c` (setenvif_module)
-* `mod_headers.c` (headers_module)
-* `mod_deflate.c` (deflate_module)
-* `mod_filter.c` (filter_module)
-* `mod_expires.c` (expires_module)
-* `mod_rewrite.c` (rewrite_module)
-
+* [`mod_autoindex.c` (autoindex_module)](http://httpd.apache.org/docs/current/mod/mod_autoindex.html)
+* [`mod_deflate.c` (deflate_module)](http://httpd.apache.org/docs/current/mod/mod_deflate.html)
+* [`mod_expires.c` (expires_module)](http://httpd.apache.org/docs/current/mod/mod_expires.html)
+* [`mod_filter.c` (filter_module)](http://httpd.apache.org/docs/current/mod/mod_filter.html)
+* [`mod_headers.c` (headers_module)](http://httpd.apache.org/docs/current/mod/mod_headers.html)
+* [`mod_include.c` (include_module)](http://httpd.apache.org/docs/current/mod/mod_include.html)
+* [`mod_mime.c` (mime_module)](http://httpd.apache.org/docs/current/mod/mod_mime.html)
+* [`mod_rewrite.c` (rewrite_module)](http://httpd.apache.org/docs/current/mod/mod_rewrite.html)
+* [`mod_setenvif.c` (setenvif_module)](http://httpd.apache.org/docs/current/mod/mod_setenvif.html)
 
 ## On Windows
 
