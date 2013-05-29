@@ -333,19 +333,25 @@ AddDefaultCharset utf-8
 #    RewriteRule ^ https://example-domain-please-change-me.com%{REQUEST_URI} [R=301,L]
 # </IfModule>
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# ------------------------------------------------------------------------------
+# | HTTP Strict Transport Security (HSTS)                                      |
+# ------------------------------------------------------------------------------
 
 # Force client-side SSL redirection.
 
-# If a user types "example.com" in his browser, the above rule will redirect him
-# to the secure version of the site. That still leaves a window of opportunity
-# (the initial HTTP connection) for an attacker to downgrade or redirect the
-# request. The following header ensures that browser will ONLY connect to your
-# server via HTTPS, regardless of what the users type in the address bar.
+# If a user types "example.com" in his browser, the above rule will redirect
+# him to the secure version of the site. That still leaves a window of oppor-
+# tunity (the initial HTTP connection) for an attacker to downgrade or redirect
+# the request. The following header ensures that browser will ONLY connect to
+# your server via HTTPS, regardless of what the users type in the address bar.
+# http://tools.ietf.org/html/draft-ietf-websec-strict-transport-sec-14#section-6.1
 # http://www.html5rocks.com/en/tutorials/security/transport-layer-security/
 
+# (!) Remove the `includeSubDomains` optional directive if the subdomains are
+# not using HTTPS.
+
 # <IfModule mod_headers.c>
-#    Header set Strict-Transport-Security max-age=16070400;
+#    Header set Strict-Transport-Security "max-age=16070400; includeSubDomains"
 # </IfModule>
 
 # ------------------------------------------------------------------------------
