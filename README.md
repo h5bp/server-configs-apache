@@ -2,7 +2,7 @@
 
 ## Documentation
 
-The [documentation](/h5bp/server-configs-apache/blob/master/doc) is bundled with
+The [documentation](https://github.com/h5bp/server-configs-apache/blob/master/doc) is bundled with
 the project, which makes it readily available for offline reading and provides a
 useful starting point for any documentation you want to write about your project.
 
