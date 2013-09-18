@@ -275,9 +275,10 @@ AddDefaultCharset utf-8
 # site's origin (no inline scripts, no CDN, etc). This almost certainly won't
 # work as-is for your site!
 
-# To get all the details you'll need to craft a reasonable policy for your site,
-# read: http://html5rocks.com/en/tutorials/security/content-security-policy (or
-# see the specification: http://w3.org/TR/CSP).
+# For more details on how to craft a reasonable policy for your site, read:
+# http://html5rocks.com/en/tutorials/security/content-security-policy (or the
+# specification: http://w3.org/TR/CSP). Also, to make things easier, you can
+# use an online CSP header generator such as: http://cspisawesome.com/.
 
 # <IfModule mod_headers.c>
 #    Header set Content-Security-Policy "script-src 'self'; object-src 'self'"
