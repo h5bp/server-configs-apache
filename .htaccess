@@ -131,7 +131,7 @@ Options -MultiViews
     AddType application/json                            json
 
   # Video
-    AddType video/mp4                                   mp4 m4v f4v f4p
+    AddType video/mp4                                   f4v f4p m4v mp4
     AddType video/ogg                                   ogv
     AddType video/webm                                  webm
     AddType video/x-flv                                 flv
@@ -148,19 +148,17 @@ Options -MultiViews
 
     # Make SVGZ fonts work on iPad:
     # https://twitter.com/FontSquirrel/status/14855840545
-    AddType     image/svg+xml                           svg svgz
+    AddType     image/svg+xml                           svgz
     AddEncoding gzip                                    svgz
 
   # Other
     AddType application/octet-stream                    safariextz
     AddType application/x-chrome-extension              crx
     AddType application/x-opera-extension               oex
-    AddType application/x-shockwave-flash               swf
     AddType application/x-web-app-manifest+json         webapp
     AddType application/x-xpinstall                     xpi
     AddType application/xml                             atom rdf rss xml
     AddType image/webp                                  webp
-    AddType image/x-icon                                ico
     AddType text/cache-manifest                         appcache manifest
     AddType text/vtt                                    vtt
     AddType text/x-component                            htc
