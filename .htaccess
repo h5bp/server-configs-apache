@@ -306,9 +306,14 @@ AddDefaultCharset utf-8
 # danger when anyone has access to them.
 
 <FilesMatch "(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op])|~)$">
-    Order allow,deny
-    Deny from all
-    Satisfy All
+    <IfModule mod_authz_host.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_host.c>                       
+        Order allow,deny
+        Deny from all
+        Satisfy All 
+    </IfModule>
 </FilesMatch>
 
 # ------------------------------------------------------------------------------
