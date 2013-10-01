@@ -306,14 +306,14 @@ AddDefaultCharset utf-8
 # danger when anyone has access to them.
 
 <FilesMatch "(^#.*#|\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|sw[op])|~)$">
-    <IfVersion < 2.3>
+    <IfModule !mod_authz_core.c>
         Order allow,deny
         Deny from all
         Satisfy All 
-    </IfVersion>
-    <IfVersion >= 2.3>
+    </IfModule>
+    <IfModule mod_authz_core.c>
         Require all denied
-    </IfVersion>
+    </IfModule>
 </FilesMatch>
 
 # ------------------------------------------------------------------------------
