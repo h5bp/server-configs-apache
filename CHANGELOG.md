@@ -1,5 +1,6 @@
 ### HEAD
 
+* Add configurations for cursor images (`.cur`).
 * Fix backup and source file blocking for Apache v2.3+ ([#5](https://github.com/h5bp/server-configs-apache/issues/5)).
 * Remove filename extension to content type mappings that are already provided by Apache v2.2.0+ ([#4](https://github.com/h5bp/server-configs-apache/issues/4)).
 * Improve inline comments.
