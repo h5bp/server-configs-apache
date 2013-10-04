@@ -46,7 +46,7 @@
 # Allow access from all domains for web fonts
 
 <IfModule mod_headers.c>
-    <FilesMatch "\.(eot|font.css|otf|ttc|ttf|woff)$">
+    <FilesMatch "\.(eot|otf|ttc|ttf|woff)$">
         Header set Access-Control-Allow-Origin "*"
     </FilesMatch>
 </IfModule>
