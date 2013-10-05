@@ -18,16 +18,17 @@ Anyone and everyone is welcome to contribute. Please take a moment to review the
 
 ## Acknowledgements
 
-Apache Server Configs is only possible thanks to all the awesome
+[Apache Server Configs](https://github.com/h5bp/server-configs-apache/) is
+only possible thanks to all the awesome
 [contributors](https://github.com/h5bp/server-configs-apache/graphs/contributors)!
-
 
 This project is currently maintained by:
 
-| [![@alrra](http://s.gravatar.com/avatar/2fc3f42c9411898f83f3af8ede902591?s=90)](http://twitter.com/alrra "Follow @alrra on Twitter") | [![@AD7six](http://s.gravatar.com/avatar/876a61b58a729fcf71048529885d64dc?s=90)](https://twitter.com/AD7six "Follow @AD7six on Twitter") |
+| [![@alrra](http://s.gravatar.com/avatar/2fc3f42c9411898f83f3af8ede902591?s=90)](http://twitter.com/alrra "Follow @alrra on Twitter") |
 |:---:|:---:|
-| [Cătălin Mariș](http://twitter.com/alrra) | [Andy Dawson](http://ad7six.com/) |
+| [Cătălin Mariș](http://twitter.com/alrra) |
 
 ## License
 
-[MIT License](LICENSE.md)
+[Apache Server Configs](https://github.com/h5bp/server-configs-apache/) is
+available under the [MIT](LICENSE.md) license.
