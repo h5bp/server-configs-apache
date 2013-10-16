@@ -549,3 +549,18 @@ FileETag None
 # <IfModule mod_headers.c>
 #    Header set Connection Keep-Alive
 # </IfModule>
+
+# ------------------------------------------------------------------------------
+# | XSS Security / Clickjacking Attacks                                        |
+# ------------------------------------------------------------------------------
+
+# Options available:
+# SAMEORIGIN: The page can only be displayed in a frame on the same origin as the page itself.
+# DENY: The page cannot be displayed in a frame, regardless of the site attempting to do so.
+# ALLOW-FROM uri This setting will allow page to be displayed only on the specified origin.
+#
+# More info: https://developer.mozilla.org/en-US/docs/HTTP/X-Frame-Options
+
+#<IfModule mod_headers.c>
+#    Header always append X-Frame-Options SAMEORIGIN
+#</IfModule>
