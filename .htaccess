@@ -323,6 +323,21 @@ AddDefaultCharset utf-8
 </FilesMatch>
 
 # ------------------------------------------------------------------------------
+# | Reducing MIME-type security risks                                          |
+# ------------------------------------------------------------------------------
+
+# Prevent some browsers from MIME-sniffing the response.
+# This reduces exposure to drive-by download attacks and should be enable espe-
+# cially if the web server is serving user uploaded content, content that could
+# potentially be treated by the browser as executable.
+# http://blogs.msdn.com/b/ie/archive/2008/07/02/ie8-security-part-v-comprehensive-protection.aspx
+# http://msdn.microsoft.com/en-us/library/ie/gg622941%28v=vs.85%29.aspx
+
+# <IfModule mod_headers.c>
+#     Header set X-Content-Type-Options "nosniff"
+# </IfModule>
+
+# ------------------------------------------------------------------------------
 # | Secure Sockets Layer (SSL)                                                 |
 # ------------------------------------------------------------------------------
 
