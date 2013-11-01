@@ -258,15 +258,23 @@ AddDefaultCharset utf-8
 
 # Protect web site against clickjacking.
 
-# Options available:
-# SAMEORIGIN: The page can only be displayed in a frame on the same origin as the page itself.
-# DENY: The page cannot be displayed in a frame, regardless of the site attempting to do so.
-# ALLOW-FROM uri This setting will allow page to be displayed only on the specified origin.
+# The example below sends the `X-Frame-Options` response header with the value
+# `SAMEORIGIN`, informing browsers not to display the web page content in any
+# frame from a page of different origin than the content itself.
 
-# More info: https://developer.mozilla.org/en-US/docs/HTTP/X-Frame-Options
+# This might not be the best setting for everyone. You should read about the
+# other two possible values for `X-Frame-Options`: `DENY` and `ALLOW-FROM`.
+# http://tools.ietf.org/html/rfc7034#section-2.1.
+
+# http://tools.ietf.org/html/rfc7034
+# http://blogs.msdn.com/b/ieinternals/archive/2010/03/30/combating-clickjacking-with-x-frame-options.aspx
+# https://www.owasp.org/index.php/Clickjacking
 
 # <IfModule mod_headers.c>
 #     Header set X-Frame-Options "SAMEORIGIN"
+#     <FilesMatch "\.(appcache|crx|css|cur|eot|gif|htc|ico|jpe?g|js|m4a|m4v|manifest|mp4|oex|oga|ogg|ogv|otf|pdf|png|safariextz|svgz?|ttf|vcf|webapp|webm|webp|woff|xml|xpi)$">
+#        Header unset X-Frame-Options
+#     </FilesMatch>
 # </IfModule>
 
 # ------------------------------------------------------------------------------
