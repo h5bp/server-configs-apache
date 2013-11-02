@@ -266,6 +266,16 @@ AddDefaultCharset utf-8
 # other two possible values for `X-Frame-Options`: `DENY` and `ALLOW-FROM`.
 # http://tools.ietf.org/html/rfc7034#section-2.1.
 
+# Also, keep in mind that while you could send the `X-Frame-Options` header for
+# all of your site’s pages, this has the potential downside that it forbids even
+# non-malicious framing of your content (e.g.: when users visit your site using
+# a Google Image Search results page).
+
+# Nonetheless, you should ensure that you send the `X-Frame-Options` header for
+# all pages that allows a user to make a state changing operation (e.g: pages
+# that contain one-click purchase links, checkout or bank-transfer confirmation
+# pages, pages that make permanent configuration changes, etc.).
+
 # http://tools.ietf.org/html/rfc7034
 # http://blogs.msdn.com/b/ieinternals/archive/2010/03/30/combating-clickjacking-with-x-frame-options.aspx
 # https://www.owasp.org/index.php/Clickjacking
