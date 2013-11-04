@@ -272,7 +272,7 @@ AddDefaultCharset utf-8
 # a Google Image Search results page).
 
 # Nonetheless, you should ensure that you send the `X-Frame-Options` header for
-# all pages that allows a user to make a state changing operation (e.g: pages
+# all pages that allow a user to make a state changing operation (e.g: pages
 # that contain one-click purchase links, checkout or bank-transfer confirmation
 # pages, pages that make permanent configuration changes, etc.).
 
@@ -370,6 +370,35 @@ AddDefaultCharset utf-8
 
 # <IfModule mod_headers.c>
 #     Header set X-Content-Type-Options "nosniff"
+# </IfModule>
+
+# ------------------------------------------------------------------------------
+# | Reflected Cross-Site Scripting (XSS) attacks                               |
+# ------------------------------------------------------------------------------
+
+# (1) Enable Cross-Site Scripting (XSS) filter built into the most recent web
+# browsers (the filter is usually enabled by default, but in some cases it may
+# be disabled by the user).
+
+# (2) Prevent web browsers from rendering the web page if a potential reflected
+# (a.k.a non-persistent) XSS attack is detected by the filter (not doing so,
+# while the fitler is enabled, allows IE's XSS filter to be exploited:
+# http://hackademix.net/2009/11/21/ies-xss-filter-creates-xss-vulnerabilities/)
+
+# IMPORTANT: Do not rely on the XSS filter to prevent XSS attacks! Ensure that
+# you are taking all possible measures to prevent XSS attacks, the most obvious
+# being: validating and sanitizing your site's inputs.
+
+# http://blogs.msdn.com/b/ie/archive/2008/07/02/ie8-security-part-iv-the-xss-filter.aspx
+# http://blogs.msdn.com/b/ieinternals/archive/2011/01/31/controlling-the-internet-explorer-xss-filter-with-the-x-xss-protection-http-header.aspx
+# https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29
+
+# <IfModule mod_headers.c>
+#     #                           (1)     (2)
+#     Header set X-XSS-Protection "1; mode=block"
+#     <FilesMatch "\.(appcache|crx|css|cur|eot|gif|htc|ico|jpe?g|js|m4a|m4v|manifest|mp4|oex|oga|ogg|ogv|otf|pdf|png|safariextz|svgz?|ttf|vcf|webapp|webm|webp|woff|xml|xpi)$">
+#         Header unset X-XSS-Protection
+#     </FilesMatch>
 # </IfModule>
 
 # ------------------------------------------------------------------------------

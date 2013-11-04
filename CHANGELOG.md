@@ -1,5 +1,6 @@
 ### HEAD
 
+* Add example on how to mitigate reflected (a.k.a non-persistent) XSS attacks ([#8](https://github.com/h5bp/server-configs-apache/issues/8)).
 * Add example on how to provide clickjacking protection ([#8](https://github.com/h5bp/server-configs-apache/issues/8)).
 * Add example on how to reduce MIME type security risks ([#8](https://github.com/h5bp/server-configs-apache/issues/8)).
 * Add configs for cursor images (`.cur`).
