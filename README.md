@@ -1,12 +1,5 @@
 # [Apache Server Configs](https://github.com/h5bp/server-configs-apache/)
 
-## Documentation
-
-The [documentation](https://github.com/h5bp/server-configs-apache/blob/master/doc)
-is bundled with the project, which makes it readily available for offline
-reading and provides a useful starting point for any documentation you want
-to write about your project.
-
 ## Contributing to this project
 
 Anyone and everyone is welcome to contribute. Please take a moment to review the
