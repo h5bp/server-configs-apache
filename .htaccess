@@ -379,15 +379,27 @@ AddDefaultCharset utf-8
 # | Reflected Cross-Site Scripting (XSS) attacks                               |
 # ------------------------------------------------------------------------------
 
-# (1) Enable Cross-Site Scripting (XSS) filter built into the most recent web
-# browsers (the filter is usually enabled by default, but in some cases it may
-# be disabled by the user).
-
+# (1) Try to re-enable the Cross-Site Scripting (XSS) filter built into the
+#     most recent web browsers.
+#
+#     The filter is usually enabled by default, but in some cases it may be
+#     disabled by the user. However, in IE for example, it can be re-enabled
+#     just by sending the `X-XSS-Protection` header with the value of `1`.
+#
 # (2) Prevent web browsers from rendering the web page if a potential reflected
-# (a.k.a non-persistent) XSS attack is detected by the filter (not doing so,
-# while the fitler is enabled, allows IE's XSS filter to be exploited:
-# http://hackademix.net/2009/11/21/ies-xss-filter-creates-xss-vulnerabilities/)
-
+#     (a.k.a non-persistent) XSS attack is detected by the filter.
+#
+#     By default, if the filter is enabled and browsers detect a reflected
+#     XSS attack, they will attempt to block the attack by making the smallest
+#     possible modifications to the returned web page.
+#
+#     Unfortunately, in some browsers (e.g.: IE), this default behavior may
+#     allow the XSS filter to be exploited, thereby, it's better to tell
+#     browsers to prevent the rendering of the page altogether, instead of
+#     attempting to modify it.
+#
+#     http://hackademix.net/2009/11/21/ies-xss-filter-creates-xss-vulnerabilities
+#
 # IMPORTANT: Do not rely on the XSS filter to prevent XSS attacks! Ensure that
 # you are taking all possible measures to prevent XSS attacks, the most obvious
 # being: validating and sanitizing your site's inputs.
