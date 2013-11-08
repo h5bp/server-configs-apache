@@ -259,15 +259,14 @@ AddDefaultCharset utf-8
 # Protect web site against clickjacking.
 
 # The example below sends the `X-Frame-Options` response header with the value
-# `SAMEORIGIN`, informing browsers not to display the web page content in any
-# frame from a page of different origin than the content itself.
+# `DENY`, informing browsers not to display the web page content in any frame.
 
 # This might not be the best setting for everyone. You should read about the
-# other two possible values for `X-Frame-Options`: `DENY` and `ALLOW-FROM`.
+# other two possible values for `X-Frame-Options`: `SAMEORIGIN` and `ALLOW-FROM`
 # http://tools.ietf.org/html/rfc7034#section-2.1.
 
-# Also, keep in mind that while you could send the `X-Frame-Options` header for
-# all of your site’s pages, this has the potential downside that it forbids even
+# Keep in mind that while you could send the `X-Frame-Options` header for all
+# of your site’s pages, this has the potential downside that it forbids even
 # non-malicious framing of your content (e.g.: when users visit your site using
 # a Google Image Search results page).
 
@@ -275,6 +274,9 @@ AddDefaultCharset utf-8
 # all pages that allow a user to make a state changing operation (e.g: pages
 # that contain one-click purchase links, checkout or bank-transfer confirmation
 # pages, pages that make permanent configuration changes, etc.).
+
+# Sending the `X-Frame-Options` header can also protect your web site against
+# more than just clickjacking attacks: https://cure53.de/xfo-clickjacking.pdf.
 
 # http://tools.ietf.org/html/rfc7034
 # http://blogs.msdn.com/b/ieinternals/archive/2010/03/30/combating-clickjacking-with-x-frame-options.aspx

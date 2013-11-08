@@ -9,17 +9,19 @@ accessible, if needed, even cross-domain.
 
 If you have access to the [main server configuration
 file](http://httpd.apache.org/docs/current/configuring.html#main)
-(usually called `httpd.conf`), you should add the logic from the `.htaccess`
+(usually called `httpd.conf`), you should add the logic from the
+[`.htaccess`](https://github.com/h5bp/server-configs-apache/tree/master/.htaccess)
 file in, for example, a
 [`<Directory>`](http://httpd.apache.org/docs/current/mod/core.html#directory)
 section in the main configuration file. This is usually the recommended way, as
 using `.htaccess` files [slows
 down](http://httpd.apache.org/docs/current/howto/htaccess.html#when) Apache!
 
-If you don't have access, which is quite common with hosting services, just put
-the `.htaccess` file in the root of the website.
+If you don't have access, which is quite common with hosting services, just copy
+the [`.htaccess`](https://github.com/h5bp/server-configs-apache/tree/master/.htaccess)
+file in the root of the website.
 
-Also note that, some configurations won't have any effect if the appropriate
+Also note that some configurations won't have any effect if the appropriate
 modules aren't enabled. So, in order for everything to work as intended, you
 need to ensure the you have the following Apache modules
 [enabled](https://github.com/h5bp/server-configs-apache/wiki/How-to-enable-Apache-modules):
