@@ -1,4 +1,4 @@
-# Apache Server Configs v1.1.0 | MIT License
+# Apache Server Configs v2.0.0 | MIT License
 # https://github.com/h5bp/server-configs-apache
 
 # (!) Using `.htaccess` files slows down Apache, therefore, if you have access
@@ -283,7 +283,7 @@ AddDefaultCharset utf-8
 # https://www.owasp.org/index.php/Clickjacking
 
 # <IfModule mod_headers.c>
-#     Header set X-Frame-Options "SAMEORIGIN"
+#     Header set X-Frame-Options "DENY"
 #     <FilesMatch "\.(appcache|crx|css|cur|eot|gif|htc|ico|jpe?g|js|m4a|m4v|manifest|mp4|oex|oga|ogg|ogv|otf|pdf|png|safariextz|svgz?|ttf|vcf|webapp|webm|webp|woff|xml|xpi)$">
 #        Header unset X-Frame-Options
 #     </FilesMatch>
