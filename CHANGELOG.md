@@ -1,4 +1,4 @@
-### HEAD
+### 2.0.0 (November 12, 2013)
 
 * Add example on how to mitigate reflected (a.k.a non-persistent) XSS attacks
   ([#8](https://github.com/h5bp/server-configs-apache/issues/8)).
