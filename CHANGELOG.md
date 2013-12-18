@@ -1,5 +1,7 @@
 ### HEAD
 
+* Make `RewriteCond`s for `example.com → www.example.com` more permissive
+  ([#11](https://github.com/h5bp/server-configs-apache/issues/11)).
 * Add configs for Ogg Opus audio files
   ([#13](https://github.com/h5bp/server-configs-apache/issues/13)).
 
