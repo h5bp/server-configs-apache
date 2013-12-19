@@ -247,6 +247,27 @@ AddDefaultCharset utf-8
 #    RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 # </IfModule>
 
+# ------------------------------------------------------------------------------
+# | Suppressing / Forcing the "/" at the end of URLs                           |
+# ------------------------------------------------------------------------------
+
+# By default option 1 (no "/") is activated:
+
+# IMPORTANT: NEVER USE BOTH RULES AT THE SAME TIME!
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Option 1: rewrite example.com/path/ → example.com/path
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)\/$ $1 [R=301,L]
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Option 2: rewrite example.com/path → example.com/path/
+
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.+[^/])$ $1/ [R=301,L]
 
 # ##############################################################################
 # # SECURITY                                                                   #
