@@ -124,11 +124,13 @@ Options -MultiViews
     AddType audio/mp4                                   m4a f4a f4b
     AddType audio/ogg                                   oga ogg opus
 
+  # Data interchange
+    AddType application/json                            json map
+
   # JavaScript
     # Normalize to standard type (it's sniffed in IE anyways):
     # http://tools.ietf.org/html/rfc4329#section-7.2
     AddType application/javascript                      js
-    AddType application/json                            json
 
   # Video
     AddType video/mp4                                   f4v f4p m4v mp4
