@@ -1,10 +1,13 @@
 # Contributing to Apache Server Configs
 
-Please take a moment to review this document in order to make the contribution
-process easy and effective for everyone involved.
+♥ [Apache Server Configs](https://github.com/h5bp/server-configs-apache) and
+want to get involved? Thanks! There are plenty of ways you can help!
 
-Following these guidelines helps to communicate that you respect the time
-of the developers managing and developing this open source project. In return,
+First of all, please take a moment to review this document in order to make
+the contribution process easy and effective for everyone involved.
+
+Following these guidelines helps to communicate that you respect the time of
+the developers managing and developing this open source project. In return,
 they should reciprocate that respect in addressing your issue or assessing
 patches and features.
 
@@ -16,10 +19,10 @@ the preferred channel for [bug reports](#bugs), [features requests](#features)
 and [submitting pull requests](#pull-requests), but please respect the following
 restrictions:
 
-* Please **do not** use the issue tracker for personal support requests (use
+* **Do not** use the issue tracker for personal support requests (use
   [Stack Overflow](http://stackoverflow.com) or IRC).
 
-* Please **do not** derail or troll issues. Keep the discussion on topic and
+* **Do not** derail or troll issues. Keep the discussion on topic and
   respect the opinions of others.
 
 
@@ -34,24 +37,27 @@ Guidelines for bug reports:
 1. **Use the GitHub issue search** &mdash; check if the issue has already been
    reported.
 
-2. **Check if the issue has been fixed** &mdash; try to reproduce it using the
-   latest `master` or development branch in the repository.
+2. **Check if the issue has been fixed** &mdash; try to reproduce it using
+   the code from the
+   [`master`](https://github.com/h5bp/server-configs-apache/tree/master) or
+   development branch in the repository.
 
 3. **Isolate the problem** &mdash; ideally create a [reduced test
    case](http://css-tricks.com/6263-reduced-test-cases/) and a live example.
 
 A good bug report shouldn't leave others needing to chase you up for more
-information. Please try to be as detailed as possible in your report. What is
-your environment? What steps will reproduce the issue? What version of Apache
-experiences the problem? What would you expect to be the outcome? All these
-details will help people to fix any potential bugs.
+information. Please try to be as detailed as possible in your report. What
+is your environment? What browser(s) and version(s) of Apache experience the
+problem? What steps will reproduce the issue? What would you expect to be the
+outcome? All these details will help people to fix any potential bugs.
 
 Example:
 
-> Short and descriptive example bug report title
+> Short and descriptive bug report title
 >
-> A summary of the issue and server version / OS / browser environment in which
-> it occurs. If suitable, include the steps required to reproduce the bug.
+> A summary of the issue and the server version(s) / browser(s) / OS
+> environment(s) in which it occurs. If suitable, include the steps required to
+> reproduce the bug.
 >
 > 1. This is the first step
 > 2. This is the second step
@@ -76,8 +82,8 @@ provide as much detail and context as possible.
 <a name="pull-requests"></a>
 ## Pull requests
 
-Good pull requests - patches, improvements, new features - are a fantastic help.
-They should remain focused in scope and avoid containing unrelated commits.
+Good pull requests - patches, improvements, new features - are a fantastic help,
+but they should remain focused in scope and avoid containing unrelated commits.
 
 **Please ask first** before embarking on any significant pull request (e.g.
 implementing features, refactoring code), otherwise you risk spending a lot of
@@ -85,10 +91,10 @@ time working on something that the project's developers might not want to merge
 into the project.
 
 Please adhere to the coding conventions used throughout a project (indentation,
-accurate comments, etc.) and any other requirements (such as test coverage).
+accurate comments, etc.) and any other requirements.
 
-Adhering to the following this process is the best way to get your work
-included in the project:
+Follow this process if you'd like your work considered for inclusion in the
+project:
 
 1. [Fork](http://help.github.com/fork-a-repo/) the project, clone your fork,
    and configure the remotes:
@@ -137,5 +143,5 @@ included in the project:
 7. [Open a Pull Request](https://help.github.com/articles/using-pull-requests/)
     with a clear title and description.
 
-**IMPORTANT**: By submitting a patch, you agree to allow the project owner to
-license your work under the same license as that used by the project.
+**IMPORTANT**: By submitting a patch, you agree to allow the project owners to
+license your work under the terms specified in the [MIT License](LICENSE.md).
