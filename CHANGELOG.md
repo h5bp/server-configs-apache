@@ -1,4 +1,4 @@
-### HEAD
+### 2.1.0 (December 31, 2013)
 
 * Serve source map files with the `application/json` Content-Type.
 * Make `RewriteCond`s for `example.com → www.example.com` more permissive
