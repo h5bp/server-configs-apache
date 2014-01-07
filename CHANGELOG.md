@@ -1,3 +1,8 @@
+### HEAD
+
+* Add configs for JSON-LD (JSON for Linking Data) files
+  ([#17](https://github.com/h5bp/server-configs-apache/issues/17)).
+
 ### 2.1.0 (December 31, 2013)
 
 * Serve source map files with the `application/json` Content-Type.
