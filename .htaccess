@@ -342,9 +342,17 @@ AddDefaultCharset utf-8
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Block access to backup and source files.
-# These files may be left by some text editors and can pose a great security
-# danger when anyone has access to them.
+# Block access to files that can expose sensitive information.
+
+# By default, block access to backup and source files that may be left by some
+# text editors and can pose a security risk when anyone has access to them.
+# http://feross.org/cmsploit/
+
+# (!) Update the `<FilesMatch>`'s regular expression below to include any
+# files that might end up on your production server and can expose sensitive
+# information about your site / web app. These files may include: configuration
+# files, files that contain metadata about the project (e.g.: the project's
+# dependencies), build scripts.
 
 <FilesMatch "(^#.*#|\.(bak|config|dist|fla|in[ci]|log|psd|sh|sql|sw[op])|~)$">
 
