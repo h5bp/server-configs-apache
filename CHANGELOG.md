@@ -1,5 +1,7 @@
 ### HEAD
 
+* Remove example regarding `persistent connections`
+  ([#20](https://github.com/h5bp/server-configs-apache/issues/20)).
 * Improve the `<FilesMatch>` regular expressions.
 * Add configs for JSON-LD (JSON for Linking Data) files
   ([#17](https://github.com/h5bp/server-configs-apache/issues/17)).

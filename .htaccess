@@ -644,17 +644,3 @@ FileETag None
 #        SetOutputFilter INCLUDES
 #    </FilesMatch>
 # </IfModule>
-
-# ------------------------------------------------------------------------------
-# | Persistent connections                                                     |
-# ------------------------------------------------------------------------------
-
-# Allow multiple requests to be sent over the same TCP connection:
-# http://httpd.apache.org/docs/current/en/mod/core.html#keepalive.
-
-# Enable if you serve a lot of static content but, be aware of the
-# possible disadvantages!
-
-# <IfModule mod_headers.c>
-#    Header set Connection Keep-Alive
-# </IfModule>
