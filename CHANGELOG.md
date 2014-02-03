@@ -1,4 +1,4 @@
-### HEAD
+### 2.2.0 (February 3, 2014)
 
 * Remove example regarding `persistent connections`
   ([#20](https://github.com/h5bp/server-configs-apache/issues/20)).
