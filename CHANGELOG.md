@@ -1,3 +1,8 @@
+### HEAD
+
+* Send `X-Content-Type-Options` header by default
+  ([edd912d](https://github.com/h5bp/server-configs-apache/commit/edd912d9f76602c9d29ae087ff4e176632a0f656)).
+
 ### 2.2.0 (February 3, 2014)
 
 * Remove example regarding `persistent connections`
