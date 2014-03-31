@@ -76,6 +76,16 @@ Options -MultiViews
 
 # ErrorDocument 404 /404.html
 
+# ------------------------------------------------------------------------------
+# | 404 redirect without mod_rewrite                                           |
+# ------------------------------------------------------------------------------
+
+# If we don't have mod_rewrite installed, all 404's
+# can be sent to index.php, and everything works as normal.
+
+# <IfModule !mod_rewrite.c>
+#    ErrorDocument 404 /index.php
+# </IfModule>
 
 # ##############################################################################
 # # INTERNET EXPLORER                                                          #
