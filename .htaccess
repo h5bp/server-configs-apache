@@ -10,10 +10,10 @@
 # ##############################################################################
 
 # ------------------------------------------------------------------------------
-# | Cross-domain AJAX requests                                                 |
+# | Cross-domain requests                                                      |
 # ------------------------------------------------------------------------------
 
-# Allow cross-origin AJAX requests.
+# Allow cross-origin requests.
 # http://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity
 # http://enable-cors.org/
 
