@@ -90,7 +90,8 @@ Options -MultiViews
 # http://hsivonen.iki.fi/doctype/ie-mode.pdf
 
 <IfModule mod_headers.c>
-    Header set X-UA-Compatible "IE=edge"
+    BrowserMatch "MSIE" MSIE
+    Header set X-UA-Compatible "IE=edge" env=MSIE
     # `mod_headers` cannot match based on the content-type, however, this
     # header should be send only for HTML pages and not for the other resources
     <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
