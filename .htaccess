@@ -156,7 +156,7 @@ Options -MultiViews
 
     # Make SVGZ fonts work on the iPad.
     # https://twitter.com/FontSquirrel/status/14855840545
-    AddType     image/svg+xml                           svgz
+    AddType     image/svg+xml                           svg svgz
     AddEncoding gzip                                    svgz
 
   # Other
@@ -167,7 +167,7 @@ Options -MultiViews
     AddType application/x-xpinstall                     xpi
     AddType application/xml                             atom rdf rss xml
     AddType image/webp                                  webp
-    AddType image/x-icon                                cur
+    AddType image/x-icon                                cur ico
     AddType text/cache-manifest                         appcache manifest
     AddType text/vtt                                    vtt
     AddType text/x-component                            htc

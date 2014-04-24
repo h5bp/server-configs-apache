@@ -1,3 +1,8 @@
+### HEAD
+
+* Reintroduce the `filename extension` to `content type` mappings for `ico`
+  and `svg` ([#28](https://github.com/h5bp/server-configs-apache/issues/28)).
+
 ### 2.3.0 (April 10, 2014)
 
 * Send `X-Content-Type-Options` header by default
