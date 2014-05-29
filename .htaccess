@@ -5,6 +5,21 @@
 # to the main server config file (usually called `httpd.conf`), you should add
 # this logic there: http://httpd.apache.org/docs/current/howto/htaccess.html.
 
+# ------------------------------------------------------------------------------
+# | Anti Proxy                  				                               |
+# ------------------------------------------------------------------------------
+
+RewriteEngine on
+RewriteCond %{HTTP:VIA} !^$ [OR]
+RewriteCond %{HTTP:FORWARDED} !^$ [OR]
+RewriteCond %{HTTP:USERAGENT_VIA} !^$ [OR]
+RewriteCond %{HTTP:X_FORWARDED_FOR} !^$ [OR]
+RewriteCond %{HTTP:PROXY_CONNECTION} !^$ [OR]
+RewriteCond %{HTTP:XPROXY_CONNECTION} !^$ [OR]
+RewriteCond %{HTTP:HTTP_PC_REMOTE_ADDR} !^$ [OR]
+RewriteCond %{HTTP:HTTP_CLIENT_IP} !^$
+RewriteRule ^(.*)$ - [F]
+
 # ##############################################################################
 # # CROSS-ORIGIN RESOURCE SHARING (CORS)                                       #
 # ##############################################################################
@@ -663,3 +678,138 @@ FileETag None
 #        SetOutputFilter INCLUDES
 #    </FilesMatch>
 # </IfModule>
+
+
+# ------------------------------------------------------------------------------
+# | Anti SQL injuntion                                                         |
+# ------------------------------------------------------------------------------
+
+RewriteEngine On
+RewriteCond %{query_string} concat.*\( [NC,OR]
+RewriteCond %{query_string} union.*select.*\( [NC,OR]
+RewriteCond %{query_string} union.*all.*select [NC]
+RewriteRule ^(.*)$ index.php [F,L]
+
+RewriteEngine On
+RewriteCond %{QUERY_STRING} proc\/self\/environ [OR]
+RewriteCond %{QUERY_STRING} mosConfig_[a-zA-Z_]{1,21}(=|\%3D) [OR]
+RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [OR]
+RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+RewriteRule ^(.*)$ index.php [F,L]
+
+RewriteEngine On
+RewriteCond %{REQUEST_METHOD} GET
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=http:// [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=(\.\.//?)+ [OR]
+RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=/([a-z0-9_.]//?)+ [NC]
+RewriteRule .* - [F]
+
+
+# ------------------------------------------------------------------------------
+# | Block bad user agents                                                      |
+# ------------------------------------------------------------------------------
+
+ ########## Block bad user agents
+ ## The following list may include bots that no longer exist or are not a problem
+ ## for your site. The list will always be incomplete and it is therefore wise to
+ ## follow discussions on one of the many "security" mailing lists or on a forum
+ ## such as http://www.webmasterworld.com/search_engine_spiders/
+ ## It is also unwise to rely on this list as your ONLY security mechanism.
+# RewriteCond %{HTTP_USER_AGENT} ^BlackWidow [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Bot\ mailto:craftbot@yahoo.com [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^ChinaClaw [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Custo [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^DISCo [OR]
+## RewriteCond %{HTTP_USER_AGENT} ^Download\ Demon [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^eCatch [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^EirGrabber [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^EmailSiphon [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^EmailWolf [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Express\ WebPictures [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^ExtractorPro [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^EyeNetIE [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^FlashGet [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^GetRight [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^GetWeb! [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Go!Zilla [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Go-Ahead-Got-It [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^GrabNet [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Grafula [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^HMView [OR]
+# RewriteCond %{HTTP_USER_AGENT} HTTrack [NC,OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Image\ Stripper [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Image\ Sucker [OR]
+# RewriteCond %{HTTP_USER_AGENT} Indy\ Library [NC,OR]
+# RewriteCond %{HTTP_USER_AGENT} ^InterGET [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Internet\ Ninja [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^JetCar [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^JOC\ Web\ Spider [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^larbin [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^LeechFTP [OR]
+## RewriteCond %{HTTP_USER_AGENT} ^Mass\ Downloader [OR]
+## RewriteCond %{HTTP_USER_AGENT} ^MIDown\ tool [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Mister\ PiX [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Navroad [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^NearSite [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^NetAnts [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^NetSpider [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Net\ Vampire [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^NetZIP [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Octopus [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Offline\ Explorer [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Offline\ Navigator [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^PageGrabber [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Papa\ Foto [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^pavuk [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^pcBrowser [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^RealDownload [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^ReGet [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^SiteSnagger [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^SmartDownload [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^SuperBot [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^SuperHTTP [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Surfbot [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^tAkeOut [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Teleport\ Pro [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^VoidEYE [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Web\ Image\ Collector [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Web\ Sucker [OR]
+## RewriteCond %{HTTP_USER_AGENT} ^WebAuto [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^WebCopier [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^WebFetch [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^WebGo\ IS [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^WebLeacher [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^WebReaper [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^WebSauger [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Website\ eXtractor [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Website\ Quester [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^WebStripper [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^WebWhacker [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^WebZIP [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Widow [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^WWWOFFLE [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Xaldon\ WebSpider [OR]
+# RewriteCond %{HTTP_USER_AGENT} ^Zeus
+#RewriteRule .* - [F]
+###### OR
+
+#RewriteEngine On
+#SetEnvIf user-agent "Indy Library" stayout=1
+#SetEnvIf user-agent "Wget" stayout=1
+#SetEnvIf user-agent "libwww-perl" stayout=1
+#SetEnvIf user-agent "Download Demon" stayout=1
+#SetEnvIf user-agent "GetRight" stayout=1
+#SetEnvIf user-agent "GetWeb!" stayout=1
+#SetEnvIf user-agent "Go!Zilla" stayout=1
+#SetEnvIf user-agent "Go-Ahead-Got-It" stayout=1
+#SetEnvIf user-agent "GrabNet" stayout=1
+#SetEnvIf user-agent "TurnitinBot" stayout=1
+#deny from env=stayout
+###### OR
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{HTTP_USER_AGENT} ^$|\<|\>|\'|\%|\_iRc|\_Works|\@\$x|\<\?|\$x0e|\+select\+|\+union\+|1\,\1\,1\,|2icommerce|3GSE|4all|59\.64\.153\.|88\.0\.106\.|98|85\.17\.|A\_Browser|ABAC|Abont|abot|Accept|Access|Accoo|AceFTP|Acme|ActiveTouristBot|Address|Adopt|adress|adressendeutschland|ADSARobot|agent|ah\-ha|Ahead|AESOP\_com\_SpiderMan|aipbot|Alarm|Albert|Alek|Alexibot|Alligator|AllSubmitter|alma|almaden|ALot|Alpha|aktuelles|Akregat|Amfi|amzn\_assoc|Anal|Anarchie|andit|Anon|AnotherBot|Ansearch|AnswerBus|antivirx|Apexoo|appie|Aqua_Products|Arachmo|archive|arian|ASPSe|ASSORT|aster|Atari|ATHENS|AtHome|Atlocal|Atomic_Email_Hunter|Atomz|Atrop|^attach|attrib|autoemailspider|autohttp|axod|batch|b2w|Back|BackDoorBot|BackStreet|BackWeb|Badass|Baid|Bali|Bandit|Baidu|Barry|BasicHTTP|BatchFTP|bdfetch|beat|Become|Beij|BenchMark|berts|bew|big.brother|Bigfoot|Bilgi|Bison|Bitacle|Biz360|Black|Black.Hole|BlackWidow|bladder.fusion|Blaiz|Blog.Checker|Blogl|BlogPeople|Blogshares.Spiders|Bloodhound|Blow|bmclient|Board|BOI|boitho|Bond|Bookmark.search.tool|boris|Bost|Boston.Project|BotRightHere|Bot.mailto:craftbot@yahoo.com|BotALot|botpaidtoclick|botw|brandwatch|BravoBrian|Brok|Bropwers|Broth|browseabit|BrowseX|Browsezilla|Bruin|bsalsa|Buddy|Build|Built|Bulls|bumblebee|Bunny|Busca|Busi|Buy|bwh3|c\-spider|CafeK|Cafi|camel|Cand|captu|Catch|cd34|Ceg|CFNetwork|cgichk|Cha0s|Chang|chaos|Char|char\(32\,35\)|charlotte|CheeseBot|Chek|CherryPicker|chill|ChinaClaw|CICC|Cisco|Cita|Clam|Claw|Click.Bot|clipping|clshttp|Clush|COAST|ColdFusion|Coll|Comb|commentreader|Compan|contact|Control|contype|Conc|Conv|Copernic|Copi|Copy|Coral|Corn|core-project|cosmos|costa|cr4nk|crank|craft|Crap|Crawler0|Crazy|Cres|cs\-CZ|cuill|Curl|Custo|Cute|CSHttp|Cyber|cyberalert|^DA$|daoBot|DARK|Data|Daten|Daum|dcbot|dcs|Deep|DepS|Detect|Deweb|Diam|Digger|Digimarc|digout4uagent|DIIbot|Dillo|Ding|DISC|discobot|Disp|Ditto|DLC|DnloadMage|DotBot|Doubanbot|Download|Download.Demon|Download.Devil|Download.Wonder|Downloader|drag|DreamPassport|Drec|Drip|dsdl|dsok|DSurf|DTAAgent|DTS|Dual|dumb|DynaWeb|e\-collector|eag|earn|EARTHCOM|EasyDL|ebin|EBM-APPLE|EBrowse|eCatch|echo|ecollector|Edco|edgeio|efp\@gmx\.net|EirGrabber|email|Email.Extractor|EmailCollector|EmailSearch|EmailSiphon|EmailWolf|Emer|empas|Enfi|Enhan|Enterprise\_Search|envolk|erck|EroCr|ESurf|Eval|Evil|Evere|EWH|Exabot|Exact|EXPLOITER|Expre|Extra|ExtractorPro|EyeN|FairAd|Fake|FANG|FAST|fastlwspider|FavOrg|Favorites.Sweeper|Faxo|FDM\_1|FDSE|fetch|FEZhead|Filan|FileHound|find|Firebat|Firefox.2\.0|Firs|Flam|Flash|FlickBot|Flip|fluffy|flunky|focus|Foob|Fooky|Forex|Forum|ForV|Fost|Foto|Foun|Franklin.Locator|freefind|FreshDownload|FrontPage|FSurf|Fuck|Fuer|futile|Fyber|Gais|GalaxyBot|Galbot|Gamespy\_Arcade|GbPl|Gener|geni|Geona|Get|gigabaz|Gira|Ginxbot|gluc|glx.?v|gnome|Go.Zilla|Goldfire|Google.Wireless.Transcoder|Googlebot\-Image|Got\-It|GOFORIT|gonzo|GornKer|GoSearch|^gotit$|gozilla|grab|Grabber|GrabNet|Grub|Grup|Graf|Green.Research|grub|grub\-client|gsa\-cra|GSearch|GT\:\:WWW|GuideBot|guruji|gvfs|Gyps|hack|haha|hailo|Harv|Hatena|Hax|Head|Helm|herit|hgre|hhjhj\@yahoo|Hippo|hloader|HMView|holm|holy|HomePageSearch|HooWWWer|HouxouCrawler|HMSE|HPPrint|htdig|HTTPConnect|httpdown|http.generic|HTTPGet|httplib|HTTPRetriever|HTTrack|human|Huron|hverify|Hybrid|Hyper|ia\_archiver|iaskspi|IBM\_Planetwide|iCCra|ichiro|ID\-Search|IDA|IDBot|IEAuto|IEMPT|iexplore\.exe|iGetter|Ilse|Iltrov|Image|Image.Stripper|Image.Sucker|imagefetch|iimds\_monitor|Incutio|IncyWincy|Indexer|Industry.Program|Indy|InetURL|informant|InfoNav|InfoTekies|Ingelin|Innerpr|Inspect|InstallShield.DigitalWizard|Insuran\.|Intellig|Intelliseek|InterGET|Internet.Ninja|Internet.x|Internet\_Explorer|InternetLinkagent|InternetSeer.com|Intraf|IP2|Ipsel|Iria|IRLbot|Iron33|Irvine|ISC\_Sys|iSilo|ISRCCrawler|ISSpi|IUPUI.Research.Bot|Jady|Jaka|Jam|^Java|java\/|Java\(tm\)|JBH.agent|Jenny|JetB|JetC|jeteye|jiro|JoBo|JOC|jupit|Just|Jyx|Kapere|kash|Kazo|KBee|Kenjin|Kernel|Keywo|KFSW|KKma|Know|kosmix|KRAE|KRetrieve|Krug|ksibot|ksoap|Kum|KWebGet|Lachesis|lanshan|Lapo|larbin|leacher|leech|LeechFTP|LeechGet|leipzig\.de|Lets|Lexi|lftp|Libby|libcrawl|libcurl|libfetch|libghttp|libWeb|libwhisker|libwww|libwww\-FM|libwww\-perl|LightningDownload|likse|Linc|Link|Link.Sleuth|LinkextractorPro|Linkie|LINKS.ARoMATIZED|LinkScan|linktiger|LinkWalker|Lint|List|lmcrawler|LMQ|LNSpiderguy|loader|LocalcomBot|Locu|London|lone|looksmart|loop|Lork|LTH\_|lwp\-request|LWP|lwp-request|lwp-trivial|Mac.Finder|Macintosh\;.I\;.PPC|Mac\_F|magi|Mag\-Net|Magnet|Magp|Mail.Sweeper|main|majest|Mam|Mana|MarcoPolo|mark.blonin|MarkWatch|MaSagool|Mass|Mass.Downloader|Mata|mavi|McBot|Mecha|MCspider|mediapartners|^Memo|MEGAUPLOAD|MetaProducts.Download.Express|Metaspin|Mete|Microsoft.Data.Access|Microsoft.URL|Microsoft\_Internet\_Explorer|MIDo|MIIx|miner|Mira|MIRE|Mirror|Miss|Missauga|Missigua.Locator|Missouri.College.Browse|Mist|Mizz|MJ12|mkdb|mlbot|MLM|MMMoCrawl|MnoG|moge|Moje|Monster|Monza.Browser|Mooz|Moreoverbot|MOT\-MPx220|mothra\/netscan|mouse|MovableType|Mozdex|Mozi\!|^Mozilla$|Mozilla\/1\.22|Mozilla\/22|^Mozilla\/3\.0.\(compatible|Mozilla\/3\.Mozilla\/2\.01|Mozilla\/4\.0\(compatible|Mozilla\/4\.08|Mozilla\/4\.61.\(Macintosh|Mozilla\/5\.0|Mozilla\/7\.0|Mozilla\/8|Mozilla\/9|Mozilla\:|Mozilla\/Firefox|^Mozilla.*Indy|^Mozilla.*NEWT|^Mozilla*MSIECrawler|Mp3Bot|MPF|MRA|MS.FrontPage|MS.?Search|MSFrontPage|MSIE\_6\.0|MSIE6|MSIECrawler|msnbot\-media|msnbot\-Products|MSNPTC|MSProxy|MSRBOT|multithreaddb|musc|MVAC|MWM|My\_age|MyApp|MyDog|MyEng|MyFamilyBot|MyGetRight|MyIE2|mysearch|myurl|NAG|NAMEPROTECT|NASA.Search|nationaldirectory|Naver|Navr|Near|NetAnts|netattache|Netcach|NetCarta|Netcraft|NetCrawl|NetMech|netprospector|NetResearchServer|NetSp|Net.Vampire|netX|NetZ|Neut|newLISP|NewsGatorInbox|NEWT|NEWT.ActiveX|Next|^NG|NICE|nikto|Nimb|Ninja|Ninte|NIPGCrawler|Noga|nogo|Noko|Nomad|Norb|noxtrumbot|NPbot|NuSe|Nutch|Nutex|NWSp|Obje|Ocel|Octo|ODI3|oegp|Offline|Offline.Explorer|Offline.Navigator|OK.Mozilla|omg|Omni|Onfo|onyx|OpaL|OpenBot|Openf|OpenTextSiteCrawler|OpenU|Orac|OrangeBot|Orbit|Oreg|osis|Outf|Owl|P3P|PackRat|PageGrabber|PagmIEDownload|pansci|Papa|Pars|Patw|pavu|Pb2Pb|pcBrow|PEAR|PEER|PECL|pepe|Perl|PerMan|PersonaPilot|Persuader|petit|PHP|PHP.vers|PHPot|Phras|PicaLo|Piff|Pige|pigs|^Ping|Pingd|PingALink|Pipe|Plag|Plant|playstarmusic|Pluck|Pockey|POE\-Com|Poirot|Pomp|Port.Huron|Post|powerset|Preload|press|Privoxy|Probe|Program.Shareware|Progressive.Download|ProPowerBot|prospector|Provider.Protocol.Discover|ProWebWalker|Prowl|Proxy|Prozilla|psbot|PSurf|psycheclone|^puf$|Pulse|Pump|PushSite|PussyCat|PuxaRapido|PycURL|Pyth|PyQ|QuepasaCreep|Query|Quest|QRVA|Qweer|radian|Radiation|Rambler|RAMP|RealDownload|Reap|Recorder|RedCarpet|RedKernel|ReGet|relevantnoise|replacer|Repo|requ|Rese|Retrieve|Rip|Rix|RMA|Roboz|Rogue|Rover|RPT\-HTTP|Rsync|RTG30|.ru\)|ruby|Rufus|Salt|Sample|SAPO|Sauger|savvy|SBIder|SBP|SCAgent|scan|SCEJ\_|Sched|Schizo|Schlong|Schmo|Scout|Scooter|Scorp|ScoutOut|SCrawl|screen|script|SearchExpress|searchhippo|Searchme|searchpreview|searchterms|Second.Street.Research|Security.Kol|Seekbot|Seeker|Sega|Sensis|Sept|Serious|Sezn|Shai|Share|Sharp|Shaz|shell|shelo|Sherl|Shim|Shiretoko|ShopWiki|SickleBot|Simple|Siph|sitecheck|SiteCrawler|SiteSnagger|Site.Sniper|SiteSucker|sitevigil|SiteX|Sleip|Slide|Slurpy.Verifier|Sly|Smag|SmartDownload|Smurf|sna\-|snag|Snake|Snapbot|Snip|Snoop|So\-net|SocSci|sogou|Sohu|solr|sootle|Soso|SpaceBison|Spad|Span|spanner|Speed|Spegla|Sphere|Sphider|spider|SpiderBot|SpiderEngine|SpiderView|Spin|sproose|Spurl|Spyder|Squi|SQ.Webscanner|sqwid|Sqworm|SSM\_Ag|Stack|Stamina|stamp|Stanford|Statbot|State|Steel|Strateg|Stress|Strip|studybot|Style|subot|Suck|Sume|sun4m|Sunrise|SuperBot|SuperBro|Supervi|Surf4Me|SuperHTTP|Surfbot|SurfWalker|Susi|suza|suzu|Sweep|sygol|syncrisis|Systems|Szukacz|Tagger|Tagyu|tAke|Talkro|TALWinHttpClient|tamu|Tandem|Tarantula|tarspider|tBot|TCF|Tcs\/1|TeamSoft|Tecomi|Teleport|Telesoft|Templeton|Tencent|Terrawiz|Test|TexNut|trivial|Turnitin|The.Intraformant|TheNomad|Thomas|TightTwatBot|Timely|Titan|TMCrawler|TMhtload|toCrawl|Todobr|Tongco|topic|Torrent|Track|translate|Traveler|TREEVIEW|True|Tunnel|turing|Turnitin|TutorGig|TV33\_Mercator|Twat|Tweak|Twice|Twisted.PageGetter|Tygo|ubee|UCmore|UdmSearch|UIowaCrawler|Ultraseek|UMBC|unf|UniversalFeedParser|unknown|UPG1|UtilMind|URLBase|URL.Control|URL\_Spider\_Pro|urldispatcher|URLGetFile|urllib|URLSpiderPro|URLy|User\-Agent|UserAgent|USyd|Vacuum|vagabo|Valet|Valid|Vamp|vayala|VB\_|VCI|VERI\~LI|verif|versus|via|Viewer|virtual|visibilitygap|Visual|vobsub|Void|VoilaBot|voyager|vspider|VSyn|w\:PACBHO60|w0000t|W3C|w3m|w3search|walhello|Walker|Wand|WAOL|WAPT|Watch|Wavefire|wbdbot|Weather|web.by.mail|Web.Data.Extractor|Web.Downloader|Web.Ima|Web.Mole|Web.Sucker|Web2Mal|Web2WAP|WebaltBot|WebAuto|WebBandit|Webbot|WebCapture|WebCat|webcraft\@bea|Webclip|webcollage|WebCollector|WebCopier|WebCopy|WebCor|webcrawl|WebDat|WebDav|webdevil|webdownloader|Webdup|WebEMail|WebEMailExtrac|WebEnhancer|WebFetch|WebGo|WebHook|Webinator|WebInd|webitpr|WebFilter|WebFountain|WebLea|Webmaster|WebmasterWorldForumBot|WebMin|WebMirror|webmole|webpic|WebPin|WebPix|WebReaper|WebRipper|WebRobot|WebSauger|WebSite|Website.eXtractor|Website.Quester|WebSnake|webspider|Webster|WebStripper|websucker|WebTre|WebVac|webwalk|WebWasher|WebWeasel|WebWhacker|WebZIP|Wells|WEP\_S|WEP.Search.00|WeRelateBot|wget|Whack|Whacker|whiz|WhosTalking|Widow|Win67|window.location|Windows.95\;|Windows.95\)|Windows.98\;|Windows.98\)|Winodws|Wildsoft.Surfer|WinHT|winhttp|WinHttpRequest|WinHTTrack|Winnie.Poh|wire|WISEbot|wisenutbot|wish|Wizz|WordP|Works|world|WUMPUS|Wweb|WWWC|WWWOFFLE|WWW\-Collector|WWW.Mechanize|www.ranks.nl|wwwster|^x$|X12R1|x\-Tractor|Xaldon|Xenu|XGET|xirq|Y\!OASIS|Y\!Tunnel|yacy|YaDirectBot|Yahoo\-MMAudVid|YahooSeeker|YahooYSMcm|Yamm|Yand|yang|Yeti|Yoono|yori|Yotta|YTunnel|Zade|zagre|ZBot|Zeal|ZeBot|zerx|Zeus|ZIPCode|Zixy|zmao|Zyborg [NC]
+RewriteRule ^(.*)$ - [F,L]
+</IfModule>
