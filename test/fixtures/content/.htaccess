@@ -18,7 +18,7 @@
 # http://enable-cors.org/
 
 # <IfModule mod_headers.c>
-#    Header set Access-Control-Allow-Origin "*"
+#     Header set Access-Control-Allow-Origin "*"
 # </IfModule>
 
 # By default allow cross-origin access to web fonts.
@@ -245,11 +245,11 @@ AddDefaultCharset utf-8
 # subdomains for certain parts of your website.
 
 # <IfModule mod_rewrite.c>
-#    RewriteCond %{HTTPS} !=on
-#    RewriteCond %{HTTP_HOST} !^www\. [NC]
-#    RewriteCond %{SERVER_ADDR} !=127.0.0.1
-#    RewriteCond %{SERVER_ADDR} !=::1
-#    RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+#     RewriteCond %{HTTPS} !=on
+#     RewriteCond %{HTTP_HOST} !^www\. [NC]
+#     RewriteCond %{SERVER_ADDR} !=127.0.0.1
+#     RewriteCond %{SERVER_ADDR} !=::1
+#     RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 # </IfModule>
 
 
@@ -444,8 +444,8 @@ AddDefaultCharset utf-8
 # `https://secure.example.com`.
 
 # <IfModule mod_rewrite.c>
-#    RewriteCond %{SERVER_PORT} !^443
-#    RewriteRule ^ https://example-domain-please-change-me.com%{REQUEST_URI} [R=301,L]
+#     RewriteCond %{SERVER_PORT} !^443
+#     RewriteRule ^ https://example-domain-please-change-me.com%{REQUEST_URI} [R=301,L]
 # </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -469,7 +469,7 @@ AddDefaultCharset utf-8
 # are not using HTTPS.
 
 # <IfModule mod_headers.c>
-#    Header set Strict-Transport-Security "max-age=16070400; includeSubDomains"
+#     Header set Strict-Transport-Security "max-age=16070400; includeSubDomains"
 # </IfModule>
 
 
@@ -527,7 +527,7 @@ AddDefaultCharset utf-8
 # http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9.5.
 
 # <IfModule mod_headers.c>
-#    Header set Cache-Control "no-transform"
+#     Header set Cache-Control "no-transform"
 # </IfModule>
 
 # ------------------------------------------------------------------------------

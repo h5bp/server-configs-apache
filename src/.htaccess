@@ -18,7 +18,7 @@
 # http://enable-cors.org/
 
 # <IfModule mod_headers.c>
-#    Header set Access-Control-Allow-Origin "*"
+#     Header set Access-Control-Allow-Origin "*"
 # </IfModule>
 
 # By default allow cross-origin access to web fonts.
@@ -103,7 +103,7 @@ Options -MultiViews
 # http://www.w3.org/TR/2000/CR-P3P-20001215/
 
 # <IfModule mod_headers.c>
-#   Header set P3P "policyref=\"/w3c/p3p.xml\", CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""
+#     Header set P3P "policyref=\"/w3c/p3p.xml\", CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""
 # </IfModule>
 
 
@@ -245,11 +245,11 @@ AddDefaultCharset utf-8
 # subdomains for certain parts of your website.
 
 # <IfModule mod_rewrite.c>
-#    RewriteCond %{HTTPS} !=on
-#    RewriteCond %{HTTP_HOST} !^www\. [NC]
-#    RewriteCond %{SERVER_ADDR} !=127.0.0.1
-#    RewriteCond %{SERVER_ADDR} !=::1
-#    RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+#     RewriteCond %{HTTPS} !=on
+#     RewriteCond %{HTTP_HOST} !^www\. [NC]
+#     RewriteCond %{SERVER_ADDR} !=127.0.0.1
+#     RewriteCond %{SERVER_ADDR} !=::1
+#     RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 # </IfModule>
 
 
@@ -444,8 +444,8 @@ AddDefaultCharset utf-8
 # `https://secure.example.com`.
 
 # <IfModule mod_rewrite.c>
-#    RewriteCond %{SERVER_PORT} !^443
-#    RewriteRule ^ https://example-domain-please-change-me.com%{REQUEST_URI} [R=301,L]
+#     RewriteCond %{SERVER_PORT} !^443
+#     RewriteRule ^ https://example-domain-please-change-me.com%{REQUEST_URI} [R=301,L]
 # </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -469,7 +469,7 @@ AddDefaultCharset utf-8
 # are not using HTTPS.
 
 # <IfModule mod_headers.c>
-#    Header set Strict-Transport-Security "max-age=16070400; includeSubDomains"
+#     Header set Strict-Transport-Security "max-age=16070400; includeSubDomains"
 # </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -538,7 +538,7 @@ AddDefaultCharset utf-8
 # http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9.5.
 
 # <IfModule mod_headers.c>
-#    Header set Cache-Control "no-transform"
+#     Header set Cache-Control "no-transform"
 # </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -628,8 +628,8 @@ FileETag None
 # http://stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring
 
 # <IfModule mod_rewrite.c>
-#    RewriteCond %{REQUEST_FILENAME} !-f
-#    RewriteRule ^(.+)\.(\d+)\.(js|css|png|jpe?g|gif)$ $1.$3 [L]
+#     RewriteCond %{REQUEST_FILENAME} !-f
+#     RewriteRule ^(.+)\.(\d+)\.(js|css|png|jpe?g|gif)$ $1.$3 [L]
 # </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -648,14 +648,14 @@ FileETag None
 #   Apache will replace it with the content from the specified files.
 
 # <IfModule mod_include.c>
-#    <FilesMatch "\.combined\.js$">
-#        Options +Includes
-#        AddOutputFilterByType INCLUDES application/javascript application/json
-#        SetOutputFilter INCLUDES
-#    </FilesMatch>
-#    <FilesMatch "\.combined\.css$">
-#        Options +Includes
-#        AddOutputFilterByType INCLUDES text/css
-#        SetOutputFilter INCLUDES
-#    </FilesMatch>
+#     <FilesMatch "\.combined\.js$">
+#         Options +Includes
+#         AddOutputFilterByType INCLUDES application/javascript application/json
+#         SetOutputFilter INCLUDES
+#     </FilesMatch>
+#     <FilesMatch "\.combined\.css$">
+#         Options +Includes
+#         AddOutputFilterByType INCLUDES text/css
+#         SetOutputFilter INCLUDES
+#     </FilesMatch>
 # </IfModule>
