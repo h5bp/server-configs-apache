@@ -13,7 +13,7 @@ accessible, if needed, even cross-domain.
 If you have access to the [main server configuration
 file](http://httpd.apache.org/docs/current/configuring.html#main)
 (usually called `httpd.conf`), you should add the logic from the
-[`.htaccess`](https://github.com/h5bp/server-configs-apache/tree/master/.htaccess)
+[`.htaccess`](https://github.com/h5bp/server-configs-apache/blob/master/src/.htaccess)
 file in, for example, a
 [`<Directory>`](http://httpd.apache.org/docs/current/mod/core.html#directory)
 section in the main configuration file. This is usually the recommended way, as
@@ -21,7 +21,7 @@ using `.htaccess` files [slows
 down](http://httpd.apache.org/docs/current/howto/htaccess.html#when) Apache!
 
 If you don't have access, which is quite common with hosting services, just copy
-the [`.htaccess`](https://github.com/h5bp/server-configs-apache/tree/master/.htaccess)
+the [`.htaccess`](https://github.com/h5bp/server-configs-apache/blob/master/src/.htaccess)
 file in the root of the website.
 
 Also note that some configurations won't have any effect if the appropriate
@@ -76,9 +76,9 @@ only possible thanks to all the awesome
 
 This project is currently maintained by:
 
-| [![@alrra](http://s.gravatar.com/avatar/2fc3f42c9411898f83f3af8ede902591?s=90)](http://twitter.com/alrra "Follow @alrra on Twitter") |
+| [![@alrra](https://avatars.githubusercontent.com/u/1223565?s=120)](https://github.com/alrra "Follow @alrra on GitHub") |
 |:---:|:---:|
-| [Cătălin Mariș](http://twitter.com/alrra) |
+| [Cătălin Mariș](https://github.com/alrra) |
 
 
 ## License
