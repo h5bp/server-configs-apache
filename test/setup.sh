@@ -85,9 +85,6 @@ setup_apache_2_4_x() {
     # http://httpd.apache.org/docs/current/mod/core.html#servertokens
     add_to_file "ServerTokens Prod" "$MAINE_CONFIG_FILE_2_4_x"
 
-
-    add_to_file "Include conf/extra/2.4.x.conf" "$MAINE_CONFIG_FILE_2_4_x"
-
     # Enable custom Virtual Host
     execute "cat $CONFIGS_DIR/2.4.x.conf \
                 | sed 's|{{path}}|$CONTENT_DIR|g' \
