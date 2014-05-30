@@ -524,6 +524,7 @@ AddDefaultCharset utf-8
                                       text/css \
                                       text/html \
                                       text/plain \
+                                      text/vtt \
                                       text/x-component \
                                       text/xml
     </IfModule>

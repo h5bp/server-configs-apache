@@ -399,7 +399,6 @@ var tests = [
 
             'test.vtt': {
                 headers: generateHeaders({
-                    'content-encoding': undefined,
                     'content-type': 'text/vtt; charset=utf-8'
                 })
             },

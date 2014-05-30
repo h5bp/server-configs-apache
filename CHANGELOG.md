@@ -1,5 +1,6 @@
 ### HEAD
 
+* Compress WebVTT files (`.vtt`).
 * Reintroduce the `filename extension` to `content type` mappings for `ico`
   and `svg` ([#28](https://github.com/h5bp/server-configs-apache/issues/28)).
 
