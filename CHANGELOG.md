@@ -1,50 +1,52 @@
 ### HEAD
 
-* Add `cur`, `ico`, `svg`, `svgz` and `webp` to the filename-based cache busting
-  list.
-* Add configs for text files (`.txt`).
-* Compress WebVTT files (`.vtt`).
+* Add `cur`, `ico`, `svg`, `svgz` and `webp` to the filename-based cache
+  busting list [[acee149](https://github.com/h5bp/server-configs-apache/commit/acee149f0f6e0f19065ee15627875de0d24f57b0)].
+* Add configs for text files (`.txt`)
+  [[b5bda65](https://github.com/h5bp/server-configs-apache/commit/b5bda651d2811f8f3c1f061ee97d0404ebfe8468)].
+* Compress WebVTT files (`.vtt`)
+  [[0bb12c8](https://github.com/h5bp/server-configs-apache/commit/0bb12c832be9865bcfdaa1042b64381e7d723560)].
 * Reintroduce the `filename extension` to `content type` mappings for `ico`
-  and `svg` ([#28](https://github.com/h5bp/server-configs-apache/issues/28)).
+  and `svg` [[#28](https://github.com/h5bp/server-configs-apache/issues/28)].
 
 ### 2.3.0 (April 10, 2014)
 
 * Send `X-Content-Type-Options` header by default
-  ([edd912d](https://github.com/h5bp/server-configs-apache/commit/edd912d9f76602c9d29ae087ff4e176632a0f656)).
+  [[edd912d](https://github.com/h5bp/server-configs-apache/commit/edd912d9f76602c9d29ae087ff4e176632a0f656)].
 
 ### 2.2.0 (February 3, 2014)
 
 * Remove example regarding `persistent connections`
-  ([#20](https://github.com/h5bp/server-configs-apache/issues/20)).
+  [[#20](https://github.com/h5bp/server-configs-apache/issues/20)].
 * Improve the `<FilesMatch>` regular expressions.
 * Add configs for JSON-LD (JSON for Linking Data) files
-  ([#17](https://github.com/h5bp/server-configs-apache/issues/17)).
+  [[#17](https://github.com/h5bp/server-configs-apache/issues/17)].
 
 ### 2.1.0 (December 31, 2013)
 
 * Serve source map files with the `application/json` Content-Type.
 * Make `RewriteCond`s for `example.com → www.example.com` more permissive
-  ([#11](https://github.com/h5bp/server-configs-apache/issues/11)).
+  [[#11](https://github.com/h5bp/server-configs-apache/issues/11)].
 * Add configs for Ogg Opus audio files
-  ([#13](https://github.com/h5bp/server-configs-apache/issues/13)).
+  [[#13](https://github.com/h5bp/server-configs-apache/issues/13)].
 
 ### 2.0.0 (November 12, 2013)
 
 * Add example on how to mitigate reflected (a.k.a non-persistent) XSS attacks
-  ([#8](https://github.com/h5bp/server-configs-apache/issues/8)).
+  [[#8](https://github.com/h5bp/server-configs-apache/issues/8)].
 * Add example on how to provide clickjacking protection
-  ([#8](https://github.com/h5bp/server-configs-apache/issues/8)).
+  [[#8](https://github.com/h5bp/server-configs-apache/issues/8)].
 * Add example on how to reduce MIME type security risks
-  ([#8](https://github.com/h5bp/server-configs-apache/issues/8)).
+  [[#8](https://github.com/h5bp/server-configs-apache/issues/8)].
 * Add configs for cursor images (`.cur`).
 * Fix backup and source file blocking for Apache v2.3+
-  ([#5](https://github.com/h5bp/server-configs-apache/issues/5)).
+  [[#5](https://github.com/h5bp/server-configs-apache/issues/5)].
 * Remove filename extension to content type mappings that are already provided
   by Apache v2.2.0+
-  ([#4](https://github.com/h5bp/server-configs-apache/issues/4)).
+  [[#4](https://github.com/h5bp/server-configs-apache/issues/4)].
 * Improve inline comments.
 * Remove `screen flicker` fix required by IE 6
-  ([#3](https://github.com/h5bp/server-configs-apache/issues/3)).
+  [[#3](https://github.com/h5bp/server-configs-apache/issues/3)].
 
 ### 1.1.0 (July 27, 2013)
 
