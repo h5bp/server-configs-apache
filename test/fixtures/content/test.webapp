@@ -1,0 +1,13 @@
+{
+    "default_locale": "en",
+    "description": "test",
+    "developer": {
+        "name": "test",
+        "url": "http://example.com"
+    },
+    "icons": {
+        "128": "/test.png"
+    },
+    "launch_path": "/index.html",
+    "name": "test"
+}

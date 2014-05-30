@@ -1,0 +1,5 @@
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>test</title>
+    <id>http://example.com/</id>
+    <updated>5555-05-05T05:55:55-05:55</updated>
+</feed>

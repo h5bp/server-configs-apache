@@ -1,0 +1,6 @@
+{
+    "@context": "http://json-ld.org/contexts/person.jsonld",
+    "@id": "http://example.com/",
+    "name": "test",
+    "born": "5555-05-05"
+}

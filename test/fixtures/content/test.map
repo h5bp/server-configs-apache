@@ -1,0 +1,8 @@
+{
+    "version": 3,
+    "file": "test-min.js",
+    "lineCount": 1,
+    "mappings": "AAAA,IAAIA,MAAQ,MAAZ,CACIC,MAAQ,MADZ,CAEIC,MAAQ,MAFZ,CAGIC,MAAQ,MAHZ,CAIIC,MAAQ;",
+    "sources": ["test.js"],
+    "names": ["test1", "test2", "test3", "test4", "test5"]
+}
