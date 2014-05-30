@@ -385,8 +385,13 @@ var tests = [
             'test.ttf': {
                 headers: generateHeaders({
                     'access-control-allow-origin': '*',
-                    'content-security-policy': undefined,
                     'content-type': 'application/x-font-ttf'
+                })
+            },
+
+            'test.txt': {
+                headers: generateHeaders({
+                    'content-type': 'text/plain; charset=utf-8'
                 })
             },
 
