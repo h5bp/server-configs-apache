@@ -657,10 +657,15 @@ var tests = [
                 requestHeaders: {}
             },
 
+            'test.12345.cur': {},
             'test.12345.gif': {},
+            'test.12345.ico': {},
             'test.12345.jpeg': {},
             'test.12345.jpg': {},
-            'test.12345.png': {}
+            'test.12345.png': {},
+            'test.12345.svg': {},
+            'test.12345.svgz': {}
+
         }
     },
 

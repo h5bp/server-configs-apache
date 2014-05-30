@@ -1,5 +1,7 @@
 ### HEAD
 
+* Add `cur`, `ico`, `svg`, `svgz` and `webp` to the filename-based cache busting
+  list.
 * Add configs for text files (`.txt`).
 * Compress WebVTT files (`.vtt`).
 * Reintroduce the `filename extension` to `content type` mappings for `ico`
