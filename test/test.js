@@ -1,4 +1,4 @@
-var assert = require("assert");
+var assert = require('assert');
 var http   = require('http');
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -461,6 +461,35 @@ var tests = [
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     {
+        description: 'Test if the server has the `MultiViews` option disabled (does NOT pattern match based on filenames)',
+        files: {
+
+            // `test/multiviews/foo` does NOT exist, but if the
+            // `MultiViews` option is enabled, the server will
+            // return the content of `test/multiviews/foo.html`
+
+            'test/multiviews/foo': {
+                content:
+                    '<!doctype html>\n' +
+                    '<html lang="en">\n' +
+                    '<head>\n' +
+                    '    <meta charset="utf-8">\n' +
+                    '    <title>404</title>\n' +
+                    '</head>\n' +
+                    '<body>\n' +
+                    '    404\n' +
+                    '</body>\n' +
+                    '</html>\n',
+                requestHeaders: {},
+                statusCode: 404
+            }
+
+        }
+    },
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    {
         description: 'Test if the custom 404 page is returned to the client in case of an 404 error',
         files: {
 
@@ -489,7 +518,7 @@ var tests = [
         description: 'Test if access is forbidden to directories without a default document',
         files: {
 
-            'testdir/': {
+            'test/': {
                 statusCode: 403
             }
 
@@ -500,11 +529,11 @@ var tests = [
         description: 'Test if access is forbidden to hidden files and directories',
         files: {
 
-            '.test': {
+            '.hidden_file': {
                 statusCode: 403
             },
 
-            '.testdir': {
+            '.hidden_directory': {
                 statusCode: 403
             }
 
