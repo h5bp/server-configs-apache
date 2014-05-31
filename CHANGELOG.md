@@ -1,5 +1,7 @@
 ### HEAD
 
+* Add the `no-transform` value to the `Cache-Control` HTTP response header
+  without overwriting the existing value.
 * Add `cur`, `ico`, `svg`, `svgz` and `webp` to the filename-based cache
   busting list [[acee149](https://github.com/h5bp/server-configs-apache/commit/acee149f0f6e0f19065ee15627875de0d24f57b0)].
 * Add configs for text files (`.txt`)

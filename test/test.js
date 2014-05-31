@@ -60,7 +60,7 @@ var tests = [
 
             'test.appcache': {
                 headers: generateHeaders({
-                    'cache-control': 'max-age=0',
+                    'cache-control': 'max-age=0, no-transform',
                     'content-encoding': undefined,
                     'content-type': 'text/cache-manifest'
                 })
@@ -68,7 +68,7 @@ var tests = [
 
             'test.atom': {
                 headers: generateHeaders({
-                    'cache-control': 'max-age=0',
+                    'cache-control': 'max-age=0, no-transform',
                     'content-type': 'application/xml; charset=utf-8'
                 })
             },
@@ -82,7 +82,7 @@ var tests = [
 
             'test.css': {
                 headers: generateHeaders({
-                    'cache-control': 'max-age=31536000',
+                    'cache-control': 'max-age=31536000, no-transform',
                     'content-type': 'text/css; charset=utf-8'
                 })
             },
@@ -90,7 +90,7 @@ var tests = [
             'test.cur': {
                 headers: generateHeaders({
                     'access-control-allow-origin': '*',
-                    'cache-control': 'max-age=604800',
+                    'cache-control': 'max-age=604800, no-transform',
                     'content-type': 'image/x-icon'
                 }),
                 requestHeaders: {
@@ -108,7 +108,7 @@ var tests = [
 
             'test.f4a': {
                 headers: generateHeaders({
-                    'cache-control': 'max-age=2592000',
+                    'cache-control': 'max-age=2592000, no-transform',
                     'content-encoding': undefined,
                     'content-type': 'audio/mp4'
                 })
@@ -162,7 +162,7 @@ var tests = [
 
             'test.html': {
                 headers: generateHeaders({
-                    'cache-control': 'max-age=0',
+                    'cache-control': 'max-age=0, no-transform',
                     'content-security-policy': "script-src 'self'; object-src 'self'",
                     'content-type': 'text/html; charset=utf-8',
                     'x-frame-options': 'DENY',
@@ -174,7 +174,7 @@ var tests = [
             'test.ico': {
                 headers: generateHeaders({
                     'access-control-allow-origin': '*',
-                    'cache-control': 'max-age=604800',
+                    'cache-control': 'max-age=604800, no-transform',
                     'content-type': 'image/x-icon'
                 }),
                 requestHeaders: {
@@ -209,21 +209,21 @@ var tests = [
 
             'test.js': {
                 headers: generateHeaders({
-                    'cache-control': 'max-age=31536000',
+                    'cache-control': 'max-age=31536000, no-transform',
                     'content-type': 'application/javascript; charset=utf-8'
                 })
             },
 
             'test.json': {
                 headers: generateHeaders({
-                    'cache-control': 'max-age=0',
+                    'cache-control': 'max-age=0, no-transform',
                     'content-type': 'application/json; charset=utf-8'
                 })
             },
 
             'test.jsonld': {
                 headers: generateHeaders({
-                    'cache-control': 'max-age=0',
+                    'cache-control': 'max-age=0, no-transform',
                     'content-type': 'application/ld+json; charset=utf-8'
                 })
             },
@@ -244,7 +244,7 @@ var tests = [
 
             'test.manifest': {
                 headers: generateHeaders({
-                    'cache-control': 'max-age=0',
+                    'cache-control': 'max-age=0, no-transform',
                     'content-encoding': undefined,
                     'content-type': 'text/cache-manifest'
                 })
@@ -252,7 +252,7 @@ var tests = [
 
             'test.map': {
                 headers: generateHeaders({
-                    'cache-control': 'max-age=0',
+                    'cache-control': 'max-age=0, no-transform',
                     'content-type': 'application/json'
                 })
             },
@@ -327,14 +327,14 @@ var tests = [
 
             'test.rdf': {
                 headers: generateHeaders({
-                    'cache-control': 'max-age=0',
+                    'cache-control': 'max-age=0, no-transform',
                     'content-type': 'application/xml'
                 })
             },
 
             'test.rss': {
                 headers: generateHeaders({
-                    'cache-control': 'max-age=0',
+                    'cache-control': 'max-age=0, no-transform',
                     'content-type': 'application/xml; charset=utf-8'
                 })
             },
@@ -410,7 +410,7 @@ var tests = [
 
             'test.webapp': {
                 headers: generateHeaders({
-                    'cache-control': 'max-age=0',
+                    'cache-control': 'max-age=0, no-transform',
                     'content-type': 'application/x-web-app-manifest+json; charset=utf-8'
                 })
             },
@@ -443,7 +443,7 @@ var tests = [
 
             'test.xml': {
                 headers: generateHeaders({
-                    'cache-control': 'max-age=0',
+                    'cache-control': 'max-age=0, no-transform',
                     'content-type': 'application/xml; charset=utf-8'
                 })
             },
@@ -717,6 +717,46 @@ var tests = [
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+function generateHeaders(customValues) {
+    return {
+        'access-control-allow-origin': customValues['access-control-allow-origin'],
+        'cache-control': customValues['cache-control'] || 'max-age=2592000, no-transform',
+        'content-encoding':
+            // If the value `undefined` is provided, keep it!
+            'content-encoding' in customValues ? customValues['content-encoding'] :
+                                                 (customValues['content-encoding'] !== undefined ? customValues['content-encoding'] : 'gzip'),
+        'content-security-policy': customValues['content-security-policy'],
+        'content-type': customValues['content-type'],
+        'etag': customValues.etag,
+        'p3p': customValues.p3p || 'policyref="/w3c/p3p.xml", CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"',
+        'server': customValues.server || 'Apache',
+        'x-content-type-options': customValues['x-content-type-options'] || 'nosniff',
+        'x-frame-options': customValues['x-frame-options'],
+        'x-ua-compatible': customValues['x-ua-compatible'],
+        'x-xss-protection': customValues['x-xss-protection']
+    };
+}
+
+function getContentTestDescription(file, content) {
+    return 'should contain the following content: "' + content.replace(/\n/g,'\\n').replace(/\r/g,'\\r') + '"';
+}
+
+function getHeaderTestDescription(file, header, headerValue) {
+
+    var msg = 'should ';
+
+    msg += ( headerValue === undefined ? 'NOT ': '' );
+    msg += 'have the ';
+    msg += '`' + header + ( headerValue !== undefined ? ': ' + headerValue  : '' )+ '` ';
+    msg += 'HTTP response header';
+
+    return msg;
+}
+
+function getStatusCodeTestDescription(file, statusCode) {
+    return 'should have the HTTP response status code ' + statusCode;
+}
+
 function makeGETRequest(file, requestHeaders, callback) {
 
     var options = {
@@ -746,46 +786,6 @@ function makeGETRequest(file, requestHeaders, callback) {
         throw new Error(e);
     });
 
-}
-
-function getContentTestDescription(file, content) {
-    return 'should contain the following content: "' + content.replace(/\n/g,'\\n').replace(/\r/g,'\\r') + '"';
-}
-
-function getStatusCodeTestDescription(file, statusCode) {
-    return 'should have the HTTP response status code ' + statusCode;
-}
-
-function getHeaderTestDescription(file, header, headerValue) {
-
-    var msg = 'should ';
-
-    msg += ( headerValue === undefined ? 'NOT ': '' );
-    msg += 'have the ';
-    msg += '`' + header + ( headerValue !== undefined ? ': ' + headerValue  : '' )+ '` ';
-    msg += 'HTTP response header';
-
-    return msg;
-}
-
-function generateHeaders(customValues) {
-    return {
-        'access-control-allow-origin': customValues['access-control-allow-origin'],
-        'cache-control': customValues['cache-control'] || 'max-age=2592000',
-        'content-encoding':
-            // If the value `undefined` is provided, keep it!
-            'content-encoding' in customValues ? customValues['content-encoding'] :
-                                                 (customValues['content-encoding'] !== undefined ? customValues['content-encoding'] : 'gzip'),
-        'content-security-policy': customValues['content-security-policy'],
-        'content-type': customValues['content-type'],
-        'etag': customValues.etag,
-        'p3p': customValues.p3p || 'policyref="/w3c/p3p.xml", CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"',
-        'server': customValues.server || 'Apache',
-        'x-content-type-options': customValues['x-content-type-options'] || 'nosniff',
-        'x-frame-options': customValues['x-frame-options'],
-        'x-ua-compatible': customValues['x-ua-compatible'],
-        'x-xss-protection': customValues['x-xss-protection']
-    };
 }
 
 function run(tests) {
