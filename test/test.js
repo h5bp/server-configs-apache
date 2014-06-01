@@ -552,7 +552,7 @@ var tests = [
                 statusCode: 403
             },
 
-            'test.config': {
+            'test.conf': {
                 statusCode: 403
             },
 

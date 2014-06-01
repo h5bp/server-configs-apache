@@ -1,5 +1,6 @@
 ### HEAD
 
+* Forbid access to `.conf` files
 * Add the `no-transform` value to the `Cache-Control` HTTP response header
   without overwriting the existing value.
 * Add `cur`, `ico`, `svg`, `svgz` and `webp` to the filename-based cache
