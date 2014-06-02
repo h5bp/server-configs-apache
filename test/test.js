@@ -453,6 +453,13 @@ var tests = [
                     'content-encoding': undefined,
                     'content-type': 'application/x-xpinstall'
                 })
+            },
+
+            '.well-known/manifest.json': {
+                headers: generateHeaders({
+                    'cache-control': 'max-age=31536000, no-transform',
+                    'content-type': 'application/manifest+json; charset=utf-8'
+                })
             }
 
         }
