@@ -1,6 +1,8 @@
 ### HEAD
 
-* Forbid access to `.conf` files
+* Don't block access to the content from within the `/.well-known/` directory
+  [[#31](https://github.com/h5bp/server-configs-apache/issues/31)].
+* Forbid access to `.conf` files.
 * Add the `no-transform` value to the `Cache-Control` HTTP response header
   without overwriting the existing value.
 * Add `cur`, `ico`, `svg`, `svgz` and `webp` to the filename-based cache

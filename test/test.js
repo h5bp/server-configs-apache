@@ -526,14 +526,76 @@ var tests = [
     },
 
     {
-        description: 'Test if access is forbidden to hidden files and directories',
+        description: 'Test if access is forbidden to hidden files and directories with the exception of the visible content from within the `/.well-known/` hidden directory',
         files: {
 
             '.hidden_file': {
                 statusCode: 403
             },
 
-            '.hidden_directory': {
+            '.hidden_directory/': {
+                statusCode: 403
+            },
+
+            '.well-known/': {
+                statusCode: 403
+            },
+
+            '.well-known/manifest.json': {
+                content:
+                    '{\n' +
+                    '    "name": "test",\n' +
+                    '    "icons": [{\n' +
+                    '        "src": "icon/lowres",\n' +
+                    '        "sizes": "64x64",\n' +
+                    '        "type": "image/webp"\n' +
+                    '    }, {\n' +
+                    '        "src": "icon/hd_small",\n' +
+                    '        "sizes": "64x64"\n' +
+                    '    }, {\n' +
+                    '        "src": "icon/hd_hi",\n' +
+                    '        "sizes": "128x128"\n' +
+                    '    }],\n' +
+                    '    "start_url": "/start.html",\n' +
+                    '    "display": "fullscreen",\n' +
+                    '    "orientation": "landscape"\n' +
+                    '}\n',
+                requestHeaders: {}
+
+            },
+
+            '.well-known/.hidden_directory/': {
+                statusCode: 403
+            },
+
+            '.well-known/.hidden_directory/test.html': {
+                statusCode: 403
+            },
+
+            '.well-known/test/': {
+                statusCode: 403
+            },
+
+            '.well-known/test/test.html': {
+                content:
+                    '<!doctype html>\n' +
+                    '<html lang="en">\n' +
+                    '<head>\n' +
+                    '    <meta charset="utf-8">\n' +
+                    '    <title>test</title>\n' +
+                    '</head>\n' +
+                    '<body>\n' +
+                    '    test\n' +
+                    '</body>\n' +
+                    '</html>\n',
+                requestHeaders: {}
+            },
+
+            '.well-known/test/.hidden_directory/': {
+                statusCode: 403
+            },
+
+            '.well-known/test/.hidden_directory/test.html': {
                 statusCode: 403
             }
 

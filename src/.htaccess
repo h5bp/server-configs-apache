@@ -324,6 +324,7 @@ AddDefaultCharset utf-8
 # ------------------------------------------------------------------------------
 
 # Block access to directories without a default document.
+
 # You should leave the following uncommented, as you shouldn't allow anyone to
 # surf through every directory on your server (which may includes rather private
 # places such as the CMS's directories).
@@ -334,10 +335,23 @@ AddDefaultCharset utf-8
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Block access to hidden files and directories.
-# This includes directories used by version control systems such as Git and SVN.
+# Block access to all hidden files and directories with the exception of the
+# visible content from within the `/.well-known/` hidden directory.
+
+# These types of files usually contain user preferences or the preserved state
+# of an utility, and can include rather private places like, for example, the
+# `.git` or `.svn` directories.
+
+# The `/.well-known/` directory represents the standard (RFC 5785) path prefix
+# for "well-known locations" (e.g.: `/.well-known/manifest.json`,
+# `/.well-known/keybase.txt`), and therefore, access to its visible content
+# should not be blocked.
+
+# https://www.mnot.net/blog/2010/04/07/well-known
+# http://tools.ietf.org/html/rfc5785
 
 <IfModule mod_rewrite.c>
+    RewriteCond %{REQUEST_URI} "!(^|/)\.well-known/([^./]+./?)+$" [NC]
     RewriteCond %{SCRIPT_FILENAME} -d [OR]
     RewriteCond %{SCRIPT_FILENAME} -f
     RewriteRule "(^|/)\." - [F]
