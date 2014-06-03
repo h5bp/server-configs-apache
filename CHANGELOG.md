@@ -1,4 +1,4 @@
-### HEAD
+### 2.4.0 (June 3, 2014)
 
 * Add configs for web application manifest files
   [[#29](https://github.com/h5bp/server-configs-apache/issues/29)].
