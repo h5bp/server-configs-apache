@@ -2,17 +2,15 @@
 
 * Add configs for web application manifest files
   [[#29](https://github.com/h5bp/server-configs-apache/issues/29)].
-* Don't block access to the content from within the `/.well-known/` directory
+* Allow access to the content from within the `/.well-known/` directory
   [[#31](https://github.com/h5bp/server-configs-apache/issues/31)].
 * Forbid access to `.conf` files.
-* Add the `no-transform` value to the `Cache-Control` HTTP response header
-  without overwriting the existing value.
-* Add `cur`, `ico`, `svg`, `svgz` and `webp` to the filename-based cache
-  busting list [[acee149](https://github.com/h5bp/server-configs-apache/commit/acee149f0f6e0f19065ee15627875de0d24f57b0)].
-* Add configs for text files (`.txt`)
-  [[b5bda65](https://github.com/h5bp/server-configs-apache/commit/b5bda651d2811f8f3c1f061ee97d0404ebfe8468)].
-* Compress WebVTT files (`.vtt`)
-  [[0bb12c8](https://github.com/h5bp/server-configs-apache/commit/0bb12c832be9865bcfdaa1042b64381e7d723560)].
+* Add the `no-transform` value to the `Cache-Control` HTTP response
+  header without overwriting existing values.
+* Add `cur`, `ico`, `svg`, `svgz` and `webp` to the filename-based
+  cache busting list.
+* Add configs for text files (`.txt`).
+* Compress WebVTT files (`.vtt`).
 * Reintroduce the `filename extension` to `content type` mappings for `ico`
   and `svg` [[#28](https://github.com/h5bp/server-configs-apache/issues/28)].
 
