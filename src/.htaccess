@@ -140,11 +140,12 @@ Options -MultiViews
 
   # Manifest files
 
-    # Web application manifest file
-    # http://w3c.github.io/manifest/
+    # If you are providing a web application manifest file (see the
+    # specification: http://w3c.github.io/manifest/), it is recommended
+    # that you serve it with the `application/manifest+json` media type.
     #
-    # Because the web application manifest file doesn't have its own unique
-    # file extension, you can set its media type either by matching:
+    # Because the web application manifest file doesn't have its own
+    # unique file extension, you can set its media type either by matching:
     #
     # 1) the exact location of the file (this can be done using a directive
     #    such as `<Location>`, but it will NOT work in the `.htaccess` file,
