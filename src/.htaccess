@@ -16,6 +16,7 @@
 # Allow cross-origin requests.
 # http://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity
 # http://enable-cors.org/
+# http://www.w3.org/TR/cors/
 
 # <IfModule mod_headers.c>
 #     Header set Access-Control-Allow-Origin "*"
@@ -34,7 +35,7 @@
 # ------------------------------------------------------------------------------
 
 # Send the CORS header for images when browsers request it.
-# https://developer.mozilla.org/en-US/docs/HTML/CORS_Enabled_Image
+# https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image
 # http://blog.chromium.org/2011/07/using-cross-domain-images-in-webgl-and.html
 # http://hacks.mozilla.org/2011/11/using-cors-to-load-webgl-textures-from-cross-domain-images/
 
@@ -86,7 +87,8 @@ Options -MultiViews
 
 # Force Internet Explorer to render pages in the highest available mode
 # in the various cases when it may not.
-# http://hsivonen.iki.fi/doctype/ie-mode.pdf
+# https://hsivonen.fi/doctype/ie-mode.pdf
+# https://hsivonen.fi/doctype/#ie8
 
 <IfModule mod_headers.c>
     Header set X-UA-Compatible "IE=edge"
@@ -238,7 +240,7 @@ AddDefaultCharset utf-8
 # http://httpd.apache.org/docs/current/misc/perf-tuning.html#symlinks
 
 # Also, some cloud hosting services require `RewriteBase` to be set.
-# http://www.rackspace.com/knowledge_center/frequently-asked-question/why-is-mod-rewrite-not-working-on-my-site
+# http://www.rackspace.com/knowledge_center/frequently-asked-question/why-is-modrewrite-not-working-on-my-site
 
 <IfModule mod_rewrite.c>
     Options +FollowSymlinks
@@ -345,9 +347,9 @@ AddDefaultCharset utf-8
 # work as-is for your site!
 
 # For more details on how to craft a reasonable policy for your site, read:
-# http://html5rocks.com/en/tutorials/security/content-security-policy (or the
-# specification: http://w3.org/TR/CSP). Also, to make things easier, you can
-# use an online CSP header generator such as: http://cspisawesome.com/.
+# http://www.html5rocks.com/en/tutorials/security/content-security-policy/ (or
+# the specification: http://www.w3.org/TR/CSP11/). Also, to make things easier,
+# you can use an online CSP header generator such as: http://cspisawesome.com/.
 
 # <IfModule mod_headers.c>
 #     Header set Content-Security-Policy "script-src 'self'; object-src 'self'"
@@ -547,7 +549,7 @@ AddDefaultCharset utf-8
 <IfModule mod_deflate.c>
 
     # Force compression for mangled headers.
-    # http://developer.yahoo.com/blogs/ydn/posts/2010/12/pushing-beyond-gzipping
+    # https://developer.yahoo.com/blogs/ydn/pushing-beyond-gzipping-25601.html
     <IfModule mod_setenvif.c>
         <IfModule mod_headers.c>
             SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
@@ -600,7 +602,7 @@ AddDefaultCharset utf-8
 # ------------------------------------------------------------------------------
 
 # Remove `ETags` as resources are sent with far-future expires headers.
-# http://developer.yahoo.com/performance/rules.html#etags.
+# https://developer.yahoo.com/performance/rules.html#etags
 
 # `FileETag None` doesn't work in all cases.
 <IfModule mod_headers.c>
