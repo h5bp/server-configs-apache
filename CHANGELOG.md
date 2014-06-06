@@ -1,4 +1,4 @@
-### HEAD
+### 2.4.1 (June 7, 2014)
 
 * Improve and update inline comments.
 
