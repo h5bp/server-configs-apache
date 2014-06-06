@@ -1,3 +1,7 @@
+### HEAD
+
+* Improve and update inline comments.
+
 ### 2.4.0 (June 3, 2014)
 
 * Add configs for web application manifest files
