@@ -195,11 +195,7 @@ Options -MultiViews
     AddType application/x-font-ttf                      ttc ttf
     AddType font/opentype                               otf
 
-    # Make SVGZ fonts work on the iPad.
-    # https://twitter.com/FontSquirrel/status/14855840545
-
     AddType image/svg+xml                               svg svgz
-    AddEncoding gzip                                    svgz
 
   # Other
     AddType application/octet-stream                    safariextz
@@ -556,6 +552,7 @@ AddDefaultCharset utf-8
 
     # Force compression for mangled headers.
     # https://developer.yahoo.com/blogs/ydn/pushing-beyond-gzipping-25601.html
+
     <IfModule mod_setenvif.c>
         <IfModule mod_headers.c>
             SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
@@ -563,10 +560,26 @@ AddDefaultCharset utf-8
         </IfModule>
     </IfModule>
 
-    # Compress all output labeled with one of the following media types
-    # (for Apache versions below 2.3.7, you don't need to enable `mod_filter`
-    #  and can remove the `<IfModule mod_filter.c>` and `</IfModule>` lines
-    #  as `AddOutputFilterByType` is still in the core directives).
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Mark certain resources as been compressed in order to:
+    #
+    #  1) prevent Apache from recompressing them
+    #  2) ensure that they are served with the
+    #     `Content-Encoding: gzip` HTTP response header
+
+    <IfModule mod_mime.c>
+        AddEncoding gzip              svgz
+    </IfModule>
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Compress all output labeled with one of the following media types.
+
+    # IMPORTANT: For Apache versions below 2.3.7 you don't need to enable
+    # `mod_filter` and can remove the `<IfModule mod_filter.c>` & `</IfModule>`
+    # lines as `AddOutputFilterByType` is still in the core directives.
+
     <IfModule mod_filter.c>
         AddOutputFilterByType DEFLATE application/atom+xml \
                                       application/javascript \

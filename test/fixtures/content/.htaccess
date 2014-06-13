@@ -119,11 +119,11 @@ ErrorDocument 404 /404.html
   # Web fonts
     AddType application/font-woff                       woff
     AddType application/vnd.ms-fontobject               eot
+
     AddType application/x-font-ttf                      ttc ttf
     AddType font/opentype                               otf
 
     AddType image/svg+xml                               svg svgz
-    AddEncoding gzip                                    svgz
 
   # Other
     AddType application/octet-stream                    safariextz
@@ -294,6 +294,7 @@ AddDefaultCharset utf-8
 <IfModule mod_deflate.c>
 
     # Force compression for mangled headers.
+
     <IfModule mod_setenvif.c>
         <IfModule mod_headers.c>
             SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
@@ -301,7 +302,18 @@ AddDefaultCharset utf-8
         </IfModule>
     </IfModule>
 
-    # Compress all output labeled with one of the following media types
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Mark certain resources as been compressed.
+
+    <IfModule mod_mime.c>
+        AddEncoding gzip              svgz
+    </IfModule>
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Compress all output labeled with one of the following media types.
+
     <IfModule mod_filter.c>
         AddOutputFilterByType DEFLATE application/atom+xml \
                                       application/javascript \
