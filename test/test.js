@@ -61,7 +61,6 @@ var tests = [
             'test.appcache': {
                 headers: generateHeaders({
                     'cache-control': 'max-age=0, no-transform',
-                    'content-encoding': undefined,
                     'content-type': 'text/cache-manifest'
                 })
             },
@@ -245,7 +244,6 @@ var tests = [
             'test.manifest': {
                 headers: generateHeaders({
                     'cache-control': 'max-age=0, no-transform',
-                    'content-encoding': undefined,
                     'content-type': 'text/cache-manifest'
                 })
             },

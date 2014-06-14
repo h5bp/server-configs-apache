@@ -329,6 +329,7 @@ AddDefaultCharset utf-8
                                       font/opentype \
                                       image/svg+xml \
                                       image/x-icon \
+                                      text/cache-manifest \
                                       text/css \
                                       text/html \
                                       text/plain \
