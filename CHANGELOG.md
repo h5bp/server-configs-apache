@@ -1,4 +1,4 @@
-### HEAD
+### 2.5.0 (June 14, 2014)
 
 * Compress cache manifest files (`.appcache` / `.manifest`).
 * Move all compression related configs under the `Compression` section
