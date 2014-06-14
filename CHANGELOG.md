@@ -1,6 +1,7 @@
 ### HEAD
 
-* Move all compression related configs under the `Compression` section.
+* Move all compression related configs under the `Compression` section
+  [[73a107e](https://github.com/h5bp/server-configs-apache/commit/73a107ed0cb9ae4b3ec966e8e246b7a6f4bbd059)].
 
 ### 2.4.1 (June 7, 2014)
 
