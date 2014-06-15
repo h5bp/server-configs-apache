@@ -4,8 +4,8 @@ declare -r FIXTURES_DIR="$TRAVIS_BUILD_DIR/test/fixtures"
 declare -r CONFIGS_DIR="$FIXTURES_DIR/configs"
 declare -r CONTENT_DIR="$FIXTURES_DIR/content"
 
-declare -r MAIN_CONFIG_FILE_2_2_x="/etc/apache2/apache2.conf"
-declare -r MAINE_CONFIG_FILE_2_4_x="/usr/local/apache2/conf/httpd.conf"
+declare -r MAIN_CONFIG_FILE_2_2_X="/etc/apache2/apache2.conf"
+declare -r MAIN_CONFIG_FILE_2_4_X="/usr/local/apache2/conf/httpd.conf"
 
 declare -r REQUIRED_MODULES="autoindex \
                              deflate \
@@ -43,7 +43,7 @@ setup_apache_2_2_x() {
     # if Apache hides the server software information (this directive doesn't
     # work in the `.htaccess` file)
     # http://httpd.apache.org/docs/current/mod/core.html#servertokens
-    add_line_to_file "ServerTokens Prod" "$MAIN_CONFIG_FILE_2_2_x"
+    add_line_to_file "ServerTokens Prod" "$MAIN_CONFIG_FILE_2_2_X"
 
     # Enable custom Virtual Host
     execute "cat $CONFIGS_DIR/2.2.x.conf \
@@ -83,13 +83,13 @@ setup_apache_2_4_x() {
     # if Apache hides the server software information (this directive doesn't
     # work in the `.htaccess` file)
     # http://httpd.apache.org/docs/current/mod/core.html#servertokens
-    add_line_to_file "ServerTokens Prod" "$MAINE_CONFIG_FILE_2_4_x"
+    add_line_to_file "ServerTokens Prod" "$MAIN_CONFIG_FILE_2_4_X"
 
     # Enable custom Virtual Host
     execute "cat $CONFIGS_DIR/2.4.x.conf \
                 | sed 's|{{path}}|$CONTENT_DIR|g' \
                 > /usr/local/apache2/conf/extra/2.4.x.conf"
-    add_line_to_file "Include conf/extra/2.4.x.conf" "$MAINE_CONFIG_FILE_2_4_x"
+    add_line_to_file "Include conf/extra/2.4.x.conf" "$MAIN_CONFIG_FILE_2_4_X"
 
 }
 
