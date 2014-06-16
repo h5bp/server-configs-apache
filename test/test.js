@@ -855,12 +855,32 @@ function getStatusCodeTestDescription(file, statusCode) {
 
 function makeGETRequest(file, requestHeaders, callback) {
 
+    // Node's `http.request` options:
+    // http://nodejs.org/api/http.html#http_http_request_options_callback
+
     var options = {
-        agent: false,
+
+        // Agent behavior
+        agent: false,  // opt out of connection pooling
+                       // (defaults request to `Connection: close`)
+
+        // Request headers
         headers: requestHeaders || {
             'accept-encoding': 'gzip, deflate, sdch'
         },
-        path: '/' + file
+
+        // Domain name or IP address of the server to issue the request to
+        // (defaults to 'localhost')
+        //host: 'localhost',
+
+        // Request path
+        // (defaults to '/')
+        path: '/' + file,
+
+        // Port of remote server
+        // (defaults to 80)
+        //port: 80
+
     };
 
     http.get(options, function (res) {
