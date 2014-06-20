@@ -1,8 +1,7 @@
 #!/bin/bash
 
-declare -r FIXTURES_DIR="$TRAVIS_BUILD_DIR/test/fixtures"
-declare -r CONFIGS_DIR="$FIXTURES_DIR/configs"
-declare -r CONTENT_DIR="$FIXTURES_DIR/content"
+declare -r CONFIGS_DIR="$TRAVIS_BUILD_DIR/test/setup/configs"
+declare -r CONTENT_DIR="$TRAVIS_BUILD_DIR/test/fixtures"
 
 declare -r MAIN_CONFIG_FILE_2_2_X="/etc/apache2/apache2.conf"
 declare -r MAIN_CONFIG_FILE_2_4_X="/usr/local/apache2/conf/httpd.conf"
