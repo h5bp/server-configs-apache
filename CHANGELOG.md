@@ -1,10 +1,12 @@
 ### HEAD
 
-* Add configs for GeoJSON files (`.geojson`).
+* Add configs for GeoJSON files (`.geojson`)
+  [[16d3965](https://github.com/h5bp/server-configs-apache/commit/16d39657164a397c8584843296fa04dc297c4b55)].
 
 ### 2.5.0 (June 14, 2014)
 
-* Compress cache manifest files (`.appcache` / `.manifest`).
+* Compress cache manifest files (`.appcache` / `.manifest`)
+  [[d819fec](https://github.com/h5bp/server-configs-apache/commit/d819fecd81e1d23fb5f153995f573890b037a82c)].
 * Move all compression related configs under the `Compression` section
   [[73a107e](https://github.com/h5bp/server-configs-apache/commit/73a107ed0cb9ae4b3ec966e8e246b7a6f4bbd059)].
 
@@ -23,8 +25,11 @@
   header without overwriting existing values.
 * Add `cur`, `ico`, `svg`, `svgz` and `webp` to the filename-based
   cache busting list.
-* Add configs for text files (`.txt`).
-* Compress WebVTT files (`.vtt`).
+* Add configs for text files (`.txt`)
+  [[b5bda65](https://github.com/h5bp/server-configs-apache/commit/b5bda651d2811f8f3c1f061ee97d0404ebfe8468)].
+* Compress WebVTT files (`.vtt`)
+  [[0bb12c8](https://github.com/h5bp/server-configs-apache/commit/0bb12c832be9865bcfdaa1042b64381e7d723560)].
+
 * Reintroduce the `filename extension` to `content type` mappings for `ico`
   and `svg` [[#28](https://github.com/h5bp/server-configs-apache/issues/28)].
 
@@ -43,7 +48,8 @@
 
 ### 2.1.0 (December 31, 2013)
 
-* Serve source map files with the `application/json` Content-Type.
+* Serve source map files with the `application/json` content-type
+  [[7d114e8](https://github.com/h5bp/server-configs-apache/commit/7d114e8eeacadaf30768d60f7f522b3558e83676)].
 * Make `RewriteCond`s for `example.com → www.example.com` more permissive
   [[#11](https://github.com/h5bp/server-configs-apache/issues/11)].
 * Add configs for Ogg Opus audio files
@@ -57,7 +63,8 @@
   [[#8](https://github.com/h5bp/server-configs-apache/issues/8)].
 * Add example on how to reduce MIME type security risks
   [[#8](https://github.com/h5bp/server-configs-apache/issues/8)].
-* Add configs for cursor images (`.cur`).
+* Add configs for cursor images (`.cur`)
+  [[a795fff](https://github.com/h5bp/server-configs-apache/commit/a795fff87871c020cf29bb60f208b7afe2bb5b3a)].
 * Fix backup and source file blocking for Apache v2.3+
   [[#5](https://github.com/h5bp/server-configs-apache/issues/5)].
 * Remove filename extension to content type mappings that are already provided
