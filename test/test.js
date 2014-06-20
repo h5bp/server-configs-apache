@@ -141,6 +141,13 @@ var tests = [
                 })
             },
 
+            'test.geojson': {
+                headers: generateHeaders({
+                    'cache-control': 'max-age=0, no-transform',
+                    'content-type': 'application/vnd.geo+json; charset=utf-8'
+                })
+            },
+
             'test.gif': {
                 headers: generateHeaders({
                     'access-control-allow-origin': '*',

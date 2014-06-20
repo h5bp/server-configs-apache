@@ -64,7 +64,7 @@ ErrorDocument 404 /404.html
     Header set X-UA-Compatible "IE=edge"
     # `mod_headers` cannot match based on the content-type, however, this header
     # should be send only for HTML documents and not for the other resources
-    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
+    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
         Header unset X-UA-Compatible
     </FilesMatch>
 </IfModule>
@@ -97,6 +97,7 @@ ErrorDocument 404 /404.html
   # Data interchange
     AddType application/json                            json map
     AddType application/ld+json                         jsonld
+    AddType application/vnd.geo+json                    geojson
 
   # JavaScript
     AddType application/javascript                      js
@@ -149,7 +150,7 @@ AddDefaultCharset utf-8
 
 # Set `UTF-8` as the character encoding for other certain resources.
 <IfModule mod_mime.c>
-    AddCharset utf-8 .atom .css .js .json .jsonld .rss .vtt .webapp .xml
+    AddCharset utf-8 .atom .css .geojson .js .json .jsonld .rss .vtt .webapp .xml
 </IfModule>
 
 
@@ -206,7 +207,7 @@ AddDefaultCharset utf-8
 
 <IfModule mod_headers.c>
     Header set X-Frame-Options "DENY"
-    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
+    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
         Header unset X-Frame-Options
     </FilesMatch>
 </IfModule>
@@ -217,7 +218,7 @@ AddDefaultCharset utf-8
 
 <IfModule mod_headers.c>
     Header set Content-Security-Policy "script-src 'self'; object-src 'self'"
-    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
+    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
         Header unset Content-Security-Policy
     </FilesMatch>
 </IfModule>
@@ -278,7 +279,7 @@ AddDefaultCharset utf-8
 
 <IfModule mod_headers.c>
     Header set X-XSS-Protection "1; mode=block"
-    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
+    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
         Header unset X-XSS-Protection
     </FilesMatch>
 </IfModule>
@@ -321,6 +322,7 @@ AddDefaultCharset utf-8
                                       application/ld+json \
                                       application/manifest+json \
                                       application/rss+xml \
+                                      application/vnd.geo+json \
                                       application/vnd.ms-fontobject \
                                       application/x-font-ttf \
                                       application/x-web-app-manifest+json \
@@ -379,6 +381,7 @@ FileETag None
     ExpiresByType application/json                      "access plus 0 seconds"
     ExpiresByType application/ld+json                   "access plus 0 seconds"
     ExpiresByType application/xml                       "access plus 0 seconds"
+    ExpiresByType application/vnd.geo+json              "access plus 0 seconds"
     ExpiresByType text/xml                              "access plus 0 seconds"
 
   # Favicon (cannot be renamed!) and cursor images

@@ -1,3 +1,7 @@
+### HEAD
+
+* Add configs for GeoJSON files (`.geojson`).
+
 ### 2.5.0 (June 14, 2014)
 
 * Compress cache manifest files (`.appcache` / `.manifest`).
