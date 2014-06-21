@@ -4,6 +4,6 @@
     "mocha": "^1.20.0"
   },
   "scripts": {
-    "test": "mocha -R spec --slow 1s --timeout 5s"
+    "test": "mocha --reporter spec --slow 1s --timeout 5s"
   }
 }
