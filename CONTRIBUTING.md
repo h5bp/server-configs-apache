@@ -96,8 +96,8 @@ accurate comments, etc.) and any other requirements.
 Follow this process if you'd like your work considered for inclusion in the
 project:
 
-1. [Fork](http://help.github.com/fork-a-repo/) the project, clone your fork,
-   and configure the remotes:
+1. [Fork](https://help.github.com/articles/fork-a-repo) the project, clone your
+   fork, and configure the remotes:
 
    ```bash
    # Clone your fork of the repo into the current directory
@@ -125,7 +125,7 @@ project:
 4. Commit your changes in logical chunks. Please adhere to these [git commit
    message guidelines](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
    or your code is unlikely be merged into the main project. Use Git's
-   [interactive rebase](https://help.github.com/articles/interactive-rebase)
+   [interactive rebase](https://help.github.com/articles/about-git-rebase)
    feature to tidy up your commits before making them public.
 
 5. Locally merge (or rebase) the upstream development branch into your topic branch:
