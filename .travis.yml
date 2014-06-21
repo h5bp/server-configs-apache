@@ -1,5 +1,25 @@
 before_script:
-    - ./test/setup/setup.sh
+  - ./test/setup/setup_apache.sh
+env:
+  global:
+    - BUILD_DIR="$TRAVIS_BUILD_DIR"
 language: node_js
-node_js:
-    - "0.10"
+
+matrix:
+  include:
+
+    # Test for Apache 2.2.x
+    - env:
+        - APACHE_VERSION="2.2.x"
+      node_js: "0.10"
+      script:
+        - sudo service apache2 restart
+        - npm test
+
+    # Test for Apache 2.4.x
+    - env:
+        - APACHE_VERSION="2.4.x"
+      node_js: "0.10"
+      script:
+        - sudo /usr/local/apache2/bin/apachectl start
+        - npm test

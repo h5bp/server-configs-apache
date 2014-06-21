@@ -1,7 +1,7 @@
 #!/bin/bash
 
-declare -r CONFIGS_DIR="$TRAVIS_BUILD_DIR/test/setup/configs"
-declare -r CONTENT_DIR="$TRAVIS_BUILD_DIR/test/fixtures"
+declare -r CONFIGS_DIR="$BUILD_DIR/test/setup/configs"
+declare -r CONTENT_DIR="$BUILD_DIR/test/fixtures"
 
 declare -r MAIN_CONFIG_FILE_2_2_X="/etc/apache2/apache2.conf"
 declare -r MAIN_CONFIG_FILE_2_4_X="/usr/local/apache2/conf/httpd.conf"
@@ -95,8 +95,17 @@ setup_apache_2_4_x() {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
-    setup_apache_2_2_x
-    setup_apache_2_4_x
+    if [ "$1" == "2.2.x" ]; then
+        setup_apache_2_2_x
+    elif [ "$1" == "2.4.x" ]; then
+        setup_apache_2_4_x
+    elif [ -z "$1" ]; then
+        printf "The 'APACHE_VERSION' environment variable needs to be set!\n" \
+            && exit 1
+    else
+        printf "'%s' is not a valid value for the 'APACHE_VERSION' environment variable!\n" $APACHE_VERSION \
+            && exit 1
+    fi
 }
 
-main
+main "$APACHE_VERSION"
