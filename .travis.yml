@@ -1,8 +1,9 @@
 before_script:
-  - ./test/setup/setup_apache.sh
+  - ./test/setup/setup.sh
 env:
   global:
     - BUILD_DIR="$TRAVIS_BUILD_DIR"
+    - SERVER_SPECIFIC_TESTS="test/tests.js"
 language: node_js
 
 matrix:

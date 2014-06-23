@@ -1,9 +1,9 @@
 {
   "private": true,
   "devDependencies": {
-    "mocha": "^1.20.0"
+    "server-configs-test": "https://github.com/h5bp/server-configs-test/tarball/0.1.0"
   },
   "scripts": {
-    "test": "mocha --reporter spec --slow 1s --timeout 5s"
+    "test": "server-configs-test"
   }
 }
