@@ -566,8 +566,8 @@ AddDefaultCharset utf-8
     # Mark certain resources as been compressed in order to:
     #
     #  1) prevent Apache from recompressing them
-    #  2) ensure that they are served with the
-    #     `Content-Encoding: gzip` HTTP response header
+    #  2) ensure that they are served with the correct
+    #     `Content-Encoding` HTTP response header
 
     <IfModule mod_mime.c>
         AddEncoding gzip              svgz
