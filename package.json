@@ -1,7 +1,7 @@
 {
   "private": true,
   "devDependencies": {
-    "server-configs-test": "https://github.com/h5bp/server-configs-test/tarball/0.1.0"
+    "server-configs-test": "https://github.com/h5bp/server-configs-test/tarball/0.2.0"
   },
   "scripts": {
     "test": "server-configs-test"

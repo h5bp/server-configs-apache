@@ -1,5 +1,7 @@
 ### HEAD
 
+* Add configs for WOFF 2.0 font files (`.woff2`)
+  [[#32](https://github.com/h5bp/server-configs-apache/issues/32)].
 * Add configs for GeoJSON files (`.geojson`)
   [[16d3965](https://github.com/h5bp/server-configs-apache/commit/16d39657164a397c8584843296fa04dc297c4b55)].
 

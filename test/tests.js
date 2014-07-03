@@ -27,11 +27,11 @@ exports = module.exports = {
                         '<!doctype html>\n' +
                         '<html lang="en">\n' +
                         '<head>\n' +
-                        ' <meta charset="utf-8">\n' +
-                        ' <title>404</title>\n' +
+                        '    <meta charset="utf-8">\n'+
+                        '    <title>404</title>\n' +
                         '</head>\n' +
                         '<body>\n' +
-                        ' 404\n' +
+                        '    404\n' +
                         '</body>\n' +
                         '</html>\n',
                     responseHeaders: null,
@@ -53,11 +53,11 @@ exports = module.exports = {
                         '<!doctype html>\n' +
                         '<html lang="en">\n' +
                         '<head>\n' +
-                        ' <meta charset="utf-8">\n' +
-                        ' <title>404</title>\n' +
+                        '    <meta charset="utf-8">\n' +
+                        '    <title>404</title>\n' +
                         '</head>\n' +
                         '<body>\n' +
-                        ' 404\n' +
+                        '    404\n' +
                         '</body>\n' +
                         '</html>\n',
                     responseHeaders: null,
@@ -106,21 +106,21 @@ exports = module.exports = {
                     requestHeaders: null,
                     responseBody:
                         '{\n' +
-                        ' "name": "test",\n' +
-                        ' "icons": [{\n' +
-                        ' "src": "icon/lowres",\n' +
-                        ' "sizes": "64x64",\n' +
-                        ' "type": "image/webp"\n' +
-                        ' }, {\n' +
-                        ' "src": "icon/hd_small",\n' +
-                        ' "sizes": "64x64"\n' +
-                        ' }, {\n' +
-                        ' "src": "icon/hd_hi",\n' +
-                        ' "sizes": "128x128"\n' +
-                        ' }],\n' +
-                        ' "start_url": "/start.html",\n' +
-                        ' "display": "fullscreen",\n' +
-                        ' "orientation": "landscape"\n' +
+                        '    "name": "test",\n' +
+                        '    "icons": [{\n' +
+                        '        "src": "icon/lowres",\n' +
+                        '        "sizes": "64x64",\n' +
+                        '        "type": "image/webp"\n' +
+                        '    }, {\n' +
+                        '        "src": "icon/hd_small",\n' +
+                        '        "sizes": "64x64"\n' +
+                        '    }, {\n' +
+                        '        "src": "icon/hd_hi",\n' +
+                        '        "sizes": "128x128"\n' +
+                        '    }],\n' +
+                        '    "start_url": "/start.html",\n' +
+                        '    "display": "fullscreen",\n' +
+                        '    "orientation": "landscape"\n' +
                         '}\n',
                     responseHeaders: null,
                 },
@@ -146,11 +146,11 @@ exports = module.exports = {
                         '<!doctype html>\n' +
                         '<html lang="en">\n' +
                         '<head>\n' +
-                        ' <meta charset="utf-8">\n' +
-                        ' <title>test</title>\n' +
+                        '    <meta charset="utf-8">\n' +
+                        '    <title>test</title>\n' +
                         '</head>\n' +
                         '<body>\n' +
-                        ' test\n' +
+                        '    test\n' +
                         '</body>\n' +
                         '</html>\n',
                     responseHeaders: null
@@ -317,9 +317,9 @@ exports = module.exports = {
                     requestHeaders: null,
                     responseBody:
                         '#test {\n' +
-                        ' background: green;\n' +
-                        ' border: 1px solid green;\n' +
-                        ' color: green;\n' +
+                        '    background: green;\n' +
+                        '    border: 1px solid green;\n' +
+                        '    color: green;\n' +
                         '}\n',
                     responseHeaders: null
                 },
@@ -391,14 +391,14 @@ exports = module.exports = {
                     requestHeaders: null,
                     responseBody:
                         '#test {\n' +
-                        ' background: green;\n' +
-                        ' border: 1px solid green;\n' +
-                        ' color: green;\n' +
+                        '    background: green;\n' +
+                        '    border: 1px solid green;\n' +
+                        '    color: green;\n' +
                         '}\n\n' +
                         '#test {\n' +
-                        ' background: hotpink;\n' +
-                        ' border: 1px solid hotpink;\n' +
-                        ' color: hotpink;\n' +
+                        '    background: hotpink;\n' +
+                        '    border: 1px solid hotpink;\n' +
+                        '    color: hotpink;\n' +
                         '}\n\n',
                     responseHeaders: null
                 },

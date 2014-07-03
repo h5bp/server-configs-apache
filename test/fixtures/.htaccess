@@ -10,7 +10,7 @@
 # ------------------------------------------------------------------------------
 
 <IfModule mod_headers.c>
-    <FilesMatch "\.(eot|otf|tt[cf]|woff)$">
+    <FilesMatch "\.(eot|otf|tt[cf]|woff2?)$">
         Header set Access-Control-Allow-Origin "*"
     </FilesMatch>
 </IfModule>
@@ -64,7 +64,7 @@ ErrorDocument 404 /404.html
     Header set X-UA-Compatible "IE=edge"
     # `mod_headers` cannot match based on the content-type, however, this header
     # should be send only for HTML documents and not for the other resources
-    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
+    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
         Header unset X-UA-Compatible
     </FilesMatch>
 </IfModule>
@@ -119,6 +119,7 @@ ErrorDocument 404 /404.html
 
   # Web fonts
     AddType application/font-woff                       woff
+    AddType application/font-woff2                      woff2
     AddType application/vnd.ms-fontobject               eot
 
     AddType application/x-font-ttf                      ttc ttf
@@ -207,7 +208,7 @@ AddDefaultCharset utf-8
 
 <IfModule mod_headers.c>
     Header set X-Frame-Options "DENY"
-    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
+    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
         Header unset X-Frame-Options
     </FilesMatch>
 </IfModule>
@@ -218,7 +219,7 @@ AddDefaultCharset utf-8
 
 <IfModule mod_headers.c>
     Header set Content-Security-Policy "script-src 'self'; object-src 'self'"
-    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
+    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
         Header unset Content-Security-Policy
     </FilesMatch>
 </IfModule>
@@ -279,7 +280,7 @@ AddDefaultCharset utf-8
 
 <IfModule mod_headers.c>
     Header set X-XSS-Protection "1; mode=block"
-    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
+    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
         Header unset X-XSS-Protection
     </FilesMatch>
 </IfModule>
@@ -416,6 +417,7 @@ FileETag None
 
   # Web fonts
     ExpiresByType application/font-woff                 "access plus 1 month"
+    ExpiresByType application/font-woff2                "access plus 1 month"
     ExpiresByType application/vnd.ms-fontobject         "access plus 1 month"
     ExpiresByType application/x-font-ttf                "access plus 1 month"
     ExpiresByType font/opentype                         "access plus 1 month"
