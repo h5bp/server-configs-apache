@@ -1,4 +1,4 @@
-### HEAD
+### 2.6.0 (July 3, 2014)
 
 * Add configs for WOFF 2.0 font files (`.woff2`)
   [[#32](https://github.com/h5bp/server-configs-apache/issues/32)].
