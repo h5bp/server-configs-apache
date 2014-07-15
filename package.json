@@ -1,9 +1,19 @@
 {
-  "private": true,
+  "bugs": {
+    "url": "https://github.com/h5bp/server-configs-apache/issues"
+  },
   "devDependencies": {
     "server-configs-test": "https://github.com/h5bp/server-configs-test/tarball/0.2.0"
   },
+  "homepage": "https://github.com/h5bp/server-configs-apache",
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/h5bp/server-configs-apache/blob/master/LICENSE.md"
+  },
+  "name": "server-configs-apache",
+  "private": true,
   "scripts": {
     "test": "server-configs-test"
-  }
+  },
+  "version": "2.6.0"
 }
