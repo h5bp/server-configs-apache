@@ -3,7 +3,7 @@
     "url": "https://github.com/h5bp/server-configs-apache/issues"
   },
   "devDependencies": {
-    "server-configs-test": "https://github.com/h5bp/server-configs-test/tarball/0.2.0"
+    "server-configs-test": "https://github.com/h5bp/server-configs-test/tarball/0.3.0"
   },
   "homepage": "https://github.com/h5bp/server-configs-apache",
   "license": {

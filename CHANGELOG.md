@@ -1,3 +1,8 @@
+### HEAD
+
+* Add configs for TopoJSON files (`.topojson`)
+  [[#34](https://github.com/h5bp/server-configs-apache/issues/34)].
+
 ### 2.6.0 (July 3, 2014)
 
 * Add configs for WOFF 2.0 font files (`.woff2`)
