@@ -32,6 +32,8 @@ install_package() {
 
 setup_apache_2_2_x() {
 
+    update
+
     # Install Apache 2.2.x
     install_package "apache2"
 
@@ -54,6 +56,8 @@ setup_apache_2_2_x() {
 }
 
 setup_apache_2_4_x() {
+
+    update
 
     # Install packages required in order to compile Apache from source
     install_package "llibapr1-dev"
@@ -90,6 +94,14 @@ setup_apache_2_4_x() {
                 > /usr/local/apache2/conf/extra/2.4.x.conf"
     add_line_to_file "Include conf/extra/2.4.x.conf" "$MAIN_CONFIG_FILE_2_4_X"
 
+}
+
+update() {
+    # Resynchronize the package index files from their sources
+    execute "sudo apt-get update -qqy" "update"
+    #                              │└─ assume "yes" as the
+    #                              │   answer to all prompts
+    #                              └─ suppress output
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
