@@ -280,6 +280,16 @@ AddDefaultCharset utf-8
 
 # IMPORTANT: NEVER USE BOTH RULES AT THE SAME TIME!
 
+# Also please note that any RewriteRules defined in this file will *not*
+# work in any VirtualHosts unless the following two lines are included
+# within each <VirtualHost> block:
+
+# RewriteEngine on
+# RewriteOptions Inherit
+
+# By design, Apache will not carry rules down into virtual hosts unless you
+# explicity state that they be inherited.
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Option 1: rewrite www.example.com → example.com
