@@ -245,34 +245,42 @@ AddDefaultCharset utf-8
 # | Rewrite engine                                                             |
 # ------------------------------------------------------------------------------
 
-# Turn on the rewrite engine and enable the `FollowSymLinks` option
-# (this is necessary in order for the following directives to work).
-
-# If your web host doesn't allow the `FollowSymlinks` option, you may need to
-# comment it out and use `Options +SymLinksIfOwnerMatch`, but be aware of the
-# performance impact.
-# http://httpd.apache.org/docs/current/misc/perf-tuning.html#symlinks
-
-# Some cloud hosting services require `RewriteBase` to be set.
-# http://www.rackspace.com/knowledge_center/frequently-asked-question/why-is-modrewrite-not-working-on-my-site
-
-# Also, please note that, depending on how your server is set up, you may
-# need to use the `RewriteOptions` directive to enable some options for the
-# rewrite engine.
+# (1) Turn on the rewrite engine
+#     (this is necessary in order for the `RewriteRule` directives to work).
+#     http://httpd.apache.org/docs/current/mod/mod_rewrite.html#RewriteEngine
 #
-# e.g.: By default Apache will NOT pass the `RewriteRules` down to the
-# `<VirtualHost>`s. So, if you include the configurations from this file in a
-# main server configuration file, you will need to explicitly tell Apache (by
-# including `RewriteOptions Inherit`) that you want the rules to be inherited,
-# otherwise, they will not work for the `<VirtualHost>`s.
+# (2) Enable the `FollowSymLinks` option if it isn't already.
+#     http://httpd.apache.org/docs/current/mod/core.html#options
 #
-# http://httpd.apache.org/docs/current/mod/mod_rewrite.html#rewriteoptions
+# (3) If your web host doesn't allow the `FollowSymlinks` option, you may
+#     need to comment it out and use `Options +SymLinksIfOwnerMatch`, but
+#     be aware of the performance impact.
+#     http://httpd.apache.org/docs/current/misc/perf-tuning.html#symlinks
+#
+# (4) Some cloud hosting services will also require `RewriteBase` to be set.
+#     http://www.rackspace.com/knowledge_center/frequently-asked-question/why-is-modrewrite-not-working-on-my-site
+#
+# (5) Depending on how your server is set up, you may need to use the
+#     `RewriteOptions` directive to enable some options for the rewrite engine.
+#     http://httpd.apache.org/docs/current/mod/mod_rewrite.html#rewriteoptions
 
 <IfModule mod_rewrite.c>
-    Options +FollowSymlinks
-  # Options +SymLinksIfOwnerMatch
+
+    # (1)
     RewriteEngine On
-  # RewriteBase /
+
+    # (2)
+    Options +FollowSymlinks
+
+    # (3)
+    # Options +SymLinksIfOwnerMatch
+
+    # (4)
+    # RewriteBase /
+
+    # (5)
+    # RewriteOptions <options>
+
 </IfModule>
 
 # ------------------------------------------------------------------------------
