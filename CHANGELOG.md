@@ -1,4 +1,4 @@
-### HEAD
+### 2.7.1 (August 3, 2014)
 
 * Update `package.json` and publish on `npm`
   [[#33](https://github.com/h5bp/server-configs-apache/issues/33)].
