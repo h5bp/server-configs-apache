@@ -1,3 +1,8 @@
+### HEAD
+
+* Update `package.json` and publish on `npm`
+  [[#33](https://github.com/h5bp/server-configs-apache/issues/33)].
+
 ### 2.7.0 (July 28, 2014)
 
 * Add configs for TopoJSON files (`.topojson`)
