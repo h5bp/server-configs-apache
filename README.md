@@ -12,7 +12,7 @@ accessible, if needed, even cross-domain.
 If you have access to the [main server configuration
 file](http://httpd.apache.org/docs/current/configuring.html#main)
 (usually called `httpd.conf`), you should add the logic from the
-[`.htaccess`](https://github.com/h5bp/server-configs-apache/blob/master/src/.htaccess)
+[`.htaccess`](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess)
 file in, for example, a
 [`<Directory>`](http://httpd.apache.org/docs/current/mod/core.html#directory)
 section in the main configuration file. This is usually the recommended way, as
