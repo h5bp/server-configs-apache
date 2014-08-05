@@ -1,9 +1,15 @@
+# For more information about the configurations used
+# in this file, please see the Travis CI documentation:
+# http://docs.travis-ci.com
+
 before_script:
   - ./test/setup/setup.sh
+
 env:
   global:
     - BUILD_DIR="$TRAVIS_BUILD_DIR"
     - SERVER_SPECIFIC_TESTS="test/tests.js"
+
 language: node_js
 
 matrix:
