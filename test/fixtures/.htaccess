@@ -333,6 +333,7 @@ AddDefaultCharset utf-8
                                       "application/ld+json" \
                                       "application/manifest+json" \
                                       "application/rss+xml" \
+                                      "application/schema+json" \
                                       "application/vnd.geo+json" \
                                       "application/vnd.ms-fontobject" \
                                       "application/x-font-ttf" \
@@ -391,6 +392,7 @@ FileETag None
   # Data interchange
     ExpiresByType application/json                      "access plus 0 seconds"
     ExpiresByType application/ld+json                   "access plus 0 seconds"
+    ExpiresByType application/schema+json               "access plus 0 seconds"
     ExpiresByType application/xml                       "access plus 0 seconds"
     ExpiresByType application/vnd.geo+json              "access plus 0 seconds"
     ExpiresByType text/xml                              "access plus 0 seconds"

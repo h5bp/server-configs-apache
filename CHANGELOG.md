@@ -1,3 +1,8 @@
+### HEAD
+
+* Add configs for JSON Schema files (`.json`)
+  [[#39](https://github.com/h5bp/server-configs-apache/issues/39)].
+
 ### 2.7.1 (August 3, 2014)
 
 * Update `package.json` and publish on `npm`

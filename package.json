@@ -5,7 +5,7 @@
   },
   "description": "Boilerplate configurations for the Apache HTTP Server",
   "devDependencies": {
-    "server-configs-test": "https://github.com/h5bp/server-configs-test/tarball/0.3.0"
+    "server-configs-test": "https://github.com/h5bp/server-configs-test/tarball/0.4.0"
   },
   "files": [
     "dist"
