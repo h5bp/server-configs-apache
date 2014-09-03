@@ -1,5 +1,6 @@
 ### HEAD
 
+* Add configs for files marked as `text/javascript`.
 * Add configs for JSON Schema files (`.json`)
   [[#39](https://github.com/h5bp/server-configs-apache/issues/39)].
 

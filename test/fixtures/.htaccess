@@ -346,6 +346,7 @@ AddDefaultCharset utf-8
                                       "text/cache-manifest" \
                                       "text/css" \
                                       "text/html" \
+                                      "text/javascript" \
                                       "text/plain" \
                                       "text/vtt" \
                                       "text/x-component" \
@@ -408,6 +409,7 @@ FileETag None
 
   # JavaScript
     ExpiresByType application/javascript                "access plus 1 year"
+    ExpiresByType text/javascript                       "access plus 1 year"
 
   # Manifest files
     ExpiresByType application/manifest+json             "access plus 1 year"
@@ -458,7 +460,7 @@ FileETag None
 
     <FilesMatch "\.combined\.js$">
         Options +Includes
-        AddOutputFilterByType INCLUDES application/javascript
+        AddOutputFilterByType INCLUDES application/javascript text/javascript
         SetOutputFilter INCLUDES
     </FilesMatch>
 
