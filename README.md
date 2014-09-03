@@ -20,7 +20,7 @@ using `.htaccess` files [slows
 down](http://httpd.apache.org/docs/current/howto/htaccess.html#when) Apache!
 
 If you don't have access, which is quite common with hosting services, just copy
-the [`.htaccess`](https://github.com/h5bp/server-configs-apache/blob/master/src/.htaccess)
+the [`.htaccess`](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess)
 file in the root of the website.
 
 Also note that some configurations won't have any effect if the appropriate
