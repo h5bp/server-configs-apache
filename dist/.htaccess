@@ -549,11 +549,12 @@ AddDefaultCharset utf-8
 # The following header ensures that browser will ONLY connect to your server
 # via HTTPS, regardless of what the users type in the address bar.
 
-# http://tools.ietf.org/html/draft-ietf-websec-strict-transport-sec-14#section-6.1
-# http://www.html5rocks.com/en/tutorials/security/transport-layer-security/
-
 # IMPORTANT: Remove the `includeSubDomains` optional directive if the subdomains
 # are not using HTTPS.
+
+# http://tools.ietf.org/html/draft-ietf-websec-strict-transport-sec-14#section-6.1
+# http://www.html5rocks.com/en/tutorials/security/transport-layer-security/
+# http://blogs.msdn.com/b/ieinternals/archive/2014/08/18/hsts-strict-transport-security-attacks-mitigations-deployment-https.aspx
 
 # <IfModule mod_headers.c>
 #     Header set Strict-Transport-Security "max-age=16070400; includeSubDomains"
