@@ -611,11 +611,16 @@ AddDefaultCharset utf-8
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # Mark certain resources as been compressed in order to:
-    #
-    #  1) prevent Apache from recompressing them
-    #  2) ensure that they are served with the correct
-    #     `Content-Encoding` HTTP response header
+    # Map certain file types to the specified encoding type in order to
+    # make Apache serve them with the appropriate `Content-Encoding` HTTP
+    # response header (this will NOT make Apache compress them!).
+
+    # If the following file types wouldn't be served without the appropriate
+    # `Content-Enable` HTTP response header, client applications (e.g.:
+    # browsers) wouldn't know that they first need to uncompress the response,
+    # and thus, wouldn't be able to understand the content.
+
+    # http://httpd.apache.org/docs/current/mod/mod_mime.html#addencoding
 
     <IfModule mod_mime.c>
         AddEncoding gzip              svgz
