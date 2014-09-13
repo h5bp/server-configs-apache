@@ -1,4 +1,4 @@
-### HEAD
+### 2.8.0 (September 13, 2014)
 
 * Improve configs for `.rdf` files
   [[742d148](https://github.com/h5bp/server-configs-apache/commit/742d148ca497ef07a31d3bd648af29c129f4b62c)].
