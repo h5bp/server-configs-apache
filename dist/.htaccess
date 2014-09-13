@@ -245,6 +245,7 @@ AddDefaultCharset utf-8
                      .js \
                      .json \
                      .jsonld \
+                     .rdf \
                      .rss \
                      .topojson \
                      .vtt \
@@ -640,6 +641,7 @@ AddDefaultCharset utf-8
                                       "application/json" \
                                       "application/ld+json" \
                                       "application/manifest+json" \
+                                      "application/rdf+xml" \
                                       "application/rss+xml" \
                                       "application/schema+json" \
                                       "application/vnd.geo+json" \
@@ -742,6 +744,7 @@ FileETag None
 
   # Web feeds
     ExpiresByType application/atom+xml                  "access plus 1 hour"
+    ExpiresByType application/rdf+xml                   "access plus 1 hour"
     ExpiresByType application/rss+xml                   "access plus 1 hour"
 
   # Web fonts
