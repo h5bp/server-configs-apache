@@ -1,6 +1,7 @@
 ### HEAD
 
-* Improve configs for `.rdf` files.
+* Improve configs for `.rdf` files
+  [[742d148](https://github.com/h5bp/server-configs-apache/commit/742d148ca497ef07a31d3bd648af29c129f4b62c)].
 * Add example on how to allow cross-origin access to the resource's
   timing information
   [[3df6768](https://github.com/h5bp/server-configs-apache/commit/3df6768e786b7595a656da1675b10c87e7ce18b9)].
