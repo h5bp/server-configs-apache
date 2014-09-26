@@ -1,3 +1,7 @@
+### HEAD
+
+* Update example regarding forcing `https://`.
+
 ### 2.8.0 (September 13, 2014)
 
 * Improve configs for `.rdf` files

@@ -301,6 +301,18 @@ AddDefaultCharset utf-8
 </IfModule>
 
 # ------------------------------------------------------------------------------
+# | Force `https://`                                                           |
+# ------------------------------------------------------------------------------
+
+# Redirect from the `http://` to the `https://` version of the URL.
+# https://wiki.apache.org/httpd/RewriteHTTPToHTTPS
+
+# <IfModule mod_rewrite.c>
+#    RewriteCond %{HTTPS} !=on
+#    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+# </IfModule>
+
+# ------------------------------------------------------------------------------
 # | Suppressing / Forcing the `www.` at the beginning of URLs                  |
 # ------------------------------------------------------------------------------
 
@@ -537,19 +549,6 @@ AddDefaultCharset utf-8
 #     <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
 #         Header unset X-XSS-Protection
 #     </FilesMatch>
-# </IfModule>
-
-# ------------------------------------------------------------------------------
-# | Secure Sockets Layer (SSL)                                                 |
-# ------------------------------------------------------------------------------
-
-# Rewrite secure requests properly in order to prevent SSL certificate warnings.
-# E.g.: prevent `https://www.example.com` when your certificate only allows
-# `https://secure.example.com`.
-
-# <IfModule mod_rewrite.c>
-#     RewriteCond %{SERVER_PORT} !^443
-#     RewriteRule ^ https://example-domain-please-change-me.com%{REQUEST_URI} [R=301,L]
 # </IfModule>
 
 # ------------------------------------------------------------------------------
