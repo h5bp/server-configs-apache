@@ -5,7 +5,7 @@
   },
   "description": "Boilerplate configurations for the Apache HTTP Server",
   "devDependencies": {
-    "server-configs-test": "https://github.com/h5bp/server-configs-test/tarball/0.5.0"
+    "mocha": "^1.21.4"
   },
   "files": [
     "dist"
@@ -27,7 +27,7 @@
     "url": "https://github.com/h5bp/server-configs-apache"
   },
   "scripts": {
-    "test": "server-configs-test"
+    "test": "mocha --reporter spec --timeout 5000 test/test_suite.js"
   },
   "version": "2.8.0"
 }
