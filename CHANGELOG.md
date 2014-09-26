@@ -1,6 +1,7 @@
 ### HEAD
 
-* Update example regarding forcing `https://`.
+* Update example regarding forcing `https://`
+  [[060b70c](https://github.com/h5bp/server-configs-apache/commit/060b70c1428f5a2b3cc4e42ac66c1b7d75ae3bc9)].
 
 ### 2.8.0 (September 13, 2014)
 
