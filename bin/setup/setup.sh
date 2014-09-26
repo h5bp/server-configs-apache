@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare -r CONFIGS_DIR="$BUILD_DIR/test/setup/configs"
+declare -r CONFIGS_DIR="$BUILD_DIR/bin/setup/configs"
 declare -r CONTENT_DIR="$BUILD_DIR/test/fixtures"
 
 declare -r MAIN_CONFIG_FILE_2_2_X="/etc/apache2/apache2.conf"

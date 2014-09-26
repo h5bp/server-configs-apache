@@ -3,7 +3,7 @@
 # http://docs.travis-ci.com
 
 before_script:
-  - ./test/setup/setup.sh
+  - ./bin/setup/setup.sh
 
 env:
   global:
