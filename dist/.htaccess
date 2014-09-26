@@ -308,6 +308,7 @@ AddDefaultCharset utf-8
 # https://wiki.apache.org/httpd/RewriteHTTPToHTTPS
 
 # <IfModule mod_rewrite.c>
+#    RewriteEngine On
 #    RewriteCond %{HTTPS} !=on
 #    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 # </IfModule>
@@ -334,6 +335,7 @@ AddDefaultCharset utf-8
 # Option 1: rewrite www.example.com → example.com
 
 <IfModule mod_rewrite.c>
+    RewriteEngine On
     RewriteCond %{HTTPS} !=on
     RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
     RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
@@ -347,6 +349,7 @@ AddDefaultCharset utf-8
 # subdomains for certain parts of your website.
 
 # <IfModule mod_rewrite.c>
+#     RewriteEngine On
 #     RewriteCond %{HTTPS} !=on
 #     RewriteCond %{HTTP_HOST} !^www\. [NC]
 #     RewriteCond %{SERVER_ADDR} !=127.0.0.1
@@ -453,6 +456,7 @@ AddDefaultCharset utf-8
 # http://tools.ietf.org/html/rfc5785
 
 <IfModule mod_rewrite.c>
+    RewriteEngine On
     RewriteCond %{REQUEST_URI} "!(^|/)\.well-known/([^./]+./?)+$" [NC]
     RewriteCond %{SCRIPT_FILENAME} -d [OR]
     RewriteCond %{SCRIPT_FILENAME} -f
@@ -768,6 +772,7 @@ FileETag None
 # http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/
 
 # <IfModule mod_rewrite.c>
+#     RewriteEngine On
 #     RewriteCond %{REQUEST_FILENAME} !-f
 #     RewriteRule ^(.+)\.(\d+)\.(css|cur|gif|ico|jpe?g|js|png|svgz?|webp)$ $1.$3 [L]
 # </IfModule>
