@@ -10,14 +10,14 @@ accessible, if needed, even cross-domain.
 ## Usage
 
 If you have access to the [main server configuration
-file](http://httpd.apache.org/docs/current/configuring.html#main)
+file](https://httpd.apache.org/docs/current/configuring.html#main)
 (usually called `httpd.conf`), you should add the logic from the
 [`.htaccess`](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess)
 file in, for example, a
-[`<Directory>`](http://httpd.apache.org/docs/current/mod/core.html#directory)
+[`<Directory>`](https://httpd.apache.org/docs/current/mod/core.html#directory)
 section in the main configuration file. This is usually the recommended way, as
 using `.htaccess` files [slows
-down](http://httpd.apache.org/docs/current/howto/htaccess.html#when) Apache!
+down](https://httpd.apache.org/docs/current/howto/htaccess.html#when) Apache!
 
 If you don't have access, which is quite common with hosting services, just copy
 the [`.htaccess`](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess)
@@ -27,21 +27,21 @@ Also note that some configurations won't have any effect if the appropriate
 modules aren't enabled. So, in order for everything to work as intended, you
 need to ensure the you have the following Apache modules
 [enabled](https://github.com/h5bp/server-configs-apache/wiki/How-to-enable-Apache-modules):
-  * [`mod_autoindex.c` (autoindex_module)](http://httpd.apache.org/docs/current/mod/mod_autoindex.html)
-  * [`mod_deflate.c` (deflate_module)](http://httpd.apache.org/docs/current/mod/mod_deflate.html)
-  * [`mod_expires.c` (expires_module)](http://httpd.apache.org/docs/current/mod/mod_expires.html)
-  * [`mod_filter.c` (filter_module)](http://httpd.apache.org/docs/current/mod/mod_filter.html)
-  * [`mod_headers.c` (headers_module)](http://httpd.apache.org/docs/current/mod/mod_headers.html)
-  * [`mod_include.c` (include_module)](http://httpd.apache.org/docs/current/mod/mod_include.html)
-  * [`mod_mime.c` (mime_module)](http://httpd.apache.org/docs/current/mod/mod_mime.html)
-  * [`mod_rewrite.c` (rewrite_module)](http://httpd.apache.org/docs/current/mod/mod_rewrite.html)
-  * [`mod_setenvif.c` (setenvif_module)](http://httpd.apache.org/docs/current/mod/mod_setenvif.html)
+  * [`mod_autoindex.c` (autoindex_module)](https://httpd.apache.org/docs/current/mod/mod_autoindex.html)
+  * [`mod_deflate.c` (deflate_module)](https://httpd.apache.org/docs/current/mod/mod_deflate.html)
+  * [`mod_expires.c` (expires_module)](https://httpd.apache.org/docs/current/mod/mod_expires.html)
+  * [`mod_filter.c` (filter_module)](https://httpd.apache.org/docs/current/mod/mod_filter.html)
+  * [`mod_headers.c` (headers_module)](https://httpd.apache.org/docs/current/mod/mod_headers.html)
+  * [`mod_include.c` (include_module)](https://httpd.apache.org/docs/current/mod/mod_include.html)
+  * [`mod_mime.c` (mime_module)](https://httpd.apache.org/docs/current/mod/mod_mime.html)
+  * [`mod_rewrite.c` (rewrite_module)](https://httpd.apache.org/docs/current/mod/mod_rewrite.html)
+  * [`mod_setenvif.c` (setenvif_module)](https://httpd.apache.org/docs/current/mod/mod_setenvif.html)
 
 For more detailed information on configuration files and how to use them, please
 check the appropriate Apache documentation:
 
-* http://httpd.apache.org/docs/current/configuring.html
-* http://httpd.apache.org/docs/current/howto/htaccess.html
+* https://httpd.apache.org/docs/current/configuring.html
+* https://httpd.apache.org/docs/current/howto/htaccess.html
 
 
 ## Support

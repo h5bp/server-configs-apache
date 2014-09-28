@@ -20,7 +20,7 @@ and [submitting pull requests](#pull-requests), but please respect the following
 restrictions:
 
 * **Do not** use the issue tracker for personal support requests (use
-  [Stack Overflow](http://stackoverflow.com) or IRC).
+  [Stack Overflow](https://stackoverflow.com) or IRC).
 
 * **Do not** derail or troll issues. Keep the discussion on topic and
   respect the opinions of others.

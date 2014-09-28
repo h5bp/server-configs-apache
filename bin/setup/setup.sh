@@ -43,7 +43,7 @@ setup_apache_2_2_x() {
     # Add `ServerTokens Prod` to the main configuration file in order to test
     # if Apache hides the server software information (this directive doesn't
     # work in the `.htaccess` file)
-    # http://httpd.apache.org/docs/current/mod/core.html#servertokens
+    # https://httpd.apache.org/docs/current/mod/core.html#servertokens
     add_line_to_file "ServerTokens Prod" "$MAIN_CONFIG_FILE_2_2_X"
 
     # Enable custom Virtual Host
@@ -75,7 +75,7 @@ setup_apache_2_4_x() {
     cd "/tmp/$tmp"
 
     # Compile and install Apache 2.4.x
-    # http://httpd.apache.org/docs/current/programs/configure.html
+    # https://httpd.apache.org/docs/current/programs/configure.html
     sudo ./configure --enable-mods-static="$REQUIRED_MODULES" \
                      --prefix=/usr/local/apache2 \
                      --quiet
@@ -85,7 +85,7 @@ setup_apache_2_4_x() {
     # Add `ServerTokens Prod` to the main configuration file in order to test
     # if Apache hides the server software information (this directive doesn't
     # work in the `.htaccess` file)
-    # http://httpd.apache.org/docs/current/mod/core.html#servertokens
+    # https://httpd.apache.org/docs/current/mod/core.html#servertokens
     add_line_to_file "ServerTokens Prod" "$MAIN_CONFIG_FILE_2_4_X"
 
     # Enable custom Virtual Host
