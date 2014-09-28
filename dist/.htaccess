@@ -5,7 +5,7 @@
 # access to the main server configuration file (which is usually called
 # `httpd.conf`), you should add this logic there.
 #
-# http://httpd.apache.org/docs/current/howto/htaccess.html.
+# https://httpd.apache.org/docs/current/howto/htaccess.html.
 
 # ######################################################################
 # # CROSS-ORIGIN                                                       #
@@ -18,7 +18,7 @@
 # Allow cross-origin requests.
 
 # http://enable-cors.org/
-# http://www.w3.org/TR/cors/
+# https://www.w3.org/TR/cors/
 # https://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity
 
 # <IfModule mod_headers.c>
@@ -32,8 +32,8 @@
 # Send the CORS header for images when browsers request it.
 
 # https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image
-# http://blog.chromium.org/2011/07/using-cross-domain-images-in-webgl-and.html
-# http://hacks.mozilla.org/2011/11/using-cors-to-load-webgl-textures-from-cross-domain-images/
+# https://blog.chromium.org/2011/07/using-cross-domain-images-in-webgl-and.html
+# https://hacks.mozilla.org/2011/11/using-cors-to-load-webgl-textures-from-cross-domain-images/
 
 <IfModule mod_setenvif.c>
     <IfModule mod_headers.c>
@@ -67,7 +67,7 @@
 # some of the attributes of the `PerformanceResourceTiming` object will
 # be set to zero.
 
-# http://www.w3.org/TR/resource-timing/
+# https://www.w3.org/TR/resource-timing/
 
 # <IfModule mod_headers.c>
 #     Header set Timing-Allow-Origin: "*"
@@ -83,7 +83,7 @@
 # ----------------------------------------------------------------------
 
 # Customize what Apache returns to the client in case of an error.
-# http://httpd.apache.org/docs/current/mod/core.html#errordocument
+# https://httpd.apache.org/docs/current/mod/core.html#errordocument
 
 # ErrorDocument 404 /404.html
 
@@ -96,7 +96,7 @@
 # This setting prevents Apache from returning a 404 error as the result
 # of a rewrite when the directory with the same name does not exist.
 
-# http://httpd.apache.org/docs/current/content-negotiation.html#multiviews
+# https://httpd.apache.org/docs/current/content-negotiation.html#multiviews
 # http://www.webmasterworld.com/apache/3808792.htm
 
 Options -MultiViews
@@ -135,8 +135,8 @@ Options -MultiViews
 
 # Allow cookies to be set from iframes in Internet Explorer.
 
-# http://msdn.microsoft.com/en-us/library/ms537343.aspx
-# http://www.w3.org/TR/2000/CR-P3P-20001215/
+# https://msdn.microsoft.com/en-us/library/ms537343.aspx
+# https://www.w3.org/TR/2000/CR-P3P-20001215/
 
 # <IfModule mod_headers.c>
 #     Header set P3P "policyref=\"/w3c/p3p.xml\", CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""
@@ -152,7 +152,7 @@ Options -MultiViews
 # ----------------------------------------------------------------------
 
 # Serve resources with the proper media types (f.k.a. MIME types).
-# http://www.iana.org/assignments/media-types/media-types.xhtml
+# https://www.iana.org/assignments/media-types/media-types.xhtml
 
 <IfModule mod_mime.c>
 
@@ -167,13 +167,13 @@ Options -MultiViews
 
   # JavaScript
     # Normalize to standard type.
-    # http://tools.ietf.org/html/rfc4329#section-7.2
+    # https://tools.ietf.org/html/rfc4329#section-7.2
     AddType application/javascript                      js
 
   # Manifest files
 
     # If you are providing a web application manifest file (see
-    # the specification: http://w3c.github.io/manifest/), it is
+    # the specification: https://w3c.github.io/manifest/), it is
     # recommended that you serve it with the `application/manifest+json`
     # media type.
     #
@@ -219,7 +219,7 @@ Options -MultiViews
 
     # Browsers usually ignore the font media types and simply sniff
     # the bytes to figure out the font type.
-    # http://mimesniff.spec.whatwg.org/#matching-a-font-type-pattern
+    # https://mimesniff.spec.whatwg.org/#matching-a-font-type-pattern
 
     # Chrome however, shows a warning if any other media types are used
     # for the following two font types.
@@ -278,10 +278,10 @@ AddDefaultCharset utf-8
 
 # (1) Turn on the rewrite engine (this is necessary in order for
 #     the `RewriteRule` directives to work).
-#     http://httpd.apache.org/docs/current/mod/mod_rewrite.html#RewriteEngine
+#     https://httpd.apache.org/docs/current/mod/mod_rewrite.html#RewriteEngine
 #
 # (2) Enable the `FollowSymLinks` option if it isn't already.
-#     http://httpd.apache.org/docs/current/mod/core.html#options
+#     https://httpd.apache.org/docs/current/mod/core.html#options
 #
 # (3) If your web host doesn't allow the `FollowSymlinks` option,
 #     you may need to either comment it out or remove it, and
@@ -291,12 +291,12 @@ AddDefaultCharset utf-8
 #
 # (4) Some cloud hosting services will also require that you set
 #     the `RewriteBase`.
-#     http://www.rackspace.com/knowledge_center/frequently-asked-question/why-is-modrewrite-not-working-on-my-site
+#     https://www.rackspace.com/knowledge_center/frequently-asked-question/why-is-modrewrite-not-working-on-my-site
 #
 # (5) Depending on how your server is set up, you may also need to
 #     use the `RewriteOptions` directive to enable some options for
 #     the rewrite engine.
-#     http://httpd.apache.org/docs/current/mod/mod_rewrite.html#rewriteoptions
+#     https://httpd.apache.org/docs/current/mod/mod_rewrite.html#rewriteoptions
 
 <IfModule mod_rewrite.c>
 
@@ -393,7 +393,7 @@ AddDefaultCharset utf-8
 # This might not be the best setting for everyone. You should read about
 # the other two possible values for `X-Frame-Options`: `SAMEORIGIN` and
 # `ALLOW-FROM`.
-# http://tools.ietf.org/html/rfc7034#section-2.1
+# https://tools.ietf.org/html/rfc7034#section-2.1
 
 # Keep in mind that while you could send the `X-Frame-Options` header
 # for all of your site’s pages, this has the potential downside that it
@@ -410,8 +410,8 @@ AddDefaultCharset utf-8
 # against more than just clickjacking attacks:
 # https://cure53.de/xfo-clickjacking.pdf.
 
-# http://tools.ietf.org/html/rfc7034
-# http://blogs.msdn.com/b/ieinternals/archive/2010/03/30/combating-clickjacking-with-x-frame-options.aspx
+# https://tools.ietf.org/html/rfc7034
+# https://blogs.msdn.com/b/ieinternals/archive/2010/03/30/combating-clickjacking-with-x-frame-options.aspx
 # https://www.owasp.org/index.php/Clickjacking
 
 # <IfModule mod_headers.c>
@@ -444,7 +444,7 @@ AddDefaultCharset utf-8
 
 # For more details on how to craft a reasonable policy for your site,
 # read: http://www.html5rocks.com/en/tutorials/security/content-security-policy/
-# (or the specification: http://www.w3.org/TR/CSP11/). Also, to make
+# (or the specification: https://www.w3.org/TR/CSP11/). Also, to make
 # things easier, you can use an online CSP header generator such as:
 # http://cspisawesome.com/.
 
@@ -491,7 +491,7 @@ AddDefaultCharset utf-8
 # content should not be blocked.
 
 # https://www.mnot.net/blog/2010/04/07/well-known
-# http://tools.ietf.org/html/rfc5785
+# https://tools.ietf.org/html/rfc5785
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
@@ -550,9 +550,9 @@ AddDefaultCharset utf-8
 # (!) Remove the `includeSubDomains` optional directive if the site's
 # subdomains are not using HTTPS.
 
-# http://tools.ietf.org/html/draft-ietf-websec-strict-transport-sec-14#section-6.1
+# https://tools.ietf.org/html/draft-ietf-websec-strict-transport-sec-14#section-6.1
 # http://www.html5rocks.com/en/tutorials/security/transport-layer-security/
-# http://blogs.msdn.com/b/ieinternals/archive/2014/08/18/hsts-strict-transport-security-attacks-mitigations-deployment-https.aspx
+# https://blogs.msdn.com/b/ieinternals/archive/2014/08/18/hsts-strict-transport-security-attacks-mitigations-deployment-https.aspx
 
 # <IfModule mod_headers.c>
 #     Header set Strict-Transport-Security "max-age=16070400; includeSubDomains"
@@ -569,10 +569,10 @@ AddDefaultCharset utf-8
 # server is serving user-uploaded content or content that could
 # potentially be treated as executable by the browser.
 
-# http://www.slideshare.net/hasegawayosuke/owasp-hasegawa
-# http://blogs.msdn.com/b/ie/archive/2008/07/02/ie8-security-part-v-comprehensive-protection.aspx
-# http://msdn.microsoft.com/en-us/library/ie/gg622941.aspx
-# http://mimesniff.spec.whatwg.org/
+# https://www.slideshare.net/hasegawayosuke/owasp-hasegawa
+# https://blogs.msdn.com/b/ie/archive/2008/07/02/ie8-security-part-v-comprehensive-protection.aspx
+# https://msdn.microsoft.com/en-us/library/ie/gg622941.aspx
+# https://mimesniff.spec.whatwg.org/
 
 <IfModule mod_headers.c>
     Header set X-Content-Type-Options "nosniff"
@@ -610,8 +610,8 @@ AddDefaultCharset utf-8
 #     you are taking all possible measures to prevent XSS attacks, the
 #     most obvious being: validating and sanitizing your site's inputs.
 #
-# http://blogs.msdn.com/b/ie/archive/2008/07/02/ie8-security-part-iv-the-xss-filter.aspx
-# http://blogs.msdn.com/b/ieinternals/archive/2011/01/31/controlling-the-internet-explorer-xss-filter-with-the-x-xss-protection-http-header.aspx
+# https://blogs.msdn.com/b/ie/archive/2008/07/02/ie8-security-part-iv-the-xss-filter.aspx
+# https://blogs.msdn.com/b/ieinternals/archive/2011/01/31/controlling-the-internet-explorer-xss-filter-with-the-x-xss-protection-http-header.aspx
 # https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29
 
 # <IfModule mod_headers.c>
@@ -639,7 +639,7 @@ AddDefaultCharset utf-8
 
 # (!) The `ServerTokens` directive will only work in the main server
 # configuration file, so don't try to enable it in the `.htaccess` file!
-# http://httpd.apache.org/docs/current/mod/core.html#servertokens
+# https://httpd.apache.org/docs/current/mod/core.html#servertokens
 
 # ServerTokens Prod
 
@@ -725,7 +725,7 @@ AddDefaultCharset utf-8
 # ----------------------------------------------------------------------
 
 # Prevent mobile network providers from modifying the website's content.
-# http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9.5.
+# https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9.5.
 
 # <IfModule mod_headers.c>
 #     Header merge Cache-Control "no-transform"
