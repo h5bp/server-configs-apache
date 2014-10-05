@@ -538,9 +538,9 @@ AddDefaultCharset utf-8
 
 # Force client-side SSL redirection.
 
-# If a user types `example.com` in his browser, even if the server
-# redirects him to the secure version of the site. That still leaves a
-# window of opportunity (the initial HTTP connection) for an attacker
+# If a user types `example.com` in their browser, even if the server
+# redirects them to the secure version of the site. That still leaves
+# a window of opportunity (the initial HTTP connection) for an attacker
 # to downgrade or redirect the request.
 
 # The following header ensures that browser will ONLY connect to your
