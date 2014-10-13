@@ -8,7 +8,6 @@ before_script:
 env:
   global:
     - BUILD_DIR="$TRAVIS_BUILD_DIR"
-    - SERVER_SPECIFIC_TESTS="test/tests.js"
 
 git:
   depth: 10

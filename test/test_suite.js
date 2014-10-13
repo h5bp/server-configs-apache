@@ -3,7 +3,7 @@ var http = require('http');
 var path = require('path');
 var url = require('url');
 
-var fileDefaultTests = 'default_tests.js';
+var fileDefaultTests = 'tests.js';
 var fileServerSpecificTests = process.env.SERVER_SPECIFIC_TESTS;
 
 var URL= url.parse(process.env.BASE_URL || "http://localhost/");

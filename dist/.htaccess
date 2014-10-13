@@ -32,7 +32,7 @@
 # Send the CORS header for images when browsers request it.
 
 # https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image
-# http://blog.chromium.org/2011/07/using-cross-domain-images-in-webgl-and.html
+# https://blog.chromium.org/2011/07/using-cross-domain-images-in-webgl-and.html
 # https://hacks.mozilla.org/2011/11/using-cors-to-load-webgl-textures-from-cross-domain-images/
 
 <IfModule mod_setenvif.c>
@@ -97,7 +97,6 @@
 # of a rewrite when the directory with the same name does not exist.
 
 # https://httpd.apache.org/docs/current/content-negotiation.html#multiviews
-# http://www.webmasterworld.com/apache/3808792.htm
 
 Options -MultiViews
 
@@ -421,17 +420,17 @@ AddDefaultCharset utf-8
 # https://www.owasp.org/index.php/Clickjacking
 
 # <IfModule mod_headers.c>
-#
+
 #     Header set X-Frame-Options "DENY"
-#
+
 #     # `mod_headers` cannot match based on the content-type, however,
 #     # the `X-Frame-Options` response header should be send only for
 #     # HTML documents and not for the other resources.
-#
+
 #     <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
 #         Header unset X-Frame-Options
 #     </FilesMatch>
-#
+
 # </IfModule>
 
 # ----------------------------------------------------------------------
@@ -455,17 +454,17 @@ AddDefaultCharset utf-8
 # http://cspisawesome.com/.
 
 # <IfModule mod_headers.c>
-#
+
 #     Header set Content-Security-Policy "script-src 'self'; object-src 'self'"
-#
+
 #     # `mod_headers` cannot match based on the content-type, however,
 #     # the `Content-Security-Policy` response header should be send
 #     # only for HTML documents and not for the other resources.
-#
+
 #     <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
 #         Header unset Content-Security-Policy
 #     </FilesMatch>
-#
+
 # </IfModule>
 
 # ----------------------------------------------------------------------
@@ -621,18 +620,18 @@ AddDefaultCharset utf-8
 # https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29
 
 # <IfModule mod_headers.c>
-#
+
 #     #                           (1)    (2)
 #     Header set X-XSS-Protection "1; mode=block"
-#
+
 #     # `mod_headers` cannot match based on the content-type, however,
 #     # the `X-XSS-Protection` response header should be send only for
 #     # HTML documents and not for the other resources.
-#
+
 #     <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
 #         Header unset X-XSS-Protection
 #     </FilesMatch>
-#
+
 # </IfModule>
 
 # ----------------------------------------------------------------------
@@ -837,20 +836,20 @@ FileETag None
 #   specified files.
 
 # <IfModule mod_include.c>
-#
+
 #     <FilesMatch "\.combined\.js$">
 #         Options +Includes
 #         AddOutputFilterByType INCLUDES application/javascript \
 #                                        text/javascript
 #         SetOutputFilter INCLUDES
 #     </FilesMatch>
-#
+
 #     <FilesMatch "\.combined\.css$">
 #         Options +Includes
 #         AddOutputFilterByType INCLUDES text/css
 #         SetOutputFilter INCLUDES
 #     </FilesMatch>
-#
+
 # </IfModule>
 
 # ----------------------------------------------------------------------

@@ -27,7 +27,8 @@
     "url": "https://github.com/h5bp/server-configs-apache"
   },
   "scripts": {
-    "test": "mocha --reporter spec --timeout 5000 test/test_suite.js"
+    "build": "bin/build/build.sh",
+    "test": "npm run build && mocha --reporter spec --timeout 5000 test/test_suite.js"
   },
   "version": "2.8.0"
 }
