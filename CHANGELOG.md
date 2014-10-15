@@ -1,4 +1,4 @@
-### HEAD
+### 2.9.0 (October 15, 2014)
 
 * Update example regarding forcing `https://`
   [[060b70c](https://github.com/h5bp/server-configs-apache/commit/060b70c1428f5a2b3cc4e42ac66c1b7d75ae3bc9)].
