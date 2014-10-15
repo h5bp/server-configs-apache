@@ -10,6 +10,7 @@
   "files": [
     "dist"
   ],
+  "homepage": "https://github.com/h5bp/server-configs-apache",
   "keywords": [
     "apache",
     "configs",

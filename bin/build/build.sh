@@ -13,8 +13,7 @@ create_htaccess() {
 
     local file="dist/.htaccess"
 
-    insert_line "# Apache Server Configs v2.8.0 | MIT License" "$file"
-    insert_line "# https://github.com/h5bp/server-configs-apache" "$file"
+    insert_line "$(node bin/build/create_header.js)" "$file"
     insert_line "" "$file"
     insert_line "# (!) Using \`.htaccess\` files slows down Apache, therefore, if you have" "$file"
     insert_line "# access to the main server configuration file (which is usually called" "$file"
@@ -107,6 +106,8 @@ create_htaccess_fixture() {
 
     local file="test/fixtures/.htaccess"
 
+    insert_line "$(node bin/build/create_header.js)" "$file"
+    insert_line "" "$file"
     insert_header "cross-origin" "$file"
     insert_line "" "$file"
     insert_file "src/cross-origin/cross-origin_images.conf" "$file"
