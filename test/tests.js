@@ -442,14 +442,12 @@ exports = module.exports = {
 
                 'test.vcard': {
                     responseHeaders: {
-                        'content-encoding': null,
                         'content-type': 'text/vcard'
                     }
                 },
 
                 'test.vcf': {
                     responseHeaders: {
-                        'content-encoding': null,
                         'content-type': 'text/vcard'
                     }
                 },

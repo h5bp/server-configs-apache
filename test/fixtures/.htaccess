@@ -675,6 +675,7 @@ AddDefaultCharset utf-8
                                       "text/html" \
                                       "text/javascript" \
                                       "text/plain" \
+                                      "text/vcard" \
                                       "text/vnd.rim.location.xloc" \
                                       "text/vtt" \
                                       "text/x-component" \

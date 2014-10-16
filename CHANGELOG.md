@@ -1,6 +1,8 @@
 ### HEAD
 
-* Serve `.vcf` and `.vcard` file with the `text/vcard` media type.
+* Compress vCard files (`.vcard`/`.vcf`).
+* Serve vCard files (`.vcard`/`.vcf`) with the `text/vcard` media type
+  [[104f232](https://github.com/h5bp/server-configs-apache/commit/104f232dad100ddd5c8cf0c354c2bcd163a6b915)].
 * Add configs for BlackBerry Maps location documents (`.xloc`)
   [[20000d1](https://github.com/h5bp/server-configs-apache/commit/20000d1741701eede2e0903b2b86992d8b70c35a)].
 * Add configs for BlackBerry App World files (`.bbaw`)
@@ -42,7 +44,7 @@
 
 ### 2.5.0 (June 14, 2014)
 
-* Compress cache manifest files (`.appcache` / `.manifest`)
+* Compress cache manifest files (`.appcache`/`.manifest`)
   [[d819fec](https://github.com/h5bp/server-configs-apache/commit/d819fecd81e1d23fb5f153995f573890b037a82c)].
 * Move all compression related configs under the `Compression` section
   [[73a107e](https://github.com/h5bp/server-configs-apache/commit/73a107ed0cb9ae4b3ec966e8e246b7a6f4bbd059)].
