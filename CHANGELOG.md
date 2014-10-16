@@ -1,6 +1,7 @@
 ### HEAD
 
-* Compress vCard files (`.vcard`/`.vcf`).
+* Compress vCard files (`.vcard`/`.vcf`)
+  [[a076635](https://github.com/h5bp/server-configs-apache/commit/a0766359454887192914dcd5f042bce281b2170d)].
 * Serve vCard files (`.vcard`/`.vcf`) with the `text/vcard` media type
   [[104f232](https://github.com/h5bp/server-configs-apache/commit/104f232dad100ddd5c8cf0c354c2bcd163a6b915)].
 * Add configs for BlackBerry Maps location documents (`.xloc`)
