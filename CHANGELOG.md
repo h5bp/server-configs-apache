@@ -1,5 +1,6 @@
 ### HEAD
 
+* Serve `.vcf` and `.vcard` file with the `text/vcard` media type.
 * Add configs for BlackBerry Maps location documents (`.xloc`)
   [[20000d1](https://github.com/h5bp/server-configs-apache/commit/20000d1741701eede2e0903b2b86992d8b70c35a)].
 * Add configs for BlackBerry App World files (`.bbaw`)
@@ -65,7 +66,6 @@
   [[b5bda65](https://github.com/h5bp/server-configs-apache/commit/b5bda651d2811f8f3c1f061ee97d0404ebfe8468)].
 * Compress WebVTT files (`.vtt`)
   [[0bb12c8](https://github.com/h5bp/server-configs-apache/commit/0bb12c832be9865bcfdaa1042b64381e7d723560)].
-
 * Reintroduce the `filename extension` to `content type` mappings for `ico`
   and `svg` [[#28](https://github.com/h5bp/server-configs-apache/issues/28)].
 
