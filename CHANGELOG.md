@@ -1,3 +1,7 @@
+### HEAD
+
+* Add configs for BlackBerry App World files (`.bbaw`).
+
 ### 2.9.0 (October 15, 2014)
 
 * Update example regarding forcing `https://`

@@ -92,6 +92,14 @@ exports = module.exports = {
                     }
                 },
 
+                'test.bbaw': {
+                    responseHeaders: {
+                        'cache-control': 'max-age=2592000, no-transform',
+                        'content-encoding': null,
+                        'content-type': 'application/x-bb-appworld; charset=utf-8'
+                    }
+                },
+
                 'test.crx': {
                     responseHeaders: {
                         'content-encoding': null,

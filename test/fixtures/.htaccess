@@ -108,7 +108,7 @@ Options -MultiViews
     # the `X-UA-Compatible` response header should be send only for
     # HTML documents and not for the other resources.
 
-    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
+    <FilesMatch "\.(appcache|atom|bbaw|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
         Header unset X-UA-Compatible
     </FilesMatch>
 
@@ -216,6 +216,7 @@ Options -MultiViews
 
   # Other
     AddType application/octet-stream                    safariextz
+    AddType application/x-bb-appworld                   bbaw
     AddType application/x-chrome-extension              crx
     AddType application/x-opera-extension               oex
     AddType application/x-xpinstall                     xpi
@@ -239,6 +240,7 @@ AddDefaultCharset utf-8
 # Set `UTF-8` as the character encoding for other certain resources.
 <IfModule mod_mime.c>
     AddCharset utf-8 .atom \
+                     .bbaw \
                      .css \
                      .geojson \
                      .js \
@@ -394,7 +396,7 @@ AddDefaultCharset utf-8
     # the `X-Frame-Options` response header should be send only for
     # HTML documents and not for the other resources.
 
-    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
+    <FilesMatch "\.(appcache|atom|bbaw|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
         Header unset X-Frame-Options
     </FilesMatch>
 
@@ -428,7 +430,7 @@ AddDefaultCharset utf-8
     # the `Content-Security-Policy` response header should be send
     # only for HTML documents and not for the other resources.
 
-    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
+    <FilesMatch "\.(appcache|atom|bbaw|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
         Header unset Content-Security-Policy
     </FilesMatch>
 
@@ -595,7 +597,7 @@ AddDefaultCharset utf-8
     # the `X-XSS-Protection` response header should be send only for
     # HTML documents and not for the other resources.
 
-    <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
+    <FilesMatch "\.(appcache|atom|bbaw|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
         Header unset X-XSS-Protection
     </FilesMatch>
 
