@@ -108,7 +108,7 @@ Options -MultiViews
     # the `X-UA-Compatible` response header should be send only for
     # HTML documents and not for the other resources.
 
-    <FilesMatch "\.(appcache|atom|bbaw|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
+    <FilesMatch "\.(appcache|atom|bbaw|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xloc|xml|xpi)$">
         Header unset X-UA-Compatible
     </FilesMatch>
 
@@ -223,6 +223,7 @@ Options -MultiViews
     AddType application/xml                             atom rdf rss xml
     AddType image/webp                                  webp
     AddType image/x-icon                                cur ico
+    AddType text/vnd.rim.location.xloc                  xloc
     AddType text/vtt                                    vtt
     AddType text/x-component                            htc
     AddType text/x-vcard                                vcf
@@ -251,6 +252,7 @@ AddDefaultCharset utf-8
                      .topojson \
                      .vtt \
                      .webapp \
+                     .xloc \
                      .xml
 </IfModule>
 
@@ -396,7 +398,7 @@ AddDefaultCharset utf-8
     # the `X-Frame-Options` response header should be send only for
     # HTML documents and not for the other resources.
 
-    <FilesMatch "\.(appcache|atom|bbaw|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
+    <FilesMatch "\.(appcache|atom|bbaw|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xloc|xml|xpi)$">
         Header unset X-Frame-Options
     </FilesMatch>
 
@@ -430,7 +432,7 @@ AddDefaultCharset utf-8
     # the `Content-Security-Policy` response header should be send
     # only for HTML documents and not for the other resources.
 
-    <FilesMatch "\.(appcache|atom|bbaw|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
+    <FilesMatch "\.(appcache|atom|bbaw|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xloc|xml|xpi)$">
         Header unset Content-Security-Policy
     </FilesMatch>
 
@@ -597,7 +599,7 @@ AddDefaultCharset utf-8
     # the `X-XSS-Protection` response header should be send only for
     # HTML documents and not for the other resources.
 
-    <FilesMatch "\.(appcache|atom|bbaw|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xml|xpi)$">
+    <FilesMatch "\.(appcache|atom|bbaw|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcf|vtt|webapp|web[mp]|woff2?|xloc|xml|xpi)$">
         Header unset X-XSS-Protection
     </FilesMatch>
 
@@ -673,6 +675,7 @@ AddDefaultCharset utf-8
                                       "text/html" \
                                       "text/javascript" \
                                       "text/plain" \
+                                      "text/vnd.rim.location.xloc" \
                                       "text/vtt" \
                                       "text/x-component" \
                                       "text/xml"

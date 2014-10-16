@@ -1,5 +1,6 @@
 ### HEAD
 
+* Add configs for BlackBerry Maps location documents (`.xloc`).
 * Add configs for BlackBerry App World files (`.bbaw`)
   [[352fb62](https://github.com/h5bp/server-configs-apache/commit/352fb62daae4b57cf605c1eb3a836385f6f7e01f)].
 

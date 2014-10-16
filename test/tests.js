@@ -94,7 +94,6 @@ exports = module.exports = {
 
                 'test.bbaw': {
                     responseHeaders: {
-                        'cache-control': 'max-age=2592000, no-transform',
                         'content-encoding': null,
                         'content-type': 'application/x-bb-appworld; charset=utf-8'
                     }
@@ -135,7 +134,6 @@ exports = module.exports = {
 
                 'test.f4a': {
                     responseHeaders: {
-                        'cache-control': 'max-age=2592000, no-transform',
                         'content-encoding': null,
                         'content-type': 'audio/mp4'
                     }
@@ -493,6 +491,12 @@ exports = module.exports = {
                         'access-control-allow-origin': '*',
                         'content-encoding': null,
                         'content-type': 'application/font-woff2'
+                    }
+                },
+
+                'test.xloc': {
+                    responseHeaders: {
+                        'content-type': 'text/vnd.rim.location.xloc; charset=utf-8'
                     }
                 },
 
