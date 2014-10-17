@@ -52,9 +52,9 @@ create_htaccess() {
 
     insert_header "media types and character encodings" "$file"
     insert_line "" "$file"
-    insert_file "src/media_types_and_character_encodings/media_types.conf" "$file"
+    insert_file "src/media_types/media_types.conf" "$file"
     insert_line "" "$file"
-    insert_file "src/media_types_and_character_encodings/character_encodings.conf" "$file"
+    insert_file "src/media_types/character_encodings.conf" "$file"
     insert_line "" "$file"
     insert_line "" "$file"
 
@@ -136,9 +136,9 @@ create_htaccess_fixture() {
 
     insert_header "media types and character encodings" "$file"
     insert_line "" "$file"
-    insert_file "src/media_types_and_character_encodings/media_types.conf" "$file"
+    insert_file "src/media_types/media_types.conf" "$file"
     insert_line "" "$file"
-    insert_file "src/media_types_and_character_encodings/character_encodings.conf" "$file"
+    insert_file "src/media_types/character_encodings.conf" "$file"
     insert_line "" "$file"
     insert_line "" "$file"
 
