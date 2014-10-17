@@ -99,6 +99,16 @@ exports = module.exports = {
                     }
                 },
 
+                'test.bmp': {
+                    requestHeaders: {
+                        'origin': 'http://'
+                    },
+                    responseHeaders: {
+                        'access-control-allow-origin': '*',
+                        'content-type': 'image/bmp'
+                    }
+                },
+
                 'test.crx': {
                     responseHeaders: {
                         'content-encoding': null,
@@ -115,7 +125,6 @@ exports = module.exports = {
 
                 'test.cur': {
                     requestHeaders: {
-                        'accept-encoding': 'gzip, deflate, sdch',
                         'origin': 'http://'
                     },
                     responseHeaders: {
@@ -176,7 +185,6 @@ exports = module.exports = {
 
                 'test.gif': {
                     requestHeaders: {
-                        'accept-encoding': 'gzip, deflate, sdch',
                         'origin': 'http://'
                     },
                     responseHeaders: {
@@ -205,7 +213,6 @@ exports = module.exports = {
 
                 'test.ico': {
                     requestHeaders: {
-                        'accept-encoding': 'gzip, deflate, sdch',
                         'origin': 'http://'
                     },
                     responseHeaders: {
@@ -217,7 +224,6 @@ exports = module.exports = {
 
                 'test.jpeg': {
                     requestHeaders: {
-                        'accept-encoding': 'gzip, deflate, sdch',
                         'origin': 'http://'
                     },
                     responseHeaders: {
@@ -229,7 +235,6 @@ exports = module.exports = {
 
                 'test.jpg': {
                     requestHeaders: {
-                        'accept-encoding': 'gzip, deflate, sdch',
                         'origin': 'http://'
                     },
                     responseHeaders: {
@@ -353,7 +358,6 @@ exports = module.exports = {
 
                 'test.png': {
                     requestHeaders: {
-                        'accept-encoding': 'gzip, deflate, sdch',
                         'origin': 'http://'
                     },
                     responseHeaders: {
@@ -386,7 +390,6 @@ exports = module.exports = {
 
                 'test.svg': {
                     requestHeaders: {
-                        'accept-encoding': 'gzip, deflate, sdch',
                         'origin': 'http://'
                     },
                     responseHeaders: {
@@ -848,6 +851,10 @@ exports = module.exports = {
                         'var test3 = "test"\n' +
                         'var test4 = "test"\n' +
                         'var test5 = "test"\n',
+                    responseHeaders: null
+                },
+
+                'test.12345.bmp': {
                     responseHeaders: null
                 },
 
