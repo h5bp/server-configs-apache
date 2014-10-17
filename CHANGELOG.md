@@ -1,6 +1,7 @@
 ### HEAD
 
-* Add configs for bitmap image files (`.bmp`).
+* Add configs for bitmap image files (`.bmp`)
+  [[77ccf9e](https://github.com/h5bp/server-configs-apache/commit/77ccf9ec101b20c14a05fdfb50c2db47ed490ad4)].
 * Compress vCard files (`.vcard`/`.vcf`).
   [[a076635](https://github.com/h5bp/server-configs-apache/commit/a0766359454887192914dcd5f042bce281b2170d)].
 * Serve vCard files (`.vcard`/`.vcf`) with the `text/vcard` media type
