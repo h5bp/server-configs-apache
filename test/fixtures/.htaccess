@@ -141,20 +141,11 @@ Options -MultiViews
 
 <IfModule mod_mime.c>
 
-  # Audio
-    AddType audio/mp4                                   f4a f4b m4a
-    AddType audio/ogg                                   oga ogg opus
-
   # Data interchange
     AddType application/json                            json map topojson
     AddType application/ld+json                         jsonld
     AddType application/vnd.geo+json                    geojson
     AddType application/xml                             atom rdf rss xml
-
-  # Images
-    AddType image/bmp                                   bmp
-    AddType image/webp                                  webp
-    AddType image/x-icon                                cur ico
 
   # JavaScript
     # Normalize to standard type.
@@ -197,11 +188,17 @@ Options -MultiViews
     AddType application/x-web-app-manifest+json         webapp
     AddType text/cache-manifest                         appcache manifest
 
-  # Video
+  # Media files
+    AddType audio/mp4                                   f4a f4b m4a
+    AddType audio/ogg                                   oga ogg opus
+    AddType image/bmp                                   bmp
+    AddType image/webp                                  webp
+    AddType image/x-icon                                cur ico
     AddType video/mp4                                   f4v f4p m4v mp4
     AddType video/ogg                                   ogv
     AddType video/webm                                  webm
     AddType video/x-flv                                 flv
+    AddType image/svg+xml                               svg svgz
 
   # Web fonts
     AddType application/font-woff                       woff
@@ -217,8 +214,6 @@ Options -MultiViews
 
     AddType application/x-font-ttf                      ttc ttf
     AddType font/opentype                               otf
-
-    AddType image/svg+xml                               svg svgz
 
   # Other
     AddType application/octet-stream                    safariextz
@@ -719,6 +714,7 @@ FileETag None
 # ----------------------------------------------------------------------
 
 # Serve resources with far-future expires headers.
+# https://httpd.apache.org/docs/current/mod/mod_expires.html
 
 # (!) If you don't control versioning with filename-based cache busting,
 # you should consider lowering the cache times (e.g.: to something like
@@ -742,9 +738,6 @@ FileETag None
 
   # Favicon (cannot be renamed!) and cursor images
     ExpiresByType image/x-icon                          "access plus 1 week"
-
-  # HTML components (HTCs)
-    ExpiresByType text/x-component                      "access plus 1 month"
 
   # HTML
     ExpiresByType text/html                             "access plus 0 seconds"
