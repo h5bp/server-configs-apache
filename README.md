@@ -50,12 +50,22 @@ check the appropriate Apache documentation:
 
 * #### __Browsers:__
 
-  * Chrome
-  * Firefox 4+
-  * Internet Explorer 8+
-  * Opera 12+
-  * Safari 5+
-
+  <table style="text-align:center">
+    <tr>
+        <td><img src="https://raw.github.com/alrra/browser-logos/master/chrome/chrome_64x64.png" width="48" height="48" alt="Chrome logo"></td>
+        <td><img src="https://raw.github.com/alrra/browser-logos/master/firefox/firefox_64x64.png" width="48" height="48" alt="Firefox logo"></td>
+        <td><img src="https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_64x64.png" width="48" height="48" alt="Internet Explorer logo"></td>
+        <td><img src="https://raw.github.com/alrra/browser-logos/master/opera/opera_64x64.png" width="48" height="48" alt="Opera logo"></td>
+        <td><img src="https://raw.github.com/alrra/browser-logos/master/safari/safari_64x64.png" width="48" height="48" alt="Safari logo"></td>
+    </tr>
+    <tr>
+        <td>Chrome</td>
+        <td>Firefox 4+</td>
+        <td>Internet<br>Explorer 8+</td>
+        <td>Opera 12+</td>
+        <td>Safari 5+</td>
+    </tr>
+</table>
 
 ## Contributing
 
