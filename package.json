@@ -3,7 +3,7 @@
   "bugs": {
     "url": "https://github.com/h5bp/server-configs-apache/issues"
   },
-  "description": "Boilerplate configurations for the Apache HTTP Server",
+  "description": "Boilerplate configurations for the Apache HTTP server",
   "devDependencies": {
     "mocha": "^1.21.4"
   },

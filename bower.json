@@ -1,5 +1,6 @@
 {
   "author": "The H5BP Team",
+  "description": "Boilerplate configurations for the Apache HTTP server",
   "homepage": "https://github.com/h5bp/server-configs-apache",
   "ignore": [
     "**/*",
