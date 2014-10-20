@@ -16,10 +16,12 @@
   "homepage": "https://github.com/h5bp/server-configs-apache",
   "keywords": [
     "apache",
+    "boilerplate",
     "configs",
     "configurations",
     "h5bp",
-    "server"
+    "server",
+    "template"
   ],
   "license": {
     "type": "MIT",

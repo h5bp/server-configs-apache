@@ -1,0 +1,23 @@
+{
+  "author": "The H5BP Team",
+  "homepage": "https://github.com/h5bp/server-configs-apache",
+  "ignore": [
+    "**/*",
+    "!dist/**/*"
+  ],
+  "keywords": [
+    "apache",
+    "boilerplate",
+    "configs",
+    "configurations",
+    "h5bp",
+    "server",
+    "template"
+  ],
+  "name": "apache-server-configs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/h5bp/server-configs-apache"
+  },
+  "version": "2.9.0"
+}
