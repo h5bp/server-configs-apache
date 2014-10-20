@@ -1,4 +1,4 @@
-### HEAD
+### 2.10.0 (October 20, 2014)
 
 * Add `bower.json` and publish on `Bower`
   [[3425f72](https://github.com/h5bp/server-configs-apache/commit/3425f72c626cc70fabcf8fbac76565063249a518)].
