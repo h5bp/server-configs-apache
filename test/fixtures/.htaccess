@@ -655,6 +655,7 @@ AddDefaultCharset utf-8
                                       "application/x-web-app-manifest+json" \
                                       "application/xhtml+xml" \
                                       "application/xml" \
+                                      "font/eot" \
                                       "font/opentype" \
                                       "image/bmp" \
                                       "image/svg+xml" \
@@ -669,6 +670,7 @@ AddDefaultCharset utf-8
                                       "text/vtt" \
                                       "text/x-component" \
                                       "text/xml"
+
     </IfModule>
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -794,6 +796,7 @@ FileETag None
     ExpiresByType application/font-woff2                "access plus 1 month"
     ExpiresByType application/vnd.ms-fontobject         "access plus 1 month"
     ExpiresByType application/x-font-ttf                "access plus 1 month"
+    ExpiresByType font/eot                              "access plus 1 month"
     ExpiresByType font/opentype                         "access plus 1 month"
     ExpiresByType image/svg+xml                         "access plus 1 month"
 

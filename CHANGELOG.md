@@ -1,3 +1,7 @@
+### HEAD
+
+* Add configs for files marked as `font/eot`.
+
 ### 2.10.0 (October 20, 2014)
 
 * Add `bower.json` and publish on `Bower`
