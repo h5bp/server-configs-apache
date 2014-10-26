@@ -61,9 +61,11 @@ check the appropriate Apache documentation:
 
 * #### __Browsers:__
 
-  | <img src="https://raw.github.com/alrra/browser-logos/master/chrome/chrome_128x128.png" width="64" height="64" alt="Chrome logo"> | <img src="https://raw.github.com/alrra/browser-logos/master/firefox/firefox_128x128.png" width="64" height="64" alt="Firefox logo"> | <img src="https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_128x128.png" width="64" height="64" alt="Internet Explorer logo"> | <img src="https://raw.github.com/alrra/browser-logos/master/opera/opera_128x128.png" width="64" height="64" alt="Opera logo"> | <img src="https://raw.github.com/alrra/browser-logos/master/safari/safari_128x128.png" width="64" height="64" alt="Safari logo"> |
-|:---:|:---:|:---:|:---:|:---:|
-| Chrome | Firefox 4+ | Internet<br>Explorer 8+ | Opera 12+ | Safari 5+ |
+  * Chrome
+  * Firefox 4+
+  * Internet Explorer 8+
+  * Opera 12+
+  * Safari 5+
 
 
 ## Contributing
