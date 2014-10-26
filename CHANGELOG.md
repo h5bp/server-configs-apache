@@ -1,6 +1,7 @@
 ### HEAD
 
-* Add configs for common media types used for `.woff` files.
+* Add configs for common media types used for `.woff` files
+  [[e602ae9](https://github.com/h5bp/server-configs-apache/commit/e602ae9e62412d95fba377abfb66ef2f773cfc4d)].
 * Add configs for files marked as `text/x-cross-domain-policy`
   [[a0c4e17](https://github.com/h5bp/server-configs-apache/commit/a0c4e1719075bf1d97d92a3b0ad225c7bff5dfab)].
 * Add configs for files marked as `image/vnd.microsoft.icon`
