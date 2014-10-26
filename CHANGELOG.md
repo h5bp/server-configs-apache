@@ -1,7 +1,9 @@
 ### HEAD
 
-* Add configs for files marked as `image/vnd.microsoft.icon`.
-* Add configs for files marked as `font/eot`.
+* Add configs for files marked as `image/vnd.microsoft.icon`
+  [[0ba37cb](https://github.com/h5bp/server-configs-apache/commit/0ba37cb77de29b29e44145046a936483aeb1bfc5)].
+* Add configs for files marked as `font/eot`
+  [[6dae5d4](https://github.com/h5bp/server-configs-apache/commit/6dae5d4e063db5d70a3a7abecadb97707b6fdf2c)].
 
 ### 2.10.0 (October 20, 2014)
 
