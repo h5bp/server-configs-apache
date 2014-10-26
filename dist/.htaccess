@@ -162,15 +162,20 @@ Options -MultiViews
 <IfModule mod_mime.c>
 
   # Data interchange
+
     AddType application/json                            json map topojson
     AddType application/ld+json                         jsonld
     AddType application/vnd.geo+json                    geojson
     AddType application/xml                             atom rdf rss xml
 
+
   # JavaScript
+
     # Normalize to standard type.
     # https://tools.ietf.org/html/rfc4329#section-7.2
+
     AddType application/javascript                      js
+
 
   # Manifest files
 
@@ -208,19 +213,28 @@ Options -MultiViews
     AddType application/x-web-app-manifest+json         webapp
     AddType text/cache-manifest                         appcache manifest
 
+
   # Media files
+
     AddType audio/mp4                                   f4a f4b m4a
     AddType audio/ogg                                   oga ogg opus
     AddType image/bmp                                   bmp
     AddType image/webp                                  webp
-    AddType image/x-icon                                cur ico
     AddType video/mp4                                   f4v f4p m4v mp4
     AddType video/ogg                                   ogv
     AddType video/webm                                  webm
     AddType video/x-flv                                 flv
     AddType image/svg+xml                               svg svgz
 
+    # Serving `.ico` image files with a different media type
+    # prevents Internet Explorer from displaying then as images:
+    # https://github.com/h5bp/html5-boilerplate/commit/37b5fec090d00f38de64b591bcddcb205aadf8ee
+
+    AddType image/x-icon                                cur ico
+
+
   # Web fonts
+
     AddType application/font-woff                       woff
     AddType application/font-woff2                      woff2
     AddType application/vnd.ms-fontobject               eot
@@ -236,7 +250,9 @@ Options -MultiViews
     AddType application/x-font-ttf                      ttc ttf
     AddType font/opentype                               otf
 
+
   # Other
+
     AddType application/octet-stream                    safariextz
     AddType application/x-bb-appworld                   bbaw
     AddType application/x-chrome-extension              crx
