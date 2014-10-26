@@ -675,6 +675,7 @@ AddDefaultCharset utf-8
                                       "font/opentype" \
                                       "image/bmp" \
                                       "image/svg+xml" \
+                                      "image/vnd.microsoft.icon" \
                                       "image/x-icon" \
                                       "text/cache-manifest" \
                                       "text/css" \
@@ -781,6 +782,7 @@ FileETag None
     ExpiresByType text/xml                              "access plus 0 seconds"
 
   # Favicon (cannot be renamed!) and cursor images
+    ExpiresByType image/vnd.microsoft.icon              "access plus 1 week"
     ExpiresByType image/x-icon                          "access plus 1 week"
 
   # HTML
