@@ -686,6 +686,7 @@ AddDefaultCharset utf-8
                                       "text/vnd.rim.location.xloc" \
                                       "text/vtt" \
                                       "text/x-component" \
+                                      "text/x-cross-domain-policy" \
                                       "text/xml"
 
     </IfModule>
@@ -817,6 +818,9 @@ FileETag None
     ExpiresByType font/eot                              "access plus 1 month"
     ExpiresByType font/opentype                         "access plus 1 month"
     ExpiresByType image/svg+xml                         "access plus 1 month"
+
+  # Other
+    ExpiresByType text/x-cross-domain-policy            "access plus 1 week"
 
 </IfModule>
 

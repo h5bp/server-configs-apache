@@ -1,5 +1,6 @@
 ### HEAD
 
+* Add configs for files marked as `text/x-cross-domain-policy`.
 * Add configs for files marked as `image/vnd.microsoft.icon`
   [[0ba37cb](https://github.com/h5bp/server-configs-apache/commit/0ba37cb77de29b29e44145046a936483aeb1bfc5)].
 * Add configs for files marked as `font/eot`
