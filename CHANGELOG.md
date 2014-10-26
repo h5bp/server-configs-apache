@@ -1,4 +1,4 @@
-### HEAD
+### 2.11.0 (October 27, 2014)
 
 * Add configs for common media types used for `.woff` files
   [[e602ae9](https://github.com/h5bp/server-configs-apache/commit/e602ae9e62412d95fba377abfb66ef2f773cfc4d)].
