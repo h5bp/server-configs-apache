@@ -84,12 +84,6 @@ moment to review the [guidelines](CONTRIBUTING.md).
 only possible thanks to all the awesome
 [contributors](https://github.com/h5bp/server-configs-apache/graphs/contributors)!
 
-This project is currently maintained by:
-
-| [![@alrra](https://avatars.githubusercontent.com/u/1223565?s=120)](https://github.com/alrra "Follow @alrra on GitHub") |
-|:---:|:---:|
-| [Cătălin Mariș](https://github.com/alrra) |
-
 
 ## License
 
