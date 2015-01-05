@@ -315,6 +315,9 @@ AddDefaultCharset utf-8
 #     the rewrite engine.
 #
 #     https://httpd.apache.org/docs/current/mod/mod_rewrite.html#rewriteoptions
+#
+# (6) Set %{ENV:PROTO} variable, to allow rewrites to redirect with the
+#     appropriate schema automatically (http or https).
 
 <IfModule mod_rewrite.c>
 
@@ -332,6 +335,12 @@ AddDefaultCharset utf-8
 
     # (5)
     # RewriteOptions <options>
+
+    # (6)
+    RewriteCond %{HTTPS} =on
+    RewriteRule ^ - [env=proto:https]
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ - [env=proto:http]
 
 </IfModule>
 
@@ -361,7 +370,7 @@ AddDefaultCharset utf-8
     RewriteEngine On
     RewriteCond %{HTTPS} !=on
     RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-    RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
+    RewriteRule ^ %{ENV:PROTO}://%1%{REQUEST_URI} [R=301,L]
 </IfModule>
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -377,7 +386,7 @@ AddDefaultCharset utf-8
 #     RewriteCond %{HTTP_HOST} !^www\. [NC]
 #     RewriteCond %{SERVER_ADDR} !=127.0.0.1
 #     RewriteCond %{SERVER_ADDR} !=::1
-#     RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+#     RewriteRule ^ %{ENV:PROTO}://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 # </IfModule>
 
 
