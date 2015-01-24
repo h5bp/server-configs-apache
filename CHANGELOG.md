@@ -1,5 +1,7 @@
 ### HEAD
 
+* Send the HSTS header even for non-2xx responses
+  [[#57](https://github.com/h5bp/server-configs-apache/issues/57)].
 * Add configs that remove the `X-Powered-By` HTTP response header
   [[#54](https://github.com/h5bp/server-configs-apache/issues/54)].
 * Add expires rules for WebP
