@@ -5,10 +5,7 @@
   },
   "description": "Boilerplate configurations for the Apache HTTP server",
   "devDependencies": {
-    "mocha": "^1.21.4"
-  },
-  "engines": {
-    "node": ">=0.10.0"
+    "mocha": "^2.1.0"
   },
   "files": [
     "dist"
