@@ -3,10 +3,11 @@
 [![Build Status](https://travis-ci.org/h5bp/server-configs-apache.svg)](https://travis-ci.org/h5bp/server-configs-apache)
 [![devDependency Status](https://david-dm.org/h5bp/server-configs-apache/dev-status.svg)](https://david-dm.org/h5bp/server-configs-apache#info=devDependencies)
 
-__Apache Server Configs__ is a collection of boilerplate configurations that
-can help your server improve the web site's performance and security, while
-also ensuring that resources are served with the correct content-type and are
-accessible, if needed, even cross-domain.
+__Apache Server Configs__ is a collection of boilerplate
+configurations that can help your server improve the web site's
+performance and security, while also ensuring that resources are
+served with the correct content-type and are accessible, if needed,
+even cross-domain.
 
 
 ## Getting Started
@@ -27,18 +28,19 @@ file](https://httpd.apache.org/docs/current/configuring.html#main)
 [`.htaccess`](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess)
 file in, for example, a
 [`<Directory>`](https://httpd.apache.org/docs/current/mod/core.html#directory)
-section in the main configuration file. This is usually the recommended way, as
-using `.htaccess` files [slows
-down](https://httpd.apache.org/docs/current/howto/htaccess.html#when) Apache!
+section in the main configuration file. This is usually the recommended
+way, as using `.htaccess` files [slows
+down](https://httpd.apache.org/docs/current/howto/htaccess.html#when)
+Apache!
 
-If you don't have access, which is quite common with hosting services, just copy
-the [`.htaccess`](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess)
+If you don't have access, which is quite common with hosting services,
+just copy the [`.htaccess`](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess)
 file in the root of the website.
 
-Also note that some configurations won't have any effect if the appropriate
-modules aren't enabled. So, in order for everything to work as intended, you
-need to ensure the you have the following Apache modules
-[enabled](https://github.com/h5bp/server-configs-apache/wiki/How-to-enable-Apache-modules):
+Also note that some configurations won't have any effect if the
+appropriate modules aren't enabled. So, in order for everything
+to work as intended, you need to ensure the you have the following
+Apache modules [enabled](https://github.com/h5bp/server-configs-apache/wiki/How-to-enable-Apache-modules):
   * [`mod_autoindex.c` (autoindex_module)](https://httpd.apache.org/docs/current/mod/mod_autoindex.html)
   * [`mod_deflate.c` (deflate_module)](https://httpd.apache.org/docs/current/mod/mod_deflate.html)
   * [`mod_expires.c` (expires_module)](https://httpd.apache.org/docs/current/mod/mod_expires.html)
@@ -49,8 +51,8 @@ need to ensure the you have the following Apache modules
   * [`mod_rewrite.c` (rewrite_module)](https://httpd.apache.org/docs/current/mod/mod_rewrite.html)
   * [`mod_setenvif.c` (setenvif_module)](https://httpd.apache.org/docs/current/mod/mod_setenvif.html)
 
-For more detailed information on configuration files and how to use them, please
-check the appropriate Apache documentation:
+For more detailed information on configuration files and how to
+use them, please check the appropriate Apache documentation:
 
 * https://httpd.apache.org/docs/current/configuring.html
 * https://httpd.apache.org/docs/current/howto/htaccess.html
@@ -71,8 +73,8 @@ check the appropriate Apache documentation:
 
 ## Contributing
 
-Anyone and everyone is welcome to contribute, but before you do, please take a
-moment to review the [guidelines](CONTRIBUTING.md).
+Anyone and everyone is welcome to contribute, but before you do,
+please take a moment to review the [guidelines](CONTRIBUTING.md).
 
 * [Bug reports](CONTRIBUTING.md#bugs)
 * [Feature requests](CONTRIBUTING.md#features)
@@ -88,5 +90,4 @@ only possible thanks to all the awesome
 
 ## License
 
-[Apache Server Configs](https://github.com/h5bp/server-configs-apache/) is
-available under the [MIT](LICENSE.md) license.
+The code is available under the [MIT license](LICENSE.md).
