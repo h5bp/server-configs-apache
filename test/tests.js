@@ -481,6 +481,7 @@ exports = module.exports = {
                     },
                     responseHeaders: {
                         'access-control-allow-origin': '*',
+                        'cache-control': 'max-age=2592000, no-transform',
                         'content-encoding': null,
                         'content-type': 'image/webp'
                     }
