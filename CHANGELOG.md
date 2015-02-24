@@ -1,3 +1,8 @@
+### HEAD
+
+* Add expires rules for WebP
+  [[#61](https://github.com/h5bp/server-configs-apache/issues/61)].
+
 ### 2.11.0 (October 27, 2014)
 
 * Add configs for common media types used for `.woff` files
