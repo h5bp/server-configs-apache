@@ -65,7 +65,8 @@ setup_apache_2_4_x() {
 
     # Get the name of the latest Apache 2.4.x release
     local tmp="$( curl -sSL http://www.us.apache.org/dist/httpd/ \
-                  | sed -n 's/.*href="\(httpd-2.4.[0-9]\+\).tar.gz".*/\1/p' )"
+                  | sed -n 's/.*href="\(httpd-2.4.[0-9]\+\).tar.gz".*/\1/p' \
+                  | tail -1 )"
 
     # Download archive
     $(curl -sSL "http://www.us.apache.org/dist/httpd/$tmp.tar.gz" -o "/tmp/$tmp.tar.gz")
