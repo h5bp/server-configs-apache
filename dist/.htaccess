@@ -119,17 +119,21 @@ Options -MultiViews
 # designed for older versions of Internet Explorer, you might want to
 # consider enabling `Enterprise Mode` throughout your company.
 #
-# http://msdn.microsoft.com/en-us/library/ie/bg182625.aspx#docmode
+# https://msdn.microsoft.com/en-us/library/ie/bg182625.aspx#docmode
 # http://blogs.msdn.com/b/ie/archive/2014/04/02/stay-up-to-date-with-enterprise-mode-for-internet-explorer-11.aspx
 
 <IfModule mod_headers.c>
+
     Header set X-UA-Compatible "IE=edge"
+
     # `mod_headers` cannot match based on the content-type, however,
     # the `X-UA-Compatible` response header should be send only for
     # HTML documents and not for the other resources.
+
     <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|woff2?|xloc|xml|xpi)$">
         Header unset X-UA-Compatible
     </FilesMatch>
+
 </IfModule>
 
 # ----------------------------------------------------------------------
@@ -138,7 +142,7 @@ Options -MultiViews
 
 # Allow cookies to be set from iframes in Internet Explorer.
 #
-# http://msdn.microsoft.com/en-us/library/ms537343.aspx
+# https://msdn.microsoft.com/en-us/library/ms537343.aspx
 # http://www.w3.org/TR/2000/CR-P3P-20001215/
 
 # <IfModule mod_headers.c>
@@ -327,7 +331,7 @@ AddDefaultCharset utf-8
 #
 # (4) Some cloud hosting services will require you set `RewriteBase`.
 #
-#     http://www.rackspace.com/knowledge_center/frequently-asked-question/why-is-modrewrite-not-working-on-my-site
+#     https://www.rackspace.com/knowledge_center/frequently-asked-question/why-is-modrewrite-not-working-on-my-site
 #     https://httpd.apache.org/docs/current/mod/mod_rewrite.html#rewritebase
 #
 # (5) Depending on how your server is set up, you may also need to
@@ -462,13 +466,17 @@ AddDefaultCharset utf-8
 # https://www.owasp.org/index.php/Clickjacking
 
 # <IfModule mod_headers.c>
+
 #     Header set X-Frame-Options "DENY"
+
 #     # `mod_headers` cannot match based on the content-type, however,
 #     # the `X-Frame-Options` response header should be send only for
 #     # HTML documents and not for the other resources.
+
 #     <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|woff2?|xloc|xml|xpi)$">
 #         Header unset X-Frame-Options
 #     </FilesMatch>
+
 # </IfModule>
 
 # ----------------------------------------------------------------------
@@ -481,24 +489,29 @@ AddDefaultCharset utf-8
 # This can be done by setting a `Content Security Policy` which
 # whitelists trusted sources of content for your website.
 #
-# The example header below allows ONLY scripts that are loaded from the
-# current website's origin (no inline scripts, no CDN, etc). That almost
-# certainly won't work as-is for your website!
+# The example header below allows ONLY scripts that are loaded from
+# the current website's origin (no inline scripts, no CDN, etc).
+# That almost certainly won't work as-is for your website!
 #
-# For more details on how to craft a reasonable policy for your website,
-# read: http://www.html5rocks.com/en/tutorials/security/content-security-policy/
-# (or the specification: http://www.w3.org/TR/CSP11/). Also, to make
-# things easier, you can use an online CSP header generator such as:
-# http://cspisawesome.com/.
+# To make things easier, you can use an online CSP header generator
+# such as: http://cspisawesome.com/.
+#
+# http://content-security-policy.com/
+# http://www.html5rocks.com/en/tutorials/security/content-security-policy/
+# http://www.w3.org/TR/CSP11/).
 
 # <IfModule mod_headers.c>
+
 #     Header set Content-Security-Policy "script-src 'self'; object-src 'self'"
+
 #     # `mod_headers` cannot match based on the content-type, however,
 #     # the `Content-Security-Policy` response header should be send
 #     # only for HTML documents and not for the other resources.
+
 #     <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|woff2?|xloc|xml|xpi)$">
 #         Header unset Content-Security-Policy
 #     </FilesMatch>
+
 # </IfModule>
 
 # ----------------------------------------------------------------------
@@ -611,7 +624,7 @@ AddDefaultCharset utf-8
 #
 # http://www.slideshare.net/hasegawayosuke/owasp-hasegawa
 # http://blogs.msdn.com/b/ie/archive/2008/07/02/ie8-security-part-v-comprehensive-protection.aspx
-# http://msdn.microsoft.com/en-us/library/ie/gg622941.aspx
+# https://msdn.microsoft.com/en-us/library/ie/gg622941.aspx
 # https://mimesniff.spec.whatwg.org/
 
 <IfModule mod_headers.c>
@@ -644,7 +657,7 @@ AddDefaultCharset utf-8
 #     thereby, it's better to inform browsers to prevent the rendering
 #     of the page altogether, instead of attempting to modify it.
 #
-#     http://hackademix.net/2009/11/21/ies-xss-filter-creates-xss-vulnerabilities
+#     https://hackademix.net/2009/11/21/ies-xss-filter-creates-xss-vulnerabilities
 #
 # (!) Do not rely on the XSS filter to prevent XSS attacks! Ensure that
 #     you are taking all possible measures to prevent XSS attacks, the
@@ -655,14 +668,18 @@ AddDefaultCharset utf-8
 # https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29
 
 # <IfModule mod_headers.c>
+
 #     #                           (1)    (2)
 #     Header set X-XSS-Protection "1; mode=block"
+
 #     # `mod_headers` cannot match based on the content-type, however,
 #     # the `X-XSS-Protection` response header should be send only for
 #     # HTML documents and not for the other resources.
+
 #     <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|woff2?|xloc|xml|xpi)$">
 #         Header unset X-XSS-Protection
 #     </FilesMatch>
+
 # </IfModule>
 
 # ----------------------------------------------------------------------
