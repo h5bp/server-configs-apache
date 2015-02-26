@@ -13,6 +13,7 @@ declare -r REQUIRED_MODULES="autoindex \
                              headers \
                              include \
                              mime \
+                             php5 \
                              rewrite \
                              setenvif"
 

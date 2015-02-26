@@ -14,6 +14,7 @@ exports = module.exports = {
         'etag': null,
         'p3p': 'policyref="/w3c/p3p.xml", CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"',
         'server': 'Apache',
+        'x-powered-by': null,
         'x-content-type-options': 'nosniff',
         'x-frame-options': null,
         'x-ua-compatible': null,
@@ -304,6 +305,17 @@ exports = module.exports = {
                     responseHeaders: {
                         'content-encoding': null,
                         'content-type': 'video/mp4'
+                    }
+                },
+
+                'test.php': {
+                    responseHeaders: {
+                        'cache-control': 'max-age=0, no-transform',
+                        'content-security-policy': "script-src 'self'; object-src 'self'",
+                        'content-type': 'text/html; charset=utf-8',
+                        'x-frame-options': 'DENY',
+                        'x-ua-compatible': 'IE=edge',
+                        'x-xss-protection': '1; mode=block'
                     }
                 },
 
