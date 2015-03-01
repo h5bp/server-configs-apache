@@ -88,8 +88,8 @@ exports = module.exports = {
 
                 'test.atom': {
                     responseHeaders: {
-                        'cache-control': 'max-age=0, no-transform',
-                        'content-type': 'application/xml; charset=utf-8'
+                        'cache-control': 'max-age=3600, no-transform',
+                        'content-type': 'application/atom+xml; charset=utf-8'
                     }
                 },
 
@@ -388,8 +388,8 @@ exports = module.exports = {
 
                 'test.rss': {
                     responseHeaders: {
-                        'cache-control': 'max-age=0, no-transform',
-                        'content-type': 'application/xml; charset=utf-8'
+                        'cache-control': 'max-age=3600, no-transform',
+                        'content-type': 'application/rss+xml; charset=utf-8'
                     }
                 },
 

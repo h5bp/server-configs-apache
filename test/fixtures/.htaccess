@@ -147,10 +147,12 @@ Options -MultiViews
 
   # Data interchange
 
+    AddType application/atom+xml                        atom
     AddType application/json                            json map topojson
     AddType application/ld+json                         jsonld
+    AddType application/rss+xml                         rss
     AddType application/vnd.geo+json                    geojson
-    AddType application/xml                             atom rdf rss xml
+    AddType application/xml                             rdf xml
 
 
   # JavaScript

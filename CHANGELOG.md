@@ -1,5 +1,7 @@
 ### HEAD
 
+* Change media types for `.atom` and `.rss` files
+  [[#50](https://github.com/h5bp/server-configs-apache/issues/50)].
 * Send the HSTS header even for non-2xx responses
   [[#57](https://github.com/h5bp/server-configs-apache/issues/57)].
 * Add configs that remove the `X-Powered-By` HTTP response header
