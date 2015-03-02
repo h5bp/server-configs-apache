@@ -1,5 +1,7 @@
 ### HEAD
 
+* Add `ServerSignature Off`
+  [[#58](https://github.com/h5bp/server-configs-apache/issues/58)].
 * Change media types for `.atom` and `.rss` files
   [[#50](https://github.com/h5bp/server-configs-apache/issues/50)].
 * Send the HSTS header even for non-2xx responses

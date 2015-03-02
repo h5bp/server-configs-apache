@@ -676,6 +676,31 @@ AddDefaultCharset utf-8
     Header unset X-Powered-By
 </IfModule>
 
+# ----------------------------------------------------------------------
+# | Server software information                                        |
+# ----------------------------------------------------------------------
+
+# Prevent Apache from adding a trailing footer line containing
+# information about the server to the server-generated documents
+# (e.g.: error messages, directory listings, etc.)
+#
+# https://httpd.apache.org/docs/current/mod/core.html#serversignature
+
+ServerSignature Off
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Prevent Apache from sending in the `Server` response header its
+# exact version number, the description of the generic OS-type or
+# information about its compiled-in modules.
+#
+# (!) The `ServerTokens` directive will only work in the main server
+# configuration file, so don't try to enable it in the `.htaccess` file!
+#
+# https://httpd.apache.org/docs/current/mod/core.html#servertokens
+
+#ServerTokens Prod
+
 
 # ######################################################################
 # # WEB PERFORMANCE                                                    #
