@@ -1,4 +1,4 @@
-### HEAD
+### 2.12.0 (March 2, 2015)
 
 * Add `ServerSignature Off`
   [[#58](https://github.com/h5bp/server-configs-apache/issues/58)].
