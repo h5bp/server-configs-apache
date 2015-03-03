@@ -1,7 +1,7 @@
 ### HEAD
 
 * Remove mapping of `.php` files to `text/html`
-  [[aeb81e9](https://github.com/h5bp/server-configs-apache/commit/aeb81e9174a9c69fa3a6f6c107d53dd4c8d58760)].
+  [[daab35b](https://github.com/h5bp/server-configs-apache/commit/daab35bc91c299da23efdfa740f13a46ad10612a)].
 
 ### 2.12.0 (March 2, 2015)
 
