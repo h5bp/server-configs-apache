@@ -1,3 +1,8 @@
+### HEAD
+
+* Remove mapping of `.php` files to `text/html`
+  [[aeb81e9](https://github.com/h5bp/server-configs-apache/commit/aeb81e9174a9c69fa3a6f6c107d53dd4c8d58760)].
+
 ### 2.12.0 (March 2, 2015)
 
 * Add `ServerSignature Off`

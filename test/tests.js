@@ -308,17 +308,6 @@ exports = module.exports = {
                     }
                 },
 
-                'test.php': {
-                    responseHeaders: {
-                        'cache-control': 'max-age=0, no-transform',
-                        'content-security-policy': "script-src 'self'; object-src 'self'",
-                        'content-type': 'text/html; charset=utf-8',
-                        'x-frame-options': 'DENY',
-                        'x-ua-compatible': 'IE=edge',
-                        'x-xss-protection': '1; mode=block'
-                    }
-                },
-
                 'test.oex': {
                     responseHeaders: {
                         'content-encoding': null,
