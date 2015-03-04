@@ -217,7 +217,7 @@ Options -MultiViews
     #       </Files>
 
     AddType application/x-web-app-manifest+json         webapp
-    AddType text/cache-manifest                         appcache manifest
+    AddType text/cache-manifest                         appcache
 
 
   # Media files

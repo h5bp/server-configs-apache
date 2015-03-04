@@ -1,6 +1,7 @@
 ### HEAD
 
-* Remove mapping of `.php` files to `text/html`
+* Remove the mapping of `.manifest` files to the `text/cache-manifest` media type.
+* Remove the mapping of `.php` files to the `text/html` media type
   [[daab35b](https://github.com/h5bp/server-configs-apache/commit/daab35bc91c299da23efdfa740f13a46ad10612a)].
 
 ### 2.12.0 (March 2, 2015)

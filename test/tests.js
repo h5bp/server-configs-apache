@@ -287,13 +287,6 @@ exports = module.exports = {
                     }
                 },
 
-                'test.manifest': {
-                    responseHeaders: {
-                        'cache-control': 'max-age=0, no-transform',
-                        'content-type': 'text/cache-manifest'
-                    }
-                },
-
                 'test.map': {
                     responseHeaders: {
                         'cache-control': 'max-age=0, no-transform',
