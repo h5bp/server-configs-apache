@@ -1,4 +1,4 @@
-### HEAD
+### 2.13.0 (March 4, 2015)
 
 * Remove the mapping of `.manifest` files to the `text/cache-manifest` media type
   [[c805353](https://github.com/h5bp/server-configs-apache/commit/c805353c4142c792267945687309259fc15b2106)].

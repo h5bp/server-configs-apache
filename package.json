@@ -33,5 +33,5 @@
     "build": "bin/build/build.sh",
     "test": "npm run build && mocha --reporter spec --timeout 5000 test/test_suite.js"
   },
-  "version": "2.12.0"
+  "version": "2.13.0"
 }
