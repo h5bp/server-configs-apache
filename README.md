@@ -90,4 +90,4 @@ only possible thanks to all the awesome
 
 ## License
 
-The code is available under the [MIT license](LICENSE.md).
+The code is available under the [MIT license](LICENSE.txt).
