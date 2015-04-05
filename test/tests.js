@@ -469,6 +469,13 @@ exports = module.exports = {
                     }
                 },
 
+                'test.webmanifest': {
+                    responseHeaders: {
+                        'cache-control': 'max-age=604800, no-transform',
+                        'content-type': 'application/manifest+json; charset=utf-8'
+                    }
+                },
+
                 'test.webp': {
                     requestHeaders: {
                         'origin': 'http://'
@@ -514,13 +521,6 @@ exports = module.exports = {
                     responseHeaders: {
                         'content-encoding': null,
                         'content-type': 'application/x-xpinstall'
-                    }
-                },
-
-                '.well-known/manifest.json': {
-                    responseHeaders: {
-                        'cache-control': 'max-age=31536000, no-transform',
-                        'content-type': 'application/manifest+json; charset=utf-8'
                     }
                 }
 
@@ -616,29 +616,6 @@ exports = module.exports = {
                     statusCode: 403
                 },
 
-                '.well-known/manifest.json': {
-                    requestHeaders: null,
-                    responseBody:
-                        '{\n' +
-                        '    "name": "test",\n' +
-                        '    "icons": [{\n' +
-                        '        "src": "icon/lowres",\n' +
-                        '        "sizes": "64x64",\n' +
-                        '        "type": "image/webp"\n' +
-                        '    }, {\n' +
-                        '        "src": "icon/hd_small",\n' +
-                        '        "sizes": "64x64"\n' +
-                        '    }, {\n' +
-                        '        "src": "icon/hd_hi",\n' +
-                        '        "sizes": "128x128"\n' +
-                        '    }],\n' +
-                        '    "start_url": "/start.html",\n' +
-                        '    "display": "fullscreen",\n' +
-                        '    "orientation": "landscape"\n' +
-                        '}\n',
-                    responseHeaders: null,
-                },
-
                 '.well-known/.hidden_directory/': {
                     responseHeaders: null,
                     statusCode: 403
@@ -647,6 +624,22 @@ exports = module.exports = {
                 '.well-known/.hidden_directory/test.html': {
                     responseHeaders: null,
                     statusCode: 403
+                },
+
+                '.well-known/test.html': {
+                    requestHeaders: null,
+                    responseBody:
+                        '<!doctype html>\n' +
+                        '<html lang="en">\n' +
+                        '<head>\n' +
+                        '    <meta charset="utf-8">\n' +
+                        '    <title>test</title>\n' +
+                        '</head>\n' +
+                        '<body>\n' +
+                        '    test\n' +
+                        '</body>\n' +
+                        '</html>\n',
+                    responseHeaders: null
                 },
 
                 '.well-known/test/': {
@@ -856,25 +849,64 @@ exports = module.exports = {
                 'test.12345.cur': {
                     responseHeaders: null
                 },
+
                 'test.12345.gif': {
                     responseHeaders: null
                 },
+
                 'test.12345.ico': {
                     responseHeaders: null
                 },
+
                 'test.12345.jpeg': {
                     responseHeaders: null
                 },
+
                 'test.12345.jpg': {
                     responseHeaders: null
                 },
+
                 'test.12345.png': {
                     responseHeaders: null
                 },
+
                 'test.12345.svg': {
                     responseHeaders: null
                 },
+
                 'test.12345.svgz': {
+                    responseHeaders: null
+                },
+
+                'test.12345.webp': {
+                    responseHeaders: null
+                },
+
+                'test.12345.webmanifest': {
+                    requestHeaders: null,
+                    responseBody:
+                        '{\n' +
+                        '  "lang": "en",\n' +
+                        '  "name": "Test",\n' +
+                        '  "short_name": "Test",\n' +
+                        '  "icons": [{\n' +
+                        '    "src": "icon/lowres",\n' +
+                        '    "sizes": "64x64",\n' +
+                        '    "type": "image/webp"\n' +
+                        '  }, {\n' +
+                        '    "src": "icon/hd_small",\n' +
+                        '    "sizes": "64x64"\n' +
+                        '  }, {\n' +
+                        '    "src": "icon/hd_hi",\n' +
+                        '    "sizes": "128x128",\n' +
+                        '    "density": 2\n' +
+                        '  }],\n' +
+                        '  "scope": "/",\n' +
+                        '  "start_url": "/index.html",\n' +
+                        '  "display": "fullscreen",\n' +
+                        '  "orientation": "landscape",\n' +
+                        '  "theme_color": "aliceblue"\n' +
+                        '}\n',
                     responseHeaders: null
                 }
 

@@ -1,3 +1,7 @@
+### HEAD
+
+* Update the web app manifest file related configs.
+
 ### 2.13.0 (March 4, 2015)
 
 * Remove the mapping of `.manifest` files to the `text/cache-manifest` media type
