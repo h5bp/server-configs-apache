@@ -14,7 +14,7 @@ even cross-domain.
 
 There are a few options for getting the Apache server configs:
 
-* Download the [zip archive](https://github.com/h5bp/server-configs-apache/releases/download/2.13.0/htaccess-2.13.0.zip)
+* Download the [zip archive](https://github.com/h5bp/server-configs-apache/releases/download/2.14.0/htaccess-2.14.0.zip)
 * Install them via:
     * [npm](https://npmjs.org/): `npm install --save-dev apache-server-configs`
     * [Bower](http://bower.io/): `bower install --save-dev apache-server-configs`
