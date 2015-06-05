@@ -666,9 +666,9 @@ AddDefaultCharset utf-8
 #    (e.g.: ASP.NET, PHP), and its value contains information
 #    about them (e.g.: their name, version number)
 #
-#  * doesn't provide any value as far as users are concern,
-#    and in some cases, the information provided by it can
-#    be used by attackers
+#  * doesn't provide any value to users, contributes to header
+#    bloat, and in some cases, the information it provides can 
+#    expose vulnerabilities
 #
 # (!) If you can, you should disable the `X-Powered-By` header from the
 # language / framework level (e.g.: for PHP, you can do that by setting
