@@ -5,6 +5,7 @@
   },
   "description": "Boilerplate configurations for the Apache HTTP server",
   "devDependencies": {
+    "@alrra/travis-scripts": "^1.1.1",
     "mocha": "^2.1.0"
   },
   "files": [
