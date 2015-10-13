@@ -29,14 +29,7 @@ matrix:
 
     - env:
         - APACHE_VERSION="2.2.x"
-      node_js: "iojs"
-      script:
-        - sudo service apache2 restart
-        - npm test
-
-    - env:
-        - APACHE_VERSION="2.2.x"
-      node_js: "0.12"
+      node_js: "4"
       script:
         - sudo service apache2 restart
         - npm test
@@ -46,14 +39,7 @@ matrix:
 
     - env:
         - APACHE_VERSION="2.4.x"
-      node_js: "iojs"
-      script:
-        - sudo /usr/local/apache2/bin/apachectl start
-        - npm test
-
-    - env:
-        - APACHE_VERSION="2.4.x"
-      node_js: "0.12"
+      node_js: "4"
       script:
         - sudo /usr/local/apache2/bin/apachectl start
         - npm test
