@@ -21,10 +21,7 @@
     "server",
     "template"
   ],
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/h5bp/server-configs-apache/blob/master/LICENSE.md"
-  },
+  "license": "MIT",
   "name": "apache-server-configs",
   "repository": {
     "type": "git",
