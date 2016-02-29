@@ -19,7 +19,7 @@ create_htaccess() {
     insert_line "# access to the main server configuration file (which is usually called" "$file"
     insert_line "# \`httpd.conf\`), you should add this logic there." "$file"
     insert_line "#" "$file"
-    insert_line "# https://httpd.apache.org/docs/current/howto/htaccess.html." "$file"
+    insert_line "# https://httpd.apache.org/docs/current/howto/htaccess.html" "$file"
     insert_line "" "$file"
 
     insert_header "cross-origin" "$file"
