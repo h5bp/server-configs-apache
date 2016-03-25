@@ -130,7 +130,7 @@ Options -MultiViews
     # the `X-UA-Compatible` response header should be send only for
     # HTML documents and not for the other resources.
 
-    <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
+    <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|markdown|md|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
         Header unset X-UA-Compatible
     </FilesMatch>
 
@@ -234,6 +234,7 @@ Options -MultiViews
     AddType application/x-chrome-extension              crx
     AddType application/x-opera-extension               oex
     AddType application/x-xpinstall                     xpi
+    AddType text/markdown                               markdown md
     AddType text/vcard                                  vcard vcf
     AddType text/vnd.rim.location.xloc                  xloc
     AddType text/vtt                                    vtt
@@ -268,6 +269,8 @@ AddDefaultCharset utf-8
                      .json \
                      .jsonld \
                      .manifest \
+                     .markdown \
+                     .md \
                      .rdf \
                      .rss \
                      .topojson \
@@ -447,7 +450,7 @@ AddDefaultCharset utf-8
 #     # the `X-Frame-Options` response header should be send only for
 #     # HTML documents and not for the other resources.
 
-#     <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
+#     <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|markdown|md|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
 #         Header unset X-Frame-Options
 #     </FilesMatch>
 
@@ -482,7 +485,7 @@ AddDefaultCharset utf-8
 #     # the `Content-Security-Policy` response header should be send
 #     # only for HTML documents and not for the other resources.
 
-#     <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
+#     <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|markdown|md|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
 #         Header unset Content-Security-Policy
 #     </FilesMatch>
 
@@ -650,7 +653,7 @@ AddDefaultCharset utf-8
 #     # the `X-XSS-Protection` response header should be send only for
 #     # HTML documents and not for the other resources.
 
-#     <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
+#     <FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|markdown|md|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
 #         Header unset X-XSS-Protection
 #     </FilesMatch>
 
@@ -764,6 +767,7 @@ ServerSignature Off
                                       "text/html" \
                                       "text/javascript" \
                                       "text/plain" \
+                                      "text/markdown" \
                                       "text/vcard" \
                                       "text/vnd.rim.location.xloc" \
                                       "text/vtt" \
@@ -890,6 +894,11 @@ FileETag None
     ExpiresByType application/manifest+json             "access plus 1 week"
     ExpiresByType application/x-web-app-manifest+json   "access plus 0 seconds"
     ExpiresByType text/cache-manifest                   "access plus 0 seconds"
+
+
+  # Markdown
+
+    ExpiresByType text/markdown                         "access plus 1 month"
 
 
   # Media files
