@@ -296,6 +296,18 @@ exports = module.exports = {
                     }
                 },
 
+                'test.markdown': {
+                    responseHeaders: {
+                        'content-type': 'text/markdown; charset=utf-8'
+                    }
+                },
+
+                'test.md': {
+                    responseHeaders: {
+                        'content-type': 'text/markdown; charset=utf-8'
+                    }
+                },
+
                 'test.mp4': {
                     responseHeaders: {
                         'content-encoding': null,
