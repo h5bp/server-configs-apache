@@ -1,5 +1,9 @@
 # [Apache Server Configs](https://github.com/h5bp/server-configs-apache/)
 
+_This project is currently unmaintained. Please get in touch if you'd like to take over maintainership. ~April, 2017_
+
+-------------------
+
 [![Build Status](https://travis-ci.org/h5bp/server-configs-apache.svg)](https://travis-ci.org/h5bp/server-configs-apache)
 [![devDependency Status](https://david-dm.org/h5bp/server-configs-apache/dev-status.svg)](https://david-dm.org/h5bp/server-configs-apache#info=devDependencies)
 
