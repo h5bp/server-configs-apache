@@ -952,14 +952,14 @@ FileETag None
 
 # <IfModule mod_include.c>
 #     <FilesMatch "\.combined\.js$">
-#         Options +Includes
+#         Options +IncludesNOEXEC
 #         AddOutputFilterByType INCLUDES application/javascript \
 #                                        application/x-javascript \
 #                                        text/javascript
 #         SetOutputFilter INCLUDES
 #     </FilesMatch>
 #     <FilesMatch "\.combined\.css$">
-#         Options +Includes
+#         Options +IncludesNOEXEC
 #         AddOutputFilterByType INCLUDES text/css
 #         SetOutputFilter INCLUDES
 #     </FilesMatch>
