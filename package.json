@@ -23,11 +23,15 @@
   ],
   "scripts": {
     "build": "bin/build/build.sh",
-    "test": "npm run build && mocha --reporter spec --timeout 5000 test/test_suite.js"
+    "eslint": "eslint \"**/*.js\"",
+    "lint": "npm run eslint",
+    "mocha": "mocha --reporter spec --timeout 5000 test/test_suite.js",
+    "test": "npm run eslint && npm run build && npm run mocha"
   },
   "dependencies": {},
   "devDependencies": {
     "@alrra/travis-scripts": "^3.0.1",
+    "eslint": "^4.6.1",
     "mocha": "^3.5.0"
   },
   "files": [

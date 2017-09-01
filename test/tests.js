@@ -1,3 +1,5 @@
+'use strict';
+
 exports = module.exports = {
 
     // Global default values
@@ -132,7 +134,7 @@ exports = module.exports = {
                         'access-control-allow-origin': '*',
                         'cache-control': 'max-age=604800, no-transform',
                         'content-type': 'image/x-icon'
-                    },
+                    }
                 },
 
                 'test.eot': {
@@ -204,7 +206,7 @@ exports = module.exports = {
                 'test.html': {
                     responseHeaders: {
                         'cache-control': 'max-age=0, no-transform',
-                        'content-security-policy': "script-src 'self'; object-src 'self'",
+                        'content-security-policy': 'script-src \'self\'; object-src \'self\'',
                         'content-type': 'text/html; charset=utf-8',
                         'x-frame-options': 'DENY',
                         'x-ua-compatible': 'IE=edge',
@@ -541,7 +543,7 @@ exports = module.exports = {
                         '<!doctype html>\n' +
                         '<html lang="en">\n' +
                         '<head>\n' +
-                        '    <meta charset="utf-8">\n'+
+                        '    <meta charset="utf-8">\n' +
                         '    <title>404</title>\n' +
                         '</head>\n' +
                         '<body>\n' +
@@ -951,7 +953,7 @@ exports = module.exports = {
                         '    color: hotpink;\n' +
                         '}\n\n',
                     responseHeaders: null
-                },
+                }
 
             }
         }
