@@ -136,7 +136,7 @@ function getStatusCodeTestDescription(file, statusCode) {
 function makeGETRequest(path, requestHeaders, callback) {
 
     // Node's `http.request` options:
-    // http://nodejs.org/api/http.html#http_http_request_options_callback
+    // https://nodejs.org/api/http.html#http_http_request_options_callback
 
     var options = {
 
