@@ -298,12 +298,14 @@ exports = module.exports = {
 
                 'test.markdown': {
                     responseHeaders: {
+                        'cache-control': 'max-age=0, no-transform',
                         'content-type': 'text/markdown; charset=utf-8'
                     }
                 },
 
                 'test.md': {
                     responseHeaders: {
+                        'cache-control': 'max-age=0, no-transform',
                         'content-type': 'text/markdown; charset=utf-8'
                     }
                 },
