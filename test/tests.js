@@ -355,7 +355,7 @@ exports = module.exports = {
                 'test.otf': {
                     responseHeaders: {
                         'access-control-allow-origin': '*',
-                        'content-type': 'font/opentype'
+                        'content-type': 'font/otf'
                     }
                 },
 
@@ -436,14 +436,14 @@ exports = module.exports = {
                 'test.ttc': {
                     responseHeaders: {
                         'access-control-allow-origin': '*',
-                        'content-type': 'application/x-font-ttf'
+                        'content-type': 'font/collection'
                     }
                 },
 
                 'test.ttf': {
                     responseHeaders: {
                         'access-control-allow-origin': '*',
-                        'content-type': 'application/x-font-ttf'
+                        'content-type': 'font/ttf'
                     }
                 },
 
@@ -508,7 +508,7 @@ exports = module.exports = {
                     responseHeaders: {
                         'access-control-allow-origin': '*',
                         'content-encoding': null,
-                        'content-type': 'application/font-woff'
+                        'content-type': 'font/woff'
                     }
                 },
 
@@ -516,7 +516,7 @@ exports = module.exports = {
                     responseHeaders: {
                         'access-control-allow-origin': '*',
                         'content-encoding': null,
-                        'content-type': 'application/font-woff2'
+                        'content-type': 'font/woff2'
                     }
                 },
 
