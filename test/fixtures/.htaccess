@@ -160,7 +160,7 @@ Options -MultiViews
     # Normalize to standard type.
     # https://tools.ietf.org/html/rfc4329#section-7.2
 
-    AddType application/javascript                      js
+    AddType application/javascript                      js mjs
 
 
   # Manifest files
