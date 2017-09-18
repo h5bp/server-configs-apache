@@ -22,6 +22,8 @@ git:
 
 language: node_js
 
+dist: precise
+
 matrix:
   include:
 
