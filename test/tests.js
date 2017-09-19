@@ -1,3 +1,5 @@
+'use strict';
+
 exports = module.exports = {
 
     // Global default values
@@ -132,7 +134,7 @@ exports = module.exports = {
                         'access-control-allow-origin': '*',
                         'cache-control': 'max-age=604800, no-transform',
                         'content-type': 'image/x-icon'
-                    },
+                    }
                 },
 
                 'test.eot': {
@@ -204,7 +206,7 @@ exports = module.exports = {
                 'test.html': {
                     responseHeaders: {
                         'cache-control': 'max-age=0, no-transform',
-                        'content-security-policy': "script-src 'self'; object-src 'self'",
+                        'content-security-policy': 'script-src \'self\'; object-src \'self\'',
                         'content-type': 'text/html; charset=utf-8',
                         'x-frame-options': 'DENY',
                         'x-ua-compatible': 'IE=edge',
@@ -294,6 +296,20 @@ exports = module.exports = {
                     }
                 },
 
+                'test.markdown': {
+                    responseHeaders: {
+                        'cache-control': 'max-age=0, no-transform',
+                        'content-type': 'text/markdown; charset=utf-8'
+                    }
+                },
+
+                'test.md': {
+                    responseHeaders: {
+                        'cache-control': 'max-age=0, no-transform',
+                        'content-type': 'text/markdown; charset=utf-8'
+                    }
+                },
+
                 'test.mp4': {
                     responseHeaders: {
                         'content-encoding': null,
@@ -339,7 +355,7 @@ exports = module.exports = {
                 'test.otf': {
                     responseHeaders: {
                         'access-control-allow-origin': '*',
-                        'content-type': 'font/opentype'
+                        'content-type': 'font/otf'
                     }
                 },
 
@@ -420,14 +436,14 @@ exports = module.exports = {
                 'test.ttc': {
                     responseHeaders: {
                         'access-control-allow-origin': '*',
-                        'content-type': 'application/x-font-ttf'
+                        'content-type': 'font/collection'
                     }
                 },
 
                 'test.ttf': {
                     responseHeaders: {
                         'access-control-allow-origin': '*',
-                        'content-type': 'application/x-font-ttf'
+                        'content-type': 'font/ttf'
                     }
                 },
 
@@ -492,7 +508,7 @@ exports = module.exports = {
                     responseHeaders: {
                         'access-control-allow-origin': '*',
                         'content-encoding': null,
-                        'content-type': 'application/font-woff'
+                        'content-type': 'font/woff'
                     }
                 },
 
@@ -500,7 +516,7 @@ exports = module.exports = {
                     responseHeaders: {
                         'access-control-allow-origin': '*',
                         'content-encoding': null,
-                        'content-type': 'application/font-woff2'
+                        'content-type': 'font/woff2'
                     }
                 },
 
@@ -541,7 +557,7 @@ exports = module.exports = {
                         '<!doctype html>\n' +
                         '<html lang="en">\n' +
                         '<head>\n' +
-                        '    <meta charset="utf-8">\n'+
+                        '    <meta charset="utf-8">\n' +
                         '    <title>404</title>\n' +
                         '</head>\n' +
                         '<body>\n' +
@@ -951,7 +967,7 @@ exports = module.exports = {
                         '    color: hotpink;\n' +
                         '}\n\n',
                     responseHeaders: null
-                },
+                }
 
             }
         }

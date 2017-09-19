@@ -1,17 +1,17 @@
 {
   "author": "The H5BP Team",
+  "description": "Boilerplate configurations for the Apache HTTP server",
+  "version": "2.14.0",
+  "homepage": "https://github.com/h5bp/server-configs-apache",
+  "license": "MIT",
+  "name": "apache-server-configs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h5bp/server-configs-apache.git"
+  },
   "bugs": {
     "url": "https://github.com/h5bp/server-configs-apache/issues"
   },
-  "description": "Boilerplate configurations for the Apache HTTP server",
-  "devDependencies": {
-    "@alrra/travis-scripts": "^1.1.1",
-    "mocha": "^2.1.0"
-  },
-  "files": [
-    "dist"
-  ],
-  "homepage": "https://github.com/h5bp/server-configs-apache",
   "keywords": [
     "apache",
     "boilerplate",
@@ -21,15 +21,20 @@
     "server",
     "template"
   ],
-  "license": "MIT",
-  "name": "apache-server-configs",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/h5bp/server-configs-apache"
-  },
   "scripts": {
     "build": "bin/build/build.sh",
-    "test": "npm run build && mocha --reporter spec --timeout 5000 test/test_suite.js"
+    "eslint": "eslint \"**/*.js\"",
+    "lint": "npm run eslint",
+    "mocha": "mocha --reporter spec --timeout 5000 test/test_suite.js",
+    "test": "npm run eslint && npm run build && npm run mocha"
   },
-  "version": "2.14.0"
+  "dependencies": {},
+  "devDependencies": {
+    "@alrra/travis-scripts": "^3.0.1",
+    "eslint": "^4.6.1",
+    "mocha": "^3.5.0"
+  },
+  "files": [
+    "dist"
+  ]
 }

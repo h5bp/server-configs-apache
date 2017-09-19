@@ -1,6 +1,6 @@
 # For more information about the configurations used
 # in this file, please see the Travis CI documentation:
-# http://docs.travis-ci.com
+# https://docs.travis-ci.com/
 
 after_success:
   - |
@@ -22,6 +22,8 @@ git:
 
 language: node_js
 
+dist: precise
+
 matrix:
   include:
 
@@ -29,7 +31,7 @@ matrix:
 
     - env:
         - APACHE_VERSION="2.2.x"
-      node_js: "4"
+      node_js: "8"
       script:
         - sudo service apache2 restart
         - npm test
@@ -39,7 +41,7 @@ matrix:
 
     - env:
         - APACHE_VERSION="2.4.x"
-      node_js: "4"
+      node_js: "8"
       script:
         - sudo /usr/local/apache2/bin/apachectl start
         - npm test

@@ -1,3 +1,5 @@
+'use strict';
+
 var assert = require('assert');
 var http = require('http');
 var path = require('path');
@@ -6,7 +8,7 @@ var url = require('url');
 var fileDefaultTests = 'tests.js';
 var fileServerSpecificTests = process.env.SERVER_SPECIFIC_TESTS;
 
-var URL= url.parse(process.env.BASE_URL || "http://localhost/");
+var URL = url.parse(process.env.BASE_URL || 'http://localhost/');
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -18,14 +20,14 @@ function generateTestSuite(defaultTests, serverSpecificTests) {
     var tests;
 
     // Merge the global default values with the server specific default values
-    defaultRequestHeaders = getHeaders( defaultTests.defaultRequestHeaders,
-                                        serverSpecificTests.defaultRequestHeaders );
+    defaultRequestHeaders = getHeaders(defaultTests.defaultRequestHeaders,
+        serverSpecificTests.defaultRequestHeaders);
 
-    defaultResponseHeaders = getHeaders( defaultTests.defaultResponseHeaders,
-                                         serverSpecificTests.defaultResponseHeaders );
+    defaultResponseHeaders = getHeaders(defaultTests.defaultResponseHeaders,
+        serverSpecificTests.defaultResponseHeaders);
 
-    defaultStatusCode = getStatusCode( defaultTests.defaultStatusCode,
-                                       serverSpecificTests.defaultStatusCode );
+    defaultStatusCode = getStatusCode(defaultTests.defaultStatusCode,
+        serverSpecificTests.defaultStatusCode);
 
     tests = defaultTests.tests.concat(serverSpecificTests.tests);
 
@@ -34,14 +36,14 @@ function generateTestSuite(defaultTests, serverSpecificTests) {
         Object.keys(test.files).forEach(function (file) {
             var obj = test.files[file];
 
-            obj.requestHeaders = getHeaders( defaultRequestHeaders,
-                                             obj.requestHeaders );
+            obj.requestHeaders = getHeaders(defaultRequestHeaders,
+                obj.requestHeaders);
 
-            obj.responseHeaders = getHeaders( defaultResponseHeaders,
-                                              obj.responseHeaders );
+            obj.responseHeaders = getHeaders(defaultResponseHeaders,
+                obj.responseHeaders);
 
-            obj.statusCode = getStatusCode( defaultStatusCode,
-                                            obj.statusCode );
+            obj.statusCode = getStatusCode(defaultStatusCode,
+                obj.statusCode);
 
         });
     });
@@ -77,15 +79,16 @@ function getHeaders(defaultValues, values) {
 
     var result = {};
 
-    if ( values !== null ) { // if `values` is `null`, it means that the user
-                             // doesn't want to test for these specific headers
-                             // values, so we need to skip this step
+    // if `values` is `null`, it means that the user
+    // doesn't want to test for these specific headers
+    // values, so we need to skip this step
+    if (values !== null) {
 
-        defaultValues = defaultValues !== undefined ? defaultValues : {};
-        values = values !== undefined ? values : {};
+        defaultValues = typeof defaultValues !== 'undefined' ? defaultValues : {};
+        values = typeof values !== 'undefined' ? values : {};
 
         Object.keys(defaultValues).forEach(function (value) {
-            if ( values[value] !== undefined ) {
+            if (typeof values[value] !== 'undefined') {
                 result[value] = values[value];
             } else {
                 result[value] = defaultValues[value];
@@ -93,7 +96,7 @@ function getHeaders(defaultValues, values) {
         });
 
         Object.keys(values).forEach(function (value) {
-            if ( result[value] === undefined ) {
+            if (typeof result[value] === 'undefined') {
                 result[value] = values[value];
             }
         });
@@ -105,7 +108,7 @@ function getHeaders(defaultValues, values) {
 
 function getResponseBodyTestDescription(file, content) {
     return 'should contain the following content: "' +
-            content.replace(/\n/g,'\\n').replace(/\r/g,'\\r') + '"';
+            content.replace(/\n/g, '\\n').replace(/\r/g, '\\r') + '"';
 }
 
 function getResponseHeaderTestDescription(file, header, headerValue) {
@@ -113,9 +116,9 @@ function getResponseHeaderTestDescription(file, header, headerValue) {
     var msg = '';
 
     msg += 'should ';
-    msg += ( headerValue === null ? 'NOT ': '' );
+    msg += headerValue === null ? 'NOT ' : '';
     msg += 'have the ';
-    msg += '`' + header + ( headerValue !== null ? ': ' + headerValue  : '' )+ '` ';
+    msg += '`' + header + (headerValue !== null ? ': ' + headerValue : '') + '` ';
     msg += 'HTTP response header';
 
     return msg;
@@ -123,7 +126,7 @@ function getResponseHeaderTestDescription(file, header, headerValue) {
 }
 
 function getStatusCode(defaultValue, value) {
-    return value !== undefined ? value : defaultValue;
+    return typeof value !== 'undefined' ? value : defaultValue;
 }
 
 function getStatusCodeTestDescription(file, statusCode) {
@@ -133,13 +136,14 @@ function getStatusCodeTestDescription(file, statusCode) {
 function makeGETRequest(path, requestHeaders, callback) {
 
     // Node's `http.request` options:
-    // http://nodejs.org/api/http.html#http_http_request_options_callback
+    // https://nodejs.org/api/http.html#http_http_request_options_callback
 
     var options = {
 
         // Agent behavior
-        agent: false,  // opt out of connection pooling
-                       // (defaults request to `Connection: close`)
+        // opt out of connection pooling
+        // (defaults request to `Connection: close`)
+        agent: false,
 
         // Request headers
         headers: requestHeaders,
@@ -195,7 +199,7 @@ function run(tests) {
 
                     // Make GET request and test the HTTP response status code
                     it(getStatusCodeTestDescription(file, expectedStatusCode), function (done) {
-                         makeGETRequest(file, values.requestHeaders, function (res) {
+                        makeGETRequest(file, values.requestHeaders, function (res) {
                             response = res;
                             assert.equal(res.statusCode, expectedStatusCode);
                             done();
@@ -203,7 +207,7 @@ function run(tests) {
                     });
 
                     // Test the HTTP response headers
-                    if ( expectedResponseHeaders !== undefined ) {
+                    if (typeof expectedResponseHeaders !== 'undefined') {
                         Object.keys(expectedResponseHeaders).forEach(function (header) {
                             it(getResponseHeaderTestDescription(file, header, expectedResponseHeaders[header]), function () {
                                 assert.equal(response.headers[header], expectedResponseHeaders[header]);
@@ -212,7 +216,7 @@ function run(tests) {
                     }
 
                     // Test the HTTP response body data
-                    if ( expectedResponseBody !== undefined ) {
+                    if (typeof expectedResponseBody !== 'undefined') {
                         it(getResponseBodyTestDescription(file, expectedResponseBody), function () {
                             assert.equal(response.body, expectedResponseBody);
                         });
@@ -234,7 +238,7 @@ function main() {
 
     defaultTests = require(path.resolve(__dirname, fileDefaultTests));
 
-    if ( fileServerSpecificTests !== undefined ) {
+    if (typeof fileServerSpecificTests !== 'undefined') {
         serverSpecificTests = require(path.resolve('.', fileServerSpecificTests));
     } else {
         // If there are no server specific tests, just provide a dummy
