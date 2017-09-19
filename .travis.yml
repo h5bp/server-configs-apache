@@ -2,6 +2,51 @@
 # in this file, please see the Travis CI documentation:
 # https://docs.travis-ci.com/
 
+sudo: required
+language: node_js
+node_js:
+  - "8"
+
+git:
+  depth: 5
+
+cache:
+  directories:
+    - "node_modules"
+
+env:
+  global:
+    - secure: "KdKjkn16idVwU/znf7HLztR8sq0NX7i1qWEbB7y96zdSH9NYzN2KndcjkjBfhK6qawVJ3mDVyYCr46VRalJR+AlnbwDddGKJ9+Aclk61uf6PUuLF6gHr2kwpGWpvl9zgdFKlLbRqd2lRBJw5DC3ene5qPZ2G22Ymkhdw/PTHkMY="
+matrix:
+  include:
+    # Tests for Apache 2.2.x
+    - env:
+        - APACHE_VERSION="2.2"
+        - CONF_TARGET="default"
+      dist: precise
+    # Tests for Apache 2.4.x
+    - env:
+        - APACHE_VERSION="2.4"
+        - CONF_TARGET="000-default.conf"
+
+before_script:
+  # install apache
+  - sudo apt-get update
+  - sudo apt-get install apache2 #=${APACHE_VERSION}.\*
+  # enable required modules
+  - sudo a2enmod autoindex deflate expires filter headers include mime rewrite setenvif
+  # configure apache virtual hosts
+  - sudo cp -f bin/setup/${APACHE_VERSION}.conf /etc/apache2/sites-available/${CONF_TARGET}
+  - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)/test/fixtures?g" --in-place /etc/apache2/sites-available/${CONF_TARGET}
+  - sudo chmod 777 -R $HOME
+  # add `ServerTokens Prod` to the main configuration file in order to test
+  # if Apache hides the server software information (this directive doesn't
+  # work in the `.htaccess` file)
+  # https://httpd.apache.org/docs/current/mod/core.html#servertokens
+  - sudo sh -c "printf 'ServerTokens Prod\n' >> /etc/apache2/apache2.conf"
+  # check config and restart apache
+  - sudo service apache2 restart
+
 after_success:
   - |
       # Automatically update the content from the `dist/` directory
@@ -9,39 +54,6 @@ after_success:
                                 --commands "npm run build" \
                                 --commit-message "Update the generated content [skip ci]"
 
-before_script:
-  - ./bin/setup/setup.sh
-
-env:
-  global:
-    - BUILD_DIR="$TRAVIS_BUILD_DIR"
-    - secure: "KdKjkn16idVwU/znf7HLztR8sq0NX7i1qWEbB7y96zdSH9NYzN2KndcjkjBfhK6qawVJ3mDVyYCr46VRalJR+AlnbwDddGKJ9+Aclk61uf6PUuLF6gHr2kwpGWpvl9zgdFKlLbRqd2lRBJw5DC3ene5qPZ2G22Ymkhdw/PTHkMY="
-
-git:
-  depth: 5
-
-language: node_js
-
-dist: precise
-
-matrix:
-  include:
-
-    # Tests for Apache 2.2.x
-
-    - env:
-        - APACHE_VERSION="2.2.x"
-      node_js: "8"
-      script:
-        - sudo service apache2 restart
-        - npm test
-
-
-    # Tests for Apache 2.4.x
-
-    - env:
-        - APACHE_VERSION="2.4.x"
-      node_js: "8"
-      script:
-        - sudo /usr/local/apache2/bin/apachectl start
-        - npm test
+after_failure:
+  - sudo cat /var/log/apache2/error.log
+  - sudo cat /var/log/apache2/access.log
