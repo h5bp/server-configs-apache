@@ -456,6 +456,25 @@ AddDefaultCharset utf-8
 
 </IfModule>
 
+# Upgrading legacy sites to HTTPS
+#
+# Transitioning large collections of unmodifiable legacy web content
+# to encrypted, authenticated HTTPS connections can be challenging as
+# the content frequently includes links to insecure resources,
+# triggering mixed content warnings.
+#
+# Use this CSP directive (upgrade-insecure-resources),
+# to upgrade insecure resource HTTPS more easily, requests to HTTPS
+# before fetching them. This change allows developers to serve their
+# hard-to-update legacy content via improving security for their users.
+#
+# https://w3c.github.io/webappsec/specs/upgrade/
+# https://googlechrome.github.io/samples/csp-upgrade-insecure-requests/index.html
+
+<IfModule mod_headers.c>
+    Header set Content-Security-Policy "upgrade-insecure-requests" env=HTTPS
+</IfModule>
+
 # ----------------------------------------------------------------------
 # | File access                                                        |
 # ----------------------------------------------------------------------
@@ -549,8 +568,22 @@ AddDefaultCharset utf-8
 # https://tools.ietf.org/html/draft-ietf-websec-strict-transport-sec-14#section-6.1
 # http://blogs.msdn.com/b/ieinternals/archive/2014/08/18/hsts-strict-transport-security-attacks-mitigations-deployment-https.aspx
 
+#<IfModule mod_headers.c>
+#    Header always set Strict-Transport-Security "max-age=16070400; includeSubDomains"
+#</IfModule>
+
+# Cache SSL redirection
+#
+# Using this header, any browser that accesses the site over HTTPS will not
+# be able to access the plain HTTP site for one day (86400 seconds).
+# One you begin using this, you should not stop using SSL on your site or
+# else your returning visitors will not be able to access your site at all.
+#
+# (!) Remove the `env=HTTPS` optional directive if you want to force
+# HTTP to HTTPS.
+
 <IfModule mod_headers.c>
-    Header always set Strict-Transport-Security "max-age=16070400; includeSubDomains"
+    Header set Strict-Transport-Security "max-age=86400; includeSubDomains" env=HTTPS
 </IfModule>
 
 # ----------------------------------------------------------------------
