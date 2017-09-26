@@ -224,13 +224,13 @@ exports = module.exports = {
                         'content-type': 'image/x-icon'
                     }
                 },
-                
+
                 'test.ics': {
                     responseHeaders: {
                         'content-type': 'text/calendar; charset=utf-8'
                     }
                 },
-                
+
                 'test.jpeg': {
                     requestHeaders: {
                         'origin': 'http://'
