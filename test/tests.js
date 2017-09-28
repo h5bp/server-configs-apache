@@ -227,6 +227,7 @@ exports = module.exports = {
 
                 'test.ics': {
                     responseHeaders: {
+                        'cache-control': 'max-age=0, no-transform',
                         'content-type': 'text/calendar; charset=utf-8'
                     }
                 },
