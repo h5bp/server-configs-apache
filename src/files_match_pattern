@@ -1,0 +1,52 @@
+# List of extensions used for common FilesMatch directives:
+# * internet_explorer/x-ua-compatible.conf
+# * security/content-security-policy.conf
+# * security/x-frame-option.conf
+# * security/x-xss-protection.conf
+appcache
+atom
+bbaw
+bmp
+crx
+css
+cur
+eot
+f4[abpv]
+flv
+geojson
+gif
+htc
+ic[os]
+jpe?g
+m?js
+json(ld)?
+m4[av]
+manifest
+map
+markdown
+md
+mp4
+oex
+og[agv]
+opus
+otf
+pdf
+png
+rdf
+rss
+safariextz
+svgz?
+swf
+topojson
+tt[cf]
+txt
+vcard
+vcf
+vtt
+webapp
+web[mp]
+webmanifest
+woff2?
+xloc
+xml
+xpi
