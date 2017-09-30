@@ -102,6 +102,8 @@ create_htaccess() {
     insert_line "" "$file"
     insert_file_comment_out "src/web_performance/filename-based_cache_busting.conf" "$file"
 
+    apply_pattern "$file"
+
 }
 
 create_htaccess_fixture() {
@@ -186,6 +188,8 @@ create_htaccess_fixture() {
     insert_line "" "$file"
     insert_file "src/web_performance/filename-based_cache_busting.conf" "$file"
 
+    apply_pattern "$file"
+
 }
 
 insert_line() {
@@ -213,6 +217,15 @@ insert_space() {
     occupied=$(printf "$1" | wc -c)
     difference=$(( $total - $occupied ))
     printf '%0.s ' $(seq 1 $difference)
+}
+
+apply_pattern() {
+    sed -e "s/%FilesMatchPattern%/$( \
+        cat "src/files_match_pattern" | \
+        sed '/^#/d' | \
+        tr -s '[:space:]' '|' | \
+        sed 's/|$//' \
+    )/g" --in-place "$1"
 }
 
 print_error() {
