@@ -1,3 +1,23 @@
+### 2.15.0 (October 8, 2017)
+
+* Serve `.md` and `.markdown` files as `text/markdown`
+  [[bfcafd3](https://github.com/h5bp/server-configs-apache/commit/bfcafd36b42f8118306ce3f9c17d6463692b4be0)].
+* Add font MIME types per RFC 8081
+  [[20b446e](https://github.com/h5bp/server-configs-apache/commit/20b446e2ad6e1eec68b50277a894876e41395403)].
+* Mark `.mjs` files as JavaScript
+  [[c00975c](https://github.com/h5bp/server-configs-apache/commit/c00975c74bde80175684314c883c09ab04b5bccc)].
+* Add calendar filetype (`.ics`)
+  [[002a110](https://github.com/h5bp/server-configs-apache/commit/002a110bf35c25af66ab09ef1bd724ece5fd8266)].
+* Block Mercurial `.orig` files
+  [[4c13648](https://github.com/h5bp/server-configs-apache/commit/4c1364885477e836fec24a6d8330cba69cf3d3a0)].
+* Fix enforcing www/no-www with HTTPS
+  [[fc747bb](https://github.com/h5bp/server-configs-apache/commit/fc747bbdf0a0c224ec08d8b925f33671e4d5046d)].
+* Drop Bower support
+  [[ee6cd75](https://github.com/h5bp/server-configs-apache/commit/ee6cd751f0b907239a032ec5477ee3bfbc2bc570)].
+* Fix HTTPS enforcement rule
+  [[11e523d](https://github.com/h5bp/server-configs-apache/commit/11e523d10ad8bb604fe692ec8d1fd40adc0010fa)].
+* Improve inline comments.
+
 ### 2.14.0 (April 4, 2015)
 
 * Update the web app manifest file related configs
