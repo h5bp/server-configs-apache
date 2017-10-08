@@ -31,8 +31,8 @@
   "dependencies": {},
   "devDependencies": {
     "@alrra/travis-scripts": "^3.0.1",
-    "eslint": "^4.6.1",
-    "mocha": "^3.5.0"
+    "eslint": "^4.8.0",
+    "mocha": "^4.0.1"
   },
   "files": [
     "dist"
