@@ -257,7 +257,7 @@ exports = module.exports = {
                 'test.js': {
                     responseHeaders: {
                         'cache-control': 'max-age=31536000, no-transform',
-                        'content-type': 'application/javascript; charset=utf-8'
+                        'content-type': 'text/javascript; charset=utf-8'
                     }
                 },
 
