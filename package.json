@@ -23,10 +23,9 @@
   ],
   "scripts": {
     "build": "bin/build/build.sh",
-    "eslint": "eslint \"**/*.js\"",
-    "lint": "npm run eslint",
+    "lint": "eslint \"**/*.js\"",
     "mocha": "mocha --reporter spec --timeout 5000 test/test_suite.js",
-    "test": "npm run eslint && npm run build && npm run mocha"
+    "test": "npm run lint && npm run build && npm run mocha"
   },
   "dependencies": {},
   "devDependencies": {
@@ -36,5 +35,16 @@
   },
   "files": [
     "dist"
+  ],
+  "eslintConfig": {
+    "root": true,
+    "env": {
+        "node": true,
+        "mocha": true
+    },
+    "extends": "eslint:recommended"
+  },
+  "eslintIgnore": [
+    "test/fixtures/**"
   ]
 }
