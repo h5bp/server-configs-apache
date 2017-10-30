@@ -317,6 +317,13 @@ exports = module.exports = {
                     }
                 },
 
+                'test.mjs': {
+                    responseHeaders: {
+                        'cache-control': 'max-age=31536000, no-transform',
+                        'content-type': 'text/javascript; charset=utf-8'
+                    }
+                },
+
                 'test.mp4': {
                     responseHeaders: {
                         'content-encoding': null,
