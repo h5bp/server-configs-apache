@@ -23,6 +23,7 @@ jobs:
       before_script: ./bin/setup/setup.sh
 
     - stage: "update dist/ directory"
+      if: branch = master
       script: .travis/update-dist.sh
 
 after_failure:
