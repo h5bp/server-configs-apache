@@ -2,12 +2,9 @@
 # in this file, please see the Travis CI documentation:
 # https://docs.travis-ci.com/
 
-after_failure:
-  - sudo cat /var/log/apache2/error.log
-  - sudo cat /var/log/apache2/access.log
-
-cache:
-  directories: node_modules
+language: node_js
+node_js: node
+sudo: required
 
 env:
   global:
@@ -15,26 +12,26 @@ env:
 
 jobs:
   include:
-
-    - stage: test
-
-      before_script: ./bin/setup/setup.sh
-      dist: precise
-      env:
+    - env: # Tests for Apache 2.2.x
         - APACHE_VERSION="2.2"
         - CONF_TARGET="default"
-
-    - stage: test
       before_script: ./bin/setup/setup.sh
-      env:
+      dist: precise
+    - env: # Tests for Apache 2.4.x
        - APACHE_VERSION="2.4"
        - CONF_TARGET="000-default.conf"
+      before_script: ./bin/setup/setup.sh
 
     - stage: "update dist/ directory"
       script: .travis/update-dist.sh
 
-language: node_js
+after_failure:
+  - sudo cat /var/log/apache2/error.log
+  - sudo cat /var/log/apache2/access.log
 
-node_js: node
+addons:
+  hosts:
+    - travis.localhost
 
-sudo: required
+cache:
+  directories: node_modules
