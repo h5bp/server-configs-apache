@@ -22,9 +22,13 @@ jobs:
        - CONF_TARGET="000-default.conf"
       before_script: ./bin/setup/setup.sh
 
-    - stage: "update dist/ directory"
+    - stage: distribution
       if: branch = master
       script: .travis/update-dist.sh
+
+  fast_finish: true
+  allow_failures:
+    - stage: distribution
 
 after_failure:
   - sudo cat /var/log/apache2/error.log
