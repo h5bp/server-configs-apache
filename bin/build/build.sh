@@ -1,5 +1,9 @@
 #!/bin/bash
 
+declare partials_config;
+declare partials_config_default="partials.conf";
+
+
 # ----------------------------------------------------------------------
 # | Helper functions                                                   |
 # ----------------------------------------------------------------------
@@ -256,8 +260,14 @@ print_success() {
 # ----------------------------------------------------------------------
 
 main() {
+    partials_config="${1}"
 
-    cd "${BASH_SOURCE%/*}" && cd ../../
+    if [ ! -f "${partials_config}" ]; then
+        print_error "${partials_config} does not exist."
+        exit 1
+    fi
+
+    source "${partials_config}"
 
     clean
     print_result $? "Clean"
@@ -272,4 +282,4 @@ main() {
 
 }
 
-main
+main "${1:-$partials_config_default}"
