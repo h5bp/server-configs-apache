@@ -82,6 +82,8 @@ create_htaccess() {
     insert_line "" "$file"
     insert_file_comment_out "src/security/x-xss-protection.conf" "$file"
     insert_line "" "$file"
+    insert_file_comment_out "src/security/referrer-policy.conf" "$file"
+    insert_line "" "$file"
     insert_file "src/security/x-powered-by.conf" "$file"
     insert_line "" "$file"
     insert_file "src/security/server_software_information.conf" "$file"
