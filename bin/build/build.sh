@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 declare partials_config;
 declare partials_config_default="partials.conf";
