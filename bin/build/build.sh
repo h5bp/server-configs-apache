@@ -3,6 +3,9 @@
 declare partials_config;
 declare partials_config_default="partials.conf";
 
+declare fixtures_config;
+declare fixtures_config_default="fixtures.conf";
+
 
 # ----------------------------------------------------------------------
 # | Helper functions                                                   |
@@ -16,6 +19,7 @@ clean() {
 create_htaccess() {
 
     local file="dist/.htaccess"
+    local config="${1:-$partials_config_default}"
 
     insert_line "$(node bin/build/create_header.js)" "$file"
     insert_line "" "$file"
@@ -26,87 +30,38 @@ create_htaccess() {
     insert_line "# https://httpd.apache.org/docs/current/howto/htaccess.html" "$file"
     insert_line "" "$file"
 
-    insert_header "cross-origin" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/cross-origin/requests.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/cross-origin/images.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/cross-origin/web_fonts.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/cross-origin/resource_timing.conf" "$file"
-    insert_line "" "$file"
-    insert_line "" "$file"
 
-    insert_header "errors" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/errors/custom_errors.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/errors/error_prevention.conf" "$file"
-    insert_line "" "$file"
-    insert_line "" "$file"
+    while IFS=$" " read keyword filename; do
 
-    insert_header "internet explorer" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/internet_explorer/x-ua-compatible.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/internet_explorer/iframes_cookies.conf" "$file"
-    insert_line "" "$file"
-    insert_line "" "$file"
+        # Skip lines which
+        [[ "${keyword}" =~ ^[[:space:]]*# ]] && continue
+        [ -z "${keyword}" ] && continue
 
-    insert_header "media types and character encodings" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/media_types/media_types.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/media_types/character_encodings.conf" "$file"
-    insert_line "" "$file"
-    insert_line "" "$file"
+        # Remove quotes surrounding
+        filename="${filename%\"}"
+        filename="${filename#\"}"
 
-    insert_header "rewrites" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/rewrites/rewrite_engine.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/rewrites/rewrite_http_to_https.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/rewrites/rewrite_www.conf" "$file"
-    insert_line "" "$file"
-    insert_line "" "$file"
+        # Evaluate
+        case "${keyword}" in
+        "title")
+            insert_header "${filename}" "$file"
+            ;;
+        "enable")
+            insert_file "${filename}" "$file"
+            ;;
+        "disable")
+            insert_file_comment_out "${filename}" "$file"
+            ;;
+        "omit")
+            # noop
+            ;;
+        *)
+            print_error "Invalid keyword '${keyword}' for entry '${filename}'"
+            return 1
+            ;;
+        esac
 
-    insert_header "security" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/security/x-frame-option.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/security/content-security-policy.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/security/file_access.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/security/strict-transport-security.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/security/x-content-type-option.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/security/x-xss-protection.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/security/referrer-policy.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/security/x-powered-by.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/security/server_software_information.conf" "$file"
-    insert_line "" "$file"
-    insert_line "" "$file"
-
-    insert_header "web performance" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/web_performance/compression.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/web_performance/content_transformation.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/web_performance/etags.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/web_performance/expires_headers.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/web_performance/file_concatenation.conf" "$file"
-    insert_line "" "$file"
-    insert_file_if "src/web_performance/filename-based_cache_busting.conf" "$file"
+    done < "${config}"
 
     apply_pattern "$file"
 
@@ -115,84 +70,42 @@ create_htaccess() {
 create_htaccess_fixture() {
 
     local file="test/fixtures/.htaccess"
+    local config="${1:-$fixtures_config_default}"
 
     insert_line "$(node bin/build/create_header.js)" "$file"
     insert_line "" "$file"
-    insert_header "cross-origin" "$file"
-    insert_line "" "$file"
-    insert_file "src/cross-origin/images.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/cross-origin/web_fonts.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/cross-origin/resource_timing.conf" "$file"
-    insert_line "" "$file"
-    insert_line "" "$file"
 
-    insert_header "errors" "$file"
-    insert_line "" "$file"
-    insert_file "src/errors/custom_errors.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/errors/error_prevention.conf" "$file"
-    insert_line "" "$file"
-    insert_line "" "$file"
+    while IFS=$" " read keyword filename; do
 
-    insert_header "internet explorer" "$file"
-    insert_line "" "$file"
-    insert_file "src/internet_explorer/x-ua-compatible.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/internet_explorer/iframes_cookies.conf" "$file"
-    insert_line "" "$file"
-    insert_line "" "$file"
+        # Skip lines which
+        [[ "${keyword}" =~ ^[[:space:]]*# ]] && continue
+        [ -z "${keyword}" ] && continue
 
-    insert_header "media types and character encodings" "$file"
-    insert_line "" "$file"
-    insert_file "src/media_types/media_types.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/media_types/character_encodings.conf" "$file"
-    insert_line "" "$file"
-    insert_line "" "$file"
+        # Remove quotes surrounding
+        filename="${filename%\"}"
+        filename="${filename#\"}"
 
-    insert_header "rewrites" "$file"
-    insert_line "" "$file"
-    insert_file "src/rewrites/rewrite_engine.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/rewrites/rewrite_www.conf" "$file"
-    insert_line "" "$file"
-    insert_line "" "$file"
+        # Evaluate
+        case "${keyword}" in
+        "title")
+            insert_header "${filename}" "$file"
+            ;;
+        "enable")
+            insert_file "${filename}" "$file"
+            ;;
+        "disable")
+            insert_file_comment_out "${filename}" "$file"
+            ;;
+        "omit")
+            # noop
+            ;;
+        *)
+            print_error "Invalid keyword '${keyword}' for entry '${filename}'"
+            return 1
+            ;;
+        esac
 
-    insert_header "security" "$file"
-    insert_line "" "$file"
-    insert_file "src/security/x-frame-option.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/security/content-security-policy.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/security/file_access.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/security/strict-transport-security.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/security/x-content-type-option.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/security/x-xss-protection.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/security/x-powered-by.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/security/server_software_information.conf" "$file"
-    insert_line "" "$file"
-    insert_line "" "$file"
-
-    insert_header "web performance" "$file"
-    insert_line "" "$file"
-    insert_file "src/web_performance/compression.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/web_performance/content_transformation.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/web_performance/etags.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/web_performance/expires_headers.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/web_performance/file_concatenation.conf" "$file"
-    insert_line "" "$file"
-    insert_file "src/web_performance/filename-based_cache_busting.conf" "$file"
+    done < "${config}"
 
     apply_pattern "$file"
 
@@ -270,25 +183,28 @@ print_success() {
 
 main() {
     partials_config="${1}"
-
     if [ ! -f "${partials_config}" ]; then
         print_error "${partials_config} does not exist."
         exit 1
     fi
 
-    source "${partials_config}"
+    fixtures_config="${2}"
+    if [ ! -f "${fixtures_config}" ]; then
+        print_error "${fixtures_config} does not exist."
+        exit 1
+    fi
 
     clean
     print_result $? "Clean"
 
     mkdir dist/
 
-    create_htaccess
+    create_htaccess "${partials_config}"
     print_result $? "Create '.htaccess'"
 
-    create_htaccess_fixture
+    create_htaccess_fixture "${fixtures_config}"
     print_result $? "Create '.htaccess' fixture"
 
 }
 
-main "${1:-$partials_config_default}"
+main "${1:-$partials_config_default}" "${2:-$fixtures_config_default}"
