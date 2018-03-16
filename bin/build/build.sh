@@ -45,12 +45,15 @@ create_htaccess() {
         case "${keyword}" in
         "title")
             insert_header "${filename}" "$file"
+            insert_line "" "$file"
             ;;
         "enable")
             insert_file "${filename}" "$file"
+            insert_line "" "$file"
             ;;
         "disable")
             insert_file_comment_out "${filename}" "$file"
+            insert_line "" "$file"
             ;;
         "omit")
             # noop
@@ -89,12 +92,15 @@ create_htaccess_fixture() {
         case "${keyword}" in
         "title")
             insert_header "${filename}" "$file"
+            insert_line "" "$file"
             ;;
         "enable")
             insert_file "${filename}" "$file"
+            insert_line "" "$file"
             ;;
         "disable")
             insert_file_comment_out "${filename}" "$file"
+            insert_line "" "$file"
             ;;
         "omit")
             # noop
