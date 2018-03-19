@@ -1,6 +1,5 @@
 #!/bin/bash
 
-declare htaccess_config;
 declare htaccess_config_default="htaccess.conf";
 declare htaccess_output_default="dist/.htaccess"
 
