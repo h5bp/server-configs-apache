@@ -58,6 +58,103 @@ use them, please check the appropriate Apache documentation:
 * <https://httpd.apache.org/docs/current/configuring.html>
 * <https://httpd.apache.org/docs/current/howto/htaccess.html>
 
+## Custom .htaccess builds
+
+Security, mime-type, and caching best practices evolve, and so should do your *.htaccess* file. For those who used to manually enable or disable certain modules in their .htaccess file, we now offer a **build script** as well as a re-usable and customizable **build configuration.** 
+
+### Configuration file: *htaccess.conf*
+
+Allows you to store which module to activate or disable for your project. Just copy the default [**htaccess.conf**](https://github.com/h5bp/server-configs-apache/blob/master/htaccess.conf) from this repo into your project directory. Adjust to your needs, and/or add custom code snippets you need for your project. Its syntax is straight and pretty much self-explanatory:
+
+
+```
+# Example Module
+
+title   "example module"
+enable  "src/example-module/images.conf"
+enable  "src/example-module/web_fonts.conf"
+disable "src/example-module/not-needed.conf"
+omit    "src/example-module/not-needed-at-all.conf"
+
+... more modules ...
+```
+
+#### Disabling modules
+
+For example, the *“Cross-origin web fonts”* snippet is always included in our pre-built *.htaccess* and enabled. If your project does not deal with web fonts, you can **disable** or **omit** this section:
+
+This will comment out the section:
+
+```
+disable  "src/cross-origin/web_fonts.conf"
+```
+
+…and this will exclude the section, saving lines in output:
+
+```
+omit  "src/cross-origin/web_fonts.conf"
+```
+
+
+
+#### Enabling modules
+
+
+For example, the *“Forcing https://”* snippet is disabled by default, although being included in our pre-built *.htaccess*. To enable this snippet, open **htaccess.conf** and change the **disable** keyword to **enable:**
+
+
+```
+enable "src/rewrites/rewrite_http_to_https.conf"
+```
+
+
+#### Adding custom modules
+
+Imagine you're passing all requests to non-existing files to your favourite web framework. The according *mod_rewrite* snippet will always be the same:
+
+```
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
+```
+
+Store this snippet in a file, e.g. **config/framework_rewrites.conf,** and add a reference in your **htaccess.conf:**
+
+
+```
+# PROJECT MODULES
+enable "config/framework_rewrites.conf"
+```
+
+### Build script: *build.sh*
+
+Dive into your project root and call the build script from wherever you cloned the repo. This will create a *.htaccess* file in your current directory. Any existing **htaccess.conf** will be used; if none is present, the [**default configuration**](https://github.com/h5bp/server-configs-apache/blob/master/htaccess.conf) will apply. 
+
+
+```bash
+$ path/to/server-configs-apache/bin/build/build.sh 
+
+# Output looks like:
+[✔] Clean
+[✔] Create './.htaccess'
+```
+
+**Custom output location:** Just add output path and filename as parameter:
+
+```bash
+$ path/to/server-configs-apache/bin/build/build.sh htdocs/.htaccess
+[✔] Clean
+[✔] Create 'htdocs/.htaccess'
+```
+
+**Custom .htaccess configuration:** Why not maintain your personal **~/htaccess.conf?**
+
+```bash
+$ path/to/server-configs-apache/bin/build/build.sh ./.htaccess ~/htaccess.conf
+```
+
+
 ## Support
 
 * ### __Apache v2.2.0+__
