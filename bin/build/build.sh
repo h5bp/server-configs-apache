@@ -19,8 +19,8 @@ clean() {
 
 create_htaccess() {
 
-    local file="dist/.htaccess"
-    local config="${1:-$partials_config_default}"
+    local config="${1}"
+    local file="${2}"
 
     insert_line "$(node bin/build/create_header.js)" "$file"
     insert_line "" "$file"
@@ -73,8 +73,8 @@ create_htaccess() {
 
 create_htaccess_fixture() {
 
-    local file="test/fixtures/.htaccess"
-    local config="${1:-$fixtures_config_default}"
+    local config="${1}"
+    local file="${2}"
 
     insert_line "$(node bin/build/create_header.js)" "$file"
     insert_line "" "$file"
@@ -190,12 +190,14 @@ print_success() {
 
 main() {
     partials_config="${1}"
+    partials_output="${2}"
     if [ ! -f "${partials_config}" ]; then
         print_error "${partials_config} does not exist."
         exit 1
     fi
 
-    fixtures_config="${2}"
+    fixtures_config="${3}"
+    fixtures_output="${4}"
     if [ ! -f "${fixtures_config}" ]; then
         print_error "${fixtures_config} does not exist."
         exit 1
@@ -206,12 +208,14 @@ main() {
 
     mkdir dist/
 
-    create_htaccess "${partials_config}"
+    create_htaccess "${partials_config}" "${partials_output}"
     print_result $? "Create '.htaccess'"
 
-    create_htaccess_fixture "${fixtures_config}"
+    create_htaccess_fixture "${fixtures_config}" "${fixtures_output}"
     print_result $? "Create '.htaccess' fixture"
 
 }
 
-main "${1:-$partials_config_default}" "${2:-$fixtures_config_default}"
+main \
+"${1:-$partials_config_default}" "${dist_output_default}" \
+"${2:-$fixtures_config_default}" "${fixtures_output_default}"
