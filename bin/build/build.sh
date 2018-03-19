@@ -71,53 +71,6 @@ create_htaccess() {
 
 }
 
-create_htaccess_fixture() {
-
-    local config="${1}"
-    local file="${2}"
-
-    insert_line "$(node bin/build/create_header.js)" "$file"
-    insert_line "" "$file"
-
-    while IFS=$" " read keyword filename; do
-
-        # Skip lines which
-        [[ "${keyword}" =~ ^[[:space:]]*# ]] && continue
-        [ -z "${keyword}" ] && continue
-
-        # Remove quotes surrounding
-        filename="${filename%\"}"
-        filename="${filename#\"}"
-
-        # Evaluate
-        case "${keyword}" in
-        "title")
-            insert_header "${filename}" "$file"
-            insert_line "" "$file"
-            ;;
-        "enable")
-            insert_file "${filename}" "$file"
-            insert_line "" "$file"
-            ;;
-        "disable")
-            insert_file_comment_out "${filename}" "$file"
-            insert_line "" "$file"
-            ;;
-        "omit")
-            # noop
-            ;;
-        *)
-            print_error "Invalid keyword '${keyword}' for entry '${filename}'"
-            return 1
-            ;;
-        esac
-
-    done < "${config}"
-
-    apply_pattern "$file"
-
-}
-
 insert_line() {
     printf "$1\n" >> "$2"
 }
@@ -211,7 +164,7 @@ main() {
     create_htaccess "${partials_config}" "${partials_output}"
     print_result $? "Create '.htaccess'"
 
-    create_htaccess_fixture "${fixtures_config}" "${fixtures_output}"
+    create_htaccess "${fixtures_config}" "${fixtures_output}"
     print_result $? "Create '.htaccess' fixture"
 
 }
