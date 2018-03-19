@@ -162,8 +162,12 @@ main() {
     local htaccess_config="${2}"
     local htaccess_output_directory="$(dirname "${htaccess_output}")"
 
-    if [ ! -f "${PWD}/${htaccess_config}" ]; then
-        htaccess_config="${repo_root}/${htaccess_config_default}"
+    if [ -z "${htaccess_config}" ]; then
+        if [ -f "${PWD}/${htaccess_config_default}" ]; then
+            htaccess_config="${PWD}/${htaccess_config_default}"
+        else
+            htaccess_config="${repo_root}/${htaccess_config_default}"
+        fi;
     fi
 
     if [ ! -f "${htaccess_config}" ]; then
@@ -180,4 +184,4 @@ main() {
     print_result $? "Create '${htaccess_output}'"
 }
 
-main "${1:-$htaccess_output_default}" "${2:-$htaccess_config_default}"
+main "${1:-$htaccess_output_default}" "${2}"
