@@ -51,12 +51,22 @@ create_htaccess() {
                 filename="${repo_root}/${filename}"
             fi
 
+            if [ ! -f "${filename}" ]; then
+                print_error ".htaccess partial '${filename}' does not exist."
+                exit 1
+            fi
+
             insert_file "${filename}" "$file"
             insert_line "" "$file"
             ;;
         "disable")
             if [ ! -f "${filename}" ]; then
                 filename="${repo_root}/${filename}"
+            fi
+
+            if [ ! -f "${filename}" ]; then
+                print_error ".htaccess partial '${filename}' does not exist."
+                exit 1
             fi
 
             insert_file_comment_out "${filename}" "$file"
