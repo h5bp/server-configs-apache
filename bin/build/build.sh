@@ -2,6 +2,7 @@
 
 declare htaccess_config_default="htaccess.conf";
 declare htaccess_output_default="dist/.htaccess"
+declare repo_root="$(cd "$(dirname "$0")" && cd ../../ && pwd)"
 
 # ----------------------------------------------------------------------
 # | Helper functions                                                   |
@@ -19,7 +20,7 @@ create_htaccess() {
     local file="${1}"
     local config="${2}"
 
-    insert_line "$(node bin/build/create_header.js)" "$file"
+    insert_line "$(node ${repo_root}/bin/build/create_header.js)" "$file"
     insert_line "" "$file"
     insert_line "# (!) Using \`.htaccess\` files slows down Apache, therefore, if you have" "$file"
     insert_line "# access to the main server configuration file (which is usually called" "$file"
@@ -106,7 +107,7 @@ insert_space() {
 
 apply_pattern() {
     sed -e "s/%FilesMatchPattern%/$( \
-        cat "src/files_match_pattern" | \
+        cat "${repo_root}/src/files_match_pattern" | \
         sed '/^#/d' | \
         tr -s '[:space:]' '|' | \
         sed 's/|$//' \
@@ -142,6 +143,10 @@ main() {
     local htaccess_output="${1}"
     local htaccess_config="${2}"
     local htaccess_output_directory="$(dirname "${htaccess_output}")"
+
+    if [ ! -f "${PWD}/${htaccess_config_default}" ]; then
+        htaccess_config="${repo_root}/${htaccess_config_default}"
+    fi
 
     if [ ! -f "${htaccess_config}" ]; then
         print_error "'${htaccess_config}' does not exist."
