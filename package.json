@@ -35,8 +35,8 @@
   "repository": "h5bp/server-configs-apache",
   "scripts": {
     "build": "bin/build/build.sh",
-    "build:dist": "npm run build -- htaccess.conf dist/.htaccess",
-    "build:test": "npm run build -- test/htaccess_fixture.conf test/fixtures/.htaccess",
+    "build:dist": "npm run build -- dist/.htaccess htaccess.conf",
+    "build:test": "npm run build -- test/fixtures/.htaccess test/htaccess_fixture.conf",
     "lint": "eslint \"**/*.js\"",
     "mocha": "mocha --reporter spec --timeout 5000 test/test_suite.js",
     "test": "npm run lint && npm run build:test && npm run mocha"

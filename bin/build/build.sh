@@ -16,8 +16,8 @@ clean() {
 
 create_htaccess() {
 
-    local config="${1}"
-    local file="${2}"
+    local file="${1}"
+    local config="${2}"
 
     insert_line "$(node bin/build/create_header.js)" "$file"
     insert_line "" "$file"
@@ -139,8 +139,8 @@ print_success() {
 # ----------------------------------------------------------------------
 
 main() {
-    local htaccess_config="${1}"
-    local htaccess_output="${2}"
+    local htaccess_output="${1}"
+    local htaccess_config="${2}"
     local htaccess_output_directory="$(dirname "${htaccess_output}")"
 
     if [ ! -f "${htaccess_config}" ]; then
@@ -153,8 +153,8 @@ main() {
 
     mkdir -p "${htaccess_output_directory}"
 
-    create_htaccess "${htaccess_config}" "${htaccess_output}"
+    create_htaccess "${htaccess_output}" "${htaccess_config}"
     print_result $? "Create '${htaccess_output}'"
 }
 
-main "${1:-$htaccess_config_default}" "${2:-$htaccess_output_default}"
+main "${1:-$htaccess_output_default}" "${2:-$htaccess_config_default}"
