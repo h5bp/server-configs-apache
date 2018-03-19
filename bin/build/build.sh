@@ -5,7 +5,7 @@ declare htaccess_config_default="htaccess.conf";
 declare htaccess_output_default="dist/.htaccess"
 
 declare fixture_config;
-declare fixture_config_default="fixtures.conf";
+declare fixture_config_default="test/htaccess_fixture.conf";
 declare fixture_output_default="test/fixtures/.htaccess"
 
 # ----------------------------------------------------------------------
