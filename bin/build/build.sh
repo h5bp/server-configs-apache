@@ -2,10 +2,11 @@
 
 declare partials_config;
 declare partials_config_default="partials.conf";
+declare dist_output_default="dist/.htaccess"
 
 declare fixtures_config;
 declare fixtures_config_default="fixtures.conf";
-
+declare fixtures_output_default="test/fixtures/.htaccess"
 
 # ----------------------------------------------------------------------
 # | Helper functions                                                   |
