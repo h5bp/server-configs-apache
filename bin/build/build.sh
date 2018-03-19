@@ -1,7 +1,6 @@
 #!/bin/bash
 
 declare htaccess_config_default="htaccess.conf";
-declare htaccess_output_default="dist/.htaccess"
 declare htaccess_output_default="./.htaccess"
 declare repo_root="$(cd "$(dirname "$0")" && cd ../../ && pwd)"
 
