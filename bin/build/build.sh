@@ -1,12 +1,12 @@
 #!/bin/bash
 
-declare partials_config;
-declare partials_config_default="partials.conf";
-declare dist_output_default="dist/.htaccess"
+declare htaccess_config;
+declare htaccess_config_default="htaccess.conf";
+declare htaccess_output_default="dist/.htaccess"
 
-declare fixtures_config;
-declare fixtures_config_default="fixtures.conf";
-declare fixtures_output_default="test/fixtures/.htaccess"
+declare fixture_config;
+declare fixture_config_default="fixtures.conf";
+declare fixture_output_default="test/fixtures/.htaccess"
 
 # ----------------------------------------------------------------------
 # | Helper functions                                                   |
@@ -142,17 +142,17 @@ print_success() {
 # ----------------------------------------------------------------------
 
 main() {
-    partials_config="${1}"
-    partials_output="${2}"
-    if [ ! -f "${partials_config}" ]; then
-        print_error "${partials_config} does not exist."
+    htaccess_config="${1}"
+    htaccess_output="${2}"
+    if [ ! -f "${htaccess_config}" ]; then
+        print_error "${htaccess_config} does not exist."
         exit 1
     fi
 
-    fixtures_config="${3}"
-    fixtures_output="${4}"
-    if [ ! -f "${fixtures_config}" ]; then
-        print_error "${fixtures_config} does not exist."
+    fixture_config="${3}"
+    fixture_output="${4}"
+    if [ ! -f "${fixture_config}" ]; then
+        print_error "${fixture_config} does not exist."
         exit 1
     fi
 
@@ -161,14 +161,14 @@ main() {
 
     mkdir dist/
 
-    create_htaccess "${partials_config}" "${partials_output}"
+    create_htaccess "${htaccess_config}" "${htaccess_output}"
     print_result $? "Create '.htaccess'"
 
-    create_htaccess "${fixtures_config}" "${fixtures_output}"
+    create_htaccess "${fixture_config}" "${fixture_output}"
     print_result $? "Create '.htaccess' fixture"
 
 }
 
 main \
-"${1:-$partials_config_default}" "${dist_output_default}" \
-"${2:-$fixtures_config_default}" "${fixtures_output_default}"
+"${1:-$htaccess_config_default}" "${htaccess_output_default}" \
+"${2:-$fixture_config_default}" "${fixture_output_default}"
