@@ -13,8 +13,10 @@ declare fixture_output_default="test/fixtures/.htaccess"
 # ----------------------------------------------------------------------
 
 clean() {
-    rm -rf dist/
-    rm -rf test/fixtures/.htaccess
+    for removee in "$@"
+    do
+        rm -rf "${removee}"
+    done
 }
 
 create_htaccess() {
@@ -156,10 +158,10 @@ main() {
         exit 1
     fi
 
-    clean
+    clean "${htaccess_output}" "${fixture_output}"
     print_result $? "Clean"
 
-    mkdir dist/
+    mkdir -p dist/
 
     create_htaccess "${htaccess_config}" "${htaccess_output}"
     print_result $? "Create '.htaccess'"
