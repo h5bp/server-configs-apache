@@ -145,7 +145,7 @@ main() {
     local htaccess_output_directory="$(dirname "${htaccess_output}")"
 
     if [ ! -f "${htaccess_config}" ]; then
-        print_error "${htaccess_config} does not exist."
+        print_error "'${htaccess_config}' does not exist."
         exit 1
     fi
 
@@ -155,7 +155,7 @@ main() {
     mkdir -p "${htaccess_output_directory}"
 
     create_htaccess "${htaccess_config}" "${htaccess_output}"
-    print_result $? "Create '.htaccess'"
+    print_result $? "Create '${htaccess_output}'"
 }
 
 main "${1:-$htaccess_config_default}" "${2:-$htaccess_output_default}"
