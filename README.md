@@ -16,14 +16,16 @@ There are a few options for getting the Apache server configs:
 * Download the [zip archive](https://github.com/h5bp/server-configs-apache/archive/2.15.0.zip)
 * Install them via [npm](https://www.npmjs.com/): 
   `npm install --save-dev apache-server-configs`
+  
+Inside the **dist/** folder, you'll find a ready-to-use **.htaccess** file.
 
 
 ## Usage
 
 If you have access to the [main server configuration
 file](https://httpd.apache.org/docs/current/configuring.html#main)
-(usually called `httpd.conf`), you should add the logic from the
-[`.htaccess`](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess)
+(usually called `httpd.conf`), you should add the logic from the pre-built
+[`dist/.htaccess`](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess)
 file in, for example, a
 [`<Directory>`](https://httpd.apache.org/docs/current/mod/core.html#directory)
 section in the main configuration file. This is usually the recommended
