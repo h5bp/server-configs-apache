@@ -4,10 +4,6 @@ declare htaccess_config;
 declare htaccess_config_default="htaccess.conf";
 declare htaccess_output_default="dist/.htaccess"
 
-declare fixture_config;
-declare fixture_config_default="test/htaccess_fixture.conf";
-declare fixture_output_default="test/fixtures/.htaccess"
-
 # ----------------------------------------------------------------------
 # | Helper functions                                                   |
 # ----------------------------------------------------------------------
@@ -153,26 +149,13 @@ main() {
         exit 1
     fi
 
-    local fixture_config="${3}"
-    local fixture_output="${4}"
-    if [ ! -f "${fixture_config}" ]; then
-        print_error "${fixture_config} does not exist."
-        exit 1
-    fi
-
-    clean "${htaccess_output}" "${fixture_output}"
+    clean "${htaccess_output}"
     print_result $? "Clean"
 
     mkdir -p "${htaccess_output_directory}"
 
     create_htaccess "${htaccess_config}" "${htaccess_output}"
     print_result $? "Create '.htaccess'"
-
-    create_htaccess "${fixture_config}" "${fixture_output}"
-    print_result $? "Create '.htaccess' fixture"
-
 }
 
-main \
-"${1:-$htaccess_config_default}" "${htaccess_output_default}" \
-"${2:-$fixture_config_default}" "${fixture_output_default}"
+main "${1:-$htaccess_config_default}" "${2:-$htaccess_output_default}"
