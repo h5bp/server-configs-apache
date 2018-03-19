@@ -60,11 +60,13 @@ use them, please check the appropriate Apache documentation:
 
 ## Custom .htaccess builds
 
-Security, mime-type, and caching best practices evolve, and so should do your *.htaccess* file. For those who used to manually enable or disable certain modules in their .htaccess file, we now offer a **build script** as well as a re-usable and customizable **build configuration.** 
+Security, mime-type, and caching best practices evolve, and so should do your *.htaccess* file. In the past, with each new *Apache Server Configs* release it was quite tedious to find out which *.htaccess* trick was just new or only had changes in certain nuances.
+
+Our new [**build script**](#build-script-buildsh) with its re-usable and customizable [**build configuration**](#configuration-file-htaccessconf) lets you easily update your *.htaccess* file. Each new *.htaccess* build will contain our updated source files, enabled or commented-out according to your settings in the *htaccess.conf* of your project root.
 
 ### Configuration file: *htaccess.conf*
 
-Allows you to store which module to activate or disable for your project. Just copy the default [**htaccess.conf**](https://github.com/h5bp/server-configs-apache/blob/master/htaccess.conf) from this repo into your project directory. Adjust to your needs, and/or add custom code snippets you need for your project. Its syntax is straight and pretty much self-explanatory:
+Allows you to define which module to [enable](#enabling-modules) or [disable](#disabling-modules) for your project. Just copy the default [**htaccess.conf**](https://github.com/h5bp/server-configs-apache/blob/master/htaccess.conf) from this repo into your project directory. Adjust to your needs, and/or [add custom code](#adding-custom-modules) snippets you need for your project. Its syntax is straight and pretty much self-explanatory:
 
 
 ```
@@ -81,7 +83,7 @@ omit    "src/example-module/not-needed-at-all.conf"
 
 #### Disabling modules
 
-For example, the *“Cross-origin web fonts”* snippet is always included in our pre-built *.htaccess* and enabled. If your project does not deal with web fonts, you can **disable** or **omit** this section:
+For example, the *“Cross-origin web fonts”* snippet is always included in our pre-built [*.htaccess*](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess) file and enabled. If your project does not deal with web fonts, you can **disable** or **omit** this section:
 
 This will comment out the section:
 
@@ -100,7 +102,7 @@ omit  "src/cross-origin/web_fonts.conf"
 #### Enabling modules
 
 
-For example, the *“Forcing https://”* snippet is disabled by default, although being included in our pre-built *.htaccess*. To enable this snippet, open **htaccess.conf** and change the **disable** keyword to **enable:**
+For example, the *“Forcing https://”* snippet is disabled by default, although being included in our pre-built [*.htaccess*](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess). To enable this snippet, change the **disable** keyword to **enable:**
 
 
 ```
@@ -110,7 +112,7 @@ enable "src/rewrites/rewrite_http_to_https.conf"
 
 #### Adding custom modules
 
-Imagine you're passing all requests to non-existing files to your favourite web framework. The according *mod_rewrite* snippet will always be the same:
+Imagine you're passing all requests to non-existing files to your favourite web framework. The according *mod_rewrite* snippet would go like this:
 
 ```
 RewriteEngine On
@@ -129,7 +131,10 @@ enable "config/framework_rewrites.conf"
 
 ### Build script: *build.sh*
 
-Dive into your project root and call the build script from wherever you cloned the repo. This will create a *.htaccess* file in your current directory. Any existing **htaccess.conf** will be used; if none is present, the [**default configuration**](https://github.com/h5bp/server-configs-apache/blob/master/htaccess.conf) will apply. 
+Dive into your project root and call the build script from wherever you cloned the repo. Here are three examples:
+
+**1. Create a default .htaccess**  
+in current work directory. An existing **htaccess.conf** in this directory will be used; if none is present, the [**default configuration**](https://github.com/h5bp/server-configs-apache/blob/master/htaccess.conf) will apply.
 
 
 ```bash
@@ -140,7 +145,8 @@ $ path/to/server-configs-apache/bin/build/build.sh
 [✔] Create './.htaccess'
 ```
 
-**Custom output location:** Just add output path and filename as parameter:
+**2. Custom output location**  
+Just add output path and filename as parameter:
 
 ```bash
 $ path/to/server-configs-apache/bin/build/build.sh htdocs/.htaccess
@@ -148,7 +154,8 @@ $ path/to/server-configs-apache/bin/build/build.sh htdocs/.htaccess
 [✔] Create 'htdocs/.htaccess'
 ```
 
-**Custom .htaccess configuration:** Why not maintain your personal **~/htaccess.conf?**
+**3. Custom .htaccess configuration**  
+Why not maintain your personal **~/htaccess.conf?** This example creates a *.htaccess* in current work directory, according to your favourite settings you may have stored in your `$HOME` directory: 
 
 ```bash
 $ path/to/server-configs-apache/bin/build/build.sh ./.htaccess ~/htaccess.conf
