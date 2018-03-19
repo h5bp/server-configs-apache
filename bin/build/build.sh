@@ -47,10 +47,18 @@ create_htaccess() {
             insert_line "" "$file"
             ;;
         "enable")
+            if [ ! -f "${filename}" ]; then
+                filename="${repo_root}/${filename}"
+            fi
+
             insert_file "${filename}" "$file"
             insert_line "" "$file"
             ;;
         "disable")
+            if [ ! -f "${filename}" ]; then
+                filename="${repo_root}/${filename}"
+            fi
+
             insert_file_comment_out "${filename}" "$file"
             insert_line "" "$file"
             ;;
