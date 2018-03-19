@@ -144,15 +144,15 @@ print_success() {
 # ----------------------------------------------------------------------
 
 main() {
-    htaccess_config="${1}"
-    htaccess_output="${2}"
+    local htaccess_config="${1}"
+    local htaccess_output="${2}"
     if [ ! -f "${htaccess_config}" ]; then
         print_error "${htaccess_config} does not exist."
         exit 1
     fi
 
-    fixture_config="${3}"
-    fixture_output="${4}"
+    local fixture_config="${3}"
+    local fixture_output="${4}"
     if [ ! -f "${fixture_config}" ]; then
         print_error "${fixture_config} does not exist."
         exit 1
