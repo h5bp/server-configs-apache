@@ -71,6 +71,21 @@ assert_file_contains() {
     fi
 }
 
+assert_file_not_contains() {
+    local output_file="${1}"
+    local search_content="${2}"
+
+    # TODO - Help appreciated
+    # This is too permissive, e.g.: Given a three-line $search_content,
+    # grep also produces output when only one of those three lines is matching.
+    # It rather should test for ALL lines in $search_content...
+    if [ ! -z "$(grep "${search_content}" "${PWD}/${output_file}")" ]; then
+        print_error "Content mismatch"
+        printf "Output file '%s' in fact does contain string: '%s'\\n" "${output_file}" "${search_content}"
+        exit 1
+    fi
+}
+
 prepare_temp_dir() {
     cd "${temp_directory}"
     rm -Rf *
@@ -137,6 +152,19 @@ main() {
        assert_exit_code 1 $? \
     && print_success "TEST OK"
 
+
+
+    echo "Test configuration file keywords evaluation"
+    output_file=".htaccess"
+
+    execute_htaccess_builder "${output_file}" "${repo_root}/test/htaccess_test_build.conf"
+       assert_exit_code 0 $? \
+    && assert_file_exists "${output_file}" \
+    && assert_file_contains "${output_file}" "THE TITLE" \
+    && assert_file_contains "${output_file}" "AAAAAA" \
+    && assert_file_contains "${output_file}" "# BBBBBB" \
+    && assert_file_not_contains "${output_file}" "CCCCCC" \
+    && print_success "TEST OK"
 }
 
 main
