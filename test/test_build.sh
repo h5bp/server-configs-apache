@@ -109,6 +109,7 @@ execute_htaccess_builder() {
 
 main() {
 
+    echo;
     echo "Call w/o any parameter"
     output_file="./.htaccess"
 
@@ -121,7 +122,7 @@ main() {
 
 
 
-
+    echo;
     echo "Call with custom output path"
     output_file="path/to/subdir/.htaccess"
     execute_htaccess_builder "${output_file}"
@@ -133,7 +134,7 @@ main() {
 
 
 
-
+    echo;
     echo "Call with custom output path and existing custom config file"
     output_file="path/to/another/subdir/.htaccess"
 
@@ -144,7 +145,7 @@ main() {
     && print_success "TEST OK"
 
 
-
+    echo;
     echo "Call with custom output path and not-existing custom config file"
     output_file="path/to/somewhere/else/.htaccess"
 
@@ -153,7 +154,7 @@ main() {
     && print_success "TEST OK"
 
 
-
+    echo;
     echo "Test configuration file keywords evaluation"
     output_file=".htaccess"
 
