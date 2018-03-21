@@ -17,6 +17,15 @@ declare temp_directory="$(mktemp -d ${TMPDIR:-/tmp/}server-configs-apache.XXXXXX
 # declare search_content="$(node ${repo_root}/bin/build/create_header.js)"
 declare search_content="Apache Server Configs v2.15.0 | MIT License"
 
+# ----------------------------------------------------------------------
+# | File system                                                        |
+# ----------------------------------------------------------------------
+
+prepare_temp_dir() {
+    cd "${temp_directory}"
+    rm -Rf *
+    touch "existing.conf"
+}
 
 # Default Exit or SIGINT(2) handler
 trapCleanupTempDir() {
@@ -25,6 +34,20 @@ trapCleanupTempDir() {
 }
 
 trap trapCleanupTempDir EXIT SIGINT
+
+# ----------------------------------------------------------------------
+# | Helper functions                                                   |
+# ----------------------------------------------------------------------
+
+execute_htaccess_builder() {
+    prepare_temp_dir
+
+    output_file="${1}"
+    config_file="${2}"
+
+    "${build_command}" "${output_file}" "${config_file}"
+    return $?
+}
 
 print_error() {
     # Print output in red
@@ -86,26 +109,9 @@ assert_file_not_contains() {
     fi
 }
 
-prepare_temp_dir() {
-    cd "${temp_directory}"
-    rm -Rf *
-    touch "existing.conf"
-}
-
-execute_htaccess_builder() {
-    prepare_temp_dir
-
-    output_file="${1}"
-    config_file="${2}"
-
-    "${build_command}" "${output_file}" "${config_file}"
-    return $?
-}
-
-
-# ================================================
-# The test suite
-# ================================================
+# ----------------------------------------------------------------------
+# | Main                                                               |
+# ----------------------------------------------------------------------
 
 main() {
 
@@ -121,7 +127,6 @@ main() {
 
 
 
-
     echo;
     echo "Call with custom output path"
     output_file="path/to/subdir/.htaccess"
@@ -130,7 +135,6 @@ main() {
     && assert_file_exists "${output_file}" \
     && assert_file_contains "${output_file}" "${search_content}" \
     && print_success "TEST OK"
-
 
 
 
@@ -145,6 +149,7 @@ main() {
     && print_success "TEST OK"
 
 
+
     echo;
     echo "Call with custom output path and not-existing custom config file"
     output_file="path/to/somewhere/else/.htaccess"
@@ -152,6 +157,7 @@ main() {
     execute_htaccess_builder "${output_file}" "foobar.conf"
        assert_exit_code 1 $? \
     && print_success "TEST OK"
+
 
 
     echo;
