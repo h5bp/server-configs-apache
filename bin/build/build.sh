@@ -22,9 +22,7 @@ prepareTempDirectory() {
 
 # Default Exit or SIGINT(2) handler
 trapCleanupTempDir() {
-    [ -d "${temp_directory}" ] \
-    && rm -Rf "${temp_directory}" \
-    && print_success "Tidy up filesystem"
+    rm -Rf "${temp_directory}"
 }
 
 trap trapCleanupTempDir EXIT SIGINT
@@ -185,7 +183,6 @@ main() {
     fi
 
     prepareTempDirectory
-    print_result $? "Prepare filesystem"
 
     create_htaccess "${htaccess_output_tmp}" "${htaccess_config}"
     create_htaccess_result=$?
