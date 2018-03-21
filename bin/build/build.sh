@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Runtime Environment
+set -o errexit
+#set -o nounset
+#set -o pipefail
+# set -o xtrace
+
 declare htaccess_config_default="htaccess.conf";
 declare htaccess_output_default="./.htaccess"
 declare repo_root="$(cd "$(dirname "$0")" && cd ../../ && pwd)"
