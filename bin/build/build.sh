@@ -36,7 +36,7 @@ trap trapCleanupTempDir EXIT SIGINT
 clean() {
     for removee in "$@"
     do
-        rm -rf "${removee}"
+        rm -f "${removee}"
     done
 }
 
