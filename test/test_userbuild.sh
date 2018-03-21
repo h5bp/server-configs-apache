@@ -188,6 +188,16 @@ main() {
     execute_htaccess_builder "${output_file}" "${repo_root}/test/htaccess_mock_invalid.conf"
        assert_exit_code 1 $? \
     && print_success "TEST OK"
+
+
+
+    # Any failing test should have caused 'exit 1' before,
+    # so if this scripts executes right here, everything went fine.
+
+    echo;
+    echo "Summary"
+    print_success "All tests succeeded."
+    echo;
 }
 
 main
