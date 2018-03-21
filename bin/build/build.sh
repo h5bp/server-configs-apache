@@ -77,7 +77,7 @@ create_htaccess() {
             ;;
         *)
             print_error "Invalid keyword '${keyword}' for entry '${filename}'"
-            return 1
+            exit 1
             ;;
         esac
 
@@ -181,10 +181,8 @@ main() {
     mkdir -p "${htaccess_output_directory}"
 
     create_htaccess "${htaccess_output}" "${htaccess_config}"
-    create_htaccess_exitcode=$?
 
-    print_result $create_htaccess_exitcode "Create '${htaccess_output}'"
-    return $create_htaccess_exitcode
+    print_result $? "Create '${htaccess_output}'"
 }
 
 main "${1:-$htaccess_output_default}" "${2}"
