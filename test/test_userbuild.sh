@@ -165,7 +165,7 @@ main() {
 
 
     echo;
-    echo "Test configuration file keywords evaluation"
+    echo "Test valid configuration file"
     output_file=".htaccess"
 
     execute_htaccess_builder "${output_file}" "${repo_root}/test/htaccess_test_build.conf"
