@@ -37,9 +37,10 @@
     "build": "bin/build/build.sh",
     "build:dist": "npm run build -- dist/.htaccess htaccess.conf",
     "build:test": "npm run build -- test/fixtures/.htaccess test/htaccess_fixture.conf",
+    "build:user": "test/test_userbuild.sh",
     "lint": "eslint \"**/*.js\"",
     "mocha": "mocha --reporter spec --timeout 5000 test/test_suite.js",
-    "test": "npm run lint && npm run build:test && npm run mocha"
+    "test": "npm run lint && npm run build:test && npm run build:user && npm run mocha"
   },
   "version": "2.15.0"
 }
