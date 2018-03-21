@@ -147,12 +147,6 @@ main() {
     local htaccess_output_directory="$(dirname "${htaccess_output}")"
     local htaccess_output_tmp="${htaccess_output_directory}/htaccess.tmp"
 
-    # ======================================================
-    echo "First, start writing here: ${htaccess_output_tmp}"
-    echo "This is repo_root: ${repo_root}"
-    exit
-    # ======================================================
-
     if [ -z "${htaccess_config}" ]; then
         if [ -f "${PWD}/${htaccess_config_default}" ]; then
             htaccess_config="${PWD}/${htaccess_config_default}"
