@@ -3,7 +3,7 @@
 declare htaccess_config_default="htaccess.conf";
 declare htaccess_output_default="./.htaccess"
 declare repo_root="$(cd "$(dirname "$0")" && cd ../../ && pwd)"
-declare htaccess_output_tmp="$(mktemp)"
+declare htaccess_output_tmp
 
 # ----------------------------------------------------------------------
 # | Helper functions                                                   |
@@ -146,6 +146,7 @@ main() {
     local htaccess_output="${1}"
     local htaccess_config="${2}"
     local htaccess_output_directory="$(dirname "${htaccess_output}")"
+    local htaccess_output_tmp="$(mktemp)"
 
     if [ -z "${htaccess_config}" ]; then
         if [ -f "${PWD}/${htaccess_config_default}" ]; then
