@@ -3,22 +3,11 @@
 declare htaccess_config_default="htaccess.conf";
 declare htaccess_output_default="./.htaccess"
 declare repo_root="$(cd "$(dirname "$0")" && cd ../../ && pwd)"
-declare temp_directory
-declare htaccess_output_tmp
+declare htaccess_output_tmp="$(mktemp ${TMPDIR:-/tmp/}server-configs-apache.XXXXXXXXXXXX)"
 
 # ----------------------------------------------------------------------
 # | Helper functions                                                   |
 # ----------------------------------------------------------------------
-
-prepareTempDirectory() {
-    temp_directory="$(mktemp -d ${TMPDIR:-/tmp/}server-configs-apache.XXXXXXXXXXXX)"
-    htaccess_output_tmp="${temp_directory}/htaccess.tmp"
-
-    if [ ! -d "${temp_directory}" ]; then
-        print_error "Creating temp directory failed."
-        exit 1
-    fi
-}
 
 create_htaccess() {
 
@@ -170,8 +159,6 @@ main() {
         print_error "'${htaccess_config}' does not exist."
         exit 1
     fi
-
-    prepareTempDirectory
 
     create_htaccess "${htaccess_output_tmp}" "${htaccess_config}"
     create_htaccess_result=$?
