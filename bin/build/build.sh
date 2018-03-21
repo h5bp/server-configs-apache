@@ -123,7 +123,7 @@ insert_space() {
     printf '%0.s ' $(seq 1 $difference)
 }
 
-apply_pattern () {
+apply_pattern() {
     sed -e "s/%FilesMatchPattern%/$( \
         cat "${repo_root}/src/files_match_pattern" | \
         sed '/^#/d' | \
