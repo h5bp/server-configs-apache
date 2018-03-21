@@ -3,7 +3,7 @@
 # Runtime Environment
 set -o errexit
 #set -o nounset
-#set -o pipefail
+set -o pipefail
 # set -o xtrace
 
 declare htaccess_config_default="htaccess.conf";
