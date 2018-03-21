@@ -76,6 +76,7 @@ assert_exit_code() {
 
 assert_file_exists() {
     local expected_file="${1}"
+
     if [ ! -f "${expected_file}" ]; then
         print_error "File not found"
         printf "Expected file does not exist: '%s'\\n" "${expected_file}"
@@ -134,6 +135,7 @@ main() {
     echo;
     echo "Call with custom output path"
     output_file="path/to/subdir/.htaccess"
+
     execute_htaccess_builder "${output_file}"
        assert_exit_code 0 $? \
     && assert_file_exists "${output_file}" \
