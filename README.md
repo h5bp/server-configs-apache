@@ -141,17 +141,18 @@ in current work directory. An existing **htaccess.conf** in this directory will 
 $ path/to/server-configs-apache/bin/build/build.sh 
 
 # Output looks like:
-[✔] Clean
-[✔] Create './.htaccess'
+[✔] Build .htaccess
+[✔] Moved in place: './.htaccess'
 ```
 
 **2. Custom output location**  
-Just add output path and filename as parameter:
+Just add output path and filename as parameter. By the way, if there's an existing *.htaccess* file, the build script will create a backup. 
 
 ```bash
 $ path/to/server-configs-apache/bin/build/build.sh htdocs/.htaccess
-[✔] Clean
-[✔] Create 'htdocs/.htaccess'
+[✔] Build .htaccess
+[✔] Create backup: 'htdocs/.htaccess~'
+[✔] Moved in place: 'htdocs/.htaccess'
 ```
 
 **3. Custom .htaccess configuration**  
