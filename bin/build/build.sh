@@ -3,6 +3,31 @@
 declare htaccess_config_default="htaccess.conf";
 declare htaccess_output_default="./.htaccess"
 declare repo_root="$(cd "$(dirname "$0")" && cd ../../ && pwd)"
+declare temp_directory
+declare htaccess_output_tmp
+
+# ----------------------------------------------------------------------
+# | File system                                                        |
+# ----------------------------------------------------------------------
+
+prepareTempDirectory() {
+    temp_directory="$(mktemp -d ${TMPDIR:-/tmp/}server-configs-apache.XXXXXXXXXXXX)"
+    htaccess_output_tmp="${temp_directory}/htaccess.tmp"
+
+    if [ ! -d "${temp_directory}" ]; then
+        print_error "Creating temp directory failed."
+        exit 1
+    fi
+}
+
+# Default Exit or SIGINT(2) handler
+trapCleanupTempDir() {
+    [ -d "${temp_directory}" ] \
+    && rm -Rf "${temp_directory}" \
+    && print_success "Tidy up filesystem"
+}
+
+trap trapCleanupTempDir EXIT SIGINT
 
 # ----------------------------------------------------------------------
 # | Helper functions                                                   |
@@ -175,14 +200,31 @@ main() {
         exit 1
     fi
 
-    clean "${htaccess_output}"
-    print_result $? "Clean"
+    prepareTempDirectory
+    print_result $? "Prepare filesystem"
 
-    mkdir -p "${htaccess_output_directory}"
+    create_htaccess "${htaccess_output_tmp}" "${htaccess_config}"
+    create_htaccess_result=$?
 
-    create_htaccess "${htaccess_output}" "${htaccess_config}"
+    print_result $create_htaccess_result "Build .htaccess"
 
-    print_result $? "Create '${htaccess_output}'"
+    if [ $create_htaccess_result ]; then
+
+        # Create backup first, just in case $htaccess_output exists
+        if [ -f "${htaccess_output}" ]; then
+            local backup_name="${htaccess_output}~"
+            mv "${htaccess_output}" "${backup_name}"
+            print_result $? "Create backup: '${backup_name}'"
+        else
+            # Create target directory
+            mkdir -p "${htaccess_output_directory}"
+        fi
+
+        # Finally, move temp .htaccess to target
+        mv "${htaccess_output_tmp}" "${htaccess_output}"
+        print_result $? "Moved in place: '${htaccess_output}'"
+    fi
+
 }
 
 main "${1:-$htaccess_output_default}" "${2}"
