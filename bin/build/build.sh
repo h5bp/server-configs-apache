@@ -3,7 +3,7 @@
 declare htaccess_config_default="htaccess.conf";
 declare htaccess_output_default="./.htaccess"
 declare repo_root="$(cd "$(dirname "$0")" && cd ../../ && pwd)"
-declare htaccess_output_tmp="$(mktemp ${TMPDIR:-/tmp/}server-configs-apache.XXXXXXXXXXXX)"
+declare htaccess_output_tmp="$(mktemp)"
 
 # ----------------------------------------------------------------------
 # | Helper functions                                                   |
