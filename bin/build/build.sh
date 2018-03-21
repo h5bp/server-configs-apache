@@ -181,7 +181,10 @@ main() {
     mkdir -p "${htaccess_output_directory}"
 
     create_htaccess "${htaccess_output}" "${htaccess_config}"
-    print_result $? "Create '${htaccess_output}'"
+    create_htaccess_exitcode=$?
+
+    print_result $create_htaccess_exitcode "Create '${htaccess_output}'"
+    return $create_htaccess_exitcode
 }
 
 main "${1:-$htaccess_output_default}" "${2}"
