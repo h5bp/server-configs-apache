@@ -33,13 +33,6 @@ trap trapCleanupTempDir EXIT SIGINT
 # | Helper functions                                                   |
 # ----------------------------------------------------------------------
 
-clean() {
-    for removee in "$@"
-    do
-        rm -f "${removee}"
-    done
-}
-
 create_htaccess() {
 
     local file="${1}"
