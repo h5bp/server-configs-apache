@@ -124,15 +124,6 @@ insert_file_comment_out() {
     printf "%s\n" "$(cat "$1" | sed -E 's/^([^#])(.+)$/# \1\2/g')" >> "$2"
 }
 
-# Includes or "includes-and-comments-out":
-insert_file_if() {
-    if [ ${partials["${1}"]} = true ]; then
-        insert_file "${1}" "${2}"
-    else
-        insert_file_comment_out "${1}" "${2}"
-    fi
-}
-
 insert_header() {
     local title="$(printf "$1" | tr '[:lower:]' '[:upper:]')"
 
