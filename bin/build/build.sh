@@ -1,9 +1,16 @@
 #!/bin/bash
 
+# Runtime Environment
+set -o errexit
+set -o nounset
+set -o pipefail
+# set -o xtrace
+
 declare htaccess_config_default="htaccess.conf";
 declare htaccess_output_default="./.htaccess"
 declare repo_root="$(cd "$(dirname "$0")" && cd ../../ && pwd)"
-declare htaccess_output_tmp
+declare htaccess_output_tmp="$(mktemp)"
+
 
 # ----------------------------------------------------------------------
 # | Helper functions                                                   |
@@ -146,7 +153,6 @@ main() {
     local htaccess_output="${1}"
     local htaccess_config="${2}"
     local htaccess_output_directory="$(dirname "${htaccess_output}")"
-    local htaccess_output_tmp="$(mktemp)"
 
     if [ -z "${htaccess_config}" ]; then
         if [ -f "${PWD}/${htaccess_config_default}" ]; then
@@ -164,7 +170,7 @@ main() {
     create_htaccess "${htaccess_output_tmp}" "${htaccess_config}"
     create_htaccess_result=$?
 
-    print_result $create_htaccess_result "Build .htaccess"
+    print_result $create_htaccess_result "Build .htaccess, exit code was '${create_htaccess_result}'"
 
     if [ $create_htaccess_result ]; then
 
