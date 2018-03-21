@@ -7,7 +7,7 @@ declare temp_directory
 declare htaccess_output_tmp
 
 # ----------------------------------------------------------------------
-# | File system                                                        |
+# | Helper functions                                                   |
 # ----------------------------------------------------------------------
 
 prepareTempDirectory() {
@@ -19,17 +19,6 @@ prepareTempDirectory() {
         exit 1
     fi
 }
-
-# Default Exit or SIGINT(2) handler
-trapCleanupTempDir() {
-    rm -Rf "${temp_directory}"
-}
-
-trap trapCleanupTempDir EXIT SIGINT
-
-# ----------------------------------------------------------------------
-# | Helper functions                                                   |
-# ----------------------------------------------------------------------
 
 create_htaccess() {
 
