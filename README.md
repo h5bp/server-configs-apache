@@ -62,7 +62,7 @@ use them, please check the appropriate Apache documentation:
 
 Security, mime-type, and caching best practices evolve, and so should do your *.htaccess* file. In the past, with each new *Apache Server Configs* release it was quite tedious to find out which *.htaccess* trick was just new or only had changes in certain nuances.
 
-Our new [**build script**](#build-script-buildsh) with its re-usable and customizable [**build configuration**](#configuration-file-htaccessconf) lets you easily update your *.htaccess* file. Each new *.htaccess* build will contain our updated source files, enabled or commented-out according to your settings in the *htaccess.conf* of your project root.
+The [**build script**](#build-script-buildsh) with its re-usable and customizable [**build configuration**](#configuration-file-htaccessconf) lets you easily update your *.htaccess* file. Each new *.htaccess* build will contain the updated *Apache Server Configs* source files, enabled or commented-out according to your settings in the *htaccess.conf* of your project root.
 
 ### Configuration file: *htaccess.conf*
 
