@@ -164,7 +164,7 @@ main() {
     create_htaccess "${htaccess_output_tmp}" "${htaccess_config}"
     create_htaccess_result=$?
 
-    print_result $create_htaccess_result "Build .htaccess, exit code was '${create_htaccess_result}'"
+    print_result $create_htaccess_result "Build .htaccess"
 
     if [ $create_htaccess_result ]; then
 
