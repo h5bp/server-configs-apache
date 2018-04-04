@@ -13,7 +13,12 @@ create_htaccess() {
     local file="${1}"
     local config="${2}"
 
-    insert_line "$(node ${repo_root}/bin/build/create_header.js)" "$file"
+    local version
+    version=$(grep version < "${repo_root}/package.json" | \
+        head -1 | awk -F: '{ print $2 }' | sed 's/[",\t ]//g')
+
+    insert_line "# Apache Server Configs v$version | MIT License" "$file"
+    insert_line "# https://github.com/h5bp/server-configs-apache" "$file"
     insert_line "" "$file"
     insert_line "# (!) Using \`.htaccess\` files slows down Apache, therefore, if you have" "$file"
     insert_line "# access to the main server configuration file (which is usually called" "$file"
