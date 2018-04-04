@@ -2,14 +2,14 @@
 
 declare htaccess_config_default="htaccess.conf";
 declare htaccess_output_default="./.htaccess"
-declare repo_root="$(cd "$(dirname "$0")" && cd ../../ && pwd)"
+declare repo_root
+repo_root=$(cd "$(dirname "$0")" && cd ../../ && pwd)
 
 # ----------------------------------------------------------------------
 # | Helper functions                                                   |
 # ----------------------------------------------------------------------
 
 create_htaccess() {
-
     local file="${1}"
     local config="${2}"
 
@@ -23,7 +23,7 @@ create_htaccess() {
     insert_line "" "$file"
 
 
-    while IFS=$" " read keyword filename; do
+    while IFS=$" " read -r keyword filename; do
 
         # Skip lines which
         [[ "${keyword}" =~ ^[[:space:]]*# ]] && continue
@@ -77,11 +77,10 @@ create_htaccess() {
     done < "${config}"
 
     apply_pattern "$file"
-
 }
 
 insert_line() {
-    printf "$1\n" >> "$2"
+    printf "$1\\n" >> "$2"
 }
 
 insert_file() {
@@ -89,11 +88,12 @@ insert_file() {
 }
 
 insert_file_comment_out() {
-    printf "%s\n" "$(cat "$1" | sed -E 's/^([^#])(.+)$/# \1\2/g')" >> "$2"
+    printf "%s\\n" "$(sed -E 's/^([^#])(.+)$/# \1\2/g' < "$1")" >> "$2"
 }
 
 insert_header() {
-    local title="$(printf "$1" | tr '[:lower:]' '[:upper:]')"
+    local title
+    title=$(printf "$1" | tr '[:lower:]' '[:upper:]')
 
     insert_line "# ######################################################################" "$2"
     insert_line "# # $title $(insert_space "$title") #" "$2"
@@ -103,14 +103,13 @@ insert_header() {
 insert_space() {
     total=65
     occupied=$(printf "$1" | wc -c)
-    difference=$(( $total - $occupied ))
+    difference=$((total - occupied))
     printf '%0.s ' $(seq 1 $difference)
 }
 
 apply_pattern() {
     sed -e "s/%FilesMatchPattern%/$( \
-        cat "${repo_root}/src/files_match_pattern" | \
-        sed '/^#/d' | \
+        sed '/^#/d' < "${repo_root}/src/files_match_pattern" | \
         tr -s '[:space:]' '|' | \
         sed 's/|$//' \
     )/g" -i "" "$1"
@@ -118,17 +117,17 @@ apply_pattern() {
 
 print_error() {
     # Print output in red
-    printf "\e[0;31m [✖] $1 $2\e[0m\n"
+    printf "\\e[0;31m [✖] $1 $2\\e[0m\\n"
 }
 
 print_info() {
     # Print output in purple
-    printf "\n\e[0;35m $1\e[0m\n\n"
+    printf "\\n\\e[0;35m $1\\e[0m\\n\\n"
 }
 
 print_success() {
     # Print output in green
-    printf "\e[0;32m [✔] $1\e[0m\n"
+    printf "\\e[0;32m [✔] $1\\e[0m\\n"
 }
 
 # ----------------------------------------------------------------------
@@ -138,7 +137,8 @@ print_success() {
 main() {
     local htaccess_output="${1}"
     local htaccess_config="${2}"
-    local htaccess_output_directory="$(dirname "${htaccess_output}")"
+    local htaccess_output_directory
+    htaccess_output_directory=$(dirname "${htaccess_output}")
 
     if [ -z "${htaccess_config}" ]; then
         if [ -f "${PWD}/${htaccess_config_default}" ]; then
