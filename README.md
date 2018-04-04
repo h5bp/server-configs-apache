@@ -14,9 +14,9 @@ even cross-domain.
 There are a few options for getting the Apache server configs:
 
 * Download the [zip archive](https://github.com/h5bp/server-configs-apache/archive/2.15.0.zip)
-* Install them via [npm](https://www.npmjs.com/): 
+* Install them via [npm](https://www.npmjs.com/):
   `npm install --save-dev apache-server-configs`
-  
+
 Inside the **dist/** folder, you'll find a ready-to-use **.htaccess** file.
 
 
@@ -40,7 +40,7 @@ file in the root of the website.
 Also note that some configurations won't have any effect if the
 appropriate modules aren't enabled. So, in order for everything
 to work as intended, you need to ensure the you have the following
-Apache modules [enabled](https://github.com/h5bp/server-configs-apache/wiki/How-to-enable-Apache-modules):
+Apache modules enabled:
 
 * [`mod_autoindex.c` (autoindex_module)](https://httpd.apache.org/docs/current/mod/mod_autoindex.html)
 * [`mod_deflate.c` (deflate_module)](https://httpd.apache.org/docs/current/mod/mod_deflate.html)
@@ -58,6 +58,41 @@ use them, please check the appropriate Apache documentation:
 * <https://httpd.apache.org/docs/current/configuring.html>
 * <https://httpd.apache.org/docs/current/howto/htaccess.html>
 
+### Enable Apache httpd modules
+
+#### Standalone
+
+These instructions should work on any distribution where `apt-get` has been
+used to install Apache.
+
+1. Open up a terminal and type the following command. Enter your password when
+   prompted.
+
+    `sudo a2enmod setenvif headers deflate filter expires rewrite include`
+
+2. Restart apache by using the following command so the new configuration takes
+   effect.
+
+    `sudo /etc/init.d/apache2 restart`
+
+#### With MAMP/WAMP/XAMPP
+
+* **MAMP PRO**. On the main screen, click the `Apache` tab and ensure that all
+   the required modules are 'checked', indicating they are enabled.
+
+* **WampServer**. If you have installed WampServer just click on the icon in the
+   task bar then <kbd>Apache</kbd> section then <kbd>modules</kbd> section.
+   You will be presented with a list of modules. Simply click on a module name
+   to enable it. WampServer will automatically restart the Apache service after
+   you enable a module.
+      
+* **Others**. Locate the `httpd.conf` file, which is typically found in:
+  * **MAMP**: `/Applications/MAMP/conf/apache/httpd.conf`
+  * **XAMPP**: `/Applications/XAMPP/etc/httpd.conf`
+  * **WAMP**: `C:\apache\conf\httpd.conf`
+  Open the file in a text editor and uncomment all of the required modules.
+  Once you have done so, reset MAMP/WAMP/XAMPP.
+
 ## Custom .htaccess builds
 
 Security, mime-type, and caching best practices evolve, and so should do your *.htaccess* file. In the past, with each new *Apache Server Configs* release it was quite tedious to find out which *.htaccess* trick was just new or only had changes in certain nuances.
@@ -67,7 +102,6 @@ The [**build script**](#build-script-buildsh) with its re-usable and customizabl
 ### Configuration file: *htaccess.conf*
 
 Allows you to define which module to [enable](#enabling-modules) or [disable](#disabling-modules) for your project. Just copy the default [**htaccess.conf**](https://github.com/h5bp/server-configs-apache/blob/master/htaccess.conf) from this repo into your project directory. Adjust to your needs, and/or [add custom code](#adding-custom-modules) snippets you need for your project. Its syntax is straight and pretty much self-explanatory:
-
 
 ```
 # Example Module
@@ -97,18 +131,13 @@ disable  "src/cross-origin/web_fonts.conf"
 omit  "src/cross-origin/web_fonts.conf"
 ```
 
-
-
 #### Enabling modules
 
-
 For example, the *“Forcing https://”* snippet is disabled by default, although being included in our pre-built [*.htaccess*](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess). To enable this snippet, change the **disable** keyword to **enable:**
-
 
 ```
 enable "src/rewrites/rewrite_http_to_https.conf"
 ```
-
 
 #### Adding custom modules
 
@@ -122,7 +151,6 @@ RewriteRule ^ index.php [QSA,L]
 ```
 
 Store this snippet in a file, e.g. **config/framework_rewrites.conf,** and add a reference in your **htaccess.conf:**
-
 
 ```
 # PROJECT MODULES
@@ -138,7 +166,7 @@ in current work directory. An existing **htaccess.conf** in this directory will 
 
 
 ```bash
-$ path/to/server-configs-apache/bin/build.sh 
+$ path/to/server-configs-apache/bin/build.sh
 
 # Output looks like:
 [✔] Build .htaccess
@@ -146,7 +174,7 @@ $ path/to/server-configs-apache/bin/build.sh
 ```
 
 **2. Custom output location**  
-Just add output path and filename as parameter. By the way, if there's an existing *.htaccess* file, the build script will create a backup. 
+Just add output path and filename as parameter. By the way, if there's an existing *.htaccess* file, the build script will create a backup.
 
 ```bash
 $ path/to/server-configs-apache/bin/build.sh htdocs/.htaccess
@@ -156,12 +184,11 @@ $ path/to/server-configs-apache/bin/build.sh htdocs/.htaccess
 ```
 
 **3. Custom .htaccess configuration**  
-Why not maintain your personal **~/htaccess.conf?** This example creates a *.htaccess* in current work directory, according to your favourite settings you may have stored in your `$HOME` directory: 
+Why not maintain your personal **~/htaccess.conf?** This example creates a *.htaccess* in current work directory, according to your favourite settings you may have stored in your `$HOME` directory:
 
 ```bash
 $ path/to/server-configs-apache/bin/build.sh ./.htaccess ~/htaccess.conf
 ```
-
 
 ## Support
 
