@@ -12,11 +12,6 @@ env:
 
 jobs:
   include:
-    - env: # Tests for Apache 2.2.x
-        - APACHE_VERSION="2.2"
-        - CONF_TARGET="default"
-      before_script: ./bin/setup/setup.sh
-      dist: precise
     - env: # Tests for Apache 2.4.x
        - APACHE_VERSION="2.4"
        - CONF_TARGET="000-default.conf"
