@@ -3,7 +3,7 @@
 declare htaccess_config_default="htaccess.conf";
 declare htaccess_output_default="./.htaccess"
 declare repo_root
-repo_root=$(cd "$(dirname "$0")" && cd ../../ && pwd)
+repo_root=$(dirname "$(dirname "$0")")
 
 # ----------------------------------------------------------------------
 # | Helper functions                                                   |
@@ -165,6 +165,7 @@ main() {
         print_info "File already exist, create backup"
     fi
 
+    rm -f "${htaccess_output}"
     create_htaccess "${htaccess_output}" "${htaccess_config}"
 
     if [ $? ]; then # Success
