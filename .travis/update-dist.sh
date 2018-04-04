@@ -11,6 +11,5 @@ $(npm bin)/set-up-ssh --key "$encrypted_22ef8dc7aed9_key" \
                       --iv "$encrypted_22ef8dc7aed9_iv" \
                       --path-encrypted-key "github-deploy-key.enc" \
     && $(npm bin)/commit-changes --branch "master" \
-                                 --commands "npm run build" \
+                                 --commands "npm run build:dist" \
                                  --commit-message "Update the generated content [skip ci]"
-

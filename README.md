@@ -16,14 +16,16 @@ There are a few options for getting the Apache server configs:
 * Download the [zip archive](https://github.com/h5bp/server-configs-apache/archive/2.15.0.zip)
 * Install them via [npm](https://www.npmjs.com/): 
   `npm install --save-dev apache-server-configs`
+  
+Inside the **dist/** folder, you'll find a ready-to-use **.htaccess** file.
 
 
 ## Usage
 
 If you have access to the [main server configuration
 file](https://httpd.apache.org/docs/current/configuring.html#main)
-(usually called `httpd.conf`), you should add the logic from the
-[`.htaccess`](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess)
+(usually called `httpd.conf`), you should add the logic from the pre-built
+[`dist/.htaccess`](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess)
 file in, for example, a
 [`<Directory>`](https://httpd.apache.org/docs/current/mod/core.html#directory)
 section in the main configuration file. This is usually the recommended
@@ -55,6 +57,111 @@ use them, please check the appropriate Apache documentation:
 
 * <https://httpd.apache.org/docs/current/configuring.html>
 * <https://httpd.apache.org/docs/current/howto/htaccess.html>
+
+## Custom .htaccess builds
+
+Security, mime-type, and caching best practices evolve, and so should do your *.htaccess* file. In the past, with each new *Apache Server Configs* release it was quite tedious to find out which *.htaccess* trick was just new or only had changes in certain nuances.
+
+The [**build script**](#build-script-buildsh) with its re-usable and customizable [**build configuration**](#configuration-file-htaccessconf) lets you easily update your *.htaccess* file. Each new *.htaccess* build will contain the updated *Apache Server Configs* source files, enabled or commented-out according to your settings in the *htaccess.conf* of your project root.
+
+### Configuration file: *htaccess.conf*
+
+Allows you to define which module to [enable](#enabling-modules) or [disable](#disabling-modules) for your project. Just copy the default [**htaccess.conf**](https://github.com/h5bp/server-configs-apache/blob/master/htaccess.conf) from this repo into your project directory. Adjust to your needs, and/or [add custom code](#adding-custom-modules) snippets you need for your project. Its syntax is straight and pretty much self-explanatory:
+
+
+```
+# Example Module
+
+title   "example module"
+enable  "src/example-module/images.conf"
+enable  "src/example-module/web_fonts.conf"
+disable "src/example-module/not-needed.conf"
+omit    "src/example-module/not-needed-at-all.conf"
+
+... more modules ...
+```
+
+#### Disabling modules
+
+For example, the *“Cross-origin web fonts”* snippet is always included in our pre-built [*.htaccess*](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess) file and enabled. If your project does not deal with web fonts, you can **disable** or **omit** this section:
+
+This will comment out the section:
+
+```
+disable  "src/cross-origin/web_fonts.conf"
+```
+
+…and this will exclude the section, saving lines in output:
+
+```
+omit  "src/cross-origin/web_fonts.conf"
+```
+
+
+
+#### Enabling modules
+
+
+For example, the *“Forcing https://”* snippet is disabled by default, although being included in our pre-built [*.htaccess*](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess). To enable this snippet, change the **disable** keyword to **enable:**
+
+
+```
+enable "src/rewrites/rewrite_http_to_https.conf"
+```
+
+
+#### Adding custom modules
+
+Imagine you're passing all requests to non-existing files to your favourite web framework. The according *mod_rewrite* snippet would go like this:
+
+```
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
+```
+
+Store this snippet in a file, e.g. **config/framework_rewrites.conf,** and add a reference in your **htaccess.conf:**
+
+
+```
+# PROJECT MODULES
+enable "config/framework_rewrites.conf"
+```
+
+### Build script: *build.sh*
+
+Dive into your project root and call the build script from wherever you cloned the repo. Here are three examples:
+
+**1. Create a default .htaccess**  
+in current work directory. An existing **htaccess.conf** in this directory will be used; if none is present, the [**default configuration**](https://github.com/h5bp/server-configs-apache/blob/master/htaccess.conf) will apply.
+
+
+```bash
+$ path/to/server-configs-apache/bin/build.sh 
+
+# Output looks like:
+[✔] Build .htaccess
+[✔] Moved in place: './.htaccess'
+```
+
+**2. Custom output location**  
+Just add output path and filename as parameter. By the way, if there's an existing *.htaccess* file, the build script will create a backup. 
+
+```bash
+$ path/to/server-configs-apache/bin/build.sh htdocs/.htaccess
+[✔] Build .htaccess
+[✔] Create backup: 'htdocs/.htaccess~'
+[✔] Moved in place: 'htdocs/.htaccess'
+```
+
+**3. Custom .htaccess configuration**  
+Why not maintain your personal **~/htaccess.conf?** This example creates a *.htaccess* in current work directory, according to your favourite settings you may have stored in your `$HOME` directory: 
+
+```bash
+$ path/to/server-configs-apache/bin/build.sh ./.htaccess ~/htaccess.conf
+```
+
 
 ## Support
 
