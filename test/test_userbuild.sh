@@ -1,7 +1,7 @@
 #!/bin/bash
 
 declare repo_root="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
-declare build_command="${repo_root}/bin/build/build.sh"
+declare build_command="${repo_root}/bin/build.sh"
 declare temp_directory="$(mktemp -d ${TMPDIR:-/tmp/}server-configs-apache.XXXXXXXXXXXX)"
 
 # ---------------------------------------------------------------------

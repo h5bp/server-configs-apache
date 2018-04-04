@@ -34,7 +34,7 @@
   "name": "apache-server-configs",
   "repository": "h5bp/server-configs-apache",
   "scripts": {
-    "build": "bin/build/build.sh",
+    "build": "bin/build.sh",
     "build:dist": "npm run build -- dist/.htaccess htaccess.conf",
     "build:test": "npm run build -- test/fixtures/.htaccess test/htaccess_fixture.conf",
     "build:user": "test/test_userbuild.sh",

@@ -138,7 +138,7 @@ in current work directory. An existing **htaccess.conf** in this directory will 
 
 
 ```bash
-$ path/to/server-configs-apache/bin/build/build.sh 
+$ path/to/server-configs-apache/bin/build.sh 
 
 # Output looks like:
 [✔] Build .htaccess
@@ -149,7 +149,7 @@ $ path/to/server-configs-apache/bin/build/build.sh
 Just add output path and filename as parameter. By the way, if there's an existing *.htaccess* file, the build script will create a backup. 
 
 ```bash
-$ path/to/server-configs-apache/bin/build/build.sh htdocs/.htaccess
+$ path/to/server-configs-apache/bin/build.sh htdocs/.htaccess
 [✔] Build .htaccess
 [✔] Create backup: 'htdocs/.htaccess~'
 [✔] Moved in place: 'htdocs/.htaccess'
@@ -159,7 +159,7 @@ $ path/to/server-configs-apache/bin/build/build.sh htdocs/.htaccess
 Why not maintain your personal **~/htaccess.conf?** This example creates a *.htaccess* in current work directory, according to your favourite settings you may have stored in your `$HOME` directory: 
 
 ```bash
-$ path/to/server-configs-apache/bin/build/build.sh ./.htaccess ~/htaccess.conf
+$ path/to/server-configs-apache/bin/build.sh ./.htaccess ~/htaccess.conf
 ```
 
 
