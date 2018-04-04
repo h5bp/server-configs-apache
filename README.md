@@ -193,7 +193,7 @@ $ path/to/server-configs-apache/bin/build.sh ./.htaccess ~/htaccess.conf
 
 ## Support
 
-* ### __Apache v2.2.0+__
+* ### __Apache v2.4.0+__
 * ### __Browsers:__
   * Chrome
   * Firefox 4+
