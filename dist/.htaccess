@@ -73,7 +73,6 @@
 #     Header set Timing-Allow-Origin: "*"
 # </IfModule>
 
-
 # ######################################################################
 # # ERRORS                                                             #
 # ######################################################################
@@ -99,7 +98,6 @@
 # https://httpd.apache.org/docs/current/content-negotiation.html#multiviews
 
 Options -MultiViews
-
 
 # ######################################################################
 # # INTERNET EXPLORER                                                  #
@@ -148,7 +146,6 @@ Options -MultiViews
 # <IfModule mod_headers.c>
 #     Header set P3P "policyref=\"/w3c/p3p.xml\", CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""
 # </IfModule>
-
 
 # ######################################################################
 # # MEDIA TYPES AND CHARACTER ENCODINGS                                #
@@ -275,7 +272,6 @@ AddDefaultCharset utf-8
                      .xloc \
                      .xml
 </IfModule>
-
 
 # ######################################################################
 # # REWRITES                                                           #
@@ -406,7 +402,6 @@ AddDefaultCharset utf-8
 #     RewriteCond %{SERVER_ADDR} !=::1
 #     RewriteRule ^ %{ENV:PROTO}://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 # </IfModule>
-
 
 # ######################################################################
 # # SECURITY                                                           #
@@ -771,7 +766,6 @@ ServerSignature Off
 
 #ServerTokens Prod
 
-
 # ######################################################################
 # # WEB PERFORMANCE                                                    #
 # ######################################################################
@@ -1065,3 +1059,4 @@ FileETag None
 #     RewriteCond %{REQUEST_FILENAME} !-f
 #     RewriteRule ^(.+)\.(\d+)\.(bmp|css|cur|gif|ico|jpe?g|m?js|png|svgz?|webp|webmanifest)$ $1.$3 [L]
 # </IfModule>
+
