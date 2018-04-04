@@ -85,11 +85,12 @@ used to install Apache.
    You will be presented with a list of modules. Simply click on a module name
    to enable it. WampServer will automatically restart the Apache service after
    you enable a module.
-      
+
 * **Others**. Locate the `httpd.conf` file, which is typically found in:
   * **MAMP**: `/Applications/MAMP/conf/apache/httpd.conf`
   * **XAMPP**: `/Applications/XAMPP/etc/httpd.conf`
   * **WAMP**: `C:\apache\conf\httpd.conf`
+
   Open the file in a text editor and uncomment all of the required modules.
   Once you have done so, reset MAMP/WAMP/XAMPP.
 
