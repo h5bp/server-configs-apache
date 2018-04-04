@@ -126,12 +126,6 @@ print_info() {
     printf "\n\e[0;35m $1\e[0m\n\n"
 }
 
-print_result() {
-    [ $1 -eq 0 ] \
-        && print_success "$2" \
-        || print_error "$2"
-}
-
 print_success() {
     # Print output in green
     printf "\e[0;32m [✔] $1\e[0m\n"
@@ -145,7 +139,6 @@ main() {
     local htaccess_output="${1}"
     local htaccess_config="${2}"
     local htaccess_output_directory="$(dirname "${htaccess_output}")"
-    local htaccess_output_tmp="${htaccess_output_directory}/htaccess.tmp"
 
     if [ -z "${htaccess_config}" ]; then
         if [ -f "${PWD}/${htaccess_config_default}" ]; then
@@ -161,25 +154,22 @@ main() {
     fi
 
     mkdir -p "${htaccess_output_directory}"
-    create_htaccess "${htaccess_output_tmp}" "${htaccess_config}"
-    create_htaccess_result=$?
 
-    print_result $create_htaccess_result "Build .htaccess"
-
-    if [ $create_htaccess_result ]; then
-
-        # Create backup first, just in case $htaccess_output exists
-        if [ -f "${htaccess_output}" ]; then
-            local backup_name="${htaccess_output}~"
-            mv "${htaccess_output}" "${backup_name}"
-            print_result $? "Create backup: '${backup_name}'"
-        fi
-
-        # Finally, move temp .htaccess to target
-        mv "${htaccess_output_tmp}" "${htaccess_output}"
-        print_result $? "Moved in place: '${htaccess_output}'"
+    if [ -f "${htaccess_output}" ]; then
+        cp "${htaccess_output}" "${htaccess_output}.old"
+        print_info "File already exist, create backup"
     fi
 
+    create_htaccess "${htaccess_output}" "${htaccess_config}"
+
+    if [ $? ]; then # Success
+        print_success  "Build ${htaccess_output}"
+    else
+        print_error  "Error while building ${htaccess_output}"
+        if [ -f "${htaccess_output}.old" ]; then
+            cp "${htaccess_output}.old" "${htaccess_output}"
+        fi
+    fi
 }
 
 main "${1:-$htaccess_output_default}" "${2}"
