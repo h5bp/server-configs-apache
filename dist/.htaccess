@@ -350,8 +350,10 @@ AddDefaultCharset utf-8
 # </IfModule>
 
 # ----------------------------------------------------------------------
-# | Suppressing / Forcing the `www.` at the beginning of URLs          |
+# | Suppressing the `www.` at the beginning of URLs                    |
 # ----------------------------------------------------------------------
+
+# Rewrite www.example.com → example.com
 
 # The same content should never be available under two different
 # URLs, especially not with and without `www.` at the beginning.
@@ -359,24 +361,14 @@ AddDefaultCharset utf-8
 # you should choose one of the alternatives and redirect the other
 # one.
 #
-# By default `Option 1` (no `www.`) is activated.
-# https://web.archive.org/web/20161122074017/http://no-www.org/faq.php?q=class_b
-#
-# If you would prefer to use `Option 2`, just comment out all the
-# lines from `Option 1` and uncomment the ones from `Option 2`.
-#
-# (!) NEVER USE BOTH RULES AT THE SAME TIME!
+# (!) NEVER USE BOTH WWW-RELATED RULES AT THE SAME TIME!
 
-# (1) The two rules assume by default that both HTTP and HTTPS
+# (1) The rule assume by default that both HTTP and HTTPS
 #     environments are available for redirection.
 #     If your SSL certificate could not handle one of the domains
 #     used during redirection, you should turn the condition on.
 #
 #     https://github.com/h5bp/server-configs-apache/issues/52
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# Option 1: rewrite www.example.com → example.com
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
@@ -386,10 +378,27 @@ AddDefaultCharset utf-8
     RewriteRule ^ %{ENV:PROTO}://%1%{REQUEST_URI} [R=301,L]
 </IfModule>
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# ----------------------------------------------------------------------
+# | Forcing the `www.` at the beginning of URLs                        |
+# ----------------------------------------------------------------------
 
-# Option 2: rewrite example.com → www.example.com
+# Rewrite example.com → www.example.com
+
+# The same content should never be available under two different
+# URLs, especially not with and without `www.` at the beginning.
+# This can cause SEO problems (duplicate content), and therefore,
+# you should choose one of the alternatives and redirect the other
+# one.
 #
+# (!) NEVER USE BOTH WWW-RELATED RULES AT THE SAME TIME!
+
+# (1) The rule assume by default that both HTTP and HTTPS
+#     environments are available for redirection.
+#     If your SSL certificate could not handle one of the domains
+#     used during redirection, you should turn the condition on.
+#
+#     https://github.com/h5bp/server-configs-apache/issues/52
+
 # Be aware that the following might not be a good idea if you use "real"
 # subdomains for certain parts of your website.
 
