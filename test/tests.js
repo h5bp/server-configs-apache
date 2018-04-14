@@ -842,6 +842,36 @@ exports = module.exports = {
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         {
+            description: 'Test if files are served compressed using precompressed files',
+            files: {
+
+                'test-pre-gzip.js': {
+                    responseHeaders: {
+                        'cache-control': 'max-age=31536000, no-transform',
+                        'content-encoding': 'gzip',
+                        'content-type': 'text/javascript; charset=utf-8'
+                    },
+                    responseBody: 'gzip-content\n'
+                },
+
+                'test-pre-brotli.js': {
+                    requestHeaders: {
+                        'accept-encoding': 'br'
+                    },
+                    responseHeaders: {
+                        'cache-control': 'max-age=31536000, no-transform',
+                        'content-encoding': 'br',
+                        'content-type': 'text/javascript; charset=utf-8'
+                    },
+                    responseBody: 'brotli-content\n'
+                }
+
+            }
+        },
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        {
             description: 'Test if filename-based cache busting works',
             files: {
 
