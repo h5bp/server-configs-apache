@@ -1,3 +1,19 @@
+### 3.0.0 (April 16, 2018)
+
+* ⚠️ **Breaking**: End of support for Apache httpd version 2.3 and below
+  [[7d296c3](https://github.com/h5bp/server-configs-apache/commit/7d296c35c7337ca183bd31326e10e15d54ca187b)]
+* 🎉 New build system! Configurable build and customizable generation. See the [README](https://github.com/h5bp/server-configs-apache#custom-htaccess-builds)
+  [[5896349](https://github.com/h5bp/server-configs-apache/commit/589634974291a4a9ee1fd2a99c23794036e9aace)]
+* Add Referrer-Policy header template
+  [[591083e](https://github.com/h5bp/server-configs-apache/commit/591083eedc654837c051ca1aff4282444dc06471)]
+* Switch back `.js`-files and `.mjs`-files media-type to `text/javascript`
+  [[690f4ad](https://github.com/h5bp/server-configs-apache/commit/690f4ad6add3a3c2185641474e05378000a19d84)]
+* Add pre-compressed content handling template
+  [[52639ab](https://github.com/h5bp/server-configs-apache/commit/52639ab1fa97d666f3b262e04f70ab3ce020d0d0)]
+* Add WebAssembly module (`.wasm`) MIME type
+  [[a2e7d7b](https://github.com/h5bp/server-configs-apache/commit/a2e7d7b38cf96b804a7323362ee72950e51810f5)]
+* Improve inline comments.
+
 ### 2.15.0 (October 8, 2017)
 
 * Serve `.md` and `.markdown` files as `text/markdown`
