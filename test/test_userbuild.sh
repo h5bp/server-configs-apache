@@ -14,8 +14,7 @@ declare temp_directory="$(mktemp -d ${TMPDIR:-/tmp/}server-configs-apache.XXXXXX
 # For now, a singe-liner must do it in $search_content...
 # ---------------------------------------------------------------------
 
-# declare search_content="$(node ${repo_root}/bin/build/create_header.js)"
-declare search_content="Apache Server Configs v2.15.0 | MIT License"
+declare search_content="Apache Server Configs"
 
 # ----------------------------------------------------------------------
 # | File system                                                        |
