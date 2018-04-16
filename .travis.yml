@@ -15,7 +15,7 @@ jobs:
     - env: # Tests for Apache 2.4.x
        - APACHE_VERSION="2.4"
        - CONF_TARGET="000-default.conf"
-      before_script: ./bin/setup/setup.sh
+      before_script: ./bin/setup.sh
 
     - stage: distribution
       if: branch = master

@@ -11,7 +11,7 @@ sudo a2enmod autoindex deflate expires filter headers include mime rewrite seten
 
 # Configure apache virtual hosts
 
-sudo cp -f bin/setup/${APACHE_VERSION}.conf /etc/apache2/sites-available/${CONF_TARGET}
+sudo cp -f bin/setup_configs/${APACHE_VERSION}.conf /etc/apache2/sites-available/${CONF_TARGET}
 sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)/test/fixtures?g" --in-place /etc/apache2/sites-available/${CONF_TARGET}
 sudo chmod 777 -R $HOME
 
