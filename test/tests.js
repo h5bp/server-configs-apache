@@ -485,6 +485,13 @@ exports = module.exports = {
                     }
                 },
 
+                'test.wasm': {
+                    responseHeaders: {
+                        'cache-control': 'max-age=31536000, no-transform',
+                        'content-type': 'application/wasm'
+                    }
+                },
+
                 'test.webapp': {
                     responseHeaders: {
                         'cache-control': 'max-age=0, no-transform',
