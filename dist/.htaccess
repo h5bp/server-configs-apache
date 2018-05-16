@@ -48,6 +48,8 @@
 # ----------------------------------------------------------------------
 
 # Allow cross-origin access to web fonts.
+#
+# https://developers.google.com/fonts/docs/troubleshooting
 
 <IfModule mod_headers.c>
     <FilesMatch "\.(eot|otf|tt[cf]|woff2?)$">
@@ -66,6 +68,7 @@
 # some of the attributes of the `PerformanceResourceTiming` object will
 # be set to zero.
 #
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Timing-Allow-Origin
 # https://www.w3.org/TR/resource-timing/
 # http://www.stevesouders.com/blog/2014/08/21/resource-timing-practical-tips/
 
@@ -82,6 +85,7 @@
 # ----------------------------------------------------------------------
 
 # Customize what Apache returns to the client in case of an error.
+#
 # https://httpd.apache.org/docs/current/mod/core.html#errordocument
 
 # ErrorDocument 404 /404.html
@@ -119,6 +123,7 @@ Options -MultiViews
 #
 # https://msdn.microsoft.com/en-us/library/ie/bg182625.aspx#docmode
 # https://blogs.msdn.microsoft.com/ie/2014/04/02/stay-up-to-date-with-enterprise-mode-for-internet-explorer-11/
+# https://msdn.microsoft.com/en-us/library/ff955275.aspx
 
 <IfModule mod_headers.c>
 
@@ -135,13 +140,13 @@ Options -MultiViews
 </IfModule>
 
 # ----------------------------------------------------------------------
-# | Iframes cookies                                                    |
+# | Iframes cookies via P3P                                            |
 # ----------------------------------------------------------------------
 
 # Allow cookies to be set from iframes in Internet Explorer.
 #
-# https://msdn.microsoft.com/en-us/library/ms537343.aspx
-# https://www.w3.org/TR/2000/CR-P3P-20001215/
+# https://blogs.msdn.microsoft.com/ieinternals/2013/09/17/a-quick-look-at-p3p/
+# https://www.w3.org/TR/P3P/
 
 # <IfModule mod_headers.c>
 #     Header set P3P "policyref=\"/w3c/p3p.xml\", CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""
@@ -346,6 +351,7 @@ AddDefaultCharset utf-8
 # ----------------------------------------------------------------------
 
 # Redirect from the `http://` to the `https://` version of the URL.
+#
 # https://wiki.apache.org/httpd/RewriteHTTPToHTTPS
 
 # <IfModule mod_rewrite.c>
@@ -451,6 +457,7 @@ AddDefaultCharset utf-8
 # against more than just clickjacking attacks:
 # https://cure53.de/xfo-clickjacking.pdf.
 #
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
 # https://tools.ietf.org/html/rfc7034
 # https://blogs.msdn.microsoft.com/ieinternals/2010/03/30/combating-clickjacking-with-x-frame-options/
 # https://www.owasp.org/index.php/Clickjacking
@@ -484,11 +491,12 @@ AddDefaultCharset utf-8
 # That almost certainly won't work as-is for your website!
 #
 # To make things easier, you can use an online CSP header generator
-# such as: http://cspisawesome.com/.
+# such as: https://www.cspisawesome.com/.
 #
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
+# https://www.w3.org/TR/CSP3/
 # https://content-security-policy.com/
 # https://www.html5rocks.com/en/tutorials/security/content-security-policy/
-# https://w3c.github.io/webappsec-csp/
 
 # <IfModule mod_headers.c>
 
@@ -598,12 +606,14 @@ AddDefaultCharset utf-8
 #     which can be done with either `env=https` or `"expr=%{HTTPS} == 'on'"` (4). The
 #     exact way depends on your environment and might just be tried.
 #
-# https://www.html5rocks.com/en/tutorials/security/transport-layer-security/
-# https://tools.ietf.org/html/rfc6797#section-6.1
-# https://blogs.msdn.microsoft.com/ieinternals/2014/08/18/strict-transport-security/
 # (2) https://hstspreload.org/
 # (3) https://tools.ietf.org/html/rfc6797#section-7.2
 # (4) https://stackoverflow.com/questions/24144552/how-to-set-hsts-header-from-htaccess-only-on-https/24145033#comment81632711_24145033
+#
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
+# https://tools.ietf.org/html/rfc6797#section-6.1
+# https://www.html5rocks.com/en/tutorials/security/transport-layer-security/
+# https://blogs.msdn.microsoft.com/ieinternals/2014/08/18/strict-transport-security/
 
 # <IfModule mod_headers.c>
 #     Header always set Strict-Transport-Security "max-age=16070400; includeSubDomains"
@@ -624,9 +634,8 @@ AddDefaultCharset utf-8
 # is serving user-uploaded content or content that could potentially be
 # treated as executable by the browser.
 #
-# https://www.slideshare.net/hasegawayosuke/owasp-hasegawa
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options
 # https://blogs.msdn.microsoft.com/ie/2008/07/02/ie8-security-part-v-comprehensive-protection/
-# https://msdn.microsoft.com/en-us/library/ie/gg622941.aspx
 # https://mimesniff.spec.whatwg.org/
 
 <IfModule mod_headers.c>
@@ -665,6 +674,7 @@ AddDefaultCharset utf-8
 #     you are taking all possible measures to prevent XSS attacks, the
 #     most obvious being: validating and sanitizing your website's inputs.
 #
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection
 # https://blogs.msdn.microsoft.com/ie/2008/07/02/ie8-security-part-iv-the-xss-filter/
 # https://blogs.msdn.microsoft.com/ieinternals/2011/01/31/controlling-the-xss-filter/
 # https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29
@@ -781,6 +791,8 @@ ServerSignature Off
 <IfModule mod_deflate.c>
 
     # Force compression for mangled `Accept-Encoding` request headers
+    #
+    # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding
     # https://calendar.perfplanet.com/2010/pushing-beyond-gzipping/
 
     <IfModule mod_setenvif.c>
@@ -793,6 +805,7 @@ ServerSignature Off
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Compress all output labeled with one of the following media types.
+    #
     # https://httpd.apache.org/docs/current/mod/mod_filter.html#addoutputfilterbytype
 
     <IfModule mod_filter.c>
@@ -850,6 +863,7 @@ ServerSignature Off
     # the response, and thus, wouldn't be able to understand the
     # content.
     #
+    # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Encoding
     # https://httpd.apache.org/docs/current/mod/mod_mime.html#addencoding
 
     <IfModule mod_mime.c>
@@ -977,6 +991,7 @@ ServerSignature Off
 # used by mobile network providers) from modifying the website's
 # content.
 #
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
 # https://tools.ietf.org/html/rfc2616#section-14.9.5
 #
 # (!) If you are using `mod_pagespeed`, please note that setting
@@ -997,6 +1012,7 @@ ServerSignature Off
 
 # Remove `ETags` as resources are sent with far-future expires headers.
 #
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag
 # https://developer.yahoo.com/performance/rules.html#etags
 # https://tools.ietf.org/html/rfc7232#section-2.3
 
@@ -1008,15 +1024,17 @@ ServerSignature Off
 FileETag None
 
 # ----------------------------------------------------------------------
-# | Expires headers                                                    |
+# | Cache expiration                                                   |
 # ----------------------------------------------------------------------
 
-# Serve resources with far-future expires headers.
+# Serve resources with far-future expiration date.
 #
 # (!) If you don't control versioning with filename-based
 # cache busting, you should consider lowering the cache times
 # to something like one week.
 #
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Expires
 # https://httpd.apache.org/docs/current/mod/mod_expires.html
 
 <IfModule mod_expires.c>
@@ -1143,6 +1161,7 @@ FileETag None
 #   specified files.
 
 # <IfModule mod_include.c>
+
 #     <FilesMatch "\.combined\.js$">
 #         Options +Includes
 #         AddOutputFilterByType INCLUDES application/javascript \
@@ -1150,11 +1169,13 @@ FileETag None
 #                                        text/javascript
 #         SetOutputFilter INCLUDES
 #     </FilesMatch>
+
 #     <FilesMatch "\.combined\.css$">
 #         Options +Includes
 #         AddOutputFilterByType INCLUDES text/css
 #         SetOutputFilter INCLUDES
 #     </FilesMatch>
+
 # </IfModule>
 
 # ----------------------------------------------------------------------
