@@ -130,7 +130,7 @@ Options -MultiViews
     Header set X-UA-Compatible "IE=edge"
 
     # `mod_headers` cannot match based on the content-type, however,
-    # the `X-UA-Compatible` response header should be send only for
+    # the `X-UA-Compatible` response header should be sent only for
     # HTML documents and not for the other resources.
 
     <FilesMatch "\.(appcache|atom|bbaw|bmp|br|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|gz|htc|ic[os]|jpe?g|m?js|json(ld)?|m4[av]|manifest|map|markdown|md|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|wasm|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
@@ -479,7 +479,7 @@ AddDefaultCharset utf-8
 #     Header set X-Frame-Options "DENY"
 
 #     # `mod_headers` cannot match based on the content-type, however,
-#     # the `X-Frame-Options` response header should be send only for
+#     # the `X-Frame-Options` response header should be sent only for
 #     # HTML documents and not for the other resources.
 
 #     <FilesMatch "\.(appcache|atom|bbaw|bmp|br|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|gz|htc|ic[os]|jpe?g|m?js|json(ld)?|m4[av]|manifest|map|markdown|md|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|wasm|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
@@ -515,7 +515,7 @@ AddDefaultCharset utf-8
 #     Header set Content-Security-Policy "script-src 'self'; object-src 'self'"
 
 #     # `mod_headers` cannot match based on the content-type, however,
-#     # the `Content-Security-Policy` response header should be send
+#     # the `Content-Security-Policy` response header should be sent
 #     # only for HTML documents and not for the other resources.
 
 #     <FilesMatch "\.(appcache|atom|bbaw|bmp|br|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|gz|htc|ic[os]|jpe?g|m?js|json(ld)?|m4[av]|manifest|map|markdown|md|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|wasm|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
@@ -697,7 +697,7 @@ AddDefaultCharset utf-8
 #     Header set X-XSS-Protection "1; mode=block"
 
 #     # `mod_headers` cannot match based on the content-type, however,
-#     # the `X-XSS-Protection` response header should be send only for
+#     # the `X-XSS-Protection` response header should be sent only for
 #     # HTML documents and not for the other resources.
 
 #     <FilesMatch "\.(appcache|atom|bbaw|bmp|br|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|gz|htc|ic[os]|jpe?g|m?js|json(ld)?|m4[av]|manifest|map|markdown|md|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|wasm|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
@@ -734,7 +734,7 @@ AddDefaultCharset utf-8
 #     Header set Referrer-Policy "no-referrer-when-downgrade"
 
 #     # `mod_headers` cannot match based on the content-type, however,
-#     # the `Referrer-Policy` response header should be send
+#     # the `Referrer-Policy` response header should be sent
 #     # only for HTML documents and not for the other resources.
 
 #     <FilesMatch "\.(appcache|atom|bbaw|bmp|br|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|gz|htc|ic[os]|jpe?g|m?js|json(ld)?|m4[av]|manifest|map|markdown|md|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|wasm|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
