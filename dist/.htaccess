@@ -139,19 +139,6 @@ Options -MultiViews
 
 </IfModule>
 
-# ----------------------------------------------------------------------
-# | Iframes cookies via P3P                                            |
-# ----------------------------------------------------------------------
-
-# Allow cookies to be set from iframes in Internet Explorer.
-#
-# https://blogs.msdn.microsoft.com/ieinternals/2013/09/17/a-quick-look-at-p3p/
-# https://www.w3.org/TR/P3P/
-
-# <IfModule mod_headers.c>
-#     Header set P3P "policyref=\"/w3c/p3p.xml\", CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""
-# </IfModule>
-
 # ######################################################################
 # # MEDIA TYPES AND CHARACTER ENCODINGS                                #
 # ######################################################################
