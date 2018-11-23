@@ -14,7 +14,6 @@ exports = module.exports = {
         'content-encoding': 'gzip',
         'content-security-policy': null,
         'etag': null,
-        'p3p': 'policyref="/w3c/p3p.xml", CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"',
         'server': 'Apache',
         'x-powered-by': null,
         'x-content-type-options': 'nosniff',
