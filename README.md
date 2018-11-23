@@ -3,11 +3,11 @@
 [![Build Status](https://img.shields.io/travis/h5bp/server-configs-apache/master.svg)](https://travis-ci.org/h5bp/server-configs-apache)
 [![devDependency Status](https://img.shields.io/david/dev/h5bp/server-configs-apache.svg)](https://david-dm.org/h5bp/server-configs-apache?type=dev)
 
-__Apache Server Configs__ is a collection of boilerplate
-configurations that can help your server improve the web site's
-performance and security, while also ensuring that resources are
-served with the correct content-type and are accessible, if needed,
-even cross-domain.
+**Apache Server Configs** is a collection of configuration snippets that can help
+your server improve the web site's performance and security, while also
+ensuring that resources are served with the correct content-type and are
+accessible, if needed, even cross-domain.
+
 
 ## Getting Started
 
@@ -93,6 +93,7 @@ used to install Apache.
 
   Open the file in a text editor and uncomment all of the required modules.
   Once you have done so, reset MAMP/WAMP/XAMPP.
+
 
 ## Custom .htaccess builds
 
@@ -191,6 +192,7 @@ Why not maintain your personal **~/htaccess.conf?** This example creates a *.hta
 $ path/to/server-configs-apache/bin/build.sh ./.htaccess ~/htaccess.conf
 ```
 
+
 ## Support
 
 * ### __Apache v2.4.0+__
@@ -201,20 +203,23 @@ $ path/to/server-configs-apache/bin/build.sh ./.htaccess ~/htaccess.conf
   * Opera 12+
   * Safari 5+
 
+
 ## Contributing
 
-Anyone and everyone is welcome to contribute, but before you do,
-please take a moment to review the [guidelines](CONTRIBUTING.md).
+Anyone is welcome to [contribute](.github/CONTRIBUTING.md),
+however, if you decide to get involved, please take a moment to review
+the [guidelines](.github/CONTRIBUTING.md):
 
-* [Bug reports](CONTRIBUTING.md#bugs)
-* [Feature requests](CONTRIBUTING.md#features)
-* [Pull requests](CONTRIBUTING.md#pull-requests)
+* [Bug reports](.github/CONTRIBUTING.md#bugs)
+* [Feature requests](.github/CONTRIBUTING.md#features)
+* [Pull requests](.github/CONTRIBUTING.md#pull-requests)
+
 
 ## Acknowledgements
 
-[Apache Server Configs](https://github.com/h5bp/server-configs-apache/) is
-only possible thanks to all the awesome
+[Apache Server Configs](https://github.com/h5bp/server-configs-apache/) is only possible thanks to all the awesome
 [contributors](https://github.com/h5bp/server-configs-apache/graphs/contributors)!
+
 
 ## License
 

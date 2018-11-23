@@ -1,10 +1,11 @@
 # Contributing to Apache Server Configs
 
 ♥ [Apache Server Configs](https://github.com/h5bp/server-configs-apache) and
-want to get involved? Thanks! There are plenty of ways you can help!
+want to get involved? Thanks! We're actively looking for folks interested in
+helping out and there are plenty of ways you can help!
 
-First of all, please take a moment to review this document in order to make
-the contribution process easy and effective for everyone involved.
+Please take a moment to review this document in order to make the contribution
+process easy and effective for everyone involved.
 
 Following these guidelines helps to communicate that you respect the time of
 the developers managing and developing this open source project. In return,
@@ -19,10 +20,10 @@ the preferred channel for [bug reports](#bugs), [features requests](#features)
 and [submitting pull requests](#pull-requests), but please respect the following
 restrictions:
 
-* **Do not** use the issue tracker for personal support requests (use
+* Please **do not** use the issue tracker for personal support requests (use
   [Stack Overflow](https://stackoverflow.com) or IRC).
 
-* **Do not** derail or troll issues. Keep the discussion on topic and
+* Please **do not** derail or troll issues. Keep the discussion on topic and
   respect the opinions of others.
 
 
@@ -37,10 +38,8 @@ Guidelines for bug reports:
 1. **Use the GitHub issue search** &mdash; check if the issue has already been
    reported.
 
-2. **Check if the issue has been fixed** &mdash; try to reproduce it using
-   the code from the
-   [`master`](https://github.com/h5bp/server-configs-apache/tree/master) or
-   development branch in the repository.
+2. **Check if the issue has been fixed** &mdash; try to reproduce it using the
+   latest `master` or development branch in the repository.
 
 3. **Isolate the problem** &mdash; ideally create a [reduced test
    case](https://css-tricks.com/reduced-test-cases/) and a live example.
@@ -53,11 +52,10 @@ outcome? All these details will help people to fix any potential bugs.
 
 Example:
 
-> Short and descriptive bug report title
+> Short and descriptive example bug report title
 >
-> A summary of the issue and the server version(s) / browser(s) / OS
-> environment(s) in which it occurs. If suitable, include the steps required to
-> reproduce the bug.
+> A summary of the issue and server version / OS / browser environment in which
+> it occurs. If suitable, include the steps required to reproduce the bug.
 >
 > 1. This is the first step
 > 2. This is the second step
@@ -82,8 +80,9 @@ provide as much detail and context as possible.
 <a name="pull-requests"></a>
 ## Pull requests
 
-Good pull requests - patches, improvements, new features - are a fantastic help,
-but they should remain focused in scope and avoid containing unrelated commits.
+Good pull requests - patches, improvements, new features - are a fantastic
+help. They should remain focused in scope and avoid containing unrelated
+commits.
 
 **Please ask first** before embarking on any significant pull request (e.g.
 implementing features, refactoring code), otherwise you risk spending a lot of
@@ -91,12 +90,12 @@ time working on something that the project's developers might not want to merge
 into the project.
 
 Please adhere to the coding conventions used throughout a project (indentation,
-accurate comments, etc.) and any other requirements.
+accurate comments, etc.) and any other requirements (such as test coverage).
 
-Follow this process if you'd like your work considered for inclusion in the
-project:
+Adhering to the following process is the best way to get your work
+included in the project:
 
-1. [Fork](https://help.github.com/articles/fork-a-repo) the project, clone your
+1. [Fork](https://help.github.com/articles/fork-a-repo/) the project, clone your
    fork, and configure the remotes:
 
    ```bash
@@ -123,9 +122,9 @@ project:
    ```
 
 4. Commit your changes in logical chunks. Please adhere to these [git commit
-   message guidelines](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
+   message guidelines](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
    or your code is unlikely be merged into the main project. Use Git's
-   [interactive rebase](https://help.github.com/articles/about-git-rebase)
+   [interactive rebase](https://help.github.com/articles/about-git-rebase/)
    feature to tidy up your commits before making them public.
 
 5. Locally merge (or rebase) the upstream development branch into your topic branch:
@@ -143,5 +142,5 @@ project:
 7. [Open a Pull Request](https://help.github.com/articles/using-pull-requests/)
     with a clear title and description.
 
-**IMPORTANT**: By submitting a patch, you agree to allow the project owners to
-license your work under the terms specified in the [MIT License](LICENSE.md).
+**IMPORTANT**: By submitting a patch, you agree to allow the project
+owners to license your work under the terms of the [MIT License](../LICENSE.txt).
