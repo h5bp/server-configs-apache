@@ -70,7 +70,7 @@
 #
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Timing-Allow-Origin
 # https://www.w3.org/TR/resource-timing/
-# http://www.stevesouders.com/blog/2014/08/21/resource-timing-practical-tips/
+# https://www.stevesouders.com/blog/2014/08/21/resource-timing-practical-tips/
 
 # <IfModule mod_headers.c>
 #     Header set Timing-Allow-Origin: "*"
@@ -1200,7 +1200,7 @@ FileETag None
 #
 # To understand why this is important and even a better solution than
 # using something like `*.css?v231`, please see:
-# http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/
+# https://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/
 
 # <IfModule mod_rewrite.c>
 #     RewriteEngine On
