@@ -1,7 +1,6 @@
 # [Apache Server Configs](https://github.com/h5bp/server-configs-apache/)
 
 [![Build Status](https://img.shields.io/travis/h5bp/server-configs-apache/master.svg)](https://travis-ci.org/h5bp/server-configs-apache)
-[![devDependency Status](https://img.shields.io/david/dev/h5bp/server-configs-apache.svg)](https://david-dm.org/h5bp/server-configs-apache?type=dev)
 
 **Apache Server Configs** is a collection of configuration snippets that can help
 your server improve the web site's performance and security, while also
