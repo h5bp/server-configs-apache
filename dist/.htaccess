@@ -160,8 +160,9 @@ Options -MultiViews
     AddType application/json                            json map topojson
     AddType application/ld+json                         jsonld
     AddType application/rss+xml                         rss
-    AddType application/vnd.geo+json                    geojson
-    AddType application/xml                             rdf xml
+    AddType application/geo+json                        geojson
+    AddType application/rdf+xml                         rdf
+    AddType application/xml                             xml
 
 
   # JavaScript
@@ -248,26 +249,24 @@ AddDefaultCharset utf-8
 # https://httpd.apache.org/docs/current/mod/mod_mime.html#addcharset
 
 <IfModule mod_mime.c>
-    AddCharset utf-8 .atom \
+    AddCharset utf-8 .appcache \
                      .bbaw \
                      .css \
-                     .geojson \
+                     .htc \
                      .ics \
                      .js \
                      .json \
-                     .jsonld \
                      .manifest \
+                     .map \
                      .markdown \
                      .md \
                      .mjs \
-                     .rdf \
-                     .rss \
                      .topojson \
                      .vtt \
-                     .webapp \
+                     .vcard \
+                     .vcf \
                      .webmanifest \
-                     .xloc \
-                     .xml
+                     .xloc
 </IfModule>
 
 # ######################################################################
@@ -839,7 +838,7 @@ ServerSignature Off
                                       "application/rdf+xml" \
                                       "application/rss+xml" \
                                       "application/schema+json" \
-                                      "application/vnd.geo+json" \
+                                      "application/geo+json" \
                                       "application/vnd.ms-fontobject" \
                                       "application/wasm" \
                                       "application/x-font-ttf" \
@@ -847,15 +846,12 @@ ServerSignature Off
                                       "application/x-web-app-manifest+json" \
                                       "application/xhtml+xml" \
                                       "application/xml" \
-                                      "font/collection" \
                                       "font/eot" \
                                       "font/opentype" \
                                       "font/otf" \
-                                      "font/ttf" \
                                       "image/bmp" \
                                       "image/svg+xml" \
                                       "image/vnd.microsoft.icon" \
-                                      "image/x-icon" \
                                       "text/cache-manifest" \
                                       "text/calendar" \
                                       "text/css" \
@@ -1082,7 +1078,7 @@ FileETag None
     ExpiresByType application/json                      "access plus 0 seconds"
     ExpiresByType application/ld+json                   "access plus 0 seconds"
     ExpiresByType application/schema+json               "access plus 0 seconds"
-    ExpiresByType application/vnd.geo+json              "access plus 0 seconds"
+    ExpiresByType application/geo+json                  "access plus 0 seconds"
     ExpiresByType application/xml                       "access plus 0 seconds"
     ExpiresByType text/calendar                         "access plus 0 seconds"
     ExpiresByType text/xml                              "access plus 0 seconds"
