@@ -132,7 +132,8 @@ exports = module.exports = {
                     responseHeaders: {
                         'access-control-allow-origin': '*',
                         'cache-control': 'max-age=604800, no-transform',
-                        'content-type': 'image/x-icon'
+                        'content-type': 'image/x-icon',
+                        'content-encoding': null
                     }
                 },
 
@@ -220,6 +221,7 @@ exports = module.exports = {
                     responseHeaders: {
                         'access-control-allow-origin': '*',
                         'cache-control': 'max-age=604800, no-transform',
+                        'content-encoding': null,
                         'content-type': 'image/x-icon'
                     }
                 },
@@ -392,7 +394,7 @@ exports = module.exports = {
 
                 'test.rdf': {
                     responseHeaders: {
-                        'cache-control': 'max-age=0, no-transform',
+                        'cache-control': 'max-age=3600, no-transform',
                         'content-type': 'application/rdf+xml'
                     }
                 },
@@ -449,6 +451,7 @@ exports = module.exports = {
                 'test.ttc': {
                     responseHeaders: {
                         'access-control-allow-origin': '*',
+                        'content-encoding': null,
                         'content-type': 'font/collection'
                     }
                 },
@@ -456,6 +459,7 @@ exports = module.exports = {
                 'test.ttf': {
                     responseHeaders: {
                         'access-control-allow-origin': '*',
+                        'content-encoding': null,
                         'content-type': 'font/ttf'
                     }
                 },
