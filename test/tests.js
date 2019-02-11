@@ -181,7 +181,7 @@ exports = module.exports = {
                 'test.geojson': {
                     responseHeaders: {
                         'cache-control': 'max-age=0, no-transform',
-                        'content-type': 'application/vnd.geo+json; charset=utf-8'
+                        'content-type': 'application/geo+json; charset=utf-8'
                     }
                 },
 
