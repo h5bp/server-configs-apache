@@ -83,14 +83,14 @@ exports = module.exports = {
                 'test.appcache': {
                     responseHeaders: {
                         'cache-control': 'max-age=0, no-transform',
-                        'content-type': 'text/cache-manifest'
+                        'content-type': 'text/cache-manifest; charset=utf-8'
                     }
                 },
 
                 'test.atom': {
                     responseHeaders: {
                         'cache-control': 'max-age=3600, no-transform',
-                        'content-type': 'application/atom+xml; charset=utf-8'
+                        'content-type': 'application/atom+xml'
                     }
                 },
 
@@ -181,7 +181,7 @@ exports = module.exports = {
                 'test.geojson': {
                     responseHeaders: {
                         'cache-control': 'max-age=0, no-transform',
-                        'content-type': 'application/geo+json; charset=utf-8'
+                        'content-type': 'application/geo+json'
                     }
                 },
 
@@ -198,7 +198,7 @@ exports = module.exports = {
 
                 'test.htc': {
                     responseHeaders: {
-                        'content-type': 'text/x-component'
+                        'content-type': 'text/x-component; charset=utf-8'
                     }
                 },
 
@@ -277,7 +277,7 @@ exports = module.exports = {
                 'test.jsonld': {
                     responseHeaders: {
                         'cache-control': 'max-age=0, no-transform',
-                        'content-type': 'application/ld+json; charset=utf-8'
+                        'content-type': 'application/ld+json'
                     }
                 },
 
@@ -298,7 +298,7 @@ exports = module.exports = {
                 'test.map': {
                     responseHeaders: {
                         'cache-control': 'max-age=0, no-transform',
-                        'content-type': 'application/json'
+                        'content-type': 'application/json; charset=utf-8'
                     }
                 },
 
@@ -393,14 +393,14 @@ exports = module.exports = {
                 'test.rdf': {
                     responseHeaders: {
                         'cache-control': 'max-age=0, no-transform',
-                        'content-type': 'application/xml; charset=utf-8'
+                        'content-type': 'application/rdf+xml'
                     }
                 },
 
                 'test.rss': {
                     responseHeaders: {
                         'cache-control': 'max-age=3600, no-transform',
-                        'content-type': 'application/rss+xml; charset=utf-8'
+                        'content-type': 'application/rss+xml'
                     }
                 },
 
@@ -468,13 +468,13 @@ exports = module.exports = {
 
                 'test.vcard': {
                     responseHeaders: {
-                        'content-type': 'text/vcard'
+                        'content-type': 'text/vcard; charset=utf-8'
                     }
                 },
 
                 'test.vcf': {
                     responseHeaders: {
-                        'content-type': 'text/vcard'
+                        'content-type': 'text/vcard; charset=utf-8'
                     }
                 },
 
@@ -494,7 +494,7 @@ exports = module.exports = {
                 'test.webapp': {
                     responseHeaders: {
                         'cache-control': 'max-age=0, no-transform',
-                        'content-type': 'application/x-web-app-manifest+json; charset=utf-8'
+                        'content-type': 'application/x-web-app-manifest+json'
                     }
                 },
 
@@ -549,7 +549,7 @@ exports = module.exports = {
                 'test.xml': {
                     responseHeaders: {
                         'cache-control': 'max-age=0, no-transform',
-                        'content-type': 'application/xml; charset=utf-8'
+                        'content-type': 'application/xml'
                     }
                 },
 
