@@ -1,6 +1,6 @@
 node_modules
+dist/
 test/*
 !test/build/
 !test/vhosts/
-k6/
 *.old
