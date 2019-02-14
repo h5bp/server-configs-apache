@@ -1,0 +1,24 @@
+{
+  "name": "server-configs-apache",
+  "version": "3.1.0",
+  "author": "The H5BP Team",
+  "description": "Boilerplate configurations for the Apache HTTP server",
+  "repository": "h5bp/server-configs-apache",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/h5bp/server-configs-apache/issues"
+  },
+  "homepage": "https://github.com/h5bp/server-configs-apache#readme",
+  "keywords": [
+    "apache",
+    "boilerplate",
+    "configs",
+    "configurations",
+    "h5bp",
+    "server",
+    "template"
+  ],
+  "files": [
+    "dist/.htaccess"
+  ]
+}
