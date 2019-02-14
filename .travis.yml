@@ -48,9 +48,15 @@ after_failure:
 before_deploy: bash -c "bin/build.sh dist/.htaccess htaccess.conf"
 
 deploy:
-  provider: releases
-  api_key: $GITHUB_API_TOKEN
-  file: dist/.htaccess
-  skip_cleanup: true
-  on:
-    tags: true
+  - provider: releases
+    api_key: $GITHUB_API_TOKEN
+    file: dist/.htaccess
+    skip_cleanup: true
+    on:
+      tags: true
+  - provider: npm
+    email: $NPM_API_EMAIL
+    api_key: $NPM_API_TOKEN
+    skip_cleanup: true
+    on:
+      tags: true
