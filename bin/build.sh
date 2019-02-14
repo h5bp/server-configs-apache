@@ -1,5 +1,7 @@
 #!/bin/bash
 
+declare version="3.1.0";
+
 declare htaccess_config_default="htaccess.conf";
 declare htaccess_output_default="./.htaccess"
 declare repo_root
@@ -13,7 +15,7 @@ create_htaccess() {
     local file="${1}"
     local config="${2}"
 
-    insert_line "# Apache Server Configs | MIT License" "$file"
+    insert_line "# Apache Server Configs v$version | MIT License" "$file"
     insert_line "# https://github.com/h5bp/server-configs-apache" "$file"
     insert_line "" "$file"
     insert_line "# (!) Using \`.htaccess\` files slows down Apache, therefore, if you have" "$file"
