@@ -1,37 +1,55 @@
-# For more information about the configurations used
-# in this file, please see the Travis CI documentation:
 # https://docs.travis-ci.com/
 
-language: node_js
-node_js: node
-sudo: required
+language: minimal
 
-env:
-  global:
-    - secure: "itatOgspOE49LX1fczgut51/3AGiCE7ueMeUHdGseB7cWfyFlJ2eUozspXBfbmWtEls8Y97/V1Q8vZty/WXJ2Q3CdxjK8TBBhVycRgK5Qp03eG/yFy/G5hXN1mGil4KwIwqHVYAQvCVcuDv0Ek4V+PEfNp8KGkRILxP2a6kRjgw="
-
-jobs:
-  include:
-    - env: # Tests for Apache 2.4.x
-       - APACHE_VERSION="2.4"
-       - CONF_TARGET="000-default.conf"
-      before_script: ./bin/setup.sh
-
-    - stage: distribution
-      if: branch = master
-      script: .travis/update-dist.sh
-
-  fast_finish: true
-  allow_failures:
-    - stage: distribution
-
-after_failure:
-  - sudo cat /var/log/apache2/error.log
-  - sudo cat /var/log/apache2/access.log
+services:
+  - docker
 
 addons:
   hosts:
-    - travis.localhost
+    - server.localhost
+    - www-server.localhost
+    - www.server.localhost
+    - secure.server.localhost
+    - www.secure.server.localhost
+  apt:
+    packages:
+      - docker-ce
 
-cache:
-  directories: node_modules
+install:
+  - curl -sSL https://github.com/h5bp/server-configs-test/releases/download/1.0.1/server-configs-test.tar.gz | tar -xz -C test/
+
+before_script:
+  - bash -c "./bin/build.sh test/fixtures/.htaccess test/build/htaccess_fixture.conf"
+  - docker pull httpd
+  - |
+    docker run -d -p 80:80 -p 443:443 --name server \
+      -v $TRAVIS_BUILD_DIR/test/fixtures:/usr/local/apache2/htdocs \
+      -v $TRAVIS_BUILD_DIR/test/vhosts/httpd.conf:/usr/local/apache2/conf/httpd.conf \
+      httpd
+
+script:
+  - ./test/bin/k6 run test/lib/index.js -e TESTS=basic-file-access:cache-busting:custom-errors:forbidden-files:enforce-gzip:precompressed-files-gzip:concatenation
+  - bash -c "./test/build/test_userbuild.sh"
+
+after_success: ./test/bin/k6 run test/lib/benchmark.js
+
+after_failure:
+  - docker ps -a
+  - docker logs server
+
+before_deploy: bash -c "bin/build.sh dist/.htaccess htaccess.conf"
+
+deploy:
+  - provider: releases
+    api_key: $GITHUB_API_TOKEN
+    file: dist/.htaccess
+    skip_cleanup: true
+    on:
+      tags: true
+  - provider: npm
+    email: $NPM_API_EMAIL
+    api_key: $NPM_API_TOKEN
+    skip_cleanup: true
+    on:
+      tags: true

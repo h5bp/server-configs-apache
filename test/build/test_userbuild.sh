@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare repo_root="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+declare repo_root="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd ../.. && pwd )"
 declare build_command="${repo_root}/bin/build.sh"
 declare temp_directory="$(mktemp -d ${TMPDIR:-/tmp/}server-configs-apache.XXXXXXXXXXXX)"
 
@@ -28,7 +28,7 @@ prepare_temp_dir() {
 
 # Default Exit or SIGINT(2) handler
 trapCleanupTempDir() {
-    [ -d "${temp_directory}" ] \
+    [[ -d "${temp_directory}" ]] \
     && rm -Rf "${temp_directory}"
 }
 
@@ -66,7 +66,7 @@ assert_exit_code() {
     local expected_exit_code="$1"
     local real_exit_code="$2"
 
-    if [ "${expected_exit_code}" != "${real_exit_code}" ]; then
+    if [[ "${expected_exit_code}" != "${real_exit_code}" ]]; then
         print_error "Wrong exit code"
         printf "Expected '%s', instead saw '%s'\\n" "${expected_exit_code}" "${real_exit_code}"
         exit 1
@@ -76,7 +76,7 @@ assert_exit_code() {
 assert_file_exists() {
     local expected_file="${1}"
 
-    if [ ! -f "${expected_file}" ]; then
+    if [[ ! -f "${expected_file}" ]]; then
         print_error "File not found"
         printf "Expected file does not exist: '%s'\\n" "${expected_file}"
         exit 1
@@ -91,7 +91,7 @@ assert_file_contains() {
     # This is too permissive, e.g.: Given a three-line $search_content,
     # grep also produces output when only one of those three lines is matching.
     # It rather should test for ALL lines in $search_content...
-    if [ -z "$(grep "${search_content}" "${PWD}/${output_file}")" ]; then
+    if [[ -z "$(grep "${search_content}" "${PWD}/${output_file}")" ]]; then
         print_error "Content mismatch"
         printf "Output file '%s' lacks expected string: '%s'\\n" "${output_file}" "${search_content}"
         exit 1
@@ -106,7 +106,7 @@ assert_file_not_contains() {
     # This is too permissive, e.g.: Given a three-line $search_content,
     # grep also produces output when only one of those three lines is matching.
     # It rather should test for ALL lines in $search_content...
-    if [ ! -z "$(grep "${search_content}" "${PWD}/${output_file}")" ]; then
+    if [[ ! -z "$(grep "${search_content}" "${PWD}/${output_file}")" ]]; then
         print_error "Content mismatch"
         printf "Output file '%s' in fact does contain string: '%s'\\n" "${output_file}" "${search_content}"
         exit 1
@@ -169,7 +169,7 @@ main() {
     echo "Test valid configuration file"
     output_file=".htaccess"
 
-    execute_htaccess_builder "${output_file}" "${repo_root}/test/htaccess_mock_valid.conf"
+    execute_htaccess_builder "${output_file}" "${repo_root}/test/build/htaccess_mock_valid.conf"
        assert_exit_code 0 $? \
     && assert_file_exists "${output_file}" \
     && assert_file_contains "${output_file}" "THE TITLE" \
@@ -184,7 +184,7 @@ main() {
     echo "Test invalid configuration file"
     output_file=".htaccess"
 
-    execute_htaccess_builder "${output_file}" "${repo_root}/test/htaccess_mock_invalid.conf"
+    execute_htaccess_builder "${output_file}" "${repo_root}/test/build/htaccess_mock_invalid.conf"
        assert_exit_code 1 $? \
     && print_success "TEST OK"
 

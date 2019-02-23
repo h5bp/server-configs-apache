@@ -1,26 +1,14 @@
 {
+  "name": "server-configs-apache",
+  "version": "3.1.0",
   "author": "The H5BP Team",
   "description": "Boilerplate configurations for the Apache HTTP server",
-  "devDependencies": {
-    "@alrra/travis-scripts": "^3.0.1",
-    "eslint": "^4.19.1",
-    "mocha": "^5.2.0"
+  "repository": "h5bp/server-configs-apache",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/h5bp/server-configs-apache/issues"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true,
-      "mocha": true
-    },
-    "extends": "eslint:recommended"
-  },
-  "eslintIgnore": [
-    "test/fixtures/**"
-  ],
-  "files": [
-    "dist"
-  ],
-  "homepage": "https://github.com/h5bp/server-configs-apache",
+  "homepage": "https://github.com/h5bp/server-configs-apache#readme",
   "keywords": [
     "apache",
     "boilerplate",
@@ -30,17 +18,7 @@
     "server",
     "template"
   ],
-  "license": "MIT",
-  "name": "apache-server-configs",
-  "repository": "h5bp/server-configs-apache",
-  "scripts": {
-    "build": "bin/build.sh",
-    "build:dist": "npm run build -- dist/.htaccess htaccess.conf",
-    "build:test": "npm run build -- test/fixtures/.htaccess test/htaccess_fixture.conf",
-    "build:user": "test/test_userbuild.sh",
-    "lint": "eslint \"**/*.js\"",
-    "mocha": "mocha --reporter spec --timeout 5000 test/test_suite.js",
-    "test": "npm run lint && npm run build:test && npm run build:user && npm run mocha"
-  },
-  "version": "3.1.0"
+  "files": [
+    "dist/.htaccess"
+  ]
 }

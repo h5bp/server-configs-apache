@@ -1,6 +1,0 @@
-BEGIN:VCARD
-VERSION:3.0
-FN:test
-N:test;test;;;
-EMAIL;TYPE=INTERNET;TYPE=HOME:test@example.com
-END:VCARD
