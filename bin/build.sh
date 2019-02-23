@@ -1,7 +1,5 @@
 #!/bin/bash
 
-declare version="3.1.0";
-
 declare htaccess_config_default="htaccess.conf";
 declare htaccess_output_default="./.htaccess"
 declare repo_root
@@ -14,6 +12,10 @@ repo_root=$(dirname "$(dirname "$0")")
 create_htaccess() {
     local file="${1}"
     local config="${2}"
+
+    local version
+    version=$(grep version < "${repo_root}/package.json" | \
+        head -1 | awk -F: '{ print $2 }' | sed 's/[",\t ]//g')
 
     insert_line "# Apache Server Configs v$version | MIT License" "$file"
     insert_line "# https://github.com/h5bp/server-configs-apache" "$file"
