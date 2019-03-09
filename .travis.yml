@@ -39,8 +39,8 @@ jobs:
       node_js: node
       script: ./test/build/test_userbuild.sh
       before_deploy:
-        - ./bin/build.sh dist/.htaccess htaccess.conf
-        - ./bin/build.sh dist/h5bp.htaccess htaccess.conf
+        - ./bin/build.sh dist/.htaccess bin/htaccess.conf
+        - ./bin/build.sh dist/h5bp.htaccess bin/htaccess.conf
       deploy:
         - provider: releases
           api_key: $GITHUB_API_TOKEN
