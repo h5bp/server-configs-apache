@@ -27,7 +27,7 @@ jobs:
         - |
           docker run -d -p 80:80 -p 443:443 --name server \
             -v $TRAVIS_BUILD_DIR/test/fixtures:/usr/local/apache2/htdocs \
-            -v $TRAVIS_BUILD_DIR/test/vhosts/httpd.conf:/usr/local/apache2/conf/httpd.conf \
+            -v $TRAVIS_BUILD_DIR/test/vhosts/.htaccess.server.localhost.conf:/usr/local/apache2/conf/httpd.conf \
             httpd
       script: ./test/bin/k6 run test/lib/index.js -e TESTS=basic-file-access:cache-busting:custom-errors:forbidden-files:enforce-gzip:precompressed-files-gzip:concatenation
       after_success: ./test/bin/k6 run test/lib/benchmark.js
