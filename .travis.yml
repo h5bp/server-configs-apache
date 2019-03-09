@@ -21,6 +21,24 @@ jobs:
     - name: "Server Config Tests"
       install:
         - curl -sSL https://github.com/h5bp/server-configs-test/releases/download/1.2.2/server-configs-test.tar.gz | tar -xz -C test/
+      before_script:
+        - docker pull httpd
+        - |
+          docker run -d -p 80:80 -p 443:443 --name server \
+            -v $TRAVIS_BUILD_DIR/test/fixtures:/usr/local/apache2/htdocs \
+            -v $TRAVIS_BUILD_DIR/test/vhosts:/usr/local/apache2/vhosts \
+            -v $TRAVIS_BUILD_DIR/test/certs:/usr/local/apache2/certs \
+            -v $TRAVIS_BUILD_DIR/src:/usr/local/apache2/conf/src \
+            -v $TRAVIS_BUILD_DIR/httpd.conf:/usr/local/apache2/conf/httpd.conf \
+            httpd
+      script: ./test/bin/k6 run test/lib/index.js -e TESTS=basic-file-access:cache-busting:custom-errors:forbidden-files:enforce-gzip:precompressed-files-gzip
+      after_success: ./test/bin/k6 run test/lib/benchmark.js
+      after_failure:
+        - docker ps -a
+        - docker logs server
+    - name: ".htaccess Tests"
+      install:
+        - curl -sSL https://github.com/h5bp/server-configs-test/releases/download/1.2.2/server-configs-test.tar.gz | tar -xz -C test/
         - ./bin/build.sh test/fixtures/.htaccess test/build/htaccess_fixture.conf
       before_script:
         - docker pull httpd
