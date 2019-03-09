@@ -16,40 +16,37 @@ addons:
     packages:
       - docker-ce
 
-install:
-  - curl -sSL https://github.com/h5bp/server-configs-test/releases/download/1.0.3/server-configs-test.tar.gz | tar -xz -C test/
-
-before_script:
-  - bash -c "./bin/build.sh test/fixtures/.htaccess test/build/htaccess_fixture.conf"
-  - docker pull httpd
-  - |
-    docker run -d -p 80:80 -p 443:443 --name server \
-      -v $TRAVIS_BUILD_DIR/test/fixtures:/usr/local/apache2/htdocs \
-      -v $TRAVIS_BUILD_DIR/test/vhosts/httpd.conf:/usr/local/apache2/conf/httpd.conf \
-      httpd
-
-script:
-  - ./test/bin/k6 run test/lib/index.js -e TESTS=basic-file-access:cache-busting:custom-errors:forbidden-files:enforce-gzip:precompressed-files-gzip:concatenation
-  - bash -c "./test/build/test_userbuild.sh"
-
-after_success: ./test/bin/k6 run test/lib/benchmark.js
-
-after_failure:
-  - docker ps -a
-  - docker logs server
-
-before_deploy: bash -c "bin/build.sh dist/.htaccess htaccess.conf"
-
-deploy:
-  - provider: releases
-    api_key: $GITHUB_API_TOKEN
-    file: dist/.htaccess
-    skip_cleanup: true
-    on:
-      tags: true
-  - provider: npm
-    email: $NPM_API_EMAIL
-    api_key: $NPM_API_TOKEN
-    skip_cleanup: true
-    on:
-      tags: true
+jobs:
+  include:
+    - name: "Server Config Tests"
+      install:
+        - curl -sSL https://github.com/h5bp/server-configs-test/releases/download/1.0.3/server-configs-test.tar.gz | tar -xz -C test/
+        - ./bin/build.sh test/fixtures/.htaccess test/build/htaccess_fixture.conf
+      before_script:
+        - docker pull httpd
+        - |
+          docker run -d -p 80:80 -p 443:443 --name server \
+            -v $TRAVIS_BUILD_DIR/test/fixtures:/usr/local/apache2/htdocs \
+            -v $TRAVIS_BUILD_DIR/test/vhosts/httpd.conf:/usr/local/apache2/conf/httpd.conf \
+            httpd
+      script: ./test/bin/k6 run test/lib/index.js -e TESTS=basic-file-access:cache-busting:custom-errors:forbidden-files:enforce-gzip:precompressed-files-gzip:concatenation
+      after_success: ./test/bin/k6 run test/lib/benchmark.js
+      after_failure:
+        - docker ps -a
+        - docker logs server
+    - name: "Build Tests"
+      script: ./test/build/test_userbuild.sh
+      before_deploy: ./bin/build.sh dist/.htaccess htaccess.conf
+      deploy:
+        - provider: releases
+          api_key: $GITHUB_API_TOKEN
+          file: dist/.htaccess
+          skip_cleanup: true
+          on:
+            tags: true
+        - provider: npm
+          email: $NPM_API_EMAIL
+          api_key: $NPM_API_TOKEN
+          skip_cleanup: true
+          on:
+            tags: true
