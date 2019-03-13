@@ -126,17 +126,7 @@ Options -MultiViews
 # https://msdn.microsoft.com/en-us/library/ff955275.aspx
 
 <IfModule mod_headers.c>
-
-    Header set X-UA-Compatible "IE=edge"
-
-    # `mod_headers` cannot match based on the content-type, however,
-    # the `X-UA-Compatible` response header should be sent only for
-    # HTML documents and not for the other resources.
-
-    <FilesMatch "\.(appcache|atom|bbaw|bmp|br|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|gz|htc|ic[os]|jpe?g|m?js|json(ld)?|m4[av]|manifest|map|markdown|md|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|wasm|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
-        Header unset X-UA-Compatible
-    </FilesMatch>
-
+    Header set X-UA-Compatible "IE=edge" "expr=%{CONTENT_TYPE} =~ m#text/html#"
 </IfModule>
 
 # ######################################################################
@@ -461,17 +451,7 @@ AddDefaultCharset utf-8
 # https://www.owasp.org/index.php/Clickjacking
 
 # <IfModule mod_headers.c>
-
-#     Header set X-Frame-Options "DENY"
-
-#     # `mod_headers` cannot match based on the content-type, however,
-#     # the `X-Frame-Options` response header should be sent only for
-#     # HTML documents and not for the other resources.
-
-#     <FilesMatch "\.(appcache|atom|bbaw|bmp|br|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|gz|htc|ic[os]|jpe?g|m?js|json(ld)?|m4[av]|manifest|map|markdown|md|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|wasm|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
-#         Header unset X-Frame-Options
-#     </FilesMatch>
-
+#     Header set X-Frame-Options "DENY" "expr=%{CONTENT_TYPE} =~ m#text/html#"
 # </IfModule>
 
 # ----------------------------------------------------------------------
@@ -497,17 +477,7 @@ AddDefaultCharset utf-8
 # https://www.html5rocks.com/en/tutorials/security/content-security-policy/
 
 # <IfModule mod_headers.c>
-
-#     Header set Content-Security-Policy "script-src 'self'; object-src 'self'"
-
-#     # `mod_headers` cannot match based on the content-type, however,
-#     # the `Content-Security-Policy` response header should be sent
-#     # only for HTML documents and not for the other resources.
-
-#     <FilesMatch "\.(appcache|atom|bbaw|bmp|br|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|gz|htc|ic[os]|jpe?g|m?js|json(ld)?|m4[av]|manifest|map|markdown|md|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|wasm|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
-#         Header unset Content-Security-Policy
-#     </FilesMatch>
-
+#     Header set Content-Security-Policy "script-src 'self'; object-src 'self'" "expr=%{CONTENT_TYPE} =~ m#text/html#"
 # </IfModule>
 
 # ----------------------------------------------------------------------
@@ -678,18 +648,8 @@ AddDefaultCharset utf-8
 # https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29
 
 # <IfModule mod_headers.c>
-
 #     #                           (1)    (2)
-#     Header set X-XSS-Protection "1; mode=block"
-
-#     # `mod_headers` cannot match based on the content-type, however,
-#     # the `X-XSS-Protection` response header should be sent only for
-#     # HTML documents and not for the other resources.
-
-#     <FilesMatch "\.(appcache|atom|bbaw|bmp|br|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|gz|htc|ic[os]|jpe?g|m?js|json(ld)?|m4[av]|manifest|map|markdown|md|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|wasm|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
-#         Header unset X-XSS-Protection
-#     </FilesMatch>
-
+#     Header set X-XSS-Protection "1; mode=block" "expr=%{CONTENT_TYPE} =~ m#text/html#"
 # </IfModule>
 
 # ----------------------------------------------------------------------
@@ -710,23 +670,12 @@ AddDefaultCharset utf-8
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
 
 # <IfModule mod_headers.c>
-
 #     # no-referrer-when-downgrade (default)
 #     # This should be the user agent's default behavior if no policy is
 #     # specified.The origin is sent as referrer to a-priori as-much-secure
 #     # destination (HTTPS->HTTPS), but isn't sent to a less secure destination
 #     # (HTTPS->HTTP).
-
-#     Header set Referrer-Policy "no-referrer-when-downgrade"
-
-#     # `mod_headers` cannot match based on the content-type, however,
-#     # the `Referrer-Policy` response header should be sent
-#     # only for HTML documents and not for the other resources.
-
-#     <FilesMatch "\.(appcache|atom|bbaw|bmp|br|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|gz|htc|ic[os]|jpe?g|m?js|json(ld)?|m4[av]|manifest|map|markdown|md|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|wasm|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
-#         Header unset Referrer-Policy
-#     </FilesMatch>
-
+#     Header set Referrer-Policy "no-referrer-when-downgrade" "expr=%{CONTENT_TYPE} =~ m#text/html#"
 # </IfModule>
 
 # ----------------------------------------------------------------------
