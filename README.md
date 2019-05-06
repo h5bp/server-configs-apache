@@ -12,7 +12,7 @@ accessible, if needed, even cross-domain.
 
 There are a few options for getting the Apache server configs:
 
-* Download the [zip archive](https://github.com/h5bp/server-configs-apache/archive/3.1.0.zip)
+* Download the [zip archive](https://github.com/h5bp/server-configs-apache/archive/3.2.0.zip)
 * Install them via [npm](https://www.npmjs.com/):
   `npm install --save-dev apache-server-configs`
 
