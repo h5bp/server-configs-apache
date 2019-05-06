@@ -142,13 +142,11 @@ enable "src/rewrites/rewrite_http_to_https.conf"
 
 #### Adding custom modules
 
-Imagine you're passing all requests to non-existing files to your favourite web framework. The according *mod_rewrite* snippet would go like this:
+Imagine you're passing all requests to non-existing files to your favourite web framework. The according
+[_mod_dir_](https://httpd.apache.org/docs/trunk/mod/mod_dir.html#fallbackresource) snippet would go like this:
 
 ```
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.php [QSA,L]
+FallbackResource index.php
 ```
 
 Store this snippet in a file, e.g. **config/framework_rewrites.conf,** and add a reference in your **htaccess.conf:**
