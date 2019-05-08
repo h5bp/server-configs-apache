@@ -31,7 +31,7 @@ jobs:
             -v $TRAVIS_BUILD_DIR/src:/usr/local/apache2/h5bp \
             -v $TRAVIS_BUILD_DIR/httpd.conf:/usr/local/apache2/conf/httpd.conf \
             httpd
-      script: ./test/bin/k6 run test/lib/index.js -e TESTS=basic-file-access:cache-busting:custom-errors:forbidden-files:enforce-gzip:precompressed-files-gzip
+      script: ./test/bin/k6 run test/lib/index.js -e TESTS=basic-file-access:cache-busting:custom-errors:forbidden-files:enforce-gzip:precompressed-files-gzip:rewrites:ssl
       after_success: ./test/bin/k6 run test/lib/benchmark.js
       after_failure:
         - docker ps -a
