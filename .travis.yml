@@ -35,12 +35,16 @@ jobs:
         - docker ps -a
         - docker logs server
     - name: "Build Tests"
+      language: node_js
+      node_js: node
       script: ./test/build/test_userbuild.sh
-      before_deploy: ./bin/build.sh dist/.htaccess htaccess.conf
+      before_deploy:
+        - ./bin/build.sh dist/.htaccess htaccess.conf
+        - ./bin/build.sh dist/h5bp.htaccess htaccess.conf
       deploy:
         - provider: releases
           api_key: $GITHUB_API_TOKEN
-          file: dist/.htaccess
+          file: dist/h5bp.htaccess
           skip_cleanup: true
           on:
             tags: true
