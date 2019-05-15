@@ -242,13 +242,13 @@ For example, the *“Cross-origin web fonts”* snippet is always included in ou
 This will comment out the section:
 
 ```
-disable  "src/cross-origin/web_fonts.conf"
+disable  "h5bp/cross-origin/web_fonts.conf"
 ```
 
 …and this will exclude the section, saving lines in output:
 
 ```
-omit  "src/cross-origin/web_fonts.conf"
+omit  "h5bp/cross-origin/web_fonts.conf"
 ```
 
 #### Enabling modules
@@ -256,7 +256,7 @@ omit  "src/cross-origin/web_fonts.conf"
 For example, the *“Forcing https://”* snippet is disabled by default, although being included in our pre-built `.htaccess`. To enable this snippet, change the **disable** keyword to **enable:**
 
 ```
-enable "src/rewrites/rewrite_http_to_https.conf"
+enable "h5bp/rewrites/rewrite_http_to_https.conf"
 ```
 
 #### Adding custom modules
