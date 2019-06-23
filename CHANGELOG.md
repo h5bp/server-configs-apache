@@ -21,7 +21,7 @@
 
 ### 3.1.0 (February 8, 2019)
 
-* Remove P3P iframe cookies directives 
+* Remove P3P iframe cookies directives
   [[ccce7b8](https://github.com/h5bp/server-configs-apache/commit/ccce7b85ab9f2c81c7aa66f94c31e2accfc7b22d)]
 * Add `TraceEnable Off` directive
   [[0a2f70e](https://github.com/h5bp/server-configs-apache/commit/0a2f70e5270f96d08ab94bb5f7a9091bcdc03909)]
