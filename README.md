@@ -311,7 +311,7 @@ $ path/to/server-configs-apache/bin/build.sh ./.htaccess ~/htaccess.conf
 
 ## Support
 
-* Apache v**2.4.0**+
+* Apache v**2.4.10**+
 
 
 ## Contributing
