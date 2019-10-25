@@ -20,7 +20,7 @@ jobs:
   include:
     - name: "Server Config Tests"
       install:
-        - curl -sSL https://github.com/h5bp/server-configs-test/releases/download/1.0.6/server-configs-test.tar.gz | tar -xz -C test/
+        - curl -sSL https://github.com/h5bp/server-configs-test/releases/download/1.2.0/server-configs-test.tar.gz | tar -xz -C test/
         - ./bin/build.sh test/fixtures/.htaccess test/build/htaccess_fixture.conf
       before_script:
         - docker pull httpd
