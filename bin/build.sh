@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare htaccess_config_default="htaccess.conf";
+declare htaccess_config_default="bin/htaccess.conf";
 declare htaccess_output_default="./.htaccess"
 declare repo_root
 repo_root=$(dirname "$(dirname "$0")")
@@ -80,8 +80,6 @@ create_htaccess() {
         esac
 
     done < "${config}"
-
-    apply_pattern "$file"
 }
 
 insert_line() {
@@ -110,14 +108,6 @@ insert_space() {
     occupied=$(printf "$1" | wc -c)
     difference=$((total - occupied))
     printf '%0.s ' $(seq 1 $difference)
-}
-
-apply_pattern() {
-    sed -e "s/%FilesMatchPattern%/$( \
-        sed '/^#/d' < "${repo_root}/src/files_match_pattern" | \
-        tr -s '[:space:]' '|' | \
-        sed 's/|$//' \
-    )/g" -i "" "$1"
 }
 
 print_error() {

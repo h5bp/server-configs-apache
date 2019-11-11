@@ -1,3 +1,38 @@
+### 3.2.1 (May 8, 2019)
+
+* Fix NPM releasing
+  [[4b0ee86](https://github.com/h5bp/server-configs-apache/commit/4b0ee8643c2c4f7dafafca82be67dc3309c0b479)]
+
+### 3.2.0 (May 6, 2019)
+
+* Enhance CSP policy
+  [[f48934b](https://github.com/h5bp/server-configs-apache/commit/f48934b6a1fe0f7de356f57911844bc006bdd9ec)]
+* Common headers addition based on MIME-types instead of file extensions
+  [[a880772...64cb33d](https://github.com/h5bp/server-configs-apache/compare/012cb6d...64cb33d)]
+* Always unset `X-Powered-By` header
+  [[1470258](https://github.com/h5bp/server-configs-apache/commit/14702588b130451f45cb2c1ae18a42fe70e4a922)]
+* Support hashed asset names in cache-busting
+  [[33f8006](https://github.com/h5bp/server-configs-apache/commit/33f800642a65b6f209243d3c2e266b82dbf7982f)]
+* Switch `application/vnd.geo+json` to `application/geo+json`
+  [[35cbd63](https://github.com/h5bp/server-configs-apache/commit/35cbd63662c491b8025e35cc6362dbfba5aeae82)]
+* New test system using [server-configs-test](https://github.com/h5bp/server-configs-test)
+  [[3ae257c](https://github.com/h5bp/server-configs-apache/commit/3ae257ce57e9458c3a335fe65ff61498d1b0eb45)]
+* Improve inline comments.
+
+### 3.1.0 (February 8, 2019)
+
+* Remove P3P iframe cookies directives
+  [[ccce7b8](https://github.com/h5bp/server-configs-apache/commit/ccce7b85ab9f2c81c7aa66f94c31e2accfc7b22d)]
+* Add `TraceEnable Off` directive
+  [[0a2f70e](https://github.com/h5bp/server-configs-apache/commit/0a2f70e5270f96d08ab94bb5f7a9091bcdc03909)]
+* Support hashed asset names in cache-busting
+  [[33f8006](https://github.com/h5bp/server-configs-apache/commit/33f800642a65b6f209243d3c2e266b82dbf7982f)]
+* Allow SSL certificate set up over HTTP
+  [[54b6176..993127d](https://github.com/h5bp/server-configs-apache/compare/9481d53..993127d)]
+* Rename cache expiration rules file to `cache_expiration.conf` to make it more generic
+  [[11690c6](https://github.com/h5bp/server-configs-apache/commit/11690c60880682973854e17117bd5c3f17cd175a)]
+* Improve inline comments.
+
 ### 3.0.0 (April 16, 2018)
 
 * ⚠️ **Breaking**: End of support for Apache httpd version 2.3 and below

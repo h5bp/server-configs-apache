@@ -1,3 +1,6 @@
 node_modules
-test/fixtures/.htaccess
+#dist/
+test/*
+!test/build/
+!test/vhosts/
 *.old

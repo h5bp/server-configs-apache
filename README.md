@@ -1,19 +1,18 @@
 # [Apache Server Configs](https://github.com/h5bp/server-configs-apache/)
 
-[![Build Status](https://img.shields.io/travis/h5bp/server-configs-apache/master.svg)](https://travis-ci.org/h5bp/server-configs-apache)
-[![devDependency Status](https://img.shields.io/david/dev/h5bp/server-configs-apache.svg)](https://david-dm.org/h5bp/server-configs-apache?type=dev)
+[![Build Status](https://travis-ci.org/h5bp/server-configs-apache.svg?branch=master)](https://travis-ci.org/h5bp/server-configs-apache)
 
-__Apache Server Configs__ is a collection of boilerplate
-configurations that can help your server improve the web site's
-performance and security, while also ensuring that resources are
-served with the correct content-type and are accessible, if needed,
-even cross-domain.
+**Apache Server Configs** is a collection of configuration snippets that can help
+your server improve the web site's performance and security, while also
+ensuring that resources are served with the correct content-type and are
+accessible, if needed, even cross-domain.
+
 
 ## Getting Started
 
 There are a few options for getting the Apache server configs:
 
-* Download the [zip archive](https://github.com/h5bp/server-configs-apache/archive/3.0.0.zip)
+* Download the [zip archive](https://github.com/h5bp/server-configs-apache/archive/3.2.1.zip)
 * Install them via [npm](https://www.npmjs.com/):
   `npm install --save-dev apache-server-configs`
 
@@ -94,6 +93,7 @@ used to install Apache.
   Open the file in a text editor and uncomment all of the required modules.
   Once you have done so, reset MAMP/WAMP/XAMPP.
 
+
 ## Custom .htaccess builds
 
 Security, mime-type, and caching best practices evolve, and so should do your *.htaccess* file. In the past, with each new *Apache Server Configs* release it was quite tedious to find out which *.htaccess* trick was just new or only had changes in certain nuances.
@@ -102,7 +102,7 @@ The [**build script**](#build-script-buildsh) with its re-usable and customizabl
 
 ### Configuration file: *htaccess.conf*
 
-Allows you to define which module to [enable](#enabling-modules) or [disable](#disabling-modules) for your project. Just copy the default [**htaccess.conf**](https://github.com/h5bp/server-configs-apache/blob/master/htaccess.conf) from this repo into your project directory. Adjust to your needs, and/or [add custom code](#adding-custom-modules) snippets you need for your project. Its syntax is straight and pretty much self-explanatory:
+Allows you to define which module to [enable](#enabling-modules) or [disable](#disabling-modules) for your project. Just copy the default [**htaccess.conf**](https://github.com/h5bp/server-configs-apache/blob/master/bin/htaccess.conf) from this repo into your project directory. Adjust to your needs, and/or [add custom code](#adding-custom-modules) snippets you need for your project. Its syntax is straight and pretty much self-explanatory:
 
 ```
 # Example Module
@@ -142,13 +142,11 @@ enable "src/rewrites/rewrite_http_to_https.conf"
 
 #### Adding custom modules
 
-Imagine you're passing all requests to non-existing files to your favourite web framework. The according *mod_rewrite* snippet would go like this:
+Imagine you're passing all requests to non-existing files to your favourite web framework. The according
+[_mod_dir_](https://httpd.apache.org/docs/trunk/mod/mod_dir.html#fallbackresource) snippet would go like this:
 
 ```
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.php [QSA,L]
+FallbackResource index.php
 ```
 
 Store this snippet in a file, e.g. **config/framework_rewrites.conf,** and add a reference in your **htaccess.conf:**
@@ -163,7 +161,7 @@ enable "config/framework_rewrites.conf"
 Dive into your project root and call the build script from wherever you cloned the repo. Here are three examples:
 
 **1. Create a default .htaccess**  
-in current work directory. An existing **htaccess.conf** in this directory will be used; if none is present, the [**default configuration**](https://github.com/h5bp/server-configs-apache/blob/master/htaccess.conf) will apply.
+in current work directory. An existing **htaccess.conf** in this directory will be used; if none is present, the [**default configuration**](https://github.com/h5bp/server-configs-apache/blob/master/bin/htaccess.conf) will apply.
 
 
 ```bash
@@ -191,6 +189,7 @@ Why not maintain your personal **~/htaccess.conf?** This example creates a *.hta
 $ path/to/server-configs-apache/bin/build.sh ./.htaccess ~/htaccess.conf
 ```
 
+
 ## Support
 
 * ### __Apache v2.4.0+__
@@ -201,20 +200,23 @@ $ path/to/server-configs-apache/bin/build.sh ./.htaccess ~/htaccess.conf
   * Opera 12+
   * Safari 5+
 
+
 ## Contributing
 
-Anyone and everyone is welcome to contribute, but before you do,
-please take a moment to review the [guidelines](CONTRIBUTING.md).
+Anyone is welcome to [contribute](.github/CONTRIBUTING.md),
+however, if you decide to get involved, please take a moment to review
+the [guidelines](.github/CONTRIBUTING.md):
 
-* [Bug reports](CONTRIBUTING.md#bugs)
-* [Feature requests](CONTRIBUTING.md#features)
-* [Pull requests](CONTRIBUTING.md#pull-requests)
+* [Bug reports](.github/CONTRIBUTING.md#bugs)
+* [Feature requests](.github/CONTRIBUTING.md#features)
+* [Pull requests](.github/CONTRIBUTING.md#pull-requests)
+
 
 ## Acknowledgements
 
-[Apache Server Configs](https://github.com/h5bp/server-configs-apache/) is
-only possible thanks to all the awesome
+[Apache Server Configs](https://github.com/h5bp/server-configs-apache/) is only possible thanks to all the awesome
 [contributors](https://github.com/h5bp/server-configs-apache/graphs/contributors)!
+
 
 ## License
 

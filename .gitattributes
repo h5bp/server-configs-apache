@@ -11,3 +11,11 @@
 # https://github.com/github/linguist/blob/master/README.md
 
 *.conf linguist-language=ApacheConf
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+/.travis.yml    export-ignore
+/.git*          export-ignore
+/.editorconfig  export-ignore
+/test           export-ignore
+/package.json   export-ignore
