@@ -62,7 +62,7 @@ This repository has the following structure:
 ├── h5bp/
 │   ├── basic.conf
 │   └── .../
-└── nginx.conf
+└── httpd.conf
 ```
 
 * **`vhosts/`**
