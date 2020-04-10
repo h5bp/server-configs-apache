@@ -1,0 +1,28 @@
+name: server
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Test with server-configs-test
+        uses: h5bp/server-configs-test@feat/gha-v2
+        with:
+          command: test
+          server: httpd
+          root-path: /usr/local/apache2/htdocs
+          certs-path: /usr/local/apache2/certs
+          configs-volumes: test/vhosts:/usr/local/apache2/vhosts;h5bp:/usr/local/apache2/h5bp;httpd.conf:/usr/local/apache2/conf/httpd.conf
+          tests: basic-file-access;cache-busting;custom-errors;forbidden-files;enforce-gzip;precompressed-files-gzip;rewrites;ssl
+
+      - name: Benchmark
+        uses: h5bp/server-configs-test@feat/gha-v2
+        with:
+          command: benchmark
+          server: httpd
+          root-path: /usr/local/apache2/htdocs
+          certs-path: /usr/local/apache2/certs
+          configs-volumes: test/vhosts:/usr/local/apache2/vhosts;h5bp:/usr/local/apache2/h5bp;httpd.conf:/usr/local/apache2/conf/httpd.conf
