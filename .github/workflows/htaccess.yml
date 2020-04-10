@@ -1,0 +1,35 @@
+name: .htaccess
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: ./test/build/test_userbuild.sh
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build .htaccess
+        run: ./bin/build.sh test/conf/.htaccess test/build/htaccess_fixture.conf
+
+      - name: Test with server-configs-test
+        uses: h5bp/server-configs-test@feat/gha-v2
+        with:
+          command: test
+          server: httpd
+          root-path: /usr/local/apache2/htdocs
+          configs-volumes: test/conf/.htaccess:/usr/local/apache2/htdocs/.htaccess;test/vhosts/.htaccess.server.localhost.conf:/usr/local/apache2/conf/httpd.conf
+          tests: basic-file-access:cache-busting:custom-errors:forbidden-files:enforce-gzip:precompressed-files-gzip:concatenation
+
+      - name: Benchmark
+        uses: h5bp/server-configs-test@feat/gha-v2
+        with:
+          command: benchmark
+          server: httpd
+          root-path: /usr/local/apache2/htdocs
+          configs-volumes: test/conf/.htaccess:/usr/local/apache2/htdocs/.htaccess;test/vhosts/.htaccess.server.localhost.conf:/usr/local/apache2/conf/httpd.conf
