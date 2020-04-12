@@ -8,6 +8,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Prepare configs
+        run: |
+          sed -ri \
+          	-e 's!^(\s*CustomLog)\s+\S+!\1 /proc/self/fd/1!g' \
+          	-e 's!^(\s*ErrorLog)\s+\S+!\1 /proc/self/fd/2!g' \
+          	-e 's!^(\s*TransferLog)\s+\S+!\1 /proc/self/fd/1!g' \
+          	"httpd.conf"
+
       - name: Test with server-configs-test
         uses: h5bp/server-configs-test@feat/gha-v2
         with:
