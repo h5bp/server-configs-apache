@@ -3,7 +3,7 @@
 [![Test](https://github.com/h5bp/server-configs-apache/workflows/server/badge.svg)](https://github.com/h5bp/server-configs-apache/actions?query=workflow%3Aserver)
 
 **Apache Server Configs** is a collection of configuration snippets that can help
-your server improve the web site's performance and security, while also
+your server improve the website's performance and security, while also
 ensuring that resources are served with the correct content-type and are
 accessible, if needed, even cross-domain.
 
@@ -67,7 +67,7 @@ This repository has the following structure:
 
 * **`vhosts/`**
 
-  This directory should contain all of the server definitions.
+  This directory should contain all the server definitions.
 
   Except if they are dot prefixed or non .conf extension, all files in this
   folder **are** loaded automatically.
@@ -102,7 +102,7 @@ This repository has the following structure:
 
 Some configurations won't have any effect if the
 appropriate modules aren't enabled. So, in order for everything
-to work as intended, you need to ensure the you have the following
+to work as intended, you need to ensure you have the following
 Apache modules enabled:
 
 * [`mod_autoindex.c` (autoindex_module)](https://httpd.apache.org/docs/current/mod/mod_autoindex.html)
@@ -131,7 +131,7 @@ used to install Apache.
 
     `sudo a2enmod setenvif headers deflate filter expires rewrite include`
 
-2. Restart apache by using the following command so the new configuration takes
+2. Restart apache by using the following command, so the new configuration takes
    effect.
 
     `sudo /etc/init.d/apache2 restart`
@@ -152,7 +152,7 @@ used to install Apache.
   * **XAMPP**: `/Applications/XAMPP/etc/httpd.conf`
   * **WAMP**: `C:\apache\conf\httpd.conf`
 
-  Open the file in a text editor and uncomment all of the required modules.
+  Open the file in a text editor and uncomment all the required modules.
   Once you have done so, reset MAMP/WAMP/XAMPP.
 
 ### Apache httpd configuration
@@ -215,13 +215,25 @@ $ apache2ctl reload
 
 ## Custom `.htaccess` builds
 
-Security, mime-type, and caching best practices evolve, and so should do your `.htaccess` file. In the past, with each new *Apache Server Configs* release it was quite tedious to find out which `.htaccess` trick was just new or only had changes in certain nuances.
+Security, mime-type, and caching best practices evolve, and so should do your
+`.htaccess` file. In the past, with each new *Apache Server Configs* release
+it was quite tedious to find out which `.htaccess` trick was just new or only
+had changes in certain nuances.
 
-The [**build script**](#build-script-buildsh) with its re-usable and customizable [**build configuration**](#configuration-file-htaccessconf) lets you easily update your `.htaccess` file. Each new `.htaccess` build will contain the updated *Apache Server Configs* source files, enabled or commented-out according to your settings in the *htaccess.conf* of your project root.
+The [**build script**](#build-script-buildsh) with its re-usable and customizable
+[**build configuration**](#configuration-file-htaccessconf) lets you easily
+update your `.htaccess` file. Each new `.htaccess` build will contain the
+updated *Apache Server Configs* source files, enabled or commented-out according
+to your settings in the *htaccess.conf* of your project root.
 
 ### Configuration file: *htaccess.conf*
 
-Allows you to define which module to [enable](#enabling-modules) or [disable](#disabling-modules) for your project. Just copy the default [**htaccess.conf**](https://github.com/h5bp/server-configs-apache/blob/master/bin/htaccess.conf) from this repo into your project directory. Adjust to your needs, and/or [add custom code](#adding-custom-modules) snippets you need for your project. Its syntax is straight and pretty much self-explanatory:
+Allows you to define which module to [enable](#enabling-modules) or 
+[disable](#disabling-modules) for your project. Just copy the default
+[**htaccess.conf**](https://github.com/h5bp/server-configs-apache/blob/master/bin/htaccess.conf)
+from this repo into your project directory. Adjust to your needs, and/or 
+[add custom code](#adding-custom-modules) snippets you need for your project.
+Its syntax is straight and pretty much self-explanatory:
 
 ```
 # Example Module
@@ -237,7 +249,9 @@ omit    "src/example-module/not-needed-at-all.conf"
 
 #### Disabling modules
 
-For example, the *“Cross-origin web fonts”* snippet is always included in our pre-built `.htaccess` file and enabled. If your project does not deal with web fonts, you can **disable** or **omit** this section:
+For example, the *“Cross-origin web fonts”* snippet is always included in
+our pre-built `.htaccess` file and enabled. If your project does not deal
+with web fonts, you can **disable** or **omit** this section:
 
 This will comment out the section:
 
@@ -253,7 +267,9 @@ omit  "h5bp/cross-origin/web_fonts.conf"
 
 #### Enabling modules
 
-For example, the *“Forcing https://”* snippet is disabled by default, although being included in our pre-built `.htaccess`. To enable this snippet, change the **disable** keyword to **enable:**
+For example, the *“Forcing https://”* snippet is disabled by default, 
+although being included in our pre-built `.htaccess`. To enable this 
+snippet, change the **disable** keyword to **enable:**
 
 ```
 enable "h5bp/rewrites/rewrite_http_to_https.conf"
@@ -261,14 +277,17 @@ enable "h5bp/rewrites/rewrite_http_to_https.conf"
 
 #### Adding custom modules
 
-Imagine you're passing all requests to non-existing files to your favourite web framework. The according
-[_mod_dir_](https://httpd.apache.org/docs/trunk/mod/mod_dir.html#fallbackresource) snippet would go like this:
+Imagine you're passing all requests to non-existing files to your
+favourite web framework. The according
+[_mod_dir_](https://httpd.apache.org/docs/trunk/mod/mod_dir.html#fallbackresource) 
+snippet would go like this:
 
 ```
 FallbackResource index.php
 ```
 
-Store this snippet in a file, e.g. **config/framework_rewrites.conf,** and add a reference in your **htaccess.conf:**
+Store this snippet in a file, e.g. **config/framework_rewrites.conf,** and add
+a reference in your **htaccess.conf:**
 
 ```
 # PROJECT MODULES
@@ -277,10 +296,14 @@ enable "config/framework_rewrites.conf"
 
 ### Build script: *build.sh*
 
-Dive into your project root and call the build script from wherever you cloned the repo. Here are three examples:
+Dive into your project root and call the build script from wherever you cloned
+the repo. Here are three examples:
 
 **1. Create a default .htaccess**  
-in current work directory. An existing **htaccess.conf** in this directory will be used; if none is present, the [**default configuration**](https://github.com/h5bp/server-configs-apache/blob/master/bin/htaccess.conf) will apply.
+in current work directory. An existing **htaccess.conf** in this directory will
+be used; if none is present, the 
+[**default configuration**](https://github.com/h5bp/server-configs-apache/blob/master/bin/htaccess.conf)
+will apply.
 
 
 ```bash
@@ -292,7 +315,8 @@ $ path/to/server-configs-apache/bin/build.sh
 ```
 
 **2. Custom output location**  
-Just add output path and filename as parameter. By the way, if there's an existing *.htaccess* file, the build script will create a backup.
+Just add output path and filename as parameter. By the way, if there's an
+existing *.htaccess* file, the build script will create a backup.
 
 ```bash
 $ path/to/server-configs-apache/bin/build.sh htdocs/.htaccess
@@ -302,7 +326,9 @@ $ path/to/server-configs-apache/bin/build.sh htdocs/.htaccess
 ```
 
 **3. Custom .htaccess configuration**  
-Why not maintain your personal **~/htaccess.conf?** This example creates a *.htaccess* in current work directory, according to your favourite settings you may have stored in your `$HOME` directory:
+Why not maintain your personal **~/htaccess.conf?** This example creates a
+*.htaccess* in current work directory, according to your favourite settings
+you may have stored in your `$HOME` directory:
 
 ```bash
 $ path/to/server-configs-apache/bin/build.sh ./.htaccess ~/htaccess.conf
@@ -327,7 +353,8 @@ the [guidelines](.github/CONTRIBUTING.md):
 
 ## Acknowledgements
 
-[Apache Server Configs](https://github.com/h5bp/server-configs-apache/) is only possible thanks to all the awesome
+[Apache Server Configs](https://github.com/h5bp/server-configs-apache/) is
+only possible thanks to all the awesome
 [contributors](https://github.com/h5bp/server-configs-apache/graphs/contributors)!
 
 
