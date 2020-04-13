@@ -1,6 +1,6 @@
 {
   "name": "apache-server-configs",
-  "version": "3.2.1",
+  "version": "4.0.0",
   "author": "The H5BP Team",
   "description": "Boilerplate configurations for the Apache HTTP server",
   "repository": "h5bp/server-configs-apache",
