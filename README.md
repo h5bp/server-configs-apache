@@ -1,4 +1,4 @@
-# [Apache Server Configs](https://github.com/h5bp/server-configs-apache/)
+# [Apache Server Configs](https://github.com/h5bp/server-configs-apache)
 
 [![Test](https://github.com/h5bp/server-configs-apache/workflows/server/badge.svg)](https://github.com/h5bp/server-configs-apache/actions?query=workflow%3Aserver)
 
@@ -10,93 +10,49 @@ accessible, if needed, even cross-domain.
 
 ## Getting Started
 
-There are a few options for getting the Apache server configs.
+There are a two options for getting the Apache server configs:
+* If you have access to the [main server configuration
+  file](https://httpd.apache.org/docs/current/configuring.html#main)
+  (usually called `httpd.conf`), you should configure Apache by this way.
+  This is usually the recommended way, as using `.htaccess` files [slows
+  down](https://httpd.apache.org/docs/current/howto/htaccess.html#when)
+  Apache!
+* If you don't have access to it, which is quite common with hosting services,
+  checkout the [`.htaccess` guide](#htaccess-file).
+
+Using the Apache server configs repo directly has a few required steps to be able to work.
 
 See also the [Apache Getting Started](https://httpd.apache.org/docs/current/getting-started.html).
 
-### Using the httpd configuration
+### Check `httpd.conf` settings
 
-If you have access to the [main server configuration
-file](https://httpd.apache.org/docs/current/configuring.html#main)
-(usually called `httpd.conf`), you should configure Apache by this way.
-This is usually the recommended way, as using `.htaccess` files [slows
-down](https://httpd.apache.org/docs/current/howto/htaccess.html#when)
-Apache!
+The first thing to check is that the `httpd.conf` file contains appropriate values for
+your specific install.
 
-Getting options:
-* Download the [zip archive](https://github.com/h5bp/server-configs-apache/archive/3.2.1.zip)
-* Checkout directly:
+Most specific variables are:
+* `ServerRoot`
+* `User`
+* `Group`
+* `ErrorLog`
+* `CustomLog`
+* `TypesConfig` (ensure that the path for the `mime.types` file is valid)
+
+### Apache test and restart
+
+* To verify Apache config
   ```shell
-  apache2ctl stop
-  cd /usr/local
-  mv apache2 apache2-previous
-  git clone https://github.com/h5bp/server-configs-apache.git apache2
-  # install-specific edits
-  apache2ctl start
+  $ apache2 -t
   ```
 
-See [Apache httpd configuration usage guide](#Apache-httpd-configuration).
+* To verify Apache config with a custom file
+  ```shell
+  $ apache2 -t -f httpd.conf
+  ```
 
-### Using the `.htaccess` file
-
-If you don't have access, which is quite common with hosting services,
-just copy the `.htaccess` file in the root of the website.
-
-Getting options:
-* Download the `h5bp.htaccess` on the [latest release](https://github.com/h5bp/server-configs-apache/releases/latest)
-* Install them via [npm](https://www.npmjs.com/): `npm install --save-dev apache-server-configs`
-  Inside the `dist/` folder, you'll find a ready-to-use `.htaccess` file.
-
-
-## Usage
-
-### Basic structure
-
-This repository has the following structure:
-
-```
-./
-├── vhosts/
-│   ├── 000-default.conf
-│	└── templates/
-├── h5bp/
-│   ├── basic.conf
-│   └── .../
-└── httpd.conf
-```
-
-* **`vhosts/`**
-
-  This directory should contain all the server definitions.
-
-  Except if they are dot prefixed or non .conf extension, all files in this
-  folder **are** loaded automatically.
-
-  * **`templates` folder**
-
-    Files in this folder contain a `<VirtualHost/>` template for secure and non-secure hosts.
-    They are intended to be copied in the `vhosts` folder with all `example.com`
-    occurrences changed to the target host.
-
-* **`h5bp/`**
-
-  This directory contains config snippets (mixins) to be included as desired.
-
-  There are two types of config files provided, individual config snippets and
-  combined config files which provide convenient defaults.
-
-  * **`basic.conf`**
-
-    This file loads a small subset of the rules provided by this repository to add
-    expires headers, allow cross domain fonts and protect system files from web
-    access.
-    The `basic.conf` file includes the rules which are recommended to always be
-    defined.
-
-* **`httpd.conf`**
-
-  The main Apache config file.
-
+* To reload Apache and apply new config
+  ```shell
+  $ apache2ctl reload
+  ```
 
 ### Enable Apache httpd modules
 
@@ -131,7 +87,7 @@ used to install Apache.
 
     `sudo a2enmod setenvif headers deflate filter expires rewrite include`
 
-2. Restart apache by using the following command, so the new configuration takes
+2. Restart apache by using the following command so the new configuration takes
    effect.
 
     `sudo /etc/init.d/apache2 restart`
@@ -152,41 +108,83 @@ used to install Apache.
   * **XAMPP**: `/Applications/XAMPP/etc/httpd.conf`
   * **WAMP**: `C:\apache\conf\httpd.conf`
 
-  Open the file in a text editor and uncomment all the required modules.
+  Open the file in a text editor and uncomment all of the required modules.
   Once you have done so, reset MAMP/WAMP/XAMPP.
 
-### Apache httpd configuration
+### Basic structure
 
-#### Check `httpd.conf` settings
+This repository has the following structure:
 
-The first thing to check is that the `httpd.conf` file contains appropriate values for
-your specific install.
+```
+./
+├── vhosts/
+│   ├── 000-default.conf
+│	└── templates/
+├── h5bp/
+│   ├── basic.conf
+│   └── .../
+└── httpd.conf
+```
 
-Most specific variables are:
-* `ServerRoot`
-* `User`
-* `Group`
-* `ErrorLog`
-* `CustomLog`
+* **`vhosts/`**
 
-#### Apache test and restart
+  This directory should contain all the server definitions.
 
-* To verify Apache config
-  ```shell
-  $ apache2 -t
-  ```
+  Except if they are dot prefixed or non `.conf` extension, all files in this
+  folder **are** loaded automatically.
 
-* To verify Apache config with a custom file
-  ```shell
-  $ apache2 -t -f httpd.conf
-  ```
+  * **`templates` folder**
 
-* To reload Apache and apply new config
-  ```shell
-  $ apache2ctl reload
-  ```
+    Files in this folder contain a `<VirtualHost/>` template for secure and non-secure hosts.
+    They are intended to be copied in the `vhosts` folder with all `example.com`
+    occurrences changed to the target host.
 
-#### Manage sites
+* **`h5bp/`**
+
+  This directory contains config snippets (mixins) to be included as desired.
+
+  There are two types of config files provided, individual config snippets and
+  combined config files which provide convenient defaults.
+
+  * **`basic.conf`**
+
+    This file loads a small subset of the rules provided by this repository to add
+    expires headers, allow cross domain fonts and protect system files from web
+    access.
+    The `basic.conf` file includes the rules which are recommended to always be
+    defined.
+
+* **`httpd.conf`**
+
+  The main Apache config file.
+
+
+## Usage
+
+### As a reference
+
+To use as reference requires no special installation steps, download/checkout the
+repository to a convenient location and adapt your existing httpd configuration
+incorporating the desired functionality from this repository.
+
+Download the [latest release archive](https://github.com/h5bp/server-configs-apache/releases/latest).
+
+### Directly
+
+To use directly, add httpd config files from this repository.
+For example:
+
+```shell
+apache2ctl stop
+git clone https://github.com/h5bp/server-configs-apache.git /tmp/h5bp-apache
+cd /usr/local
+cp -r apache2 apache2-previous
+cp -r /tmp/h5bp-apache/* apache2
+# install-specific edits
+apache2ctl start
+```
+
+### Manage sites
 
 ```bash
 $ cd /usr/local/apache2/vhosts
@@ -213,7 +211,19 @@ $ apache2ctl reload
 ```
 
 
-## Custom `.htaccess` builds
+## `.htaccess` file
+
+### Usage
+
+Just copy the `.htaccess` file in the root of the website.
+
+Getting options:
+* Download the `h5bp.htaccess` on the [latest release](https://github.com/h5bp/server-configs-apache/releases/latest)
+  and rename the file to `.htaccess`
+* Install them via [npm](https://www.npmjs.com/): `npm install --save-dev apache-server-configs`
+  Inside the `dist/` folder, you'll find a ready-to-use `.htaccess` file.
+
+### Custom `.htaccess` builds
 
 Security, mime-type, and caching best practices evolve, and so should do your
 `.htaccess` file. In the past, with each new *Apache Server Configs* release
@@ -224,13 +234,13 @@ The [**build script**](#build-script-buildsh) with its re-usable and customizabl
 [**build configuration**](#configuration-file-htaccessconf) lets you easily
 update your `.htaccess` file. Each new `.htaccess` build will contain the
 updated *Apache Server Configs* source files, enabled or commented-out according
-to your settings in the *htaccess.conf* of your project root.
+to your settings in the `htaccess.conf` of your project root.
 
-### Configuration file: *htaccess.conf*
+#### Configuration file: `htaccess.conf`
 
 Allows you to define which module to [enable](#enabling-modules) or 
 [disable](#disabling-modules) for your project. Just copy the default
-[**htaccess.conf**](https://github.com/h5bp/server-configs-apache/blob/master/bin/htaccess.conf)
+[`htaccess.conf`](https://github.com/h5bp/server-configs-apache/blob/master/bin/htaccess.conf)
 from this repo into your project directory. Adjust to your needs, and/or 
 [add custom code](#adding-custom-modules) snippets you need for your project.
 Its syntax is straight and pretty much self-explanatory:
@@ -247,11 +257,11 @@ omit    "src/example-module/not-needed-at-all.conf"
 ... more modules ...
 ```
 
-#### Disabling modules
+##### Disabling modules
 
 For example, the *“Cross-origin web fonts”* snippet is always included in
 our pre-built `.htaccess` file and enabled. If your project does not deal
-with web fonts, you can **disable** or **omit** this section:
+with web fonts, you can `disable` or `omit` this section:
 
 This will comment out the section:
 
@@ -265,17 +275,17 @@ disable  "h5bp/cross-origin/web_fonts.conf"
 omit  "h5bp/cross-origin/web_fonts.conf"
 ```
 
-#### Enabling modules
+##### Enabling modules
 
 For example, the *“Forcing https://”* snippet is disabled by default, 
 although being included in our pre-built `.htaccess`. To enable this 
-snippet, change the **disable** keyword to **enable:**
+snippet, change the `disable` keyword to `enable`:
 
 ```
 enable "h5bp/rewrites/rewrite_http_to_https.conf"
 ```
 
-#### Adding custom modules
+##### Adding custom modules
 
 Imagine you're passing all requests to non-existing files to your
 favourite web framework. The according
@@ -286,21 +296,21 @@ snippet would go like this:
 FallbackResource index.php
 ```
 
-Store this snippet in a file, e.g. **config/framework_rewrites.conf,** and add
-a reference in your **htaccess.conf:**
+Store this snippet in a file, e.g. `config/framework_rewrites.conf`, and add
+a reference in your `htaccess.conf`:
 
 ```
 # PROJECT MODULES
 enable "config/framework_rewrites.conf"
 ```
 
-### Build script: *build.sh*
+#### Build script: `build.sh`
 
 Dive into your project root and call the build script from wherever you cloned
 the repo. Here are three examples:
 
-**1. Create a default .htaccess**  
-in current work directory. An existing **htaccess.conf** in this directory will
+**1. Create a default `.htaccess`**  
+in current work directory. An existing `htaccess.conf` in this directory will
 be used; if none is present, the 
 [**default configuration**](https://github.com/h5bp/server-configs-apache/blob/master/bin/htaccess.conf)
 will apply.
@@ -316,7 +326,7 @@ $ path/to/server-configs-apache/bin/build.sh
 
 **2. Custom output location**  
 Just add output path and filename as parameter. By the way, if there's an
-existing *.htaccess* file, the build script will create a backup.
+existing `.htaccess` file, the build script will create a backup.
 
 ```bash
 $ path/to/server-configs-apache/bin/build.sh htdocs/.htaccess
@@ -325,9 +335,9 @@ $ path/to/server-configs-apache/bin/build.sh htdocs/.htaccess
 [✔] Moved in place: 'htdocs/.htaccess'
 ```
 
-**3. Custom .htaccess configuration**  
-Why not maintain your personal **~/htaccess.conf?** This example creates a
-*.htaccess* in current work directory, according to your favourite settings
+**3. Custom `.htaccess` configuration**  
+Why not maintain your personal `~/htaccess.conf`? This example creates a
+`.htaccess` in current work directory, according to your favourite settings
 you may have stored in your `$HOME` directory:
 
 ```bash
