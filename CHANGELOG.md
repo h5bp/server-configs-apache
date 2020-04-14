@@ -1,6 +1,6 @@
 ### 4.0.0 (April 15, 2020)
 
-* 🎉 Server-level config! Support httpd configuration at main server level. 
+* 🎉 Server-level config! Support httpd configuration at main server level.
   Add `httpd.conf` file, vhost management, secure HTTP tweaking, etc. See the [README](https://github.com/h5bp/server-configs-apache)
   [[b50205a...c302596](https://github.com/h5bp/server-configs-apache/compare/df7857d...c302596)]
 * ⚠️ **Breaking**: End of support for Apache httpd version 2.4.9 and below
@@ -8,7 +8,7 @@
 * ⚠️ **Breaking**: File paths changes for the `.htaccess` build system
   [[478ceab](https://github.com/h5bp/server-configs-apache/commit/478ceab3a28786856a1ffcdf6a943ee43907caf0)]
   [[9cb2763](https://github.com/h5bp/server-configs-apache/commit/9cb2763d7f5e3fce984bfdea903e9df61cdf4bcd)]
-* Rewrite, improve and update a large part of the documentation 
+* Rewrite, improve and update a large part of the documentation
   [[5dc823c](https://github.com/h5bp/server-configs-apache/commit/5dc823c18e4a0ee163c2ee3b772060bce7d782e6)]
   [[5748d26](https://github.com/h5bp/server-configs-apache/commit/5748d26258394005b4d6dbb2f8474b58ed276e95)]
   [[d8553ee](https://github.com/h5bp/server-configs-apache/commit/d8553ee58f307419d9ec39ab8c60fc6a6e1135cb)]
@@ -19,11 +19,11 @@
   [[43bcb83](https://github.com/h5bp/server-configs-apache/commit/43bcb833eb0539800e0d3e8a19ad3ef1d6944592)]
 * Add APNG (`.apng`) MIME type
   [[ad25d31](https://github.com/h5bp/server-configs-apache/commit/ad25d3185fb28971a83e8c721567d7ce08b76f38)]
-* Ensure the presence of security headings where expected 
+* Ensure the presence of security headings where expected
   [[d656422](https://github.com/h5bp/server-configs-apache/commit/d65642225cf080c15ace94816bed9f15080471b1)]
   [[43bcb83](https://github.com/h5bp/server-configs-apache/commit/43bcb833eb0539800e0d3e8a19ad3ef1d6944592)]
   [[d84d94c](https://github.com/h5bp/server-configs-apache/commit/d84d94c7e1e3e647a6ff3b0d29a780481a0638d8)]
-* Make disabling TRACE method usable in a `.htaccess` file 
+* Make disabling TRACE method usable in a `.htaccess` file
   [[9ae931c](https://github.com/h5bp/server-configs-apache/commit/9ae931cfe5bc4fe8af0fca21094ad93d4437cfaa)]
 * Improve inline comments.
 
