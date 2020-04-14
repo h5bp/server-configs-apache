@@ -118,7 +118,7 @@ Options -MultiViews
 # ----------------------------------------------------------------------
 
 # Force Internet Explorer 8/9/10 to render pages in the highest mode
-# available in the various cases when it may not.
+# available in various cases when it may not.
 #
 # https://hsivonen.fi/doctype/#ie8
 #
@@ -450,7 +450,7 @@ AddDefaultCharset utf-8
 # https://tools.ietf.org/html/rfc7034#section-2.1.
 #
 # Keep in mind that while you could send the `X-Frame-Options` header for all
-# of your website’s pages, this has the potential downside that it forbids even
+# of your website's pages, this has the potential downside that it forbids even
 # non-malicious framing of your content (e.g.: when users visit your website
 # using a Google Image Search results page).
 #
@@ -559,7 +559,7 @@ AddDefaultCharset utf-8
 # Block access to directories without a default document.
 #
 # You should leave the following uncommented, as you shouldn't allow anyone to
-# surf through every directory on your server (which may includes rather
+# surf through every directory on your server (which may include rather
 # private places such as the CMS's directories).
 
 <IfModule mod_autoindex.c>
@@ -568,7 +568,7 @@ AddDefaultCharset utf-8
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Block access to all hidden files and directories with the exception of the
+# Block access to all hidden files and directories except for the
 # visible content from within the `/.well-known/` hidden directory.
 #
 # These types of files usually contain user preferences or the preserved state
@@ -623,13 +623,13 @@ AddDefaultCharset utf-8
 # opportunity (the initial HTTP connection) for an attacker to downgrade or
 # redirect the request.
 #
-# The following header ensures that browser only connects to your server
+# The following header ensures that a browser only connects to your server
 # via HTTPS, regardless of what the users type in the browser's address bar.
 #
 # (!) Be aware that Strict Transport Security is not revokable and you
 #     must ensure being able to serve the site over HTTPS for the duration
 #     you've specified in the `max-age` directive. When you don't have a
-#     valid TLS connection anymore (e.g. due to an expired TLS cerfiticate)
+#     valid TLS connection anymore (e.g. due to an expired TLS certificate)
 #     your visitors will see a nasty error message even when attempting to
 #     connect over HTTP.
 #
@@ -681,8 +681,8 @@ AddDefaultCharset utf-8
 # (1) Try to re-enable the cross-site scripting (XSS) filter built into most
 #     web browsers.
 #
-#     The filter is usually enabled by default, but in some cases it may be
-#     disabled by the user. However, in Internet Explorer for example, it can be
+#     The filter is usually enabled by default, but in some cases, it may be
+#     disabled by the user. However, in Internet Explorer, for example, it can be
 #     re-enabled just by sending the  `X-XSS-Protection` header with the value
 #     of `1`.
 #
@@ -747,7 +747,7 @@ AddDefaultCharset utf-8
 
 # Prevent Apache from responding to `TRACE` HTTP request.
 #
-# The TRACE method, while apparently harmless, can be successfully leveraged
+# The TRACE method, while seemingly harmless, can be successfully leveraged
 # in some scenarios to steal legitimate users' credentials.
 #
 # Modern browsers now prevent TRACE requests being made via JavaScript,
@@ -782,7 +782,7 @@ AddDefaultCharset utf-8
 #    some cases, the information it provides can expose vulnerabilities
 #
 # (!) If you can, you should disable the `X-Powered-By` header from the
-#     language / framework level (e.g.: for PHP, you can do that by setting
+#     language/framework level (e.g.: for PHP, you can do that by setting
 #     `expose_php = off` in `php.ini`).
 #
 # https://php.net/manual/en/ini.core.php#ini.expose-php
@@ -950,7 +950,7 @@ ServerSignature Off
 # | GZip pre-compressed content                                        |
 # ----------------------------------------------------------------------
 
-# Serve gzip compressed CSS, JS, HTML, SVG, ICS and JSON files if they exist
+# Serve gzip compressed CSS, JS, HTML, SVG, ICS, and JSON files if they exist
 # and if the client accepts gzip encoding.
 #
 # (!) To make this part relevant, you need to generate encoded files by your
@@ -961,7 +961,7 @@ ServerSignature Off
 # (1) Removing default MIME Type for .gz files allowing to add custom
 #     sub-types.
 #     You may prefer using less generic extensions such as .html_gz in order to
-#     keep default behavior regarding .gz files.
+#     keep the default behavior regarding .gz files.
 #     https://httpd.apache.org/docs/current/mod/mod_mime.html#removetype
 
 # <IfModule mod_headers.c>
@@ -1058,7 +1058,7 @@ FileETag None
 # | Cache expiration                                                   |
 # ----------------------------------------------------------------------
 
-# Serve resources with far-future expiration date.
+# Serve resources with a far-future expiration date.
 #
 # (!) If you don't control versioning with filename-based cache busting, you
 # should consider lowering the cache times to something like one week.
