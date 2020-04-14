@@ -1,6 +1,6 @@
 ### 3.2.1 (May 8, 2019)
 
-* Fix NPM releasing
+* Fix npm releasing
   [[4b0ee86](https://github.com/h5bp/server-configs-apache/commit/4b0ee8643c2c4f7dafafca82be67dc3309c0b479)]
 
 ### 3.2.0 (May 6, 2019)

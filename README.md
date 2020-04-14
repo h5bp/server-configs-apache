@@ -10,11 +10,11 @@ accessible, if needed, even cross-domain.
 
 ## Getting Started
 
-There are a two options for getting the Apache server configs:
+There are two options for getting the Apache server configs:
 
 * If you have access to the [main server configuration
   file](https://httpd.apache.org/docs/current/configuring.html#main)
-  (usually called `httpd.conf`), you should configure Apache by this way.
+  (usually called `httpd.conf`), you should configure Apache this way.
   This is usually the recommended way, as using `.htaccess` files [slows
   down](https://httpd.apache.org/docs/current/howto/htaccess.html#when)
   Apache!
@@ -53,7 +53,7 @@ Most specific variables are:
   apache2 -t -f httpd.conf
   ```
 
-* To reload Apache and apply new config
+* To reload Apache and apply the new config
 
   ```shell
   apache2ctl reload
@@ -158,7 +158,7 @@ This repository has the following structure:
   * **`basic.conf`**
 
     This file loads a small subset of the rules provided by this repository to add
-    expires headers, allow cross domain fonts and protect system files from web
+    expires headers, allow cross-domain fonts and protect system files from web
     access.
     The `basic.conf` file includes the rules which are recommended to always be
     defined.
@@ -251,7 +251,7 @@ to your settings in the `htaccess.conf` of your project root.
 
 #### Configuration file: `htaccess.conf`
 
-Allows you to define which module to [enable](#enabling-modules) or
+It allows you to define which module to [enable](#enabling-modules) or
 [disable](#disabling-modules) for your project. Just copy the default
 [`htaccess.conf`](https://github.com/h5bp/server-configs-apache/blob/master/bin/htaccess.conf)
 from this repo into your project directory. Adjust to your needs, and/or
@@ -290,7 +290,7 @@ omit  "h5bp/cross-origin/web_fonts.conf"
 
 ##### Enabling modules
 
-For example, the *“Forcing https://”* snippet is disabled by default,
+For example, the *“Forcing `https://`”* snippet is disabled by default,
 although being included in our pre-built `.htaccess`. To enable this
 snippet, change the `disable` keyword to `enable`:
 
@@ -301,7 +301,7 @@ enable "h5bp/rewrites/rewrite_http_to_https.conf"
 ##### Adding custom modules
 
 Imagine you're passing all requests to non-existing files to your
-favourite web framework. The according
+favorite web framework. The according
 [_mod_dir_](https://httpd.apache.org/docs/trunk/mod/mod_dir.html#fallbackresource)
 snippet would go like this:
 
@@ -322,9 +322,10 @@ enable "config/framework_rewrites.conf"
 Dive into your project root and call the build script from wherever you cloned
 the repo. Here are three examples:
 
-**1. Create a default `.htaccess`**  
-in current work directory. An existing `htaccess.conf` in this directory will
-be used; if none is present, the
+1. Create a default `.htaccess`
+
+Create a default `.htaccess` in the current work directory. An existing
+`htaccess.conf` in this directory will be used; if none is present, the
 [**default configuration**](https://github.com/h5bp/server-configs-apache/blob/master/bin/htaccess.conf)
 will apply.
 
@@ -337,8 +338,9 @@ $ path/to/server-configs-apache/bin/build.sh
 [✔] Moved in place: './.htaccess'
 ```
 
-**2. Custom output location**  
-Just add output path and filename as parameter. By the way, if there's an
+2. Custom output location
+
+Just add an output path and filename as a parameter. By the way, if there's an
 existing `.htaccess` file, the build script will create a backup.
 
 ```console
@@ -348,9 +350,10 @@ $ path/to/server-configs-apache/bin/build.sh htdocs/.htaccess
 [✔] Moved in place: 'htdocs/.htaccess'
 ```
 
-**3. Custom `.htaccess` configuration**  
+3. Custom `.htaccess` configuration
+
 Why not maintain your personal `~/htaccess.conf`? This example creates a
-`.htaccess` in current work directory, according to your favourite settings
+`.htaccess` in the current work directory, according to your favorite settings
 you may have stored in your `$HOME` directory:
 
 ```bash
