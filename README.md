@@ -94,7 +94,7 @@ used to install Apache.
     sudo a2enmod setenvif headers deflate filter expires rewrite include
     ```
 
-2. Restart apache by using the following command so the new configuration takes
+2. Restart apache by using the following command, so the new configuration takes
    effect.
 
     ```shell
@@ -117,7 +117,7 @@ used to install Apache.
   * **XAMPP**: `/Applications/XAMPP/etc/httpd.conf`
   * **WAMP**: `C:\apache\conf\httpd.conf`
 
-  Open the file in a text editor and uncomment all of the required modules.
+  Open the file in a text editor and uncomment all the required modules.
   Once you have done so, reset MAMP/WAMP/XAMPP.
 
 ### Basic structure
