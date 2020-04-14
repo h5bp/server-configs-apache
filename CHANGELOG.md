@@ -1,4 +1,4 @@
-### 4.0.0 (April 15, 2020)
+### 4.0.0 (April 14, 2020)
 
 * 🎉 Server-level config! Support httpd configuration at main server level.
   Add `httpd.conf` file, vhost management, secure HTTP tweaking, etc. See the [README](https://github.com/h5bp/server-configs-apache)
