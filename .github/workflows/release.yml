@@ -1,9 +1,11 @@
+# https://help.github.com/en/actions
+
 name: Release
 
 on:
-  push:
-    tags:
-      - '*'
+  release:
+    types:
+      - published
 
 jobs:
   npm:
@@ -21,21 +23,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: ./bin/build.sh dist/h5bp.htaccess bin/htaccess.conf
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: v${{ github.ref }}
       - name: Upload Release Asset
-        id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./dist/h5bp.htaccess
           asset_name: h5bp.htaccess
           asset_content_type: application/octet-stream

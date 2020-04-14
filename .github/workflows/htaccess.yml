@@ -1,3 +1,5 @@
+# https://help.github.com/en/actions
+
 name: .htaccess
 
 on: [push, pull_request]
