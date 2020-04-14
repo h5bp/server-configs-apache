@@ -14,7 +14,6 @@
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-/.travis.yml    export-ignore
 /.git*          export-ignore
 /.editorconfig  export-ignore
 /test           export-ignore
