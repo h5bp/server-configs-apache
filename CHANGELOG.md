@@ -13,6 +13,7 @@
   [[5748d26](https://github.com/h5bp/server-configs-apache/commit/5748d26258394005b4d6dbb2f8474b58ed276e95)]
   [[d8553ee](https://github.com/h5bp/server-configs-apache/commit/d8553ee58f307419d9ec39ab8c60fc6a6e1135cb)]
   [[6862ac1](https://github.com/h5bp/server-configs-apache/commit/6862ac17ed60042c4eb47b56c8da055e99ad4dac)]
+  [[ade3659](https://github.com/h5bp/server-configs-apache/commit/ade3659f49b5e23c93695b6888f92bfda3b3f2ed)]
 * Default to HSTS only over secure connections
   [[5bbc0a1](https://github.com/h5bp/server-configs-apache/commit/5bbc0a1ded8b306ca900338136a50d17eb304b94)]
 * Stricter default for Referrer Policy `strict-origin-when-cross-origin`
