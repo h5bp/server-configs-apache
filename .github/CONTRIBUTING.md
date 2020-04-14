@@ -8,7 +8,7 @@ Please take a moment to review this document in order to make the contribution
 process easy and effective for everyone involved.
 
 Following these guidelines helps to communicate that you respect the time of
-the developers managing and developing this open source project. In return,
+the developers managing and developing this open-source project. In return,
 they should reciprocate that respect in addressing your issue or assessing
 patches and features.
 
@@ -41,7 +41,7 @@ Guidelines for bug reports:
 2. **Check if the issue has been fixed** &mdash; try to reproduce it using the
    latest `master` or development branch in the repository.
 
-3. **Isolate the problem** &mdash; ideally create a [reduced test
+3. **Isolate the problem** &mdash; ideally, create a [reduced test
    case](https://css-tricks.com/reduced-test-cases/) and a live example.
 
 A good bug report shouldn't leave others needing to chase you up for more
@@ -123,7 +123,7 @@ included in the project:
 
 4. Commit your changes in logical chunks. Please adhere to these [git commit
    message guidelines](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
-   or your code is unlikely be merged into the main project. Use Git's
+   or your code is unlikely to be merged into the main project. Use Git's
    [interactive rebase](https://help.github.com/articles/about-git-rebase/)
    feature to tidy up your commits before making them public.
 
