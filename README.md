@@ -170,6 +170,9 @@ This repository has the following structure:
 
 ## Usage
 
+The [default location of the configuration files](https://httpd.apache.org/docs/current/getting-started.html#configuration) is `/usr/local/apache2/`, but these files may be located any of a variety of places, depending on how exactly you installed the server.  
+Common locations for these files may be found [in the httpd wiki](http://wiki.apache.org/httpd/DistrosDefaultLayout).
+
 ### As a reference
 
 To use as reference requires no special installation steps, download/checkout the
@@ -180,7 +183,7 @@ Download the [latest release archive](https://github.com/h5bp/server-configs-apa
 
 ### Directly
 
-To use directly, add httpd config files from this repository.
+To use directly, add httpd config files from this repository.  
 For example:
 
 ```shell
