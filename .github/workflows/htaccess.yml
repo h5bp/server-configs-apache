@@ -30,8 +30,6 @@ jobs:
 
       - name: Benchmark
         uses: h5bp/server-configs-test@3.1.0
-        env:
-          K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}
         with:
           command: benchmark
           server: httpd
