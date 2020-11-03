@@ -43,7 +43,7 @@
 
 <IfModule mod_setenvif.c>
     <IfModule mod_headers.c>
-        <FilesMatch "\.(bmp|cur|gif|ico|jpe?g|a?png|svgz?|webp)$">
+        <FilesMatch "\.(bmp|cur|gif|ico|jpe?g|a?png|svgz?|webp|avifs?)$">
             SetEnvIf Origin ":" IS_CORS
             Header set Access-Control-Allow-Origin "*" env=IS_CORS
         </FilesMatch>
@@ -183,6 +183,8 @@ Options -MultiViews
     AddType image/bmp                                   bmp
     AddType image/svg+xml                               svg svgz
     AddType image/webp                                  webp
+    AddType image/avif                                  avif
+    AddType image/avif-sequence                         avifs
     AddType video/mp4                                   f4v f4p m4v mp4
     AddType video/ogg                                   ogv
     AddType video/webm                                  webm
@@ -1131,6 +1133,8 @@ FileETag None
     ExpiresByType image/png                             "access plus 1 month"
     ExpiresByType image/svg+xml                         "access plus 1 month"
     ExpiresByType image/webp                            "access plus 1 month"
+    ExpiresByType image/avif                            "access plus 1 month"
+    ExpiresByType image/avif-sequence                   "access plus 1 month"
     ExpiresByType video/mp4                             "access plus 1 month"
     ExpiresByType video/ogg                             "access plus 1 month"
     ExpiresByType video/webm                            "access plus 1 month"
@@ -1220,6 +1224,6 @@ FileETag None
 # <IfModule mod_rewrite.c>
 #     RewriteEngine On
 #     RewriteCond %{REQUEST_FILENAME} !-f
-#     RewriteRule ^(.+)\.(\w+)\.(bmp|css|cur|gif|ico|jpe?g|m?js|a?png|svgz?|webp|webmanifest)$ $1.$3 [L]
+#     RewriteRule ^(.+)\.(\w+)\.(bmp|css|cur|gif|ico|jpe?g|m?js|a?png|svgz?|webp|avifs?|webmanifest)$ $1.$3 [L]
 # </IfModule>
 
