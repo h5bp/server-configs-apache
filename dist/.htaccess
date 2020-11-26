@@ -1102,6 +1102,11 @@ FileETag None
     ExpiresByType text/html                             "access plus 0 seconds"
 
 
+  # PHP
+
+    ExpiresByType application/x-httpd-php               "access plus 0 seconds"
+
+
   # JavaScript
 
     ExpiresByType application/javascript                "access plus 1 year"
