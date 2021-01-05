@@ -1,3 +1,13 @@
+### 4.1.0 (January 5, 2021)
+
+* Add mime-type `image/avif` and `image/avifs`
+  [[4ca46af](https://github.com/h5bp/server-configs-apache/commit/4ca46af2dc9791699221ea9e274d46ffe275b061)]
+* Fix unexpected Content-Language in pre-compressed Brotli
+  [[1f5641d](https://github.com/h5bp/server-configs-apache/commit/1f5641d702b05b92c15a60a7c98d5090f03789dd)]
+* Added `systemd` module to support CentOS
+  [[5d060b0](https://github.com/h5bp/server-configs-apache/commit/5d060b0f562dbde5f3f15cc2a250f9d2bc10fb84)]
+* Improve inline comments.
+
 ### 4.0.0 (April 14, 2020)
 
 * 🎉 Server-level config! Support httpd configuration at main server level.
