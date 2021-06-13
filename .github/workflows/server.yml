@@ -26,7 +26,8 @@ jobs:
           root-path: /usr/local/apache2/htdocs
           certs-path: /usr/local/apache2/certs
           configs-volumes: test/vhosts:/usr/local/apache2/vhosts;h5bp:/usr/local/apache2/h5bp;httpd.conf:/usr/local/apache2/conf/httpd.conf
-          tests: basic-file-access;caching;cache-busting;custom-errors;forbidden-files;enforce-gzip;precompressed-files-gzip;rewrites;ssl
+          #tests: basic-file-access;caching;cache-busting;custom-errors;forbidden-files;enforce-gzip;precompressed-files-gzip;rewrites;ssl
+          tests: basic-file-access;cache-busting;custom-errors;forbidden-files;enforce-gzip;precompressed-files-gzip;rewrites;ssl
 
       - name: Benchmark
         uses: h5bp/server-configs-test@4.0.2
