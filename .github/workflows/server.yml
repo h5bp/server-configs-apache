@@ -5,6 +5,18 @@ name: server
 on: [push, pull_request]
 
 jobs:
+# Following job not possible yet as too complicated directory mapping on the container.
+#  check:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2.3.4
+#
+#      - name: Check configuration
+#        uses: docker://httpd:latest
+#        with:
+#          entrypoint: httpd
+#          args: -f /github/workspace/httpd.conf -t
+
   test:
     runs-on: ubuntu-latest
     steps:
