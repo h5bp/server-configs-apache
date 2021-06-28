@@ -1,3 +1,23 @@
+### 5.0.0 (July 31, 2021)
+
+* ⚠️ **Breaking**: End of support for Internet Explorer (`X-UA-Compatible` and `X-XSS-Protection` headers)
+  [[d1fb502](https://github.com/h5bp/server-configs-apache/commit/d1fb50202c36f01e4f2d4b43356eb816ffa9e222)]  
+  [[22014cb](https://github.com/h5bp/server-configs-apache/commit/22014cba3dea2b23f8b49593a2d8e44a99b97da9)]
+* 🎉 Security first! Modernize TLS configuration
+  [[55c364d](https://github.com/h5bp/server-configs-apache/commit/55c364d185db0b25016e88d20c3e6181c2c22940)]
+* 🎉 Security first! Refresh policies-related headers usage
+  * Add Cross Origin Policies headers (COOP/COEP/CORP)
+    [[9d2cb74](https://github.com/h5bp/server-configs-apache/commit/9d2cb7496b40d03c03b817b53b19c6282d5eff2d)]
+  * Add `Permissions-Policy` header
+    [[86494cc](https://github.com/h5bp/server-configs-apache/commit/86494cc034f459aeb96648944b1f195a05d232ff)]
+  * Make `Content-Security-Policy` disallow 'object-src' by default
+    [[f993710](https://github.com/h5bp/server-configs-apache/commit/f9937105c83ab07a6f19890413cebb8e4a70d08c)]
+* Add mime-type `image/jxl`
+  [[da3ce54](https://github.com/h5bp/server-configs-apache/commit/da3ce54293b96b6ae977a6c0f06df4a58ecbfec0)]
+* Fix `SSLSessionCache` directive usage
+  [[64e33e8](https://github.com/h5bp/server-configs-apache/commit/64e33e89509c9ee8f806fb860efc78dc7563fe6c)]
+* Improve inline comments.
+
 ### 4.1.0 (January 5, 2021)
 
 * Add mime-type `image/avif` and `image/avifs`
