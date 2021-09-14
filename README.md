@@ -1,4 +1,4 @@
-main# [Apache Server Configs](https://github.com/h5bp/server-configs-apache)
+# [Apache Server Configs](https://github.com/h5bp/server-configs-apache)
 
 [![Test](https://github.com/h5bp/server-configs-apache/workflows/server/badge.svg)](https://github.com/h5bp/server-configs-apache/actions?query=workflow%3Aserver)
 
@@ -256,7 +256,7 @@ to your settings in the `htaccess.conf` of your project root.
 
 It allows you to define which module to [enable](#enabling-modules) or
 [disable](#disabling-modules) for your project. Just copy the default
-[`htaccess.conf`](https://github.com/h5bp/server-configs-apache/blob/master/bin/htaccess.conf)
+[`htaccess.conf`](https://github.com/h5bp/server-configs-apache/blob/main/bin/htaccess.conf)
 from this repo into your project directory. Adjust to your needs, and/or
 [add custom code](#adding-custom-modules) snippets you need for your project.
 Its syntax is straight and pretty much self-explanatory:
@@ -329,7 +329,7 @@ the repo. Here are three examples:
 
 Create a default `.htaccess` in the current work directory. An existing
 `htaccess.conf` in this directory will be used; if none is present, the
-[**default configuration**](https://github.com/h5bp/server-configs-apache/blob/master/bin/htaccess.conf)
+[**default configuration**](https://github.com/h5bp/server-configs-apache/blob/main/bin/htaccess.conf)
 will apply.
 
 

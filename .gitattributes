@@ -1,4 +1,4 @@
-main# Enforce Unix newlines
+# Enforce Unix newlines
 * text=auto eol=lf
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
