@@ -1,4 +1,4 @@
-# Contributing to Apache Server Configs
+main# Contributing to Apache Server Configs
 
 ♥ [Apache Server Configs](https://github.com/h5bp/server-configs-apache) and
 want to get involved? Thanks! We're actively looking for folks interested in
