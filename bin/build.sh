@@ -21,10 +21,10 @@ create_htaccess() {
     insert_line "# https://github.com/h5bp/server-configs-apache" "$file"
     insert_line "" "$file"
     insert_line "# (!) Using \`.htaccess\` files slows down Apache, therefore, if you have" "$file"
-    insert_line "# access to the main server configuration file (which is usually called" "$file"
-    insert_line "# \`httpd.conf\`), you should add this logic there." "$file"
+    insert_line "#     access to the main server configuration file (which is usually" "$file"
+    insert_line "#     called \`httpd.conf\`), you should add this logic there." "$file"
     insert_line "#" "$file"
-    insert_line "# https://httpd.apache.org/docs/current/howto/htaccess.html" "$file"
+    insert_line "#     https://httpd.apache.org/docs/current/howto/htaccess.html" "$file"
     insert_line "" "$file"
 
 
