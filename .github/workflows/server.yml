@@ -31,7 +31,7 @@ jobs:
             "httpd.conf"
 
       - name: Test with server-configs-test
-        uses: h5bp/server-configs-test@5.0.2
+        uses: h5bp/server-configs-test@5.1.0
         with:
           command: test
           server: httpd
@@ -42,7 +42,7 @@ jobs:
           tests: basic-file-access;cache-busting;custom-errors;forbidden-files;enforce-gzip;precompressed-files-gzip;rewrites;ssl
 
       - name: Benchmark
-        uses: h5bp/server-configs-test@5.0.2
+        uses: h5bp/server-configs-test@5.1.0
         with:
           command: benchmark
           server: httpd
