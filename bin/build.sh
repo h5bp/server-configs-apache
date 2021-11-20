@@ -3,7 +3,7 @@
 declare htaccess_config_default="bin/htaccess.conf";
 declare htaccess_output_default="./.htaccess"
 declare repo_root
-repo_root=$(dirname "$(dirname "$0")")
+repo_root=$(dirname "$(dirname "$(realpath "$0")")")
 
 # ----------------------------------------------------------------------
 # | Helper functions                                                   |
