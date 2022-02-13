@@ -1,6 +1,66 @@
+### 5.0.0 (July 31, 2021)
+
+* ⚠️ **Breaking**: End of support for Internet Explorer (`X-UA-Compatible` and `X-XSS-Protection` headers)
+  [[d1fb502](https://github.com/h5bp/server-configs-apache/commit/d1fb50202c36f01e4f2d4b43356eb816ffa9e222)]  
+  [[22014cb](https://github.com/h5bp/server-configs-apache/commit/22014cba3dea2b23f8b49593a2d8e44a99b97da9)]
+* 🎉 Security first! Modernize TLS configuration
+  [[55c364d](https://github.com/h5bp/server-configs-apache/commit/55c364d185db0b25016e88d20c3e6181c2c22940)]
+* 🎉 Security first! Refresh policies-related headers usage
+  * Add Cross Origin Policies headers (COOP/COEP/CORP)
+    [[9d2cb74](https://github.com/h5bp/server-configs-apache/commit/9d2cb7496b40d03c03b817b53b19c6282d5eff2d)]
+  * Add `Permissions-Policy` header
+    [[86494cc](https://github.com/h5bp/server-configs-apache/commit/86494cc034f459aeb96648944b1f195a05d232ff)]
+  * Make `Content-Security-Policy` disallow 'object-src' by default
+    [[f993710](https://github.com/h5bp/server-configs-apache/commit/f9937105c83ab07a6f19890413cebb8e4a70d08c)]
+* Add mime-type `image/jxl`
+  [[da3ce54](https://github.com/h5bp/server-configs-apache/commit/da3ce54293b96b6ae977a6c0f06df4a58ecbfec0)]
+* Fix `SSLSessionCache` directive usage
+  [[64e33e8](https://github.com/h5bp/server-configs-apache/commit/64e33e89509c9ee8f806fb860efc78dc7563fe6c)]
+* Improve inline comments.
+
+### 4.1.0 (January 5, 2021)
+
+* Add mime-type `image/avif` and `image/avifs`
+  [[4ca46af](https://github.com/h5bp/server-configs-apache/commit/4ca46af2dc9791699221ea9e274d46ffe275b061)]
+* Fix unexpected Content-Language in pre-compressed Brotli
+  [[1f5641d](https://github.com/h5bp/server-configs-apache/commit/1f5641d702b05b92c15a60a7c98d5090f03789dd)]
+* Added `systemd` module to support CentOS
+  [[5d060b0](https://github.com/h5bp/server-configs-apache/commit/5d060b0f562dbde5f3f15cc2a250f9d2bc10fb84)]
+* Improve inline comments.
+
+### 4.0.0 (April 14, 2020)
+
+* 🎉 Server-level config! Support httpd configuration at main server level.
+  Add `httpd.conf` file, vhost management, secure HTTP tweaking, etc. See the [README](https://github.com/h5bp/server-configs-apache)
+  [[b50205a...c302596](https://github.com/h5bp/server-configs-apache/compare/df7857d...c302596)]
+* ⚠️ **Breaking**: End of support for Apache httpd version 2.4.9 and below
+  [[baa9cdd](https://github.com/h5bp/server-configs-apache/commit/baa9cdd5567b25d9434b06937a436ceccadb6b4c)]
+* ⚠️ **Breaking**: File paths changes for the `.htaccess` build system
+  [[478ceab](https://github.com/h5bp/server-configs-apache/commit/478ceab3a28786856a1ffcdf6a943ee43907caf0)]
+  [[9cb2763](https://github.com/h5bp/server-configs-apache/commit/9cb2763d7f5e3fce984bfdea903e9df61cdf4bcd)]
+* Rewrite, improve and update a large part of the documentation
+  [[5dc823c](https://github.com/h5bp/server-configs-apache/commit/5dc823c18e4a0ee163c2ee3b772060bce7d782e6)]
+  [[5748d26](https://github.com/h5bp/server-configs-apache/commit/5748d26258394005b4d6dbb2f8474b58ed276e95)]
+  [[d8553ee](https://github.com/h5bp/server-configs-apache/commit/d8553ee58f307419d9ec39ab8c60fc6a6e1135cb)]
+  [[6862ac1](https://github.com/h5bp/server-configs-apache/commit/6862ac17ed60042c4eb47b56c8da055e99ad4dac)]
+  [[ade3659](https://github.com/h5bp/server-configs-apache/commit/ade3659f49b5e23c93695b6888f92bfda3b3f2ed)]
+* Default to HSTS only over secure connections
+  [[5bbc0a1](https://github.com/h5bp/server-configs-apache/commit/5bbc0a1ded8b306ca900338136a50d17eb304b94)]
+* Stricter default for Referrer Policy `strict-origin-when-cross-origin`
+  [[43bcb83](https://github.com/h5bp/server-configs-apache/commit/43bcb833eb0539800e0d3e8a19ad3ef1d6944592)]
+* Add APNG (`.apng`) MIME type
+  [[ad25d31](https://github.com/h5bp/server-configs-apache/commit/ad25d3185fb28971a83e8c721567d7ce08b76f38)]
+* Ensure the presence of security headings where expected
+  [[d656422](https://github.com/h5bp/server-configs-apache/commit/d65642225cf080c15ace94816bed9f15080471b1)]
+  [[43bcb83](https://github.com/h5bp/server-configs-apache/commit/43bcb833eb0539800e0d3e8a19ad3ef1d6944592)]
+  [[d84d94c](https://github.com/h5bp/server-configs-apache/commit/d84d94c7e1e3e647a6ff3b0d29a780481a0638d8)]
+* Make disabling TRACE method usable in a `.htaccess` file
+  [[9ae931c](https://github.com/h5bp/server-configs-apache/commit/9ae931cfe5bc4fe8af0fca21094ad93d4437cfaa)]
+* Improve inline comments.
+
 ### 3.2.1 (May 8, 2019)
 
-* Fix NPM releasing
+* Fix npm releasing
   [[4b0ee86](https://github.com/h5bp/server-configs-apache/commit/4b0ee8643c2c4f7dafafca82be67dc3309c0b479)]
 
 ### 3.2.0 (May 6, 2019)

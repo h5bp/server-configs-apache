@@ -1,3 +1,5 @@
+# https://docs.github.com/actions
+
 name: .htaccess
 
 on: [push, pull_request]
@@ -6,19 +8,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.4.0
       - run: ./test/build/test_userbuild.sh
 
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.4.0
 
       - name: Build .htaccess
         run: ./bin/build.sh test/conf/.htaccess test/build/htaccess_fixture.conf
 
       - name: Test with server-configs-test
-        uses: h5bp/server-configs-test@3.0.1
+        uses: h5bp/server-configs-test@5.1.0
         with:
           command: test
           server: httpd
@@ -27,7 +29,7 @@ jobs:
           tests: basic-file-access:cache-busting:custom-errors:forbidden-files:enforce-gzip:precompressed-files-gzip:concatenation
 
       - name: Benchmark
-        uses: h5bp/server-configs-test@3.0.1
+        uses: h5bp/server-configs-test@5.1.0
         with:
           command: benchmark
           server: httpd

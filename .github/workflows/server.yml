@@ -1,33 +1,48 @@
-name: server
+# https://docs.github.com/actions
+
+name: Server CI
 
 on: [push, pull_request]
 
 jobs:
+# Following job not possible yet as too complicated directory mapping on the container.
+#  check:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2.4.0
+#
+#      - name: Check configuration
+#        uses: docker://httpd:latest
+#        with:
+#          entrypoint: httpd
+#          args: -f /github/workspace/httpd.conf -t
+
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.4.0
 
       - name: Prepare configs
         run: |
           sed -ri \
-          	-e 's!^(\s*CustomLog)\s+\S+!\1 /proc/self/fd/1!g' \
-          	-e 's!^(\s*ErrorLog)\s+\S+!\1 /proc/self/fd/2!g' \
-          	-e 's!^(\s*TransferLog)\s+\S+!\1 /proc/self/fd/1!g' \
-          	"httpd.conf"
+            -e 's!^(\s*CustomLog)\s+\S+!\1 /proc/self/fd/1!g' \
+            -e 's!^(\s*ErrorLog)\s+\S+!\1 /proc/self/fd/2!g' \
+            -e 's!^(\s*TransferLog)\s+\S+!\1 /proc/self/fd/1!g' \
+            "httpd.conf"
 
       - name: Test with server-configs-test
-        uses: h5bp/server-configs-test@3.0.1
+        uses: h5bp/server-configs-test@5.1.0
         with:
           command: test
           server: httpd
           root-path: /usr/local/apache2/htdocs
           certs-path: /usr/local/apache2/certs
           configs-volumes: test/vhosts:/usr/local/apache2/vhosts;h5bp:/usr/local/apache2/h5bp;httpd.conf:/usr/local/apache2/conf/httpd.conf
+          #tests: basic-file-access;caching;cache-busting;custom-errors;forbidden-files;enforce-gzip;precompressed-files-gzip;rewrites;ssl
           tests: basic-file-access;cache-busting;custom-errors;forbidden-files;enforce-gzip;precompressed-files-gzip;rewrites;ssl
 
       - name: Benchmark
-        uses: h5bp/server-configs-test@3.0.1
+        uses: h5bp/server-configs-test@5.1.0
         with:
           command: benchmark
           server: httpd
