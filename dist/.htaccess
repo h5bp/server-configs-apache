@@ -1,11 +1,11 @@
-# Apache Server Configs v5.0.0 | MIT License
+# Apache Server Configs v5.1.0 | MIT License
 # https://github.com/h5bp/server-configs-apache
 
 # (!) Using `.htaccess` files slows down Apache, therefore, if you have
-# access to the main server configuration file (which is usually called
-# `httpd.conf`), you should add this logic there.
+#     access to the main server configuration file (which is usually
+#     called `httpd.conf`), you should add this logic there.
 #
-# https://httpd.apache.org/docs/current/howto/htaccess.html
+#     https://httpd.apache.org/docs/current/howto/htaccess.html
 
 # ######################################################################
 # # CROSS-ORIGIN                                                       #
@@ -883,6 +883,7 @@ ServerSignature Off
                                       "image/bmp" \
                                       "image/svg+xml" \
                                       "image/vnd.microsoft.icon" \
+                                      "image/x-icon" \
                                       "text/cache-manifest" \
                                       "text/calendar" \
                                       "text/css" \
@@ -939,7 +940,7 @@ ServerSignature Off
 #
 # https://httpd.apache.org/docs/current/mod/mod_brotli.html#precompressed
 
-# <IfModule mod_headers.c>
+# <IfModule mod_rewrite.c>
 
 #     RewriteCond %{HTTP:Accept-Encoding} br
 #     RewriteCond %{REQUEST_FILENAME}\.br -f
@@ -969,13 +970,17 @@ ServerSignature Off
 #                              .json.br
 #         </IfModule>
 
-#         # Force proxies to cache brotlied and non-brotlied files separately
-#         Header append Vary Accept-Encoding
+#         <IfModule mod_headers.c>
+#             # Force proxies to cache brotlied and non-brotlied files separately
+#             Header append Vary Accept-Encoding
+#         </IfModule>
 
 #     </FilesMatch>
 
-#     # Serve correct encoding type
-#     AddEncoding br .br
+#     <IfModule mod_mime.c>
+#         # Serve correct encoding type
+#         AddEncoding br .br
+#     </IfModule>
 
 # </IfModule>
 
@@ -997,7 +1002,7 @@ ServerSignature Off
 #     keep the default behavior regarding .gz files.
 #     https://httpd.apache.org/docs/current/mod/mod_mime.html#removetype
 
-# <IfModule mod_headers.c>
+# <IfModule mod_rewrite.c>
 
 #     RewriteCond %{HTTP:Accept-Encoding} gzip
 #     RewriteCond %{REQUEST_FILENAME}\.gz -f
@@ -1008,7 +1013,6 @@ ServerSignature Off
 
 #     <FilesMatch "\.gz$">
 
-#         # Serve correct content types
 #         <IfModule mod_mime.c>
 #             # (1)
 #             RemoveType gz
@@ -1028,13 +1032,17 @@ ServerSignature Off
 #                              .json.gz
 #         </IfModule>
 
-#         # Force proxies to cache gzipped and non-gzipped files separately
-#         Header append Vary Accept-Encoding
+#         <IfModule mod_headers.c>
+#             # Force proxies to cache gzipped and non-gzipped files separately
+#             Header append Vary Accept-Encoding
+#         </IfModule>
 
 #     </FilesMatch>
 
-#     # Serve correct encoding type
-#     AddEncoding gzip .gz
+#     <IfModule mod_mime.c>
+#         # Serve correct encoding type
+#         AddEncoding gzip .gz
+#     </IfModule>
 
 # </IfModule>
 
@@ -1076,6 +1084,9 @@ ServerSignature Off
 
 # Remove `ETags` as resources are sent with far-future expires headers.
 #
+# Apache `ETags` might have an unexpected behavior if `DeflateAlterETag`
+# can't be changed (which is the case at `.htaccess` level).
+#
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag
 # https://developer.yahoo.com/performance/rules.html#etags
 # https://tools.ietf.org/html/rfc7232#section-2.3
@@ -1103,7 +1114,7 @@ FileETag None
 <IfModule mod_expires.c>
 
     ExpiresActive on
-    ExpiresDefault                                      "access plus 1 month"
+    ExpiresDefault                                      "access plus 1 year"
 
   # CSS
 
@@ -1156,20 +1167,20 @@ FileETag None
 
   # Media files
 
-    ExpiresByType audio/ogg                             "access plus 1 month"
-    ExpiresByType image/apng                            "access plus 1 month"
-    ExpiresByType image/avif                            "access plus 1 month"
-    ExpiresByType image/avif-sequence                   "access plus 1 month"
-    ExpiresByType image/bmp                             "access plus 1 month"
-    ExpiresByType image/gif                             "access plus 1 month"
-    ExpiresByType image/jpeg                            "access plus 1 month"
-    ExpiresByType image/jxl                             "access plus 1 month"
-    ExpiresByType image/png                             "access plus 1 month"
-    ExpiresByType image/svg+xml                         "access plus 1 month"
-    ExpiresByType image/webp                            "access plus 1 month"
-    ExpiresByType video/mp4                             "access plus 1 month"
-    ExpiresByType video/ogg                             "access plus 1 month"
-    ExpiresByType video/webm                            "access plus 1 month"
+    ExpiresByType audio/ogg                             "access plus 1 year"
+    ExpiresByType image/apng                            "access plus 1 year"
+    ExpiresByType image/avif                            "access plus 1 year"
+    ExpiresByType image/avif-sequence                   "access plus 1 year"
+    ExpiresByType image/bmp                             "access plus 1 year"
+    ExpiresByType image/gif                             "access plus 1 year"
+    ExpiresByType image/jpeg                            "access plus 1 year"
+    ExpiresByType image/jxl                             "access plus 1 year"
+    ExpiresByType image/png                             "access plus 1 year"
+    ExpiresByType image/svg+xml                         "access plus 1 year"
+    ExpiresByType image/webp                            "access plus 1 year"
+    ExpiresByType video/mp4                             "access plus 1 year"
+    ExpiresByType video/ogg                             "access plus 1 year"
+    ExpiresByType video/webm                            "access plus 1 year"
 
 
   # WebAssembly
@@ -1180,28 +1191,28 @@ FileETag None
   # Web fonts
 
     # Collection
-    ExpiresByType font/collection                       "access plus 1 month"
+    ExpiresByType font/collection                       "access plus 1 year"
 
     # Embedded OpenType (EOT)
-    ExpiresByType application/vnd.ms-fontobject         "access plus 1 month"
-    ExpiresByType font/eot                              "access plus 1 month"
+    ExpiresByType application/vnd.ms-fontobject         "access plus 1 year"
+    ExpiresByType font/eot                              "access plus 1 year"
 
     # OpenType
-    ExpiresByType font/opentype                         "access plus 1 month"
-    ExpiresByType font/otf                              "access plus 1 month"
+    ExpiresByType font/opentype                         "access plus 1 year"
+    ExpiresByType font/otf                              "access plus 1 year"
 
     # TrueType
-    ExpiresByType application/x-font-ttf                "access plus 1 month"
-    ExpiresByType font/ttf                              "access plus 1 month"
+    ExpiresByType application/x-font-ttf                "access plus 1 year"
+    ExpiresByType font/ttf                              "access plus 1 year"
 
     # Web Open Font Format (WOFF) 1.0
-    ExpiresByType application/font-woff                 "access plus 1 month"
-    ExpiresByType application/x-font-woff               "access plus 1 month"
-    ExpiresByType font/woff                             "access plus 1 month"
+    ExpiresByType application/font-woff                 "access plus 1 year"
+    ExpiresByType application/x-font-woff               "access plus 1 year"
+    ExpiresByType font/woff                             "access plus 1 year"
 
     # Web Open Font Format (WOFF) 2.0
-    ExpiresByType application/font-woff2                "access plus 1 month"
-    ExpiresByType font/woff2                            "access plus 1 month"
+    ExpiresByType application/font-woff2                "access plus 1 year"
+    ExpiresByType font/woff2                            "access plus 1 year"
 
 
   # Other
