@@ -37,6 +37,7 @@ create_htaccess() {
         # Remove quotes surrounding
         filename="${filename%\"}"
         filename="${filename#\"}"
+        filename="${filename/#\~/$HOME}"
 
         # Evaluate
         case "${keyword}" in
