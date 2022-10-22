@@ -1270,3 +1270,21 @@ FileETag None
 #     RewriteRule ^(.+)\.(\w+)\.(avifs?|bmp|css|cur|gif|ico|jpe?g|jxl|m?js|a?png|svgz?|webp|webmanifest)$ $1.$3 [L]
 # </IfModule>
 
+
+# ----------------------------------------------------------------------
+# | Git security flaw                                                     |
+# ----------------------------------------------------------------------
+#
+# If your project merge to your site to production
+# is for block to know all information
+# pakagiste to your git server protection
+
+# <IfModule mod_rewrite.c>
+#     RedirectMatch 404 "/\.git$"
+#     RedirectMatch 404 "/\.git/"
+#     RedirectMatch 404 "/\.gitignores$"
+#     RedirectMatch 404 "/\.gitmodules$"
+#     RedirectMatch 404 "/\.gitattributes$"
+#     RedirectMatch 404 "/\.github/"
+# </IfModule>
+
