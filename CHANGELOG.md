@@ -1,10 +1,27 @@
+### 6.0.0 (December 5, 2022)
+
+* 🎉 Significant improvement on `Cache-Control` definition and usage
+  * `Cache-Control` boilerplate with extensive control 
+    [https://github.com/h5bp/server-configs-apache/pull/325]
+* Reorder and improve cache expiration `ExpiresByType` map
+  [https://github.com/h5bp/server-configs-apache/pull/326]
+* Add a notice for directory index with pre-compressed content
+  [https://github.com/h5bp/server-configs-apache/pull/311]
+* Drop `image/avif-sequence` MIME type
+  [https://github.com/h5bp/server-configs-apache/pull/316]
+* Improve inline comments.
+
 ### 5.1.0 (May 9, 2022)
 
-* Extend default, media and font cache TTL to 1 year [[5df6946](https://github.com/h5bp/server-configs-apache/commit/5df69464885605ded1f4b0ef04cb84f1b8bd8010)]
-* Support `ETags` at server level [[7956cbc](https://github.com/h5bp/server-configs-apache/commit/7956cbcecd33c20f13357284f3f355c658755115)]
-* Add `image/x-icon` compression support [[69ddeda](https://github.com/h5bp/server-configs-apache/commit/69ddeda3781762eb2aba8b5152f2e9d2fa56c90a)]
-* Improve module checks validations [[cb8ef1b](https://github.com/h5bp/server-configs-apache/commit/cb8ef1be06a93d43db6dc525005e2638b8ef687b])]
-* Improve inline comments
+* Extend default, media and font cache TTL to 1 year
+  [[5df6946](https://github.com/h5bp/server-configs-apache/commit/5df69464885605ded1f4b0ef04cb84f1b8bd8010)]
+* Support `ETags` at server level
+  [[7956cbc](https://github.com/h5bp/server-configs-apache/commit/7956cbcecd33c20f13357284f3f355c658755115)]
+* Add `image/x-icon` compression support
+  [[69ddeda](https://github.com/h5bp/server-configs-apache/commit/69ddeda3781762eb2aba8b5152f2e9d2fa56c90a)]
+* Improve module checks validations
+  [[cb8ef1b](https://github.com/h5bp/server-configs-apache/commit/cb8ef1be06a93d43db6dc525005e2638b8ef687b])]
+* Improve inline comments.
 
 ### 5.0.0 (July 31, 2021)
 
