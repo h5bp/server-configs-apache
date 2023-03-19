@@ -301,6 +301,28 @@ snippet, change the `disable` keyword to `enable`:
 enable "h5bp/rewrites/rewrite_http_to_https.conf"
 ```
 
+##### Controlling the size of the output .htaccess file
+
+The default modules contain significant number of comment lines, which
+contain valuable guidance about how and why to use the setting, as well
+as web references. However, some may feel that the size of the resulting
+.htaccess file is too large to deploy in a production environment.
+
+The special directive "comments" can be used to control which comment
+lines are copied out of the source modules into .htaccess. Options
+are "all" (the default), "no-guidance", and "none". Note that this
+directive does not control comments created by the build script (such
+as Title or Disabled modules), only those that are in the source
+module files.
+
+```apache
+comments "no-guidance"
+```
+
+Note: within the module files, guidance comments are denoted by
+a double hash (##).
+
+
 ##### Adding custom modules
 
 Imagine you're passing all requests to non-existing files to your
