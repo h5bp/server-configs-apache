@@ -181,6 +181,24 @@ main() {
 
 
     echo;
+    echo "Test configuration file with source comment control"
+    output_file=".htaccess"
+
+    execute_htaccess_builder "${output_file}" "${repo_root}/test/build/htaccess_mock_comments.conf"
+       assert_exit_code 0 $? \
+    && assert_file_exists "${output_file}" \
+    && assert_file_contains "${output_file}" "a.conf" \
+    && assert_file_contains "${output_file}" "AAAAAA" \
+    && assert_file_not_contains "${output_file}" "b.conf" \
+    && assert_file_contains "${output_file}" "BBBBBB" \
+    && assert_file_contains "${output_file}" "C TITLE" \
+    && assert_file_not_contains "${output_file}" "c.conf" \
+    && assert_file_contains "${output_file}" "# CCCCCC" \
+    && print_success "TEST OK"
+
+
+
+    echo;
     echo "Test invalid configuration file"
     output_file=".htaccess"
 

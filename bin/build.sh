@@ -5,6 +5,14 @@ declare htaccess_output_default="./.htaccess"
 declare repo_root
 repo_root=$(dirname "$(dirname "$(realpath "$0")")")
 
+declare input_filter_noop='/.|^$/!d'
+declare input_filter_comments='/^[[:blank:]]*#/d'
+declare input_filter=${input_filter_noop}
+
+declare output_filter_noop='/.|^$/!d'
+declare output_filter_comment='/^[[:blank:]]*[#]+|^$/! s/^/# /'
+
+
 # ----------------------------------------------------------------------
 # | Helper functions                                                   |
 # ----------------------------------------------------------------------
@@ -54,7 +62,7 @@ create_htaccess() {
                 exit 1
             fi
 
-            insert_file "${filename}" "$file"
+            insert_file "${filename}" "$file" "${input_filter}" "${output_filter_noop}"
             insert_line "" "$file"
             ;;
         "disable")
@@ -67,11 +75,15 @@ create_htaccess() {
                 exit 1
             fi
 
-            insert_file_comment_out "${filename}" "$file"
+            insert_file "${filename}" "$file" "${input_filter}" "${output_filter_comment}"
             insert_line "" "$file"
             ;;
         "omit")
             # noop
+            ;;
+        "no-partials-comments")
+            input_filter=${input_filter_comments}
+            print_info "Not copying comments from partials."
             ;;
         *)
             print_error "Invalid keyword '${keyword}' for entry '${filename}'"
@@ -87,11 +99,7 @@ insert_line() {
 }
 
 insert_file() {
-    cat "$1" >> "$2"
-}
-
-insert_file_comment_out() {
-    printf "%s\\n" "$(sed -E 's/^([^#])(.+)$/# \1\2/g' < "$1")" >> "$2"
+    cat "${1}" | sed -E "${3}" | sed -E "${4}" | cat -s >> "${2}"
 }
 
 insert_header() {
