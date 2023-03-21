@@ -306,13 +306,14 @@ enable "h5bp/rewrites/rewrite_http_to_https.conf"
 The default partials contain significant numbers of comment lines, which
 contain valuable guidance about how and why to use the setting as well
 as web references. However, some may feel that the size of the resulting
-.htaccess file is too large to deploy in a production environment.
+`.htaccess` file is too large.
 
-The special keyword "no-partials-comments" can be used to prevent
-comment lines from being copied out of the partials into .htaccess.
-Note that this keyword does not control comments created by the build
-script (such as Title or Disabled modules), only those that are in the
-source partials files.
+The special keyword `no-partials-comments` can be used to prevent
+comment lines from being copied out of the partials into `.htaccess`.
+
+> **Note** This keyword does not control comments created by the build
+> script (such as `title` or `disabled` directives), only those that
+> are in the source partials files.
 
 ```apache
 no-partials-comments
