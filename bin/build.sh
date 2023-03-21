@@ -6,8 +6,7 @@ declare repo_root
 repo_root=$(dirname "$(dirname "$(realpath "$0")")")
 
 declare input_filter_noop='/.|^$/!d'
-declare input_filter_2hash='/^[[:blank:]]*##/d'
-declare input_filter_1hash='/^[[:blank:]]*#/d'
+declare input_filter_comments='/^[[:blank:]]*#/d'
 declare input_filter=${input_filter_noop}
 
 declare output_filter_noop='/.|^$/!d'
@@ -34,6 +33,7 @@ create_htaccess() {
     insert_line "#     called \`httpd.conf\`), you should add this logic there." "$file"
     insert_line "#" "$file"
     insert_line "#     https://httpd.apache.org/docs/current/howto/htaccess.html" "$file"
+    insert_line "" "$file"
 
 
     while IFS=$" " read -r keyword filename; do
@@ -49,8 +49,8 @@ create_htaccess() {
         # Evaluate
         case "${keyword}" in
         "title")
-            insert_line "" "$file"
             insert_header "${filename}" "$file"
+            insert_line "" "$file"
             ;;
         "enable")
             if [ ! -f "${filename}" ]; then
@@ -62,7 +62,7 @@ create_htaccess() {
                 exit 1
             fi
 
-            insert_file "${filename}" "$file" ${input_filter} ${output_filter_noop}
+            insert_file "${filename}" "$file" "${input_filter}" "${output_filter_noop}"
             insert_line "" "$file"
             ;;
         "disable")
@@ -81,17 +81,9 @@ create_htaccess() {
         "omit")
             # noop
             ;;
-        "comments")
-            if [ "${filename}" = "all" ]; then
-                input_filter=${input_filter_noop}
-            elif [ "${filename}" = "no-guidance" ]; then
-                input_filter=${input_filter_2hash}
-            elif [ "${filename}" = "none" ]; then
-                input_filter=${input_filter_1hash}
-            else
-                print_error "comments directive option must be all, no-guidance or none."
-                exit 1
-            fi
+        "no-partials-comments")
+            input_filter=${input_filter_comments}
+            print_info "Not copying comments from partials."
             ;;
         *)
             print_error "Invalid keyword '${keyword}' for entry '${filename}'"
@@ -107,7 +99,7 @@ insert_line() {
 }
 
 insert_file() {
-    cat "${1}" | sed -E "${3}" | sed -E "${4}" >> "${2}"
+    cat "${1}" | sed -E "${3}" | sed -E "${4}" | cat -s >> "${2}"
 }
 
 insert_header() {
