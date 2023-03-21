@@ -188,14 +188,11 @@ main() {
        assert_exit_code 0 $? \
     && assert_file_exists "${output_file}" \
     && assert_file_contains "${output_file}" "a.conf" \
-    && assert_file_contains "${output_file}" "A guidance" \
     && assert_file_contains "${output_file}" "AAAAAA" \
-    && assert_file_contains "${output_file}" "b.conf" \
-    && assert_file_not_contains "${output_file}" "B guidance" \
+    && assert_file_not_contains "${output_file}" "b.conf" \
     && assert_file_contains "${output_file}" "BBBBBB" \
     && assert_file_contains "${output_file}" "C TITLE" \
     && assert_file_not_contains "${output_file}" "c.conf" \
-    && assert_file_not_contains "${output_file}" "C guidance" \
     && assert_file_contains "${output_file}" "# CCCCCC" \
     && print_success "TEST OK"
 
