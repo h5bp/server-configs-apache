@@ -1,6 +1,6 @@
 # [Apache Server Configs](https://github.com/h5bp/server-configs-apache)
 
-[![Test](https://github.com/h5bp/server-configs-apache/workflows/server/badge.svg)](https://github.com/h5bp/server-configs-apache/actions?query=workflow%3Aserver)
+[![Server CI](https://github.com/h5bp/server-configs-apache/actions/workflows/server.yml/badge.svg)](https://github.com/h5bp/server-configs-apache/actions/workflows/server.yml)
 
 **Apache Server Configs** is a collection of configuration snippets that can help
 your server improve the website's performance and security, while also
