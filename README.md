@@ -311,7 +311,8 @@ as web references. However, some may feel that the size of the resulting
 The special keyword `no-partials-comments` can be used to prevent
 comment lines from being copied out of the partials into `.htaccess`.
 
-> **Note** This keyword does not control comments created by the build
+> [!Note]
+> This keyword does not control comments created by the build
 > script (such as `title` or `disabled` directives), only those that
 > are in the source partials files.
 
