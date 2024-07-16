@@ -19,6 +19,9 @@ jobs:
       - name: Build .htaccess
         run: ./bin/build.sh test/conf/.htaccess test/build/htaccess_fixture.conf
 
+      - name: Install k6
+        uses: grafana/setup-k6-action@v1
+
       - name: Test with server-configs-test
         uses: h5bp/server-configs-test@8.0.0
         with:
