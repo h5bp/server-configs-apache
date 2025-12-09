@@ -10,13 +10,16 @@ on:
 jobs:
   npm:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v5
       - run: ./bin/build.sh dist/.htaccess bin/htaccess.conf
-      - name: Deploy to NPM
-        uses: JS-DevTools/npm-publish@v4.1.1
+      - uses: actions/setup-node@v5
         with:
-          token: ${{ secrets.NPM_TOKEN }}
+          registry-url: "https://registry.npmjs.org"
+      - run: npm publish --provenance --ignore-scripts
 
   github:
     runs-on: ubuntu-latest
